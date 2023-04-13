@@ -1,11 +1,11 @@
 import "./globals.css";
 
-import NavBar from "@/components/NavBar";
+import ProductsCategoryCard from "@/components/ProductsCategoryCard";
 
 export default function Home() {
   return (
-    <main>
-      <NavBar />
+    <main className="bg-agro-gray">
+      <ProductsCategoryCard />
     </main>
   );
 }
