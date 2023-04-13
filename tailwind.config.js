@@ -14,6 +14,7 @@ module.exports = {
         "agro-yellow": "#FFCC29",
         "agro-green": "#4C6538",
         "agro-black": "#1A1A1A",
+        "agro-gray":"#E9E7E7"
       },
     },
   },

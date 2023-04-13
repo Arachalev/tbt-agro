@@ -1,5 +1,4 @@
 import "./globals.css";
-import xx from "../assets/logo/logo.jpg";
 
 export const metadata = {
   title: "Tbt-Agro",
