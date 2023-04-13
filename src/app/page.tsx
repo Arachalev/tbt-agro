@@ -1,3 +1,11 @@
+import "./globals.css";
+
+import NavBar from "@/components/NavBar";
+
 export default function Home() {
-  return <main className="text-3xl">testtt</main>;
+  return (
+    <main>
+      <NavBar />
+    </main>
+  );
 }
