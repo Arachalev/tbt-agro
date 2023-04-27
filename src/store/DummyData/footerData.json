@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Customer Services",
+    "items": [
+      "Contact us",
+      "Help Center",
+      "Policies & rules",
+      "Give your feedback"
+    ]
+  },
+  {
+    "title": "About",
+    "items": ["About TBT", "Blog"]
+  },
+  {
+    "title": "Source on TBT",
+    "items": ["All categories", "Request for Quotation", "Buyer partners"]
+  },
+  {
+    "title": "Sell on TBT",
+    "items": ["Sign up now"]
+  }
+]

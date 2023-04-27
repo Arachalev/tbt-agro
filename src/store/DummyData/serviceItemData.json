@@ -1,0 +1,22 @@
+[
+  {
+    "bg": "bg-[url('/images/tradeServicesBg/assurance.png')] border-4",
+    "title": "Trade Assurance",
+    "text": "ORDER PROTECTION"
+  },
+  {
+    "bg": "bg-[url('/images/tradeServicesBg/payment.png')] border-4",
+    "title": "Payment",
+    "text": "PAYMENT SOLUTION"
+  },
+  {
+    "bg": "bg-[url('/images/tradeServicesBg/inspection.png')] border-4",
+    "title": "Inspection Solution",
+    "text": "INSPECTION"
+  },
+  {
+    "bg": "bg-[url('/images/tradeServicesBg/shipping.png')] border-4",
+    "title": "Land, Ocean and Air Shipping",
+    "text": "LOGISTICS SERVICES"
+  }
+]

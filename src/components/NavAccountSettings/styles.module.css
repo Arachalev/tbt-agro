@@ -1,0 +1,10 @@
+.select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+
+.select + .arrow {
+  pointer-events: none;
+}

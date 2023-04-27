@@ -1,0 +1,71 @@
+import img from "../../../public/images/product.png"
+
+export const multiProductsCardData = {
+  title: "Crop Products",
+  products: [
+    {
+      image: img,
+      name: "Cocoa 200kg",
+      price: 6000,
+      sellerID: "Seller ID: 1S123001",
+      location: "Oyo, Nigeria",
+      key: "121qasw",
+    },
+    {
+      image: img,
+      name: "Cocoa 200kg",
+      price: 6000,
+      sellerID: "Seller ID: 1S123001",
+      location: "Oyo, Nigeria",
+      key: "122qasw",
+    },
+    {
+      image: img,
+      name: "Cocoa 200kg",
+      price: 6000,
+      sellerID: "Seller ID: 1S123001",
+      location: "Oyo, Nigeria",
+      key: "123qasw",
+    },
+    {
+      image: img,
+      name: "Cocoa 200kg",
+      price: 6000,
+      sellerID: "Seller ID: 1S123001",
+      location: "Oyo, Nigeria",
+      key: "124qasw",
+    },
+    {
+      image: img,
+      name: "Cocoa 200kg",
+      price: 6000,
+      sellerID: "Seller ID: 1S123001",
+      location: "Oyo, Nigeria",
+      key: "125qasw",
+    },
+    {
+      image: img,
+      name: "Cocoa 200kg",
+      price: 6000,
+      sellerID: "Seller ID: 1S123001",
+      location: "Oyo, Nigeria",
+      key: "126qasw",
+    },
+    {
+      image: img,
+      name: "Cocoa 200kg",
+      price: 6000,
+      sellerID: "Seller ID: 1S123001",
+      location: "Oyo, Nigeria",
+      key: "127qasw",
+    },
+    {
+      image: img,
+      name: "Cocoa 200kg",
+      price: 6000,
+      sellerID: "Seller ID: 1S123001",
+      location: "Oyo, Nigeria",
+      key: "128qasw",
+    },
+  ],
+};
