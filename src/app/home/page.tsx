@@ -19,56 +19,21 @@ import TopRankingProductsCard from "@/components/TopRankingProductsCard";
 import TopRankingMultiProductsCard from "@/components/TopRankingMultiProductsCard";
 import SellOnTbtForm from "@/components/Forms/SellOnTbtForm";
 import QuotationForm from "@/components/Forms/QuotationForm";
+import BuyerLeadsCard from "@/components/BuyerLeadsCard";
+import SideBar from "@/components/Dashboard/SideBar";
+import ProductTable from "@/components/Dashboard/ProductsTable";
+import { productsTableData } from "@/store/DummyData/Dashboard/tableData";
 
 const page = () => {
   return (
-    <>
-      {/* <SellOnTbtForm /> */}
-      {/* <HeaderDark /> */}
-      <QuotationForm />
-      <HeaderLight variant="base" />
-      {/* <SignUpForm /> */}
-      {/* <main className=" min-h-screen  flex flex-col gap-12 pb-12 bg-slate-400 px-[72px] "> */}
-      {/* <TopRankingMultiProductsCard
-          products={topRankingMultiProductsCardData.products}
-          title={topRankingMultiProductsCardData.title}
-          href={topRankingMultiProductsCardData.href}
+    <div className="h-[200vh]">
+      <main className=" min-h-screen h-full border-4 border-red-500   flex flex-col gap-12 pb-12 bg-slate-400 px-[72px] ">
+        {/* <ProductTable
+          column={productsTableData.column}
+          data={productsTableData.data}
         /> */}
-      {/* {topRankingProductsCardData.map((item) => (
-          <TopRankingProductsCard
-            key={item.key}
-            image={item.image}
-            amount={item.amount}
-            rating={item.rating}
-            name={item.name}
-            price={item.price}
-            score={item.score}
-          />
-        ))} */}
-      {/* <div>
-          {multiProductsCardData.products.map((item) => (
-            <NewArrivalsProductCard
-              image={item.image}
-              key={item.key}
-              name={item.name}
-              location={item.location}
-              sellerID={item.sellerID}
-              price={item.price}
-            />
-          ))}
-        </div> */}
-      {/* <NavBar /> */}
-      {/* <MultiProductsCard
-        products={multiProductsCardData.products}
-        title={multiProductsCardData.title}
-      /> */}
-      {/* <QuotationCard /> */}
-      {/* <TradeServices /> */}
-      {/* <NavAccountSettings /> */}
-      {/* <NavProfile /> */}
-      {/* </main> */}
-      {/* <Footer /> */}
-    </>
+      </main>
+    </div>
   );
 };
 

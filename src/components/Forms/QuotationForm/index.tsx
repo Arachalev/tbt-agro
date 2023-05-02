@@ -16,14 +16,12 @@ const options = [
 
 const QuotationForm = () => {
   return (
-    <div className="min-h-screen bg-agro-floral-white pt-10 flex flex-col items-center">
-      <form className=" flex flex-col gap-7 items-center w-fit  border-4">
+    <div className="min-h-screen bg-agro-floral-white pt-10 pb-[170px] flex flex-col items-center">
+      <form className=" flex flex-col gap-7 items-center w-fit ">
         <CustomInput label="Contact Person:" placeholder="Please enter" />
 
-        <div className=" flex items-center gap-4">
-          <label className="text-sm font-bold text-end  w-[200px]">
-            Phone Number:
-          </label>
+        <div className="grid grid-cols-2 items-center gap-4">
+          <label className="text-sm font-bold text-end ">Phone Number:</label>
           <div>
             <input
               className="w-[90px] h-12 pl-3 rounded-[4px] bg-white border border-[#ABABAB]"
@@ -41,11 +39,8 @@ const QuotationForm = () => {
           label="Company/Business Name:"
           placeholder="Must be a legally registered business"
         />
-        <div className=" flex items-center gap-4">
-          <label
-            className="text-sm font-bold text-end w-[200px]"
-            htmlFor="country"
-          >
+        <div className="grid grid-cols-2 items-center gap-4  w-fit ">
+          <label className="text-sm font-bold text-end" htmlFor="country">
             Country/Region
           </label>
           <Select className="w-[309px]" options={options} />
@@ -57,9 +52,9 @@ const QuotationForm = () => {
           label="Quantity (Bags, Kg, MT):"
           placeholder="Please Enter"
         />
-        <div className=" grid grid-cols-2 items-center gap-4 w-[700px] border-4">
+        <div className=" grid grid-cols-2 items-center gap-4">
           <label
-            className="text-sm font-bold text-end w-[150px] self-start justify-self-end border-4  "
+            className="text-sm font-bold text-end  self-start justify-self-end"
             htmlFor="message"
           >
             Other Information:
@@ -69,13 +64,39 @@ const QuotationForm = () => {
             placeholder="Custom message"
           />
         </div>
-
-        <PriButton
-          text="Submit"
-          type="submit"
-          onClick={() => {}}
-          className="w-[164px] h-[50px] rounded-[6px] text-xl font-bold mt-5 ml-[228px] self-center  "
+        <CustomInput
+          label="Expiry Date of the RFQ (at least 30 days):"
+          placeholder="Please Enter"
         />
+        <div className="grid grid-cols-2 gap-2">
+          <div className="flex gap-2 col-start-2   w-[309px]">
+            <input
+              type="checkbox"
+              className="min-w-[16px] h-4"
+              name=""
+              id=" "
+            />
+            <p className=" text-sm  ">
+              While creating an account: I agree to abide by the
+              <Link className="font-semibold text-agro-green" href="">
+                {" "}
+                tbt.com.ng Membership Agreement.
+              </Link>{" "}
+              Willing to receive emails from tbt.com.ng members and services.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-2">
+          <div className="flex gap-2 col-start-2">
+            <PriButton
+              text="Submit"
+              type="submit"
+              onClick={() => {}}
+              className="w-[164px] h-[50px] rounded-[6px] text-xl font-bold mt-5   "
+            />
+          </div>
+        </div>
       </form>
     </div>
   );

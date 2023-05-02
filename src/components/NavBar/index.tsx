@@ -15,11 +15,11 @@ import Cart from "../Cart";
 const NavBar = () => {
   const router = useRouter();
   return (
-    <nav className="">
+    <nav className="fixed top-0 w-full">
       <div className="bg-agro-green  h-24 flex flex-row items-start justify-between pt-9 px-20">
         <div className="flex items-center gap-16 ">
           <div className="w-[40px] h-[24px] relative">
-            <Image src={logo} alt="logo" />
+            <Image src={logo} className="h-full" alt="logo" />
           </div>
 
           <div className="h-10 w-[700px] flex rounded-s-md overflow-hidden">
