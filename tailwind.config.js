@@ -12,16 +12,18 @@ module.exports = {
     extend: {
       colors: {
         "agro-yellow": "#FFCC29",
+        "agro-orange": "#F48924",
         "agro-green": "#4C6538",
         "agro-black": "#1A1A1A",
-        "agro-gray":"#E9E7E7",
-        "agro-floral-white":"#FFFAEB",
-
+        "agro-gray": "#E9E7E7",
+        "gray2": "#ABABAB",
+        "gray3": "#F6F6F6",
+        "agro-floral-white": "#FFFAEB",
       },
-      backgroundImage:{
-        "quotation":"url('/images/quotation.png')",
-        "rec":"url('/images/rec.svg')"
-      }
+      backgroundImage: {
+        quotation: "url('/images/quotation.png')",
+        rec: "url('/images/rec.svg')",
+      },
     },
   },
   plugins: [],

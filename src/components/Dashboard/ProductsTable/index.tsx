@@ -1,7 +1,6 @@
 import React from "react";
 
 interface ProductTableProps {
-  //   column: { title: string; width?: string; key: string }[];
   column: string[];
 
   //   object index signature || Record utility type Record<string,string>
@@ -9,27 +8,20 @@ interface ProductTableProps {
 }
 
 const ProductTable = ({ column, data }: ProductTableProps) => {
-  //   data[0][column[0].title]
-
-  //   const templateCol = [];
-  //   column.forEach((item, index) => {
-  //     if (item.width) {
-  //       templateCol.push(item.width);
-  //     }
-  //   });
-
   const tableColumn = [];
 
   const indexColumn = (
-    <div className="flex flex-col gap-6">
-      <span className=" min-h-[30px]" />
-      <ul className="gap-2 flex flex-col">
+    <div className="flex flex-col gap-[18px] ">
+      <span className="h-[30px]" />
+      <ul className="flex flex-col">
         {data.map((item, index) => (
           <li
-            className="h-5 w-5 rounded-full bg-[#D4E6ED] overflow-hidden"
+            className=" border-r  flex items-center h-[50px] w-fit"
             key={item.key}
           >
-            {index + 1}
+            <span className="mr-5 h-5 w-5  text-xs flex items-center justify-center rounded-full bg-[#D4E6ED] overflow-hidden">
+              {index + 1}
+            </span>
           </li>
         ))}
       </ul>
@@ -40,16 +32,34 @@ const ProductTable = ({ column, data }: ProductTableProps) => {
 
   column.forEach((item, index) => {
     const content = (
-      <div key={index} className="border-1 flex flex-col gap-6 items-center">
-        <h4 className="text-lg font-bold text-agro-green">{item}</h4>
-        <ul className="flex flex-col gap-2 ">
-          {data.map((da, ind) => {
+      <div key={index} className=" flex flex-col gap-6 items-center">
+        <h4 className="text-lg font-bold text-agro-green h-[30px]">{item}</h4>
+        <ul className="flex flex-col ">
+          {data.map((tableRowData) => {
             let colItem;
-            if (da[item]) {
-              colItem = da[item];
-              //   console.log(colItem, "itemmmm");
+            if (tableRowData[item]) {
+              colItem = tableRowData[item];
             }
-            return <li key={colItem}>{colItem}</li>;
+            const statusStyle = `w-[86px] h-8 mt-1 rounded-[70px] flex items-center justify-center font-semibold ${
+              tableRowData["Status"] === "Active"
+                ? "bg-[#D4E6ED]  text-agro-green"
+                : "text-white bg-[#f48924]/50 "
+            } `;
+            return (
+              <li
+                className={`h-[50px] flex items-center justify-center`}
+                key={colItem}
+              >
+                {/* ${item === "Status" ? statusStyle : ""} */}
+                {item === "Status" ? (
+                  <span className={statusStyle}>{colItem}</span>
+                ) : (
+                  colItem
+                )}
+
+                {/* {colItem} */}
+              </li>
+            );
           })}
         </ul>
       </div>
@@ -57,14 +67,11 @@ const ProductTable = ({ column, data }: ProductTableProps) => {
     tableColumn.push(content);
   });
 
-  //   console.log(tableColumn);
-  const cols = column.length + 1;
-
-  const style = `grid-cols-${cols}`;
+  //   const style = ` grid-cols-[50px]`;
 
   return (
     <div className="w-[987px] pt-[85px] pb-[55px] px-11  bg-white rounded-[10px]">
-      <div className={`grid ${style} grid-flow-col`}>
+      <div className={`grid grid-cols-[50px] grid-flow-col`}>
         {/* {column.map((item) => (
           <h4 className="border-4" key={item}>
             {item}
