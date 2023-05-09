@@ -19,7 +19,7 @@ const MultiProductsCard: React.FC<MultiProductsCardProps> = ({
   products,
 }) => {
   return (
-    <div className="p-5 rounded-[10px] bg-white w-fit">
+    <div className="p-5 rounded-[10px] bg-white w-full">
       <h4 className="text-lg  font-bold text-agro-black mb-3">{title}</h4>
       <div className=" grid grid-rows-2 grid-flow-col gap-4 w-fit  ">
         {products.map((item) => {

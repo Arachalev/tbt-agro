@@ -28,7 +28,7 @@ const TradeServices = () => {
   return (
     <div>
       <div className="flex items-end gap-2 font-semibold mb-9">
-        <h4 className="text-[40px]  leading-none">Trade Services</h4>
+        <h4 className="text-[40px]  leading-none overflow-clip">Trade Services</h4>
         <p className="text-lg leading-[1.1]">
           TBT trade services help ensure that your purchases are safe, secured
           and protected.

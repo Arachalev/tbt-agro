@@ -1,10 +1,8 @@
-import img from "../../../public/images/product.png"
-
 export const multiProductsCardData = {
   title: "Crop Products",
   products: [
     {
-      image: img,
+      image: "https://picsum.photos/200/300",
       name: "Cocoa 200kg",
       price: 6000,
       sellerID: "Seller ID: 1S123001",
@@ -12,7 +10,7 @@ export const multiProductsCardData = {
       key: "121qasw",
     },
     {
-      image: img,
+      image: "https://picsum.photos/200/300",
       name: "Cocoa 200kg",
       price: 6000,
       sellerID: "Seller ID: 1S123001",
@@ -20,7 +18,7 @@ export const multiProductsCardData = {
       key: "122qasw",
     },
     {
-      image: img,
+      image: "https://picsum.photos/200/300",
       name: "Cocoa 200kg",
       price: 6000,
       sellerID: "Seller ID: 1S123001",
@@ -28,7 +26,7 @@ export const multiProductsCardData = {
       key: "123qasw",
     },
     {
-      image: img,
+      image: "https://picsum.photos/200/300",
       name: "Cocoa 200kg",
       price: 6000,
       sellerID: "Seller ID: 1S123001",
@@ -36,7 +34,7 @@ export const multiProductsCardData = {
       key: "124qasw",
     },
     {
-      image: img,
+      image: "https://picsum.photos/200/300",
       name: "Cocoa 200kg",
       price: 6000,
       sellerID: "Seller ID: 1S123001",
@@ -44,7 +42,7 @@ export const multiProductsCardData = {
       key: "125qasw",
     },
     {
-      image: img,
+      image: "https://picsum.photos/200/300",
       name: "Cocoa 200kg",
       price: 6000,
       sellerID: "Seller ID: 1S123001",
@@ -52,7 +50,7 @@ export const multiProductsCardData = {
       key: "126qasw",
     },
     {
-      image: img,
+      image: "https://picsum.photos/200/300",
       name: "Cocoa 200kg",
       price: 6000,
       sellerID: "Seller ID: 1S123001",
@@ -60,7 +58,44 @@ export const multiProductsCardData = {
       key: "127qasw",
     },
     {
-      image: img,
+      image: "https://picsum.photos/200/300",
+      name: "Cocoa 200kg",
+      price: 6000,
+      sellerID: "Seller ID: 1S123001",
+      location: "Oyo, Nigeria",
+      key: "128qasw",
+    },
+  ],
+};
+export const products = {
+  title: "New Arrivals",
+  products: [
+    {
+      image: "https://picsum.photos/200/300",
+      name: "Cocoa 200kg",
+      price: 6000,
+      sellerID: "Seller ID: 1S123001",
+      location: "Oyo, Nigeria",
+      key: "124qasw",
+    },
+    {
+      image: "https://picsum.photos/200/300",
+      name: "Cocoa 200kg",
+      price: 6000,
+      sellerID: "Seller ID: 1S123001",
+      location: "Oyo, Nigeria",
+      key: "125qasw",
+    },
+    {
+      image: "https://picsum.photos/200/300",
+      name: "Cocoa 200kg",
+      price: 6000,
+      sellerID: "Seller ID: 1S123001",
+      location: "Oyo, Nigeria",
+      key: "126qasw",
+    },
+    {
+      image: "https://picsum.photos/200/300",
       name: "Cocoa 200kg",
       price: 6000,
       sellerID: "Seller ID: 1S123001",

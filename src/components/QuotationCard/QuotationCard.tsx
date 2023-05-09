@@ -6,9 +6,11 @@ import PriButton from "../PriButton";
 const QuotationCard = () => {
   return (
     <div>
-      <div className="flex items-end leading-none gap-2 m-0 font-semibold mb-12">
-        <h4 className="text-[40px] m-0 leading-none">Request for Quotation </h4>
-        <p className="text-lg m-0 leading-[1.1]">
+      <div className="flex items-end leading-none gap-2 m-0 font-semibold mb-12 overflow-clip">
+        <h4 className="text-[40px] m-0 leading-none overflow-clip">
+          Request for Quotation{" "}
+        </h4>
+        <p className="text-lg m-0 leading-[1.1] overflow-clip">
           Get customized quotes quickly
         </p>
       </div>
@@ -29,7 +31,7 @@ const QuotationCard = () => {
           </div>
         </div>
         <div className="bg-white px-12  pt-16 w-1/2 h-full rounded-[10px]">
-          <h4 className=" text-4xl leading-none font-semibold mb-12">
+          <h4 className=" text-4xl leading-none font-semibold mb-12 overflow-clip">
             One Request, <br /> Multiple Quotes
           </h4>
           <form action="" className="grid grid-cols-2 gap-x-9 gap-y-5">

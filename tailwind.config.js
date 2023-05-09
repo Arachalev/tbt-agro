@@ -19,10 +19,13 @@ module.exports = {
         "gray2": "#ABABAB",
         "gray3": "#F6F6F6",
         "agro-floral-white": "#FFFAEB",
+        "agro-body":"#E9E7E7",
+        "agro-blue":"#D4E6ED"
       },
       backgroundImage: {
         quotation: "url('/images/quotation.png')",
         rec: "url('/images/rec.svg')",
+        "hero-carousel":"url('/images/hero-carousel.png')"
       },
     },
   },

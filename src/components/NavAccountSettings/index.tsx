@@ -7,7 +7,11 @@ import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import styles from "./styles.module.css";
 
-const NavAccountSettings = () => {
+interface NavAccountSettingsProps {
+  hideSettings: () => void;
+}
+
+const NavAccountSettings = ({ hideSettings }: NavAccountSettingsProps) => {
   return (
     <div className="bg-white rounded-[4px] p-5 h-[368px] w-[251px]">
       <div className="flex  items-center justify-end gap-2 text-agro-black">
@@ -67,7 +71,9 @@ const NavAccountSettings = () => {
             <PriButton
               text="Save"
               className=" w-[103px] h-[31px] text-sm self-end mt-3 "
-              onClick={() => {}}
+              onClick={() => {
+                hideSettings();
+              }}
             />
           </form>
         </div>

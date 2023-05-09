@@ -4,7 +4,7 @@ import Image from "next/image";
 import { StaticImageData } from "next/image";
 
 interface NewArrivalsProductCardProps {
-  image: StaticImageData;
+  image: string;
   name: string;
   price: number;
   sellerID: string;
@@ -21,7 +21,13 @@ const NewArrivalsProductCard: React.FC<NewArrivalsProductCardProps> = ({
   return (
     <div className="w-[200px] h-[272px]   ">
       <div className="w-full h-[169px] flex items-center justify-center bg-[#f6f6f6] rounded-t-[10px]">
-        <Image className=" rounded-[10px]" src={image} alt={name} />
+        <Image
+          className=" rounded-[10px] w-[130px] h-[115px]"
+          width={130}
+          height={115}
+          src={image}
+          alt={name}
+        />
       </div>
       <div className="bg-white p-2 rounded-b-[10px]">
         <h4 className="text-sm text-agro-black mt-[6px] ">{name}</h4>
