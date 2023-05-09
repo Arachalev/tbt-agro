@@ -37,61 +37,24 @@ import BuyOnTbtForm from "@/components/Forms/BuyOnTbtForm";
 import AddProductForm from "@/components/Forms/DashboardForms/AddProductForm";
 import SubmitQuoteForm from "@/components/Forms/DashboardForms/SubmitQuoteForm";
 import ProductDetails from "@/components/Dashboard/ProductDetails";
+import AddedToCartCard from "@/components/Dashboard/AddedToCardCard";
+import CartSubTotal from "@/components/Dashboard/CartSubTotal";
+import CartCard from "@/components/Dashboard/CartCard";
+import PaymentMethod from "@/components/Dashboard/PaymentMethod";
+import ShiipingAndLogistics from "@/components/Dashboard/ShipingAndLogistics";
+import OrderSummary from "@/components/Dashboard/OrderSummary";
+import CheckOutCard from "@/components/Dashboard/CheckOutCard";
 
 const page = () => {
   return (
     <div className="min-h-[100vh]">
-      {/* <QuotationForm /> */}
-      {/* <AddProductForm/> */}
-      {/* <SubmitQuoteForm /> */}
-      {/* <InformdationDetailsForm /> */}
       <main className=" min-h-screen h-full border-4 border-red-500   flex flex-col gap-12 pb-12 bg-gray-50 px-[72px] ">
-        <ProductDetails />
-        {/* <SubmitSuccessful /> */}
-        {/* <PasswordSettingsForm /> */}
-        {/* <PackageHistory historyData={packageHistoryData} /> */}
-
-        {/* <OrderDetails
-          id="156456848as"
-          amount={2}
-          date="29-05-2022"
-          cost="₦ 6,350"
-          orderItems={[
-            {
-              name: "Raw Cashew Nuts",
-              amount: "30,000KG",
-              id: "122335565",
-              deliveryDate: "31-05-2022",
-              img: "https://picsum.photos/100/120",
-              isReturnable: true,
-              cost: "N500,000",
-              returnDate: "15-06-2022",
-              quantity:2
-            },
-            
-          ]}
-        /> */}
-
-        {/* <OrderCard
-          name="Raw Cashew Nuts"
-          amount="30,000KG"
-          id="122335565"
-          deliveryDate="31-05-2022"
-          img="https://picsum.photos/200/300"
-        /> */}
-        {/* <AccountOverview
-          name="Yinka Olatunji"
-          email="test01@gmail.com"
-          shippingAddress={{
-            name: "Olayinka Tunji",
-            address: {
-              street: "212 loloa street, Phase 1",
-              city: "Ikeja",
-              state: "Lagos",
-            },
-            phone: "+234 8185622857",
-          }}
-        /> */}
+        <CheckOutCard
+          name={"Yinka Olatunji"}
+          address={" 212 Lola street, Omo phase 1, Ikeja (OPEBI), Lagos "}
+          deliveryDate={"Thursday, May 4"}
+          img={"https://picsum.photos/200/300"}
+        />
       </main>
     </div>
   );
