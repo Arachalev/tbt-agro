@@ -43,7 +43,7 @@ const Footer = () => {
         {footerData.map((item) => (
           <FooterItem title={item.title} items={item.items} key={item.title} />
         ))}
-        <div className=" col-span-2">
+        <div className="w-[384px] col-span-2">
           <h4 className="text-sm font-bold mb-6">Subscribe now</h4>
           <div className="h-[42px] w-[383px] flex">
             <input
@@ -56,7 +56,7 @@ const Footer = () => {
                 console.log("sjkakdkjadkjsaaa");
               }}
               text="Subscribe"
-              className="rounded-none rounded-e-[4px]  w-[115px] px-5  "
+              className="rounded-none rounded-e-[4px]  min-w-[115px]  "
             />
           </div>
         </div>
