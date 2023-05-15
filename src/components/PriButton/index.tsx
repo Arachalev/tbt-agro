@@ -30,7 +30,7 @@ const PriButton: React.FC<ButtonProps> = ({
     }
   }
   return (
-    <button {...props} onClick={onClick} className={`${className} ${styling} `}>
+    <button {...props} onClick={onClick} className={` ${styling} ${className}`}>
       {text}
     </button>
   );

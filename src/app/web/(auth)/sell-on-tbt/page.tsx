@@ -1,11 +1,11 @@
 import React from "react";
 
-import SignUpForm from "@/components/Forms/SignUpForm";
+import SellOnTbtForm from "@/components/Forms/SellOnTbtForm";
 
 const page = () => {
   return (
     <div>
-      <SignUpForm />
+      <SellOnTbtForm />
     </div>
   );
 };

@@ -18,10 +18,8 @@ const SellOnTbtForm = () => {
           />
         ))}
 
-        <div className=" flex items-center gap-4">
-          <label className="text-sm font-bold text-end w-[200px]">
-            Phone Number
-          </label>
+        <div className="grid grid-cols-2 items-center gap-4">
+          <label className="text-sm font-bold text-end ">Phone Number:</label>
           <div>
             <input
               className="w-[90px] h-12 pl-3 rounded-[4px] bg-white border border-[#ABABAB]"
@@ -40,13 +38,16 @@ const SellOnTbtForm = () => {
           placeholder="Please enter your state"
           key="Location"
         />
-
-        <PriButton
-          text="Submit"
-          type="submit"
-          onClick={() => {}}
-          className="w-[164px] h-[50px] rounded-[6px] text-xl font-bold mt-5 ml-[228px] self-start  "
-        />
+        <div className="grid grid-cols-2 gap-2">
+          <div className="flex gap-2 col-start-2">
+            <PriButton
+              text="Submit"
+              type="submit"
+              onClick={() => {}}
+              className="w-[164px] h-[50px] rounded-[6px] text-xl font-bold mt-5   "
+            />
+          </div>
+        </div>
       </form>
     </div>
   );

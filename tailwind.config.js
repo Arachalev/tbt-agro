@@ -24,6 +24,7 @@ module.exports = {
       },
       backgroundImage: {
         quotation: "url('/images/quotation.png')",
+        about: "url('/images/bg-image.svg')",
         rec: "url('/images/rec.svg')",
         "hero-carousel":"url('/images/hero-carousel.png')"
       },

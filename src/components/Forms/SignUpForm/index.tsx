@@ -47,15 +47,13 @@ const SignUpForm = () => {
             />
           </div>
         </div>
-
         <div className="flex gap-2 self-end w-[309px]">
           <input type="checkbox" className="min-w-[16px] h-4" name="" id=" " />
           <p className=" text-sm  ">
             While creating an account: I agree to abide by the
             <Link className="font-semibold text-agro-green" href="">
-              {" "}
               tbt.com.ng Membership Agreement.
-            </Link>{" "}
+            </Link>
             Willing to receive emails from tbt.com.ng members and services.
           </p>
         </div>

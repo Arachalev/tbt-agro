@@ -76,13 +76,20 @@ const QuotationForm = () => {
               name=""
               id=" "
             />
-            <p className=" text-sm  ">
-              While creating an account: I agree to abide by the
-              <Link className="font-semibold text-agro-green" href="">
+            <p className=" text-sm font-semibold ">
+              {/* While creating an account: I agree to abide by the
                 {" "}
                 tbt.com.ng Membership Agreement.
+              {" "}
+              Willing to receive emails from tbt.com.ng members and services. */}
+              By submitting this form, I confirm that I have read and agree with
+              <Link className="font-semibold text-agro-green" href="">
+                TBT Terms of Use.
               </Link>{" "}
-              Willing to receive emails from tbt.com.ng members and services.
+              I acknowledge that the above information may be used by TBT for
+              incorporation in all or any of its databases for direct marketing
+              or business matching purposes, and for any other purposes as
+              stated in TBT’s Privacy Policy Statement.
             </p>
           </div>
         </div>
