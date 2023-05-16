@@ -27,16 +27,16 @@ const ServiceItem = ({ bg, title, text }: ServiceItemProps) => {
 const TradeServices = () => {
   return (
     <div>
-      <div className="flex items-end gap-2 font-semibold mb-9">
-        <h4 className="text-[40px]  leading-none overflow-clip">
+      <div className="flex flex-col xl:flex-row items-center  xl:items-end gap-2 font-semibold mb-9">
+        <h4 className="text-3xl xl:text-[40px]  leading-none overflow-clip">
           Trade Services
         </h4>
-        <p className="text-lg leading-[1.1] overflow-clip">
+        <p className=" text-center xl:text-start md:text-lg leading-[1.1] overflow-clip">
           TBT trade services help ensure that your purchases are safe, secured
           and protected.
         </p>
       </div>
-      <div className=" flex gap-5">
+      <div className="  justify-center flex flex-wrap lg:flex-nowrap gap-5">
         {serviceItemData.map((item, index) => (
           <ServiceItem
             key={item.text}

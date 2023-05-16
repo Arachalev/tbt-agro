@@ -6,23 +6,23 @@ import PriButton from "../PriButton";
 const QuotationCard = () => {
   return (
     <div>
-      <div className="flex items-end leading-none gap-2 m-0 font-semibold mb-12 overflow-clip">
-        <h4 className="text-[40px] m-0 leading-none overflow-clip">
+      <div className="flex flex-col lg:flex-row items-center lg:items-end leading-none gap-2 m-0 font-semibold mb-12 overflow-clip">
+        <h4 className="text-3xl xl:text-[40px] m-0 leading-none overflow-clip">
           Request for Quotation{" "}
         </h4>
-        <p className="text-lg m-0 leading-[1.1] overflow-clip">
+        <p className="lg:text-lg m-0 leading-[1.1] overflow-clip">
           Get customized quotes quickly
         </p>
       </div>
 
-      <div className="flex gap-5 items-center h-[488px]">
+      <div className="flex flex-col lg:flex-row gap-5 items-center lg:h-[488px]">
         <div
-          className={` bg-quotation  h-full bg-no-repeat bg-cover w-1/2 rounded-[10px]  `}
+          className={` bg-quotation  h-full w-full lg:w-1/2  bg-no-repeat bg-cover rounded-[10px]  `}
         >
           <div
-            className={`${styles.quotation} bg-black h-full w-[427px] flex flex-col gap-9 pl-12 justify-center    `}
+            className={`${styles.quotation} bg-black h-80 lg:h-full w-full lg:w-[427px] flex flex-col gap-4 lg:gap-9 pl-4 lg:pl-12 justify-center    `}
           >
-            <h4 className="text-[34px] font-semibold text-agro-yellow leading-none">
+            <h4 className="text-2xl xl:text-[34px] font-semibold text-agro-yellow leading-none">
               Global Sourcing <br /> Marketplace
             </h4>
             <button className="text-black text-center text-sm font-semibold bg-white  w-[109px] h-[33px] rounded-[4px]">

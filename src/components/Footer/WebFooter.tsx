@@ -11,7 +11,7 @@ import FooterItem from "./FooterItem";
 
 const WebFooter = () => {
   return (
-    <footer className="bg-white px-[75px] pt-[70px] pb-[50px]">
+    <footer className="bg-white px-4 xl:px-[75px] pt-[70px] pb-[50px]">
       <div className="flex justify-between mb-12">
         <h4 className="text-sm font-medium">
           Trade Alert – Delivering the latest products trends and industry news
@@ -27,9 +27,9 @@ const WebFooter = () => {
         {footerData.map((item) => (
           <FooterItem title={item.title} items={item.items} key={item.title} />
         ))}
-        <div className="w-[384px] col-span-2">
+        <div className="w-full xl:w-[384px] col-span-3 xl:col-span-2">
           <h4 className="text-sm font-bold mb-6">Subscribe now</h4>
-          <div className="h-[42px] w-[383px] flex">
+          <div className="h-[42px] w-full xl:w-[383px] flex">
             <input
               type="text"
               placeholder="Enter your email address"
@@ -44,7 +44,7 @@ const WebFooter = () => {
             />
           </div>
         </div>
-        <div className="  w-fit h-fit justify-self-center self-center">
+        <div className=" hidden 2xl:inline w-fit h-fit justify-self-center self-center">
           <Image src={logo} alt="logo" />
         </div>
       </div>

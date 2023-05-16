@@ -10,7 +10,6 @@ const NavBar = () => {
   useEffect(() => {
     window.addEventListener("resize", () => {
       setDeviceDimension(window.outerWidth);
-      console.log(deviceDimension);
     });
 
     return window.removeEventListener("resize", () => {
