@@ -1,28 +1,34 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+
+import { useAppDispatch, useAppSelector } from "@/store/redux/hooks";
 
 import MobileNav from "./MobileNav";
 import WebNav from "./WebNav";
+import {
+  selectDeviceWith,
+  getDeviceWith,
+} from "@/store/redux/features/deviceWidthSlice";
 
 const NavBar = () => {
-  const [deviceDimension, setDeviceDimension] = useState(1440);
+  const deviceWidth = useAppSelector(selectDeviceWith);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     window.addEventListener("resize", () => {
-      setDeviceDimension(window.outerWidth);
+      dispatch(getDeviceWith());
     });
 
     return window.removeEventListener("resize", () => {
-      setDeviceDimension(window.outerWidth);
+      dispatch(getDeviceWith());
     });
-  }, [deviceDimension]);
+  }, [deviceWidth, dispatch]);
 
   useEffect(() => {
-    setDeviceDimension(window.outerWidth);
+    dispatch(getDeviceWith());
   }, []);
 
-
-  return deviceDimension > 640 ? <WebNav /> : <MobileNav />;
+  return deviceWidth.width > 640 ? <WebNav /> : <MobileNav />;
 };
 
 export default NavBar;

@@ -2,8 +2,12 @@
 import React from "react";
 import styles from "./styles.module.css";
 import PriButton from "../PriButton";
+import { useAppSelector } from "@/store/redux/hooks";
+import { selectDeviceWith } from "@/store/redux/features/deviceWidthSlice";
 
 const QuotationCard = () => {
+  const deviceWidth = useAppSelector(selectDeviceWith);
+
   return (
     <div>
       <div className="flex flex-col lg:flex-row items-center lg:items-end leading-none gap-2 m-0 font-semibold mb-12 overflow-clip">
@@ -20,7 +24,9 @@ const QuotationCard = () => {
           className={` bg-quotation  h-full w-full lg:w-1/2  bg-no-repeat bg-cover rounded-[10px]  `}
         >
           <div
-            className={`${styles.quotation} bg-black h-80 lg:h-full w-full lg:w-[427px] flex flex-col gap-4 lg:gap-9 pl-4 lg:pl-12 justify-center    `}
+            className={`${
+              deviceWidth.width > 640 ? styles.quotation : ""
+            } bg-black h-80 lg:h-full w-full lg:w-[427px] flex flex-col gap-4 lg:gap-9 pl-4 lg:pl-12 justify-center    `}
           >
             <h4 className="text-2xl xl:text-[34px] font-semibold text-agro-yellow leading-none">
               Global Sourcing <br /> Marketplace
@@ -30,8 +36,8 @@ const QuotationCard = () => {
             </button>
           </div>
         </div>
-        <div className="bg-white px-12  pt-16 w-1/2 h-full rounded-[10px]">
-          <h4 className=" text-4xl leading-none font-semibold mb-12 overflow-clip">
+        <div className="bg-white p-4 lg:p-0 lg:px-12 lg:pt-16 w-full lg:w-1/2 h-full rounded-[10px]">
+          <h4 className=" text-xl sm:text-2xl lg:text-4xl leading-none font-semibold mb-12 overflow-clip">
             One Request, <br /> Multiple Quotes
           </h4>
           <form action="" className="grid grid-cols-2 gap-x-9 gap-y-5">
