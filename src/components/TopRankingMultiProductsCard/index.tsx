@@ -24,9 +24,9 @@ const TopRankingMultiProductsCard: React.FC<TopRankingMultiProductsCard> = ({
   href = "",
 }) => {
   return (
-    <div className="w-[420px] h-[265px] px-5 pb-5 pt-9 bg-white overflow-y-hidden rounded-[10px]">
+    <div className="xl:w-[420px]  h-[265px] px-5 pb-5 pt-9 bg-white overflow-y-hidden rounded-[10px]">
       <div className="flex items-center justify-between mb-[40px]">
-        <h4 className="text-lg font-bold ">{title}</h4>
+        <h4 className=" sm:text-lg font-bold ">{title}</h4>
         <Link href={href}>
           <BsArrowRight className="font-bold text-xl" />
         </Link>

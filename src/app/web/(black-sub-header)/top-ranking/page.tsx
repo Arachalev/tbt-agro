@@ -13,7 +13,7 @@ import { topRankingMultiProductsCardData } from "@/store/DummyData/topRankingMul
 const page = () => {
   return (
     <div className="bg-agro-gray w-screen pt-9 pb-[160px] ">
-      <div className="grid grid-cols-3 items-center justify-center gap-5  pb-[60px] px-[72px]">
+      <div className="grid md:grid-cols-2 xl:grid-cols-3 items-center justify-center gap-5  pb-[60px] px-4 xl:px-[72px] 2xl:w-[1500px] 2xl:mx-auto">
         {topRankingProductsCardData.map((item) => (
           <TopRankingProductsCard
             key={item.key}
@@ -26,11 +26,11 @@ const page = () => {
           />
         ))}
       </div>
-      <div className="px-[72px] ">
-        <h4 className="text-[34px] pb-7 font-medium text-agro-black">
+      <div className="px-4 xl:px-[72px] ">
+        <h4 className="text-xl sm:text-2xl lg:text-[34px] pb-7 font-medium text-agro-black">
           Rankings you may like
         </h4>
-        <div className="grid grid-cols-3 gap-5 ">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5  2xl:w-[1350px] 2xl:mx-auto ">
           <TopRankingMultiProductsCard
             products={topRankingMultiProductsCardData.products}
             href={topRankingMultiProductsCardData.href}

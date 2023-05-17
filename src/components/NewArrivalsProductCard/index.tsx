@@ -19,8 +19,8 @@ const NewArrivalsProductCard: React.FC<NewArrivalsProductCardProps> = ({
   location,
 }) => {
   return (
-    <div className="w-[200px] h-[272px] rounded-[10px] overflow-clip">
-      <div className="w-full h-[169px] flex items-center justify-center bg-[#f6f6f6] rounded-t-[10px]">
+    <div className="sm:w-[200px] h-[280px] rounded-[10px] overflow-clip">
+      <div className="w-full h-[169px] p-4 flex items-center justify-center bg-[#f6f6f6] rounded-t-[10px]">
         <Image
           className=" rounded-[10px] w-[130px] h-[115px] object-cover"
           width={130}
@@ -30,7 +30,7 @@ const NewArrivalsProductCard: React.FC<NewArrivalsProductCardProps> = ({
         />
       </div>
       <div className="bg-white h-full p-2 rounded-b-[10px]">
-        <h4 className="text-lg text-agro-black leading-none overflow-clip">
+        <h4 className=" sm:text-lg text-agro-black leading-none overflow-clip">
           {name}
         </h4>
         <h3 className=" font-bold text-lg my-1">{`₦ ${price}`}</h3>

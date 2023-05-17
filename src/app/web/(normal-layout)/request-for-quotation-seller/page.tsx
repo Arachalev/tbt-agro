@@ -9,27 +9,33 @@ import { buyerLeadsData } from "@/store/DummyData/buyerLeadsData";
 const pages = () => {
   return (
     <main className="bg-agro-gray pt-[88px] pb-[160px] ">
-      <div className="flex flex-col gap-5  px-[72px]">
-        <h3 className="text-[40px] font-semibold">
+      <div className="flex flex-col gap-2 md:gap-5 px-4 xl:px-[72px]">
+        <h3 className="text-2xl xl:text-[40px] h-10 font-semibold overflow-clip">
           Request For Quotation List
         </h3>
-        <p className="text-lg font-bold">Product Category</p>
-        <div className="h-[47px] overflow-clip">
-          <form action="" className="flex gap-4">
+        <p className="text-lg font-semibold xl:font-bold">Product Category</p>
+        <div className="  overflow-clip">
+          <form action="" className="flex flex-col sm:flex-row gap-2 sm:gap-4">
             <Select
+              styles={{
+                control: (baseStyles) => ({
+                  ...baseStyles,
+                  height: "47px",
+                }),
+              }}
               placeholder="Please choose a category"
-              className=" w-[313px] h-full border-none"
+              className=" sm:w-[313px] min-h-[47px]  border-none"
             />
-            <div className="flex">
+            <div className="flex h-[47px]">
               <input
                 type="text"
                 placeholder="Please choose a category"
-                className=" w-[313px] h-full bg-white rounded-s-[4px] px-2 "
+                className="w-full sm:w-[313px]  bg-white rounded-s-[4px] px-2 "
               />
               <span className="w-[54px] h-full rounded-e-[4px] bg-agro-yellow flex items-center justify-center">
                 <AiOutlineSearch className="text-xl " />
               </span>
-              <button className="ml-7 bg-none border-agro-orange border h-full w-[140px] font-medium text-agro-orange text-sm rounded-[44px]">
+              <button className="ml-3 sm:ml-7 bg-none border-agro-orange border h-full w-[130px] sm:w-[140px] font-medium text-agro-orange text-sm rounded-[44px]">
                 Reset
               </button>
             </div>
@@ -37,12 +43,12 @@ const pages = () => {
         </div>
       </div>
 
-      <section className="relative mt-16 pb-20 pt-5 px-[72px] z-[1]">
+      <section className="relative mt-16 pb-20 pt-5 px-4 xl:px-[72px] z-[1] 2xl:w-[1450px] 2xl:mx-auto">
         <div className="h-full w-[85%] absolute bg-agro-blue top-0 right-0  -z-[10]" />
-        <h4 className="text-[40px] mb-[25px] font-semibold  text-agro-black z-[100]">
+        <h4 className="overflow-clip text-2xl xl:text-[40px] mb-[25px] font-semibold  text-agro-black z-[100]">
           Buyer Leads
         </h4>
-        <div className="z-10 grid grid-cols-2 gap-x-5 gap-y-7  w-full">
+        <div className="z-10 grid md:grid-cols-2 gap-x-3 xl:gap-x-5 gap-y-4 xl:gap-y-7  w-full">
           {buyerLeadsData.map((item) => (
             <BuyerLeadsCard
               id={item.id}

@@ -21,8 +21,8 @@ const TopRankingProductsCard: React.FC<TopRankingProductsCardProps> = ({
   rating,
 }) => {
   return (
-    <div className="w-[420px] h-[265px] p-4 flex items-center gap-[18px]  bg-white rounded-[10px] ">
-      <div className=" relative h-[233px] w-[200px] flex items-center justify-center bg-[#f6f6f6] rounded-[10px]">
+    <div className="xl:w-[380px] 2xl:w-[420px] h-[200px] md:h-[265px] p-4 flex items-center gap-2 sm:gap-[18px]  bg-white rounded-[10px] ">
+      <div className=" relative h-full md:h-[233px] w-[150px] md:w-[200px] flex items-center justify-center bg-[#f6f6f6] rounded-[10px]">
         <div className="w-fit h-fit absolute top-3 left-3 ">
           <Star
             fill={
@@ -39,11 +39,11 @@ const TopRankingProductsCard: React.FC<TopRankingProductsCardProps> = ({
         </div>
         <Image className=" rounded-[10px]" src={image} alt={name} />
       </div>
-      <div className="text-agro-black">
-        <h4 className="text-lg mt-[6px] ">{name}</h4>
-        <h3 className=" font-bold text-lg  my-1">{`₦ ${price}`}</h3>
-        <p className=" text-lg ">{amount}pcs</p>
-        <p className="text-lg ">Popularity Score: {score}</p>
+      <div className="text-agro-black text-sm sm:text-base md:text-lg">
+        <h4 className=" mt-[6px] ">{name}</h4>
+        <h3 className=" font-bold   my-1">{`₦ ${price}`}</h3>
+        <p className=" ">{amount}pcs</p>
+        <p className="  ">Popularity Score: {score}</p>
       </div>
     </div>
   );
