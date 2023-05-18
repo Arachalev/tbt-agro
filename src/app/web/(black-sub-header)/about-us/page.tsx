@@ -6,12 +6,14 @@ import Image from "next/image";
 
 const page = () => {
   return (
-    <div className="flex flex-col gap-[80px] text-agro-black  bg-agro-floral-white   pt-[72px] pb-[280px]">
-      <section className=" px-[72px] flex  items-center justify-between gap-[132px] ">
-        <div className="w-1/2 flex flex-col gap-[80px]">
+    <div className="flex flex-col gap-[80px] text-agro-black  bg-agro-floral-white   pt-[72px] pb-[100px]  xl:pb-[280px]">
+      <section className="2xl:w-[1400px] 2xl:mx-auto px-4 xl:px-[72px] flex flex-col md:flex-row  items-center md:justify-between gap-4 sm:gap-10 xl:gap-[132px] ">
+        <div className=" w-full md:w-1/2 flex flex-col gap-5 md:gap-10 xl:gap-[80px]">
           <div>
-            <h4 className="font-semibold text-[40px] mb-5">About Us</h4>
-            <p className="">
+            <h4 className="overflow-clip font-semibold  text-xl md:text-2xl xl:text-[40px] mb-2 md:mb-5">
+              About Us
+            </h4>
+            <p className="text-sm md:text-base ">
               TBT Agricultural Commodity Trading Company is an Agricultural
               digital marketing platform involved in the Sourcing & Trading of
               agricultural commodities and making it available in large
@@ -19,8 +21,10 @@ const page = () => {
             </p>
           </div>
           <div className="">
-            <h4 className="font-semibold text-[40px] mb-5 ">Who We Are</h4>
-            <div className="flex flex-col gap-5">
+            <h4 className="xl:h-8 overflow-clip font-semibold  text-xl xl:text-[40px] mb-2 md:mb-5">
+              Who We Are
+            </h4>
+            <div className="flex flex-col gap-3 md:gap-5 text-sm md:text-base">
               <p className="">
                 At TBT, we specialize in sourcing the finest agro commodities
                 from smallholder farmers and connecting them with other
@@ -56,11 +60,13 @@ const page = () => {
 
       {/* ****************************************************************** */}
 
-      <section className=" px-[72px] flex items-center justify-between gap-[132px] ">
-        <div className="w-1/2 flex flex-col gap-[80px]">
+      <section className="2xl:w-[1400px] 2xl:mx-auto px-4  xl:px-[72px] flex flex-col md:flex-row items-center md:justify-between gap-4 sm:gap-10 md:gap-[132px] ">
+        <div className=" md:w-1/2 flex flex-col gap-5 md:gap-10 xl:gap-[80px]">
           <div className="">
-            <h4 className="font-semibold text-[40px] mb-5 ">Our Background</h4>
-            <div className="flex flex-col gap-5">
+            <h4 className="overflow-clip xl:h-11 font-semibold  text-xl md:text-2xl xl:text-[40px] mb-2 md:mb-5">
+              Our Background
+            </h4>
+            <div className="flex flex-col gap-3 md:gap-5 text-sm md:text-base">
               <p className="">
                 At TBT, we specialize in sourcing the finest agro commodities
                 from smallholder farmers and connecting them with other
@@ -77,8 +83,10 @@ const page = () => {
             </div>
           </div>
           <div className="">
-            <h4 className="font-semibold text-[40px] mb-5 ">Our Procedure</h4>
-            <div className="flex flex-col gap-5">
+            <h4 className=" overflow-clip font-semibold text-xl md:text-2xl xl:text-[40px] mb-2 md:mb-5">
+              Our Procedure
+            </h4>
+            <div className="flex flex-col gap-3 md:gap-5  text-sm md:text-base">
               <p className="">
                 We believe the market is a growing one and with our growing pool
                 of well seasoned farmers, we are not only stationed to provide
@@ -107,8 +115,10 @@ const page = () => {
             </div>
           </div>
           <div className="">
-            <h4 className="font-semibold text-[40px] mb-5 ">Our Focus</h4>
-            <div className="flex flex-col gap-5">
+            <h4 className="overflow-clip font-semibold text-xl md:text-2xl xl:text-[40px] mb-2 md:mb-5">
+              Our Focus
+            </h4>
+            <div className="flex flex-col gap-3 md:gap-5  text-sm md:text-base">
               <p className="">
                 At TBT our customers are our priority and we have always worked
                 towards providing services that exceeds their expectations. 
@@ -126,11 +136,13 @@ const page = () => {
 
       {/* ******************************************************************** */}
 
-      <section className=" px-[72px] flex items-start justify-between gap-[132px] ">
-        <div className="w-1/2 flex flex-col gap-[80px]">
+      <section className="2xl:w-[1400px] 2xl:mx-auto px-4 xl:px-[72px] flex flex-col md:flex-row items-start md:justify-between gap-4 sm:gap-10 xl:gap-[132px] ">
+        <div className=" md:w-1/2 flex flex-col gap-5 md:gap-10 xl:gap-[80px]">
           <div className="">
-            <h4 className="font-semibold text-[40px] mb-5 ">Our Brand Story</h4>
-            <div className="flex flex-col gap-5">
+            <h4 className="overflow-clip xl:h-11 font-semibold text-xl md:text-2xl xl:text-[40px] mb-2 md:mb-5">
+              Our Brand Story
+            </h4>
+            <div className="flex flex-col gap-3 md:gap-5 text-sm md:text-base">
               <p className="">
                 Growing up in the western part of Nigeria, where agriculture is
                 highlighted as more of a hobby than a profession; I developed a
@@ -207,49 +219,57 @@ const page = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="self-center md:self-start ">
           <Image
             src={Img2}
             alt="landscape image"
             // height={456}
             // width={528}
-            className="rounded-[10px] "
+            className="rounded-[10px]  "
           />
         </div>
       </section>
 
       {/* *********************************************************** */}
 
-      <section className="text-agro-black grid grid-cols-2 gap-x-5 gap-y-7  ">
-        <div className=" justify-self-end w-[528px] h-[256px] px-10 bg-agro-blue rounded-[10px] flex flex-col gap-6 items-center justify-center">
-          <h4 className="text-[34px] font-semibold">Vision</h4>
-          <p className="text-center">
+      <section className="text-agro-black grid lg:grid-cols-2 gap-x-5 gap-y-4 md:gap-y-7  px-4 ">
+        <div className=" justify-self-end w-full xl:w-[528px] h-[200px] xl:h-[256px] px-4 xl:px-10 bg-agro-blue rounded-[10px] flex flex-col gap-3 xl:gap-6 items-center justify-center">
+          <h4 className="overflow-clip  text-xl xl:text-[34px] font-semibold">
+            Vision
+          </h4>
+          <p className="text-center text-sm md:text-base">
             To be Africa&apos;s largest supplier of Agricultural commodities,
             completely bridging the gap between demand and supply and providing
             world class quality service with the goal of alleviating global food
             insecurity.
           </p>
         </div>
-        <div className="w-[528px] h-[256px] px-10 bg-agro-blue rounded-[10px] flex flex-col gap-6 items-center justify-center">
-          <h4 className="text-[34px] font-semibold">Mission</h4>
-          <p className="text-center">
+        <div className="  w-full xl:w-[528px] h-[200px] xl:h-[256px] px-4 xl:px-10 bg-agro-blue rounded-[10px] flex flex-col gap-3 xl:gap-6 items-center justify-center">
+          <h4 className="overflow-clip text-xl xl:text-[34px] font-semibold">
+            Mission
+          </h4>
+          <p className="text-center text-sm md:text-base">
             To provide exceptional agro allied services through creative,
             innovation and advanced technology. We also strive to apply
             transparent business approach to build long term relationships with
             our customers, clients, shareholder and employees.
           </p>
         </div>
-        <div className=" justify-self-end w-[528px] h-[256px] px-10 bg-agro-blue rounded-[10px] flex flex-col gap-6 items-center justify-center">
-          <h4 className="text-[34px] font-semibold">Action Guidelines</h4>
-          <p className="text-center">
+        <div className=" justify-self-end w-full xl:w-[528px] h-[200px] xl:h-[256px] px-4 xl:px-10 bg-agro-blue rounded-[10px] flex flex-col gap-3 xl:gap-6 items-center justify-center">
+          <h4 className="overflow-clip text-xl xl:text-[34px] font-semibold">
+            Action Guidelines
+          </h4>
+          <p className="text-center text-sm md:text-base">
             To deliver customer satisfaction with creativity, Innovation,
             Sincerity, and Gratitude, and to act in compliance with the law and
             ethics.
           </p>
         </div>
-        <div className="  w-[528px] h-[256px] px-10 bg-agro-blue rounded-[10px] flex flex-col gap-6 items-center justify-center">
-          <h4 className="text-[34px] font-semibold">Our Core Philosophy</h4>
-          <p className="text-center">
+        <div className=" w-full xl:w-[528px] h-[200px] xl:h-[256px] px-4 xl:px-10 bg-agro-blue rounded-[10px] flex flex-col gap-3 xl:gap-6 items-center justify-center">
+          <h4 className="overflow-clip text-xl xl:text-[34px] font-semibold">
+            Our Core Philosophy
+          </h4>
+          <p className="text-center text-sm md:text-base">
             To consistently provide quality services that exceeds the
             expectations of our esteemed customers.
           </p>
@@ -258,44 +278,56 @@ const page = () => {
 
       {/* ***************************************************************** */}
 
-      <section className="text-agro-black  pt-[60px] py-[180px] flex items-center justify-center flex-wrap  gap-x-5 gap-y-7 bg-agro-blue ">
-        <h4 className="text-[40px] text-center font-semibold block w-full">
-          Our Values
-        </h4>
-        <div className="  w-[528px] h-[256px] px-10 bg-white rounded-[10px] flex flex-col gap-6 items-center justify-center">
-          <h4 className="text-[34px] font-semibold">Integrity</h4>
-          <p className="text-center">
-            TBT is known for its steadfast adherence to moral and ethical
-            conduct while dealing with clients and customers.
-          </p>
-        </div>
-        <div className="w-[528px] h-[256px] px-10 bg-white rounded-[10px] flex flex-col gap-6 items-center justify-center">
-          <h4 className="text-[34px] font-semibold">Trust</h4>
-          <p className="text-center">
-            Our clients uphold a high level of confidence and reliance in us as
-            we provide them with unambiguous transactions.
-          </p>
-        </div>
-        <div className="  w-[528px] h-[256px] px-10 bg-white rounded-[10px] flex flex-col gap-6 items-center justify-center">
-          <h4 className="text-[34px] font-semibold">Constant Improvement </h4>
-          <p className="text-center">
-            We believe we are not perfect but we can work our way to perfection
-            by improving at every step of the way.
-          </p>
-        </div>
-        <div className="  w-[528px] h-[256px] px-10 bg-white rounded-[10px] flex flex-col gap-6 items-center justify-center">
-          <h4 className="text-[34px] font-semibold">Sustainability </h4>
-          <p className="text-center">
-            We maintain the peak of quality to uphold our client’s partnership
-            and ensure their continuous profitability.
-          </p>
-        </div>
-        <div className="  w-[528px] h-[256px] px-10 bg-white rounded-[10px] flex flex-col gap-6 items-center justify-center">
-          <h4 className="text-[34px] font-semibold">Commitment </h4>
-          <p className="text-center">
-            We are committed to fulfilling our partnership objectives with
-            clients impeccably.
-          </p>
+      <section className=" text-agro-black  pt-[60px] py-[180px] bg-agro-blue">
+        <div className="2xl:w-[1400px] 2xl:mx-auto flex items-center justify-center flex-wrap px-4  gap-x-5 gap-y-7  ">
+          <h4 className="overflow-clip text-2xl xl:text-[40px] text-center font-semibold block w-full">
+            Our Values
+          </h4>
+          <div className=" w-full xl:w-[528px] h-[200px] xl:h-[256px] px-4 xl:px-10 bg-white rounded-[10px] flex flex-col gap-3 xl:gap-6 items-center justify-center">
+            <h4 className="overflow-clip text-xl xl:text-[34px] font-semibold">
+              Integrity
+            </h4>
+            <p className="text-center text-sm md:text-base">
+              TBT is known for its steadfast adherence to moral and ethical
+              conduct while dealing with clients and customers.
+            </p>
+          </div>
+          <div className=" w-full xl:w-[528px] h-[200px] xl:h-[256px] px-4 xl:px-10 bg-white rounded-[10px] flex flex-col gap-3 xl:gap-6 items-center justify-center">
+            <h4 className="overflow-clip text-xl xl:text-[34px] font-semibold">
+              Trust
+            </h4>
+            <p className="text-center text-sm md:text-base">
+              Our clients uphold a high level of confidence and reliance in us
+              as we provide them with unambiguous transactions.
+            </p>
+          </div>
+          <div className=" w-full xl:w-[528px] h-[200px] xl:h-[256px] px-4 xl:px-10 bg-white rounded-[10px] flex flex-col gap-3 xl:gap-6 items-center justify-center">
+            <h4 className="overflow-clip text-xl xl:text-[34px] font-semibold">
+              Constant Improvement{" "}
+            </h4>
+            <p className="text-center text-sm md:text-base">
+              We believe we are not perfect but we can work our way to
+              perfection by improving at every step of the way.
+            </p>
+          </div>
+          <div className=" w-full xl:w-[528px] h-[200px] xl:h-[256px] px-4 xl:px-10 bg-white rounded-[10px] flex flex-col gap-3 xl:gap-6 items-center justify-center">
+            <h4 className="overflow-clip text-xl xl:text-[34px] font-semibold">
+              Sustainability{" "}
+            </h4>
+            <p className="text-center text-sm md:text-base">
+              We maintain the peak of quality to uphold our client’s partnership
+              and ensure their continuous profitability.
+            </p>
+          </div>
+          <div className="  w-full xl:w-[528px] h-[200px] xl:h-[256px] px-4 xl:px-10 bg-white rounded-[10px] flex flex-col gap-3 xl:gap-6 items-center justify-center">
+            <h4 className="overflow-clip text-xl xl:text-[34px] font-semibold">
+              Commitment{" "}
+            </h4>
+            <p className="text-center text-sm md:text-base">
+              We are committed to fulfilling our partnership objectives with
+              clients impeccably.
+            </p>
+          </div>
         </div>
       </section>
     </div>

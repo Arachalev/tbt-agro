@@ -14,7 +14,10 @@ interface NavAccountSettingsProps {
 const NavAccountSettings = ({ hideSettings }: NavAccountSettingsProps) => {
   return (
     <div className="bg-white rounded-[4px] p-5 h-[368px] w-[251px]">
-      <div className="flex  items-center justify-end gap-2 text-agro-black">
+      <div
+        onClick={() => hideSettings()}
+        className="flex  items-center cursor-pointer  justify-end gap-2 text-agro-black"
+      >
         <p className="text-sm font-medium">English - NGN </p>
         <SlArrowUp className="text-xs" />
       </div>

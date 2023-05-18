@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 
 import PriButton from "../PriButton";
@@ -17,15 +17,22 @@ import Cart from "../Cart";
 import NavAccountSettings from "../NavAccountSettings";
 import NavProfile from "../NavProfile";
 
+import SellerNav from "./SellerNav";
+
 const WebNav = () => {
   const [showSettings, setShowSettings] = useState<boolean>(false);
   const [showProfileSettings, setShowProfileSettings] =
     useState<boolean>(false);
 
   const router = useRouter();
+  const pathArr = usePathname().trim().split("/");
 
-  return (
-    <nav className="top-0 w-full">
+  const seller = pathArr[2] === "seller";
+
+  return seller ? (
+    <SellerNav />
+  ) : (
+    <nav className="top-0 w-full  ">
       <div className="bg-agro-green  h-24 flex flex-row items-start justify-between pt-9 px-4 xl:px-20">
         <div className="flex items-center gap-16 ">
           <div className="w-[40px] h-[24px] relative">
@@ -55,7 +62,7 @@ const WebNav = () => {
             <PriButton
               text="Join for free"
               className="py-2 px-4 text-sm whitespace-nowrap"
-              onClick={() => router.push("/auth/sign-up")}
+              onClick={() => router.push("/web/sign-up")}
             />
           </div>
 

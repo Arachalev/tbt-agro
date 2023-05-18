@@ -1,31 +1,65 @@
+"use client";
 import React from "react";
 
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+
 import logo from "../../../public/logo/logo-lg.png";
 
-type HeaderVariants = "base" | "sell" | "buy" | "quote";
+// type HeaderVariants = "base" | "sell" | "buy" | "quote";
 
-const HeaderLight = ({ variant = "base" }: { variant?: HeaderVariants }) => {
+const HeaderLight = ({ variant = "base" }: { variant?: string }) => {
   let content;
 
-  switch (variant) {
-    case "base":
+  // sign-up
+  // request-for-quotation-buyer
+
+  const path = usePathname().trim().split("/");
+  console.log(path[2]);
+
+  switch (path[2]) {
+    case "sign-up":
       break;
-    case "sell": {
-      content = <div className=" ">Sell on TBT</div>;
+    case "buy-on-tbt":
+      {
+        content = "Buy on TBT";
+      }
+      break;
+
+    case "sell-on-tbt":
+      {
+        content = "Sell on TBT";
+      }
+      break;
+
+    case "request-for-quotation-buyer": {
+      content = (
+        <div>
+          <h4 className="overflow-clip sm:h-11 leading-none text-center text-lg sm:text-[40px]">
+            Tell Us Your Sourcing Needs in 60 Seconds
+          </h4>
+          <p className="text-agro-orange text-center mt-1 sm:mt-2 text-xs  sm:text-base">
+            ONE request, multiple quotes!
+          </p>
+        </div>
+      );
     }
 
     case "buy":
     case "quote":
   }
+
+  const headerContainer = (
+    <div className="w-full h-11 flex flex-col items-center text-2xl sm:text-[40px] text-agro-black font-semibold overflow-clip ">
+      {content}
+    </div>
+  );
   return (
     <div
-      className={`bg-white h-[154px] w-screen flex items-center ${
-        variant !== "base" ? "px-[72px]" : "justify-center "
-      }`}
+      className={`bg-white px-4 xl:px-[72px] h-20 sm:h-[154px] w-screen flex items-center justify-center  `}
     >
       <Image src={logo} alt="logo" />
-      {content}
+      {path[2] !== "sign-up" && headerContainer}
     </div>
   );
 };

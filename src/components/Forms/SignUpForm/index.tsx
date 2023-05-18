@@ -17,9 +17,9 @@ const options = [
 const SignUpForm = () => {
   return (
     <div className="min-h-screen bg-agro-floral-white pt-10 pb-[142px] flex flex-col items-center">
-      <form className=" flex flex-col gap-7 items-center  w-fit">
-        <div className="grid grid-cols-2 items-center gap-4">
-          <label className="text-sm font-bold text-end  " htmlFor="country">
+      <form className=" flex flex-col gap-7 items-center justify-center w-fit">
+        <div className="grid sm:grid-cols-[200px_1fr] items-center gap-4">
+          <label className="text-sm font-bold sm:text-end  " htmlFor="country">
             Country/Region
           </label>
           <Select className="w-[309px]" options={options} />
@@ -32,8 +32,10 @@ const SignUpForm = () => {
           />
         ))}
 
-        <div className="grid grid-cols-2 items-center gap-4">
-          <label className="text-sm font-bold text-end ">Phone Number:</label>
+        <div className="grid sm:grid-cols-[200px_1fr] items-center gap-4">
+          <label className="text-sm font-bold sm:text-end ">
+            Phone Number:
+          </label>
           <div>
             <input
               className="w-[90px] h-12 pl-3 rounded-[4px] bg-white border border-[#ABABAB]"
@@ -57,8 +59,8 @@ const SignUpForm = () => {
             Willing to receive emails from tbt.com.ng members and services.
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-2">
-          <div className="flex gap-2 col-start-2">
+        <div className="w-full grid sm:grid-cols-[200px_164px]  gap-4">
+          <div className="col-span-2 justify-self-center sm:justify-self-start sm:col-start-2">
             <PriButton
               text="Submit"
               type="submit"

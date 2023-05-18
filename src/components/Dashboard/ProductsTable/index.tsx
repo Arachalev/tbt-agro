@@ -70,7 +70,7 @@ const ProductTable = ({ column, data }: ProductTableProps) => {
   //   const style = ` grid-cols-[50px]`;
 
   return (
-    <div className="w-[987px] pt-[85px] pb-[55px] px-11  bg-white rounded-[10px]">
+    <div className=" pt-[85px] pb-[55px] px-11  bg-white rounded-[10px]">
       <div className={`grid grid-cols-[50px] grid-flow-col`}>
         {/* {column.map((item) => (
           <h4 className="border-4" key={item}>

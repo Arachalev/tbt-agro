@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-import {   usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import {
   newArrivalsData,
@@ -16,7 +16,7 @@ const HeaderDark = () => {
 
   return (
     <div className="h-20 sm:h-[166px] w-screen flex flex-col justify-center items-center sm:gap-11 bg-agro-black text-white">
-      <h2 className=" text-agro-yellow text-2xl xl:text-[40px] font-semibold">
+      <h2 className=" text-agro-yellow text-2xl xl:text-[40px] font-semibold overflow-clip">
         {newArrivalsPath
           ? "New Arrivals"
           : topRankingPath
@@ -31,12 +31,15 @@ const HeaderDark = () => {
           : aboutUsNavData
         ).map((item) => (
           <li key={item.href}>
-            <Link
-              href={item.href}
-              className={`${item.name === "All" ? "font-bold" : ""} text-[10px] sm:text-sm whitespace-nowrap`}
+            <button
+              // href={""}
+              // href={item.href}
+              className={`${
+                item.name === "All" ? "font-bold" : ""
+              } text-[9px] sm:text-sm whitespace-nowrap`}
             >
               {item.name}
-            </Link>
+            </button>
           </li>
         ))}
       </ul>

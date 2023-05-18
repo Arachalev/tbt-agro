@@ -1,6 +1,10 @@
 import React from "react";
 
-const ProfileIcon = ({ stroke = "#1A1A1A" }: { stroke?: string }) => {
+interface IconProps {
+  stroke?: string;
+}
+
+const ProfileIcon: React.FC<IconProps> = ({ stroke = "#1A1A1A" }) => {
   return (
     <svg
       width="16"
