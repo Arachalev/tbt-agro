@@ -4,6 +4,9 @@ import OrderIcon from "@/components/Icons/OrderIcon";
 import LogOutIcon from "@/components/Icons/LogOutIcon";
 import SupportIcon from "@/components/Icons/SupportIcon";
 
+import AccountIcon from "@/components/Icons/AccountIcon";
+
+
 export const sellerBarData = [
   {
     Icon: ProfileIcon,
@@ -34,5 +37,28 @@ export const sellerBarData = [
     Icon: LogOutIcon,
     name: "Logout",
     href: "logout",
+  },
+];
+
+export const buyerBarData = [
+  {
+    Icon: ProfileIcon,
+    name: "My Account",
+    href: "account",
+  },
+  {
+    Icon: OrderIcon,
+    name: "Orders",
+    href: "orders",
+  },
+  {
+    Icon: SupportIcon,
+    name: "Support",
+    href: "support",
+  },
+  {
+    Icon: AccountIcon,
+    name: "Account",
+    href: "second-account",
   },
 ];

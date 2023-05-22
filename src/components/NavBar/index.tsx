@@ -9,9 +9,10 @@ import {
   selectDeviceWith,
   getDeviceWith,
 } from "@/store/redux/features/deviceWidthSlice";
+import { editLinkState } from "@/store/redux/features/sideBarSlice";
 
 const NavBar = () => {
-  const deviceWidth = useAppSelector(selectDeviceWith);
+  const device = useAppSelector(selectDeviceWith);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -22,13 +23,21 @@ const NavBar = () => {
     return window.removeEventListener("resize", () => {
       dispatch(getDeviceWith());
     });
-  }, [deviceWidth, dispatch]);
+  }, [device, dispatch]);
 
   useEffect(() => {
     dispatch(getDeviceWith());
   }, []);
 
-  return deviceWidth.width > 640 ? <WebNav /> : <MobileNav />;
+  useEffect(() => {
+    if (device.width > 640 && device.width < 1024) {
+      dispatch(editLinkState(false));
+    } else {
+      dispatch(editLinkState(true));
+    }
+  }, [device.width, dispatch]);
+
+  return device.width > 640 ? <WebNav /> : <MobileNav />;
 };
 
 export default NavBar;

@@ -4,12 +4,13 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 interface SideBarLinkProps {
-  Icon: React.FC<{ stroke?: string }>;
+  Icon?: React.FC<{ stroke?: string }>;
   name: string;
   href: string;
+  showLinks: boolean;
 }
 
-const SideBarLink = ({ Icon, name, href }: SideBarLinkProps) => {
+const SideBarLink = ({ Icon, name, href, showLinks }: SideBarLinkProps) => {
   const pathArr = usePathname().trim().split("/");
   // console.log(pathArr[3], href);
 
@@ -22,8 +23,8 @@ const SideBarLink = ({ Icon, name, href }: SideBarLinkProps) => {
         isCurrentPath ? "text-agro-orange font-semibold" : ""
       }`}
     >
-      <Icon stroke={isCurrentPath ? "#F48924" : "#1A1A1A"} />
-      <span className="text-sm">{name}</span>
+      {Icon && <Icon stroke={isCurrentPath ? "#F48924" : "#1A1A1A"} />}
+      {showLinks && <div className="text-sm">{name}</div>}
     </Link>
   );
 };

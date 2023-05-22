@@ -15,8 +15,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <section className="  ">
       <NavBar />
-      <div className="mt-[96px] ">
-        {device.width > 640 && <SideBar />}
+      <div className=" sm:mt-[160px]  ">
+        {device.width > 640 && <SideBar isSeller={false} />}
         <main
           className={` ${
             device.width > 1024
@@ -26,7 +26,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               : device.width > 640
               ? "ml-[100px]"
               : "ml-0"
-          } bg-agro-gray `}
+          } bg-agro-gray min-h-[calc(100vh-64px)]  sm:min-h-[calc(100vh-160px)]`}
         >
           {children}
         </main>

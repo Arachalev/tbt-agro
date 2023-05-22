@@ -1,6 +1,6 @@
 "use client";
 
-import { createSlice, PayloadActionCreator } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
 const initialState = {

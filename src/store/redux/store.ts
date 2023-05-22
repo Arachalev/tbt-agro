@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import deviceWidthReducer from "./features/deviceWidthSlice";
+import linksReducer from "./features/sideBarSlice"
 
 const store = configureStore({
-  reducer: { deviceWidthReducer },
+  reducer: { deviceWidthReducer, linksReducer },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

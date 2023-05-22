@@ -32,7 +32,7 @@ const WebNav = () => {
   return seller ? (
     <SellerNav />
   ) : (
-    <nav className="top-0 w-full  ">
+    <nav className="top-0 absolute z-50 w-full ">
       <div className="bg-agro-green  h-24 flex flex-row items-start justify-between pt-9 px-4 xl:px-20">
         <div className="flex items-center gap-16 ">
           <div className="w-[40px] h-[24px] relative">

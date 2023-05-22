@@ -19,8 +19,8 @@ const OrderCard = ({
   deliveryDate,
 }: OrderCardProps) => {
   return (
-    <div className="w-[967px]  bg-white rounded-md py-7 pr-9 pl-[103px] flex justify-between ">
-      <div className="flex gap-9 ">
+    <div className="2xl:w-[967px]  bg-white rounded-md py-4 sm:py-7 px-5 sm:px-9  md::pl-[103px] flex flex-col md:flex-row justify-between ">
+      <div className="flex gap-5 md:gap-9 ">
         <Image
           className="rounded-md h-[190px] object-cover"
           alt="test"
@@ -30,10 +30,10 @@ const OrderCard = ({
           loading="lazy"
         />
         <div className=" self-end pb-3 ">
-          <h4 className="text-xl text-agro-black mb-2">
+          <h4 className="text-base md:text-xl text-agro-black mb-2">
             {name} - {amount}
           </h4>
-          <p className="text-xl text-agro-orange font-medium mb-3">
+          <p className="text-base md:text-xll text-agro-orange font-medium mb-3">
             {" "}
             Order {id}
           </p>
