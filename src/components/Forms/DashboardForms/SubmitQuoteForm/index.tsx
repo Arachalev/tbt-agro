@@ -7,12 +7,12 @@ import upload from "../../../../../public/icons/upload.svg";
 
 const SubmitQuoteForm = () => {
   return (
-    <div className="">
+    <div className="2xl:w-[1300px] 2xl:mx-auto">
       <form action="" className="flex flex-col gap-6 text-agro-black">
         <div className="flex flex-col gap-6 bg-white rounded-[10px] p-5 ">
           <h4 className="text-lg font-bold ">Information & Product Details</h4>
 
-          <div className="grid grid-cols-3 grid-flow-col gap-5 items-center">
+          <div className="grid md:grid-cols-3  gap-5 items-center">
             <div>
               <label
                 htmlFor=""
@@ -57,7 +57,7 @@ const SubmitQuoteForm = () => {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-3 grid-flow-col gap-5 items-center">
+          <div className="grid sm:grid-cols-3 gap-5 items-center">
             <div>
               <label
                 htmlFor=""
@@ -98,7 +98,7 @@ const SubmitQuoteForm = () => {
               />
             </div>
           </div>
-          <div className="grid grid-cols-3 grid-flow-col gap-5 items-center">
+          <div className="grid sm:grid-cols-3   gap-5 items-center">
             <div className=" col-span-2">
               <label
                 htmlFor=""
@@ -112,7 +112,7 @@ const SubmitQuoteForm = () => {
                 placeholder="Mercy"
               />
             </div>
-            <div>
+            <div className="col-span-2 sm:col-span-1">
               <label
                 htmlFor=""
                 className="font-semibold text-sm text-agro-black block"
@@ -126,7 +126,7 @@ const SubmitQuoteForm = () => {
               />
             </div>
           </div>
-          <div className="grid grid-cols-3 grid-flow-col gap-5 items-center">
+          <div className="grid sm:grid-cols-3  gap-5 items-center">
             <div className=" col-span-2">
               <label
                 htmlFor=""
@@ -140,7 +140,7 @@ const SubmitQuoteForm = () => {
                 placeholder="Mercy"
               />
             </div>
-            <div>
+            <div className="col-span-2 sm:col-span-1">
               <label
                 htmlFor=""
                 className="font-semibold text-sm text-agro-black block"
@@ -155,7 +155,7 @@ const SubmitQuoteForm = () => {
             </div>
           </div>
           <div className="flex gap-3 items-center">
-            <div>
+            <div className="w-full sm:w-fit">
               <label
                 htmlFor=""
                 className="font-semibold text-sm text-agro-black block"
@@ -164,11 +164,11 @@ const SubmitQuoteForm = () => {
               </label>
               <input
                 type="text"
-                className="w-[209px] h-12 rounded-[4px] border border-gray2 bg-gray3 mt-2 px-5"
+                className="w-full sm:-[209px] h-12 rounded-[4px] border border-gray2 bg-gray3 mt-2 px-5"
                 placeholder="0"
               />
             </div>
-            <div>
+            <div className="w-full sm:w-fit">
               <label
                 htmlFor=""
                 className="font-semibold text-sm text-agro-black block"
@@ -177,7 +177,7 @@ const SubmitQuoteForm = () => {
               </label>
               <input
                 type="text"
-                className="w-[209px] h-12 rounded-[4px] border border-gray2 bg-gray3 mt-2 px-5"
+                className="w-full sm:w-[209px] h-12 rounded-[4px] border border-gray2 bg-gray3 mt-2 px-5"
                 placeholder="0"
               />
             </div>

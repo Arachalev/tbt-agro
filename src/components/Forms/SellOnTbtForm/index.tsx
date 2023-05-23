@@ -18,8 +18,8 @@ const SellOnTbtForm = () => {
           />
         ))}
 
-        <div className="grid sm:grid-cols-[200px_1fr] items-center gap-4">
-          <label className="text-sm font-bold sm:text-end ">
+        <div className="grid md:grid-cols-[200px_1fr] items-center gap-4">
+          <label className="text-sm font-bold md:text-end ">
             Phone Number:
           </label>
           <div>
@@ -40,8 +40,8 @@ const SellOnTbtForm = () => {
           placeholder="Please enter your state"
           key="Location"
         />
-        <div className="w-full grid sm:grid-cols-[200px_164px]  gap-4">
-          <div className="col-span-2 justify-self-center sm:justify-self-start sm:col-start-2">
+        <div className="w-full grid md:grid-cols-[200px_164px]  gap-4">
+          <div className="col-span-2 justify-self-center md:justify-self-start md:col-start-2">
             <PriButton
               text="Submit"
               type="submit"

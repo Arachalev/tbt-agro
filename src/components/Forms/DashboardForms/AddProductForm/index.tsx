@@ -7,7 +7,7 @@ import upload from "../../../../../public/icons/upload.svg";
 
 const AddProductForm = () => {
   return (
-    <div className="">
+    <div className="2xl:w-[1300px] 2xl:mx-auto">
       <form action="" className="flex flex-col gap-6">
         <div className="flex flex-col gap-6 bg-white rounded-[10px] p-5 ">
           <div className="text-agro-black">
@@ -53,8 +53,8 @@ const AddProductForm = () => {
               placeholder="Please enter the location of the product"
             />
           </div>
-          <div className="flex gap-3 items-center">
-            <div>
+          <div className="flex flex-col sm:flex-row gap-3 items-center">
+            <div className="w-full sm:w-fit">
               <label
                 htmlFor=""
                 className="font-semibold text-sm text-agro-black block"
@@ -63,11 +63,11 @@ const AddProductForm = () => {
               </label>
               <input
                 type="text"
-                className="w-[209px] h-12 rounded-[4px] border border-gray2 bg-gray3 mt-2 px-5"
+                className="w-full sm:w-[209px] h-12 rounded-[4px] border border-gray2 bg-gray3 mt-2 px-5"
                 placeholder="0"
               />
             </div>
-            <div>
+            <div className="w-full sm:w-fit">
               <label
                 htmlFor=""
                 className="font-semibold text-sm text-agro-black block"
@@ -76,7 +76,7 @@ const AddProductForm = () => {
               </label>
               <input
                 type="text"
-                className="w-[209px] h-12 rounded-[4px] border border-gray2 bg-gray3 mt-2 px-5"
+                className="w-full sm:w-[209px] h-12 rounded-[4px] border border-gray2 bg-gray3 mt-2 px-5"
                 placeholder="0"
               />
             </div>
@@ -90,8 +90,8 @@ const AddProductForm = () => {
               placeholder="Enter product description."
             />
           </div>
-          <div className="flex gap-3 items-center">
-            <div>
+          <div className="flex flex-col sm:flex-row gap-3 items-center">
+            <div className="w-full sm:w-fit">
               <label
                 htmlFor=""
                 className="font-semibold text-sm text-agro-black block"
@@ -100,11 +100,11 @@ const AddProductForm = () => {
               </label>
               <input
                 type="text"
-                className="w-[209px] h-12 rounded-[4px] border border-gray2 bg-gray3 mt-2 px-5"
+                className="w-full sm:w-[209px]  h-12 rounded-[4px] border border-gray2 bg-gray3 mt-2 px-5"
                 placeholder="0"
               />
             </div>
-            <div>
+            <div className="w-full sm:w-fit">
               <label
                 htmlFor=""
                 className="font-semibold text-sm text-agro-black block"
@@ -113,11 +113,11 @@ const AddProductForm = () => {
               </label>
               <input
                 type="text"
-                className="w-[209px] h-12 rounded-[4px] border border-gray2 bg-gray3 mt-2 px-5"
+                className="w-full sm:w-[209px]  h-12 rounded-[4px] border border-gray2 bg-gray3 mt-2 px-5"
                 placeholder="Kg"
               />
             </div>
-            <div>
+            <div className="w-full sm:w-fit">
               <label
                 htmlFor=""
                 className="font-semibold text-sm text-agro-black block"
@@ -126,7 +126,7 @@ const AddProductForm = () => {
               </label>
               <input
                 type="text"
-                className="w-[209px] h-12 rounded-[4px] border border-gray2 bg-gray3 mt-2 px-5"
+                className="w-full sm:w-[209px]  h-12 rounded-[4px] border border-gray2 bg-gray3 mt-2 px-5"
                 placeholder="100"
               />
             </div>

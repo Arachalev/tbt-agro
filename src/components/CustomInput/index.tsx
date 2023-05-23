@@ -19,18 +19,18 @@ const CustomInput: React.FC<CustomInputProps> = ({
   ...props
 }) => {
   return (
-    <div className="grid sm:grid-cols-[200px_1fr] items-center gap-4">
+    <div className="grid w-full sm:w-fit md:grid-cols-[200px_1fr] md:items-center gap-4">
       <label
         className={`text-sm ${
           variant === "normal" ? "text-agro-black" : "text-gray2 "
-        } font-bold  sm:justify-self-end sm:text-end w-[200px]`}
+        } font-bold  md:justify-self-end md:text-end w-[200px]`}
         htmlFor={label}
       >
         {label}
       </label>
       <input
         className={`${
-          variant === "normal" ? "w-[309px]" : "w-[419px]"
+          variant === "normal" ? "w-full sm:w-[309px]" : "w-full sm:w-[419px]"
         } h-12 pl-3 rounded-[4px] bg-white border border-gray2`}
         type={type}
         placeholder={placeholder}

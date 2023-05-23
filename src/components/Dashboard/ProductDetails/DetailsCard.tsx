@@ -34,7 +34,7 @@ const DetailsCard = ({
   ratingsAmount,
 }: DetailsCardProps) => {
   return (
-    <div className="flex gap-9 w-[857px] p-10 bg-white rounded-[10px]">
+    <div className="flex flex-col sm:flex-row items-center    gap-9  w-full xl:w-[857px] p-5 sm:p-10 bg-white rounded-[10px]">
       <div className="">
         <Image
           src={img}
@@ -70,13 +70,13 @@ const DetailsCard = ({
       </div>
       <div className="flex flex-col gap-4">
         <p className="text-agro-orange  font-medium"> Seller ID: {sellerId}</p>
-        <h4 className="text-lg font-bold text-agro-black">{name}</h4>
+        <h4 className=" sm:text-lg font-bold text-agro-black">{name}</h4>
         <p className="font-medium text-agro-black">Category : {category}</p>
         <p className="font-medium text-agro-black">
           Available Quantity : {availableQuantity}
         </p>
         <p className="font-medium text-agro-orange">Location :{location}</p>
-        <h4 className="text-2xl font-bold">{cost}</h4>
+        <h4 className="text-xl sm:text-2xl font-bold">{cost}</h4>
         <div>
           <form action="">
             <div className=" flex flex-col gap-2">

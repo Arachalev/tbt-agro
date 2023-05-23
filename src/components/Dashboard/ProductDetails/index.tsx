@@ -5,7 +5,7 @@ import InfoCard from "./InfoCard";
 
 const ProductDetails = () => {
   return (
-    <div className="flex flex-col items-center gap-5">
+    <div className="flex flex-col items-center gap-5 p-5">
       <DetailsCard
         img={"https://picsum.photos/300/350"}
         sellerId={"S154AS"}

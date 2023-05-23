@@ -19,16 +19,16 @@ const CheckOutCard = ({
 }: CheckOutCardProps) => {
   return (
     <div className=" pb-12 text-agro-black bg-white rounded-[10px] ">
-      <div className="h-[60px] flex items-center pl-12 border-b border-b-gray2 ">
+      <div className="h-[60px] flex items-center pl-4 sm:pl-12 border-b border-b-gray2 ">
         <h4 className="font-bold ">Order reserved for 48 hours</h4>
       </div>
-      <div className="h-[112px] flex flex-col gap-4 py-6 pl-12 overflow-clip  border-b border-b-gray2">
+      <div className="h-[112px] flex flex-col gap-4 sm:py-6 pl-4 sm:pl-12 overflow-clip  border-b border-b-gray2">
         <p>Confirmation sent to your email.</p>
-        <p className="font-semibold ">
+        <p className="font-semibold overflow-clip ">
           Shipping to {name}, <span className="font-normal">{address}</span>
         </p>
       </div>
-      <div className="pt-6 pb-10 pl-12 flex items-center gap-[70px] ">
+      <div className="pt-6 pb-10 pl-4 sm:pl-12 flex items-center gap-[70px] ">
         <div>
           <p className="font-semibold">{deliveryDate}</p>
           <p>Estimated delivery</p>

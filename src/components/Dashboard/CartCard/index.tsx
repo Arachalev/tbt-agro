@@ -30,8 +30,8 @@ const CartCard = ({
   ratingsAmount,
 }: CartCardProps) => {
   return (
-    <div className="w-[967px] p-10 bg-white rounded-[10px] flex justify-between">
-      <div className="flex gap-9 ">
+    <div className=" 2xl:w-[967px] p-10 bg-white rounded-[10px] flex flex-col md:flex-row justify-between">
+      <div className="flex flex-col sm:flex-row gap-9 ">
         <div className="">
           <Image
             src={img}
@@ -86,9 +86,9 @@ const CartCard = ({
           </div>
         </div>
       </div>
-      <div className="">
-        <p className="font-medium text-gray2 text-end">Price</p>
-        <h4 className="font-bold mt-4">{cost}</h4>
+      <div className="mt-4 md:mt-0">
+        <p className="font-medium text-gray2 md:text-end">Price</p>
+        <h4 className="font-bold md:mt-4">{cost}</h4>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ interface InforCardProps {
 const InfoCard = ({ productDetails, specifications }: InforCardProps) => {
   const specificationKeys = Object.keys(specifications);
   return (
-    <div className="w-[857px] p-10 bg-white rounded-[10px]">
+    <div className=" xl:w-[857px] p-5 sm:p-10 bg-white rounded-[10px]">
       <div>
         <h4 className="font-semibold text-sm ">Product Details: </h4>
         <p className="text-sm mt-2 w-[90%]">{productDetails}</p>

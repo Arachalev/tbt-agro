@@ -2,7 +2,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="min-h-[calc(100vh-96px)] p-4 sm:p-8 xl:p-[72px]  ">
+    <div className="p-4 sm:p-8 xl:p-[72px]  ">
       <div className="mt-10 2xl:w-[1300px] 2xl:mx-auto">
         <h4 className="pb-4 md:pb-8  text-xl md:text-2xl xl:text-3xl text-agro-green font-semibold overflow-clip">
           Payment Details

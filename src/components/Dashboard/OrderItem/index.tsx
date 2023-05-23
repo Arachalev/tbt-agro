@@ -22,7 +22,7 @@ const OrderItem = ({
   returnDate,
 }: OrderItemsProps) => {
   return (
-    <div className="w-full  bg-white py-4 px-6 flex justify-between border border-gray2  rounded-md">
+    <div className="w-full  bg-white py-4 px-6 flex flex-col md:flex-row gap-4 justify-between border border-gray2  rounded-md">
       <div className="flex flex-col">
         <div className="mb-5">
           <p className="inline text-agro-green text-xs font-medium">
@@ -45,11 +45,11 @@ const OrderItem = ({
             loading="lazy"
           />
           <div className="text-agro-black flex flex-col gap-2">
-            <h4 className="text-xl">
+            <h4 className="text-base sm:text-xl">
               {name} - {amount}
             </h4>
             <p className="text-sm ">QTY :{quantity}</p>
-            <p className=" text-xl">{cost}</p>
+            <p className=" text-base sm:text-xl">{cost}</p>
           </div>
         </div>
         <p className="text-sm">

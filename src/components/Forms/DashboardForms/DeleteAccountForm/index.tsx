@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import CustomInput from "@/components/CustomInput";
@@ -6,7 +8,7 @@ import PriButton from "@/components/PriButton";
 const DeleteAccountForm = () => {
   return (
     <div>
-      <form action="" className="flex flex-col gap-7 ">
+      <form action="" className="flex flex-col gap-7 sm:w-fit ">
         <CustomInput
           variant="dashboard"
           label={"Email Address:"}
@@ -20,8 +22,8 @@ const DeleteAccountForm = () => {
           placeholder={"Yinka"}
         />
         <PriButton
-          text={"Save Changes"}
-          className="w-[178px] h-[42px] rounded-[6px] text-lg font-bold mt-5 self-end mr-[205px]  "
+          text={"Delete Account"}
+          className="w-[178px] h-[42px] rounded-[6px] text-lg font-bold mt-5 self-end  "
           onClick={function () {
             throw new Error("Function not implemented.");
           }}

@@ -1,23 +1,31 @@
-import React from "react";
+"use client";
 
+import React, { useState } from "react";
 import { FaRegCheckCircle } from "react-icons/fa";
 import Image from "next/image";
 import woosh from "../../../../public/images/wooshLogistics.svg";
 
 const ShipingAndLogistics = () => {
-  return (
-    <div className="rounded-[10px] bg-white w-[966px] ">
+  const [openShipping, setOpenShipping] = useState(false);
+
+  return openShipping ? (
+    <div className="rounded-[10px] bg-white w-full 2xl:w-[966px] ">
       <div className="flex items-center justify-between pb-4 pt-6 px-8 border-b border-b-gray2 ">
         <div className="flex items-center gap-2">
           <FaRegCheckCircle className="text-agro-green text-xl  " />{" "}
-          <p className="font-semibold text-agro-black">
+          <p className="font-semibold  text-sm sm:text-base text-agro-black">
             2. SHIPPING & LOGISTICS
           </p>
         </div>
-        <button className="font-semibold text-agro-green">CHANGE</button>
+        <button
+          className="font-semibold  text-sm sm:text-base text-agro-green"
+          onClick={() => setOpenShipping((state) => !state)}
+        >
+          CHANGE
+        </button>
       </div>
       <div className="px-8 pb-[70px] pt-1">
-        <div className=" pl-8 mb-6 flex items-center justify-between   w-full">
+        <div className=" sm:pl-8 mb-6 flex flex-col sm:flex-row items-center justify-between   w-full">
           <div>
             <h4 className="font-bold">
               Where would you like your products to be delivered?
@@ -32,7 +40,7 @@ const ShipingAndLogistics = () => {
         <div>
           <form action="" className="flex flex-col gap-6 text-agro-black">
             <div className="flex flex-col gap-6 ">
-              <div className="grid grid-cols-3 grid-flow-col gap-5 items-center">
+              <div className="grid grid-cols-1 md:grid-cols-3   gap-5 items-center">
                 <div>
                   <label
                     htmlFor=""
@@ -77,7 +85,7 @@ const ShipingAndLogistics = () => {
                   </div>
                 </div>
               </div>
-              <div className="grid grid-cols-3 grid-flow-col gap-5 items-center">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-center">
                 <div>
                   <label
                     htmlFor=""
@@ -118,7 +126,7 @@ const ShipingAndLogistics = () => {
                   />
                 </div>
               </div>
-              <div className="grid grid-cols-3 grid-flow-col gap-5 items-center">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-center">
                 <div className=" col-span-2">
                   <label
                     htmlFor=""
@@ -146,7 +154,7 @@ const ShipingAndLogistics = () => {
                   />
                 </div>
               </div>
-              <div className="grid grid-cols-3 grid-flow-col gap-5 items-center">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-center">
                 <div className=" col-span-2">
                   <label
                     htmlFor=""
@@ -174,7 +182,7 @@ const ShipingAndLogistics = () => {
                   />
                 </div>
               </div>
-              <div className="grid grid-cols-3 grid-flow-col gap-5 items-center">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-center">
                 <div className=" col-span-2">
                   <label
                     htmlFor=""
@@ -192,6 +200,23 @@ const ShipingAndLogistics = () => {
             </div>
           </form>
         </div>
+      </div>
+    </div>
+  ) : (
+    <div className="rounded-[10px] bg-white w-full 2xl:w-[966px] ">
+      <div className="flex items-center justify-between pb-4 pt-6 px-8 border-b border-b-gray2 ">
+        <div className="flex items-center gap-2">
+          <FaRegCheckCircle className="text-agro-green text-xl  " />{" "}
+          <p className="font-semibold  text-sm sm:text-base  text-agro-black">
+            2. SHIPPING & LOGISTICS
+          </p>
+        </div>
+        <button
+          className="font-semibold text-sm sm:text-base text-agro-green"
+          onClick={() => setOpenShipping((state) => !state)}
+        >
+          CHANGE
+        </button>
       </div>
     </div>
   );

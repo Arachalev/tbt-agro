@@ -7,7 +7,7 @@ import PriButton from "@/components/PriButton";
 const ProfileDetailsForm = () => {
   return (
     <div>
-      <form action="" className="flex flex-col gap-7 ">
+      <form action="" className="flex flex-col gap-7 w-fit ">
         <CustomInput
           variant="dashboard"
           label={"First Name:"}
@@ -40,7 +40,7 @@ const ProfileDetailsForm = () => {
         />
         <PriButton
           text={"Save Changes"}
-          className="w-[178px] h-[42px] rounded-[6px] text-lg font-bold mt-5 self-end mr-[205px]  "
+          className="w-[178px] h-[42px] rounded-[6px] text-lg font-bold mt-5 self-end  "
           onClick={function () {
             throw new Error("Function not implemented.");
           }}

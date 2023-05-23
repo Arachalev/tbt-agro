@@ -20,8 +20,8 @@ const QuotationForm = () => {
       <form className=" flex flex-col gap-7 items-center w-fit ">
         <CustomInput label="Contact Person:" placeholder="Please enter" />
 
-        <div className="grid sm:grid-cols-[200px_1fr] items-center gap-4">
-          <label className="text-sm font-bold sm:text-end ">
+        <div className="grid md:grid-cols-[200px_1fr] items-center gap-4">
+          <label className="text-sm font-bold md:text-end ">
             Phone Number:
           </label>
           <div>
@@ -42,8 +42,8 @@ const QuotationForm = () => {
           placeholder="Must be a legally registered business"
         />
 
-        <div className="grid sm:grid-cols-[200px_1fr] items-center gap-4">
-          <label className="text-sm font-bold sm:text-end ">
+        <div className="grid md:grid-cols-[200px_1fr] items-center gap-4">
+          <label className="text-sm font-bold md:text-end ">
             Country/Region
           </label>
           <Select className="w-[309px]" options={options} />
@@ -56,9 +56,9 @@ const QuotationForm = () => {
           placeholder="Please Enter"
         />
 
-        <div className=" xl:ml-44 w-fit grid sm:grid-cols-[200px_1fr] items-center gap-4">
+        <div className=" xl:ml-44 w-fit grid md:grid-cols-[200px_1fr] items-center gap-4">
           <label
-            className="text-sm font-bold sm:text-end sm:self-start"
+            className="text-sm font-bold md:text-end md:self-start"
             htmlFor="message"
           >
             Other Information:
@@ -72,8 +72,8 @@ const QuotationForm = () => {
           label="Expiry Date of the RFQ (at least 30 days):"
           placeholder="Please Enter"
         />
-        <div className="grid sm:grid-cols-[200px_1fr] gap-4">
-          <div className="flex gap-2 sm:col-start-2 w-[309px]">
+        <div className="grid md:grid-cols-[200px_1fr] gap-4">
+          <div className="flex gap-2 md:col-start-2 w-[309px]">
             <input
               type="checkbox"
               className="min-w-[16px] h-4"
@@ -94,8 +94,8 @@ const QuotationForm = () => {
           </div>
         </div>
 
-        <div className="w-full grid sm:grid-cols-[200px_164px]  gap-4">
-          <div className="col-span-2 justify-self-center sm:justify-self-start sm:col-start-3">
+        <div className="w-full grid md:grid-cols-[200px_164px]  gap-4">
+          <div className="col-span-2 justify-self-center md:justify-self-start md:col-start-3">
             <PriButton
               text="Submit"
               type="submit"

@@ -18,9 +18,9 @@ const OrderDetails = ({
   orderItems,
 }: OrderDetailsProps) => {
   return (
-    <div className="bg-white pb-12 rounded-[10px] w-[967px]">
+    <div className="bg-white pb-12 rounded-[10px] 2xl:w-[967px]">
       <div className="px-4 pt-8 pb-7 ">
-        <p className="text-agro-black text-lg ">Order no {id}</p>
+        <p className="text-agro-black text-lg ">Order n° {id}</p>
         <div className="text-agro-green overflow-clip ">
           <p className="leading-none  overflow-clip">{amount} Items</p>
           <p className="leading-none  overflow-clip">Placed on {date} </p>
@@ -49,14 +49,5 @@ const OrderDetails = ({
     </div>
   );
 };
-
-// img,
-// amount,
-// deliveryDate,
-// name,
-// id,
-// isReturnable,
-// cost,
-// returnDate,
 
 export default OrderDetails;

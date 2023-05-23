@@ -34,10 +34,12 @@ const BuyerBar = () => {
           onClick={() => {
             dispatch(editLinkState(!showLinks));
           }}
-          className="flex items-center gap-5  mb-6"
+          className={`flex ${
+            showLinks && "pl-[72px]"
+          } items-center gap-5  mb-6`}
         >
           <RxHamburgerMenu className="text-lg" />
-          {showLinks && <p>Menu</p>}
+          {showLinks && <p className="">Menu</p>}
         </div>
       )}
       <ul
