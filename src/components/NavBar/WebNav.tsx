@@ -35,14 +35,14 @@ const WebNav = () => {
     <nav className="top-0 absolute z-50 w-full ">
       <div className="bg-agro-green  h-24 flex flex-row items-start justify-between pt-9 px-4 xl:px-20">
         <div className="flex items-center gap-16 ">
-          <div className="w-[40px] h-[24px] relative">
+          <Link href="/web/home" className="w-[40px] h-[24px] relative">
             <Image src={logo} className="h-full" alt="logo" />
-          </div>
+          </Link>
 
           <div className="h-10  lg:w-[700px] flex rounded-s-md overflow-hidden">
             <input
               type="text"
-              className="w-full pl-8 placeholder:text-sm lg:placeholder:text-base"
+              className="w-full pl-8 placeholder:text-sm lg:placeholder:text-base outline-none"
               placeholder="what are you looking for..."
             />
             <span className="bg-agro-yellow h-full items-center justify-center flex w-11 rounded-e-md  ">
@@ -54,7 +54,7 @@ const WebNav = () => {
           <div className="flex flex-row items-center gap-5">
             <Link
               className="text-white text-sm font-medium whitespace-nowrap"
-              href="/auth/sign-in"
+              href="/web/sign-in"
             >
               Sign in
             </Link>
@@ -69,7 +69,7 @@ const WebNav = () => {
           <div className=" flex items-center relative text-sm h-8">
             <Cart /> <p className="text-white ">Cart</p>
             <span className="absolute top-0  left-2 text-agro-yellow font-medium">
-              2
+              0
             </span>
           </div>
         </div>

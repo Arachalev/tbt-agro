@@ -1,6 +1,7 @@
-import React, { HTMLInputTypeAttribute } from "react";
+import React, { HTMLInputTypeAttribute, useMemo, useEffect } from "react";
 
 type variantTypes = "normal" | "dashboard";
+import useInput from "@/hooks/useInput";
 
 interface CustomInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -8,6 +9,8 @@ interface CustomInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   //   htmlFor: string;
   placeholder: string;
   variant?: variantTypes;
+  validation: (val: string) => boolean;
+  handleValue: (val: string) => void;
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({
@@ -16,8 +19,17 @@ const CustomInput: React.FC<CustomInputProps> = ({
   type = "text",
   placeholder,
   variant = "normal",
+  validation,
+  handleValue,
   ...props
 }) => {
+  const { value, hasError, reset, onBlurHandler, enteredInputHandler } =
+    useInput(validation);
+
+  useEffect(() => {
+    handleValue(value.value);
+  }, [value.value]);
+
   return (
     <div className="grid w-full sm:w-fit md:grid-cols-[200px_1fr] md:items-center gap-4">
       <label
@@ -29,6 +41,11 @@ const CustomInput: React.FC<CustomInputProps> = ({
         {label}
       </label>
       <input
+        onChange={(e) => {
+          enteredInputHandler(e);
+          // handleValue(value.value);
+        }}
+        onBlur={onBlurHandler}
         className={`${
           variant === "normal" ? "w-full sm:w-[309px]" : "w-full sm:w-[419px]"
         } h-12 pl-3 rounded-[4px] bg-white border border-gray2`}

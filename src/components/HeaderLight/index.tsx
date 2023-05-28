@@ -5,20 +5,19 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 import logo from "../../../public/logo/logo-lg.png";
+import Link from "next/link";
 
 // type HeaderVariants = "base" | "sell" | "buy" | "quote";
 
 const HeaderLight = ({ variant = "base" }: { variant?: string }) => {
   let content;
 
-  // sign-up
-  // request-for-quotation-buyer
-
   const path = usePathname().trim().split("/");
-  console.log(path[2]);
 
   switch (path[2]) {
     case "sign-up":
+      break;
+    case "sign-in":
       break;
     case "buy-on-tbt":
       {
@@ -58,8 +57,10 @@ const HeaderLight = ({ variant = "base" }: { variant?: string }) => {
     <div
       className={`bg-white px-4 xl:px-[72px] h-20 sm:h-[154px] w-screen flex items-center justify-center  `}
     >
-      <Image src={logo} alt="logo" />
-      {path[2] !== "sign-up" && headerContainer}
+      <Link href="web/home">
+        <Image src={logo} alt="logo" />
+      </Link>
+      {path[2] !== "sign-up" && path[2] !== "sign-in" && headerContainer}
     </div>
   );
 };

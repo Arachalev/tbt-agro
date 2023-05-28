@@ -5,9 +5,7 @@ import React from "react";
 import SignInForm from "@/components/Forms/SignInForm";
 
 const page = () => {
-  return (
-      <SignInForm />
-  );
+  return <SignInForm />;
 };
 
 export default page;

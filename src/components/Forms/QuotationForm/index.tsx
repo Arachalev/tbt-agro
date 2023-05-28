@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 
 import Link from "next/link";
 import PriButton from "@/components/PriButton";
@@ -15,10 +15,28 @@ const options = [
 ];
 
 const QuotationForm = () => {
+  const [formValues, setFormValues] = useState({
+    companyName: "",
+    countryCode: "",
+    pNumber: "",
+    userType: "",
+    terms: false,
+    contact: "",
+    state: "",
+    city: "",
+    commodity: "",
+    quantity: "",
+    expDate: "",
+  });
   return (
     <div className="min-h-screen bg-agro-floral-white pt-10 pb-[170px] flex flex-col items-center">
       <form className=" flex flex-col gap-7 items-center w-fit ">
-        <CustomInput label="Contact Person:" placeholder="Please enter" />
+        <CustomInput
+          label={"Contact Person: "}
+          placeholder={"Please enter"}
+          validation={(val) => val.length > 3}
+          handleValue={(val) => setFormValues({ ...formValues, contact: val })}
+        />
 
         <div className="grid md:grid-cols-[200px_1fr] items-center gap-4">
           <label className="text-sm font-bold md:text-end ">
@@ -40,6 +58,10 @@ const QuotationForm = () => {
         <CustomInput
           label="Company/Business Name:"
           placeholder="Must be a legally registered business"
+          validation={(val) => val.length > 3}
+          handleValue={(val) =>
+            setFormValues({ ...formValues, companyName: val })
+          }
         />
 
         <div className="grid md:grid-cols-[200px_1fr] items-center gap-4">
@@ -48,12 +70,32 @@ const QuotationForm = () => {
           </label>
           <Select className="w-[309px]" options={options} />
         </div>
-        <CustomInput label="State / Province:" placeholder="State" />
-        <CustomInput label="City:" placeholder="City" key="City" />
-        <CustomInput label="Name of Commodity" placeholder="Rice" />
+        <CustomInput
+          label="State / Province:"
+          placeholder="State"
+          validation={(val) => val.length > 3}
+          handleValue={(val) => setFormValues({ ...formValues, state: val })}
+        />
+        <CustomInput
+          label="City:"
+          placeholder="City"
+          key="City"
+          validation={(val) => val.length > 3}
+          handleValue={(val) => setFormValues({ ...formValues, city: val })}
+        />
+        <CustomInput
+          label="Name of Commodity"
+          placeholder="Rice"
+          validation={(val) => val.length > 3}
+          handleValue={(val) =>
+            setFormValues({ ...formValues, commodity: val })
+          }
+        />
         <CustomInput
           label="Quantity (Bags, Kg, MT):"
           placeholder="Please Enter"
+          validation={(val) => val.length > 3}
+          handleValue={(val) => setFormValues({ ...formValues, quantity: val })}
         />
 
         <div className=" xl:ml-44 w-fit grid md:grid-cols-[200px_1fr] items-center gap-4">
@@ -71,6 +113,8 @@ const QuotationForm = () => {
         <CustomInput
           label="Expiry Date of the RFQ (at least 30 days):"
           placeholder="Please Enter"
+          validation={(val) => val.length > 3}
+          handleValue={(val) => setFormValues({ ...formValues, expDate: val })}
         />
         <div className="grid md:grid-cols-[200px_1fr] gap-4">
           <div className="flex gap-2 md:col-start-2 w-[309px]">

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 import Image from "next/image";
-import { useRouter, usePathname } from "next/navigation";
-
+import { useRouter, usePathname, } from "next/navigation";
+import Link from "next/link";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { BsFillPersonFill } from "react-icons/bs";
 
@@ -50,9 +50,9 @@ const MobileNav = () => {
             <RxHamburgerMenu className="text-lg text-white " />
           </span>
 
-          <div className="w-[30px] h-[16px] relative">
+          <Link href="/web/home" className="w-[30px] h-[16px] relative">
             <Image src={logo} className="h-full" alt="logo" />
-          </div>
+          </Link>
         </div>
         <div className="flex gap-4 items-center">
           <BsFillPersonFill className="text-white text-lg" />

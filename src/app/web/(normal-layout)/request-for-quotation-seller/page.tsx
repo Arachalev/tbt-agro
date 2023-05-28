@@ -17,14 +17,14 @@ const pages = () => {
         <div className="  overflow-clip">
           <form action="" className="flex flex-col sm:flex-row gap-2 sm:gap-4">
             <Select
-              styles={{
-                control: (baseStyles) => ({
-                  ...baseStyles,
-                  height: "47px",
-                }),
-              }}
+              // styles={{
+              //   control: (baseStyles) => ({
+              //     ...baseStyles,
+              //     height: "47px",
+              //   }),
+              // }}
               placeholder="Please choose a category"
-              className=" sm:w-[313px] min-h-[47px]  border-none"
+              // className=" sm:w-[313px] min-h-[47px]  border-none"
             />
             <div className="flex h-[47px]">
               <input

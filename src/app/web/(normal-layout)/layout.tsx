@@ -6,7 +6,7 @@ const WebLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <section>
       <NavBar />
-      {children}
+      <main className="mt-40 ">{children}</main>
       <Footer />
     </section>
   );

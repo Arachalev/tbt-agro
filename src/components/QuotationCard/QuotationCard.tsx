@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 import styles from "./styles.module.css";
-import PriButton from "../PriButton";
 import { useAppSelector } from "@/store/redux/hooks";
 import { selectDeviceWith } from "@/store/redux/features/deviceWidthSlice";
+import Link from "next/link";
 
 const QuotationCard = () => {
   const deviceWidth = useAppSelector(selectDeviceWith);
@@ -31,9 +31,12 @@ const QuotationCard = () => {
             <h4 className="text-2xl xl:text-[34px] font-semibold text-agro-yellow leading-none">
               Global Sourcing <br /> Marketplace
             </h4>
-            <button className="text-black text-center text-sm font-semibold bg-white  w-[109px] h-[33px] rounded-[4px]">
+            <Link
+              href="/web/about-us"
+              className="text-black flex items-center justify-center text-sm font-semibold bg-white  w-[109px] h-[33px] rounded-[4px]"
+            >
               Learn more
-            </button>
+            </Link>
           </div>
         </div>
         <div className="bg-white p-4 lg:p-0 lg:px-12 lg:pt-16 w-full lg:w-1/2 h-full rounded-[10px]">
@@ -56,11 +59,13 @@ const QuotationCard = () => {
               placeholder="Kg"
               className="border-2 rounded-[4px] h-12 pl-6 placeholder:text-sm"
             />
-            <PriButton
-              className="col-span-2 py-1 px-4 mt-3 justify-self-center"
-              text={"Request for Quotation"}
+            <Link
+              href="/web/request-for-quotation-buyer"
+              className="col-span-2 py-1 px-4 mt-3 justify-self-center bg-agro-yellow rounded-[4px] font-bold text-agro-black"
               onClick={function () {}}
-            />
+            >
+              Request for Quotation
+            </Link>
           </form>
         </div>
       </div>

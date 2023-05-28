@@ -14,10 +14,8 @@ import HeaderCarousel from "@/components/HeaderCarousel";
 
 const page = () => {
   return (
-    <div className="min-h-[100vh] bg-agro-body">
-      {/* <main className=" min-h-screen h-full border-4 border-red-500   flex flex-col gap-12 pb-12 bg-gray-50 px-[72px] "></main> */}
-
-      <div className="px-4 xl:px-[70px] py-12 flex flex-col md:flex-row gap-5 ">
+    <div className="min-h-[100vh] py-12 bg-agro-body">
+      <div className="px-4 xl:px-[70px] pb-12 flex flex-col md:flex-row gap-5 ">
         <ProductsCategoryCard />
         <HeaderCarousel />
       </div>
