@@ -11,13 +11,28 @@ const InformdationDetailsForm = () => {
       <h4 className=" text-xl md:text-2xl xl:text-[40px] font-semibold text-agro-black">
         Your Information Details
       </h4>
-      <form action="" className=" flex flex-col gap-7 items-center w-full  sm:w-fit">
+      <form
+        action=""
+        className=" flex flex-col gap-7 items-center w-full  sm:w-fit"
+      >
         <CustomInput
           label="First Name:"
           placeholder="Adeola"
           key="first name"
+          validation={(val) => val.length > 3}
+          handleValue={function (val: string): void {
+            null;
+          }}
         />
-        <CustomInput label="Last Name:" placeholder="Osho" key="last name" />
+        <CustomInput
+          label="Last Name:"
+          placeholder="Osho"
+          key="last name"
+          validation={(val) => val.length > 3}
+          handleValue={function (val: string): void {
+            null;
+          }}
+        />
 
         <div className="grid w-full sm:w-fit md:grid-cols-[200px_1fr] items-center gap-4">
           <label className="text-sm font-bold md:text-end ">
@@ -40,16 +55,28 @@ const InformdationDetailsForm = () => {
           label="Country / Region:"
           placeholder="Nigeria"
           key="last name"
+          validation={(val) => val.length > 3}
+          handleValue={function (val: string): void {
+            null;
+          }}
         />
         <CustomInput
           label="Company / Business Name:"
           placeholder="Must be a legally registered business"
           key="last name"
+          validation={(val) => val.length > 3}
+          handleValue={function (val: string): void {
+            null;
+          }}
         />
         <CustomInput
           label="Company Country / Region:"
           placeholder="Nigeria"
           key="last name"
+          validation={(val) => val.length > 3}
+          handleValue={function (val: string): void {
+            null;
+          }}
         />
         <div className="grid w-full sm:w-fit md:grid-cols-[200px_1fr] items-center gap-4">
           <label
@@ -68,26 +95,46 @@ const InformdationDetailsForm = () => {
           label="State / Province:"
           placeholder="Please enter"
           key="last name"
+          validation={(val) => val.length > 3}
+          handleValue={function (val: string): void {
+            null;
+          }}
         />
         <CustomInput
           label="Website:"
           placeholder="Please enter your website URL"
           key="last name"
+          validation={(val) => val.length > 3}
+          handleValue={function (val: string): void {
+            null;
+          }}
         />
         <CustomInput
           label="Instagram:"
           placeholder="Please enter your Instagran URL"
           key="last name"
+          validation={(val) => val.length > 3}
+          handleValue={function (val: string): void {
+            null;
+          }}
         />
         <CustomInput
           label="LinkedIn:"
           placeholder="Please enter your LinkedIn URL"
           key="last name"
+          validation={(val) => val.length > 3}
+          handleValue={function (val: string): void {
+            null;
+          }}
         />
         <CustomInput
           label="Twitter:"
           placeholder="Please enter your Twitter URL"
           key="last name"
+          validation={(val) => val.length > 3}
+          handleValue={function (val: string): void {
+            null;
+          }}
         />
         <div className=" xl:ml-44 w-full sm:w-fit grid md:grid-cols-[200px_1fr] items-center gap-4">
           <label
