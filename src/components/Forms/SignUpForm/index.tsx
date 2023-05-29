@@ -69,7 +69,8 @@ const SignUpForm = () => {
       {show && (
         <StatusModal
           data={data ? data.message : ""}
-          error={error ? error?.data.data : ""}
+          error={"Error signing up"}
+          // error={error ? error?.data.data : ""}
           loading={isLoading}
           onClose={() => setShow(false)}
         />
