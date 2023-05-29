@@ -5,6 +5,7 @@ import { HiPlusSm } from "react-icons/hi";
 import { productsTableData } from "@/store/DummyData/Dashboard/tableData";
 import TopRankingMultiProductsCard from "@/components/TopRankingMultiProductsCard";
 import { topRankingMultiProductsCardData } from "@/store/DummyData/topRankingMultiProductsData";
+import Link from "next/link";
 
 const Page = () => {
   return (
@@ -14,10 +15,13 @@ const Page = () => {
           <h4 className="text-xl md:text-2xl xl:text-3xl text-agro-green font-semibold overflow-clip">
             Welcome, Yinka
           </h4>
-          <button className="flex items-center text-sm sm:text-base xl:text-lg font-bold bg-agro-yellow px-6 py-2 rounded-[5px] ">
+          <Link
+            href="/dashboard/seller/add-product"
+            className="flex items-center text-sm sm:text-base xl:text-lg font-bold bg-agro-yellow px-6 py-2 rounded-[5px] "
+          >
             <HiPlusSm />
             Add Product
-          </button>
+          </Link>
         </div>
         <div className="overflow-x-auto  w-full  mt-3">
           <ProductTable

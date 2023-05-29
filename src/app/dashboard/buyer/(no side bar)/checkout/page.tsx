@@ -1,11 +1,10 @@
-"use client";
-
 import React from "react";
 
 import PaymentMethod from "@/components/Dashboard/PaymentMethod";
 import OrderSummary from "@/components/Dashboard/OrderSummary";
 import ShipingAndLogistics from "@/components/Dashboard/ShipingAndLogistics";
-import PriButton from "@/components/PriButton";
+
+import Link from "next/link";
 
 const Page = () => {
   return (
@@ -25,13 +24,12 @@ const Page = () => {
             <PaymentMethod />
             <ShipingAndLogistics />
             <div className="sm:h-24 p-4 sm:pl-8 bg-white rounded-[10px] flex flex-col sm:flex-row items-center gap-4 sm:gap-8 xl:gap-16">
-              <PriButton
-                className="w-[137px] h-8 text-sm "
-                text={"Place Your Order"}
-                onClick={function () {
-                  throw new Error("Function not implemented.");
-                }}
-              />
+              <Link
+                href="/dashboard/buyer/confirmed-order"
+                className="w-[137px] h-8 text-sm bg-agro-yellow rounded-[4px] font-bold text-agro-black flex items-center justify-center"
+              >
+                Place Your Order
+              </Link>
               <div>
                 <h4 className="font-semibold text-agro-green sm:text-xl">
                   Order total: ₦1,400,000.00
@@ -44,9 +42,7 @@ const Page = () => {
               </div>
             </div>
           </div>
-          <div>
-            <OrderSummary cost={1000} shippingFee={0} />
-          </div>
+          <OrderSummary cost={1000} shippingFee={10000} />
         </div>
       </div>
     </div>

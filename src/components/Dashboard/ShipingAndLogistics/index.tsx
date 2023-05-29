@@ -204,7 +204,7 @@ const ShipingAndLogistics = () => {
     </div>
   ) : (
     <div className="rounded-[10px] bg-white w-full 2xl:w-[966px] ">
-      <div className="flex items-center justify-between pb-4 pt-6 px-8 border-b border-b-gray2 ">
+      <div className="flex items-center justify-between pb-4 pt-6 px-8 ">
         <div className="flex items-center gap-2">
           <FaRegCheckCircle className="text-agro-green text-xl  " />{" "}
           <p className="font-semibold  text-sm sm:text-base  text-agro-black">

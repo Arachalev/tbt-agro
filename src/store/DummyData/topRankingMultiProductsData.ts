@@ -2,7 +2,7 @@ import img from "../../../public/images/product.png";
 
 export const topRankingMultiProductsCardData = {
   title: "Inkjet Printers for Printing Shops",
-  href: "test",
+  href: "/dashboard/buyer/product-details",
   products: [
     {
       image: img,

@@ -78,11 +78,11 @@ const CartCard = ({
             </p>
           </div>
           <div className="mt-3 text-agro-green text-xs font-medium flex items-center gap-5">
-            <p>Delete</p>
+            <button>Delete</button>
             <span className="border-r border-r-agro-green h-4" />
-            <p>Save for later</p>
+            <button>Save for later</button>
             <span className="border-r border-r-agro-green h-4" />
-            <p>Share</p>
+            <button>Share</button>
           </div>
         </div>
       </div>

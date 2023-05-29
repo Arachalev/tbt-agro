@@ -4,10 +4,23 @@ import React from "react";
 import Image from "next/image";
 import PriButton from "@/components/PriButton";
 import upload from "../../../../../public/icons/upload.svg";
+import Link from "next/link";
+import { CgArrowLongLeft } from "react-icons/cg";
 
 const AddProductForm = () => {
   return (
     <div className="2xl:w-[1300px] 2xl:mx-auto">
+      <div className="mb-5">
+        <Link
+          className="flex items-center gap-1 text-agro-orange mb-4"
+          href="/dashboard/seller/account"
+        >
+          <CgArrowLongLeft /> <p className="text-sm font-medium">Back</p>
+        </Link>
+        <h4 className=" text-xl md:text-2xl xl:text-3xl text-agro-black font-semibold overflow-clip">
+          Add a Product
+        </h4>
+      </div>
       <form action="" className="flex flex-col gap-6">
         <div className="flex flex-col gap-6 bg-white rounded-[10px] p-5 ">
           <div className="text-agro-black">

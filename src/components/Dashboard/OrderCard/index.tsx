@@ -42,7 +42,10 @@ const OrderCard = ({
           </p>
         </div>
       </div>
-      <Link className="text-agro-orange font-bold mt-3 " href="">
+      <Link
+        className="text-agro-orange font-bold mt-3 h-fit "
+        href={`/dashboard/buyer/orders/${id}`}
+      >
         SEE DETAILS
       </Link>
     </div>

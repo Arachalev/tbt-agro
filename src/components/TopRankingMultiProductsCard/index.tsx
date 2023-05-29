@@ -21,7 +21,7 @@ interface TopRankingMultiProductsCard {
 const TopRankingMultiProductsCard: React.FC<TopRankingMultiProductsCard> = ({
   title,
   products,
-  href = "",
+  href = "/dashboard/buyer/product-details",
 }) => {
   return (
     <div className="xl:w-[420px]  h-[265px] px-5 pb-5 pt-9 bg-white overflow-y-hidden rounded-[10px] ">

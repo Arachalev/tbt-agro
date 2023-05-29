@@ -26,19 +26,16 @@ const CartSubTotal = ({ items, cost }: CartSubTotalProps) => {
         Cart Subtotal <span className="font-medium">({items} items)</span>
       </h4>
       <p className=" font-bold">₦{cost}</p>
-      <Link href="">
-        <PriButton
-          className="w-[134px] h-7 text-xs "
-          text={"Proceed to Checkout"}
-          onClick={function () {
-            throw new Error("Function not implemented.");
-          }}
-        />
+      <Link
+        href="/dashboard/buyer/checkout"
+        className="bg-agro-yellow rounded-[4px] font-bold flex items-center justify-center  text-agro-black w-[134px] h-7 text-xs "
+      >
+        Proceed to Checkout
       </Link>
       {!isShoppingCardPath && (
         <Link
           className="w-[134px] h-7 text-xs font-bold flex items-center justify-center border border-gray2 rounded-[4px] "
-          href=""
+          href="/dasboard/buyer/shopping-cart"
         >
           Go to Cart
         </Link>

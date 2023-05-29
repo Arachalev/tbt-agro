@@ -1,4 +1,8 @@
+"use client";
+
 import React, { useState } from "react";
+
+import { usePathname } from "next/navigation";
 
 import SideBarLink from "../SideBarLinks";
 import { buyerBarData } from "@/store/DummyData/Dashboard/SideBarData";
@@ -15,6 +19,8 @@ import LogOutIcon from "@/components/Icons/LogOutIcon";
 import PadlockIcon from "@/components/Icons/PadlockIcon";
 import Link from "next/link";
 import { RxHamburgerMenu } from "react-icons/rx";
+import ProfileIcon from "@/components/Icons/ProfileIcon";
+import AccountManagementBar from "./AccountManagementBar";
 
 const BuyerBar = () => {
   const [showAccount, setShowAccount] = useState(false);
@@ -23,7 +29,15 @@ const BuyerBar = () => {
   const showLinks = useAppSelector(selectLinkState);
   const dispatch = useAppDispatch();
 
-  return (
+  const pathArr = usePathname().split("/");
+
+  const securityPath = ["edit-profile", "delete-account", "password-settings"];
+  const showSecurityBar = securityPath.includes(pathArr[3]);
+  console.log(showSecurityBar);
+
+  return showSecurityBar ? (
+    <AccountManagementBar />
+  ) : (
     <div
       className={`h-screen z-10 ${
         showLinks ? "w-[271px]" : "w-[100px] flex flex-col items-center"
@@ -70,18 +84,28 @@ const BuyerBar = () => {
             <Image src={arrow} alt="down arrow" className="mt-1" />
           </div>
         )}
-
-        {/* <div>
-          <Link
-            href=""
-            className={`flex items-center gap-5 ${
-              isCurrentPath ? "text-agro-orange font-semibold" : ""
-            }`}
-          >
-            {Icon && <PadlockIcon stroke={isCurrentPath ? "#F48924" : "#1A1A1A"} />}
-            {showLinks && <div className="text-sm">{name}</div>}
-          </Link>
-        </div> */}
+        {showAccount && (
+          <div className="flex flex-col gap-4 shadow-xl bg-white p-4 w-fit rounded-md ">
+            <Link
+              href="/dashboard/buyer/edit-profile"
+              className={`flex items-center gap-5 `}
+            >
+              <ProfileIcon stroke="#4C6538" />
+              {showLinks && (
+                <div className="text-sm text-agro-green">Profile Details</div>
+              )}
+            </Link>
+            <Link
+              href="/dashboard/buyer/password-settings"
+              className={`flex items-center gap-5 `}
+            >
+              <PadlockIcon stroke="#4C6538" />
+              {showLinks && (
+                <div className="text-sm text-agro-green">Security Settings</div>
+              )}
+            </Link>
+          </div>
+        )}
 
         {showLinks && (
           <SideBarLink

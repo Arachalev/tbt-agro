@@ -17,9 +17,12 @@ const SellerNav = () => {
     <nav className="top-0 absolute z-50 w-full  ">
       <div className="bg-agro-green  h-24 flex flex-row items-start justify-between pt-9 px-4 xl:px-20">
         <div className="flex items-center gap-16 ">
-          <div className="w-[40px] h-[24px]  ">
+          <Link
+            href="/dashboard/seller/account"
+            className="w-[40px] h-[24px]  "
+          >
             <Image src={logo} alt="logo" className="h-full" />
-          </div>
+          </Link>
         </div>
         <div className="flex flex-row gap-9 items-center ">
           <div className="relative">

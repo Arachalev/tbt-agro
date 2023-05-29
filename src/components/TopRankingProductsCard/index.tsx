@@ -1,7 +1,10 @@
+"use client";
+
 import React from "react";
 
 import Image, { StaticImageData } from "next/image";
 import Star from "../Icons/Star";
+import { useRouter } from "next/navigation";
 
 interface TopRankingProductsCardProps {
   image: StaticImageData;
@@ -20,8 +23,12 @@ const TopRankingProductsCard: React.FC<TopRankingProductsCardProps> = ({
   score,
   rating,
 }) => {
+  const router = useRouter();
   return (
-    <div className="xl:w-[380px] 2xl:w-[420px] h-[200px] md:h-[265px] p-4 flex items-center gap-2 sm:gap-[18px]  bg-white rounded-[10px] ">
+    <div
+      onClick={() => router.push("/dashboard/buyer/product-details")}
+      className="xl:w-[380px] 2xl:w-[420px] h-[200px] md:h-[265px] p-4 flex items-center gap-2 sm:gap-[18px]  bg-white rounded-[10px] "
+    >
       <div className=" relative h-full md:h-[233px] w-[150px] md:w-[200px] flex items-center justify-center bg-[#f6f6f6] rounded-[10px]">
         <div className="w-fit h-fit absolute top-3 left-3 ">
           <Star

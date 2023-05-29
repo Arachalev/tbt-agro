@@ -14,8 +14,8 @@ const AddedToCartCard = ({ image }: { image: string }) => {
         alt=" image of produce"
       />
       <div className="flex items-center gap-3">
-        <FaRegCheckCircle className="text-agro-orange text-xl" />
-        <p>Added to Cart</p>
+        <FaRegCheckCircle className="text-agro-orange text-2xl" />
+        <p className="font-semibold text-lg">Added to Cart</p>
       </div>
     </div>
   );

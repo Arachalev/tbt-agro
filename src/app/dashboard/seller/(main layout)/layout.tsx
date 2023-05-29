@@ -26,7 +26,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               : device.width > 640
               ? "ml-[100px]"
               : "ml-0"
-          } bg-agro-gray `}
+          } bg-agro-gray min-h-[calc(100vh-96px)]  `}
         >
           {children}
         </main>

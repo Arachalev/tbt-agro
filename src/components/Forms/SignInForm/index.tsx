@@ -3,13 +3,13 @@
 import React, { useState } from "react";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import PriButton from "@/components/PriButton";
 import Select from "react-select";
 import CustomInput from "@/components/CustomInput";
 import signUpData from "@/store/DummyData/FormData/signUpData";
-import {
-  useLoginMutation
-} from "@/store/redux/services/authSlice/authApiSlice";
+import { useLoginMutation } from "@/store/redux/services/authSlice/authApiSlice";
 import useInput from "@/hooks/useInput";
 import StatusModal from "./StatusModal";
 
@@ -26,19 +26,21 @@ const SignInForm = () => {
     password: "",
   });
 
-  const [loginUser, { isLoading, isSuccess, error, data }] =
-    useLoginMutation();
+  const [loginUser, { isLoading, isSuccess, error, data }] = useLoginMutation();
+
+  const router = useRouter();
 
   const handleSubmit = async (e: any) => {
-    setShow(true);
     e.preventDefault();
+    router.push("/dashboard/buyer/account");
+    // setShow(true);
 
-    const res = await loginUser({
-      email: formValues.email,
-      password: formValues.password,
-    });
+    // const res = await loginUser({
+    //   email: formValues.email,
+    //   password: formValues.password,
+    // });
 
-    console.log(res);
+    // console.log(res);
   };
 
   console.log("-------------------------------------------");

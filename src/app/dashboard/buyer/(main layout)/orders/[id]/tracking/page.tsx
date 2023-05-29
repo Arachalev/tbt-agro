@@ -11,7 +11,7 @@ const Page = ({ params }: { params: { id: string } }) => {
       <div className="flex items-center gap-4 mb-5">
         <Link
           className="flex items-center gap-1 text-agro-orange"
-          href="/dashboard/buyer/orders"
+          href={`/dashboard/buyer/orders/${params.id}`}
         >
           <CgArrowLongLeft /> <p className="text-sm font-medium">Back</p>
         </Link>

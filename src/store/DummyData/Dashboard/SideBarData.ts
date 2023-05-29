@@ -6,37 +6,36 @@ import SupportIcon from "@/components/Icons/SupportIcon";
 
 import AccountIcon from "@/components/Icons/AccountIcon";
 
-
 export const sellerBarData = [
   {
     Icon: ProfileIcon,
     name: "My Account",
-    href: "account",
+    href: "/dashboard/seller/account",
   },
   {
     Icon: OrderIcon,
     name: "Products",
-    href: "products",
+    href: "/dashboard/seller/products",
   },
   {
     Icon: OrderIcon,
     name: "Orders",
-    href: "orders",
+    href: "/dashboard/seller/orders",
   },
   {
     Icon: SupportIcon,
     name: "Support",
-    href: "support",
+    href: "/dashboard/seller/support",
   },
   {
     Icon: ProfileIcon,
     name: "Payment Management",
-    href: "payment-management",
+    href: "/dashboard/seller/payment-management",
   },
   {
     Icon: LogOutIcon,
     name: "Logout",
-    href: "logout",
+    href: "/dashboard/seller/logout",
   },
 ];
 
@@ -44,21 +43,21 @@ export const buyerBarData = [
   {
     Icon: ProfileIcon,
     name: "My Account",
-    href: "account",
+    href: "/dashboard/buyer/account",
   },
   {
     Icon: OrderIcon,
     name: "Orders",
-    href: "orders",
+    href: "/dashboard/buyer/orders",
   },
   {
     Icon: SupportIcon,
     name: "Support",
-    href: "support",
+    href: "/dashboard/buyer/support",
   },
-  {
-    Icon: AccountIcon,
-    name: "Account",
-    href: "second-account",
-  },
+  // {
+  //   Icon: AccountIcon,
+  //   name: "Account",
+  //   href: "/dashboard/buyer/overview",
+  // },
 ];

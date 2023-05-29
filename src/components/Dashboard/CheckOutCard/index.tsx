@@ -42,7 +42,7 @@ const CheckOutCard = ({
         />
       </div>
       <Link
-        href=""
+        href="/dashboard/buyer/orders"
         className="pl-12 text-agro-orange text-xs flex items-center gap-1 font-semibold"
       >
         <p>Review or edit your recent orders </p>

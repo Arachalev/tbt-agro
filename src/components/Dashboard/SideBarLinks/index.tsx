@@ -12,9 +12,12 @@ interface SideBarLinkProps {
 
 const SideBarLink = ({ Icon, name, href, showLinks }: SideBarLinkProps) => {
   const pathArr = usePathname().trim().split("/");
-  // console.log(pathArr[3], href);
 
-  const isCurrentPath = pathArr[3] === href;
+  const hrefArr = href.split("/");
+
+
+  const isCurrentPath = pathArr[3] === hrefArr[3];
+
 
   return (
     <Link

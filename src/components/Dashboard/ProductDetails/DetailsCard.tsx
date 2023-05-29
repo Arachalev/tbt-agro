@@ -4,9 +4,10 @@ import React from "react";
 import PriButton from "@/components/PriButton";
 import Image from "next/image";
 import { BsTwitter } from "react-icons/bs";
-import { GrLinkedinOption, GrFacebookOption } from "react-icons/gr";
+import { GrLinkedinOption } from "react-icons/gr";
 import { TfiFacebook } from "react-icons/tfi";
 import StarRatings from "react-star-ratings";
+import { useRouter } from "next/navigation";
 
 interface DetailsCardProps {
   img: string;
@@ -33,6 +34,7 @@ const DetailsCard = ({
   ratings,
   ratingsAmount,
 }: DetailsCardProps) => {
+  const router = useRouter();
   return (
     <div className="flex flex-col sm:flex-row items-center    gap-9  w-full xl:w-[857px] p-5 sm:p-10 bg-white rounded-[10px]">
       <div className="">
@@ -98,16 +100,12 @@ const DetailsCard = ({
           <PriButton
             text={"Buy Now"}
             className="w-[84px] h-8 font-bold text-sm"
-            onClick={function () {
-              throw new Error("Function not implemented.");
-            }}
+            onClick={() => router.push("/dashboard/buyer/shopping-cart")}
           />
           <PriButton
             text={"Add to Cart"}
             className="w-[100px] h-8 font-bold text-sm"
-            onClick={function () {
-              throw new Error("Function not implemented.");
-            }}
+            onClick={() => router.push("/dashboard/buyer/added-to-cart")}
           />
         </div>
       </div>

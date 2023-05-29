@@ -1,7 +1,9 @@
+"use client";
+
 import React from "react";
 
 import Image from "next/image";
-import { StaticImageData } from "next/image";
+import { useRouter } from "next/navigation";
 
 interface NewArrivalsProductCardProps {
   image: string;
@@ -18,8 +20,13 @@ const NewArrivalsProductCard: React.FC<NewArrivalsProductCardProps> = ({
   sellerID,
   location,
 }) => {
+  const router = useRouter();
+
   return (
-    <div className="sm:w-[200px] h-[280px] rounded-[10px] overflow-clip">
+    <div
+      onClick={() => router.push("/dashboard/buyer/product-details")}
+      className="sm:w-[200px] h-[280px] rounded-[10px] overflow-clip"
+    >
       <div className="w-full h-[169px] p-4 flex items-center justify-center bg-[#f6f6f6] rounded-t-[10px]">
         <Image
           className=" rounded-[10px] w-[130px] h-[115px] object-cover"

@@ -20,6 +20,7 @@ const OrderItem = ({
   cost,
   quantity,
   returnDate,
+  id,
 }: OrderItemsProps) => {
   return (
     <div className="w-full  bg-white py-4 px-6 flex flex-col md:flex-row gap-4 justify-between border border-gray2  rounded-md">
@@ -56,7 +57,10 @@ const OrderItem = ({
           The return period ended on ({returnDate}) Access our Return Policy.
         </p>
       </div>
-      <Link className="text-agro-orange font-bold " href="">
+      <Link
+        className="text-agro-orange font-bold h-fit "
+        href={`/dashboard/buyer/orders/${id}/tracking`}
+      >
         SEE STATUS HISTORY
       </Link>
     </div>
