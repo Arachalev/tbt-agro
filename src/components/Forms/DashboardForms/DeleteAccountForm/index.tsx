@@ -13,6 +13,10 @@ const DeleteAccountForm = () => {
           variant="dashboard"
           label={"Email Address:"}
           placeholder={"Yinka"}
+          validation={(val) => val.length > 3}
+          handleValue={function (val: string): void {
+            null;
+          }}
         />
 
         <CustomInput
@@ -20,13 +24,15 @@ const DeleteAccountForm = () => {
           variant="dashboard"
           label={"Password:"}
           placeholder={"Yinka"}
+          validation={(val) => val.length > 3}
+          handleValue={function (val: string): void {
+            null;
+          }}
         />
         <PriButton
           text={"Delete Account"}
           className="w-[178px] h-[42px] rounded-[6px] text-lg font-bold mt-5 self-end  "
-          onClick={function () {
-            throw new Error("Function not implemented.");
-          }}
+          onClick={() => {}}
         />
       </form>
     </div>

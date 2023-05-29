@@ -28,7 +28,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
 
   useEffect(() => {
     handleValue(value.value);
-  }, [value.value]);
+  }, [value.value, handleValue]);
 
   return (
     <div className="grid w-full sm:w-fit md:grid-cols-[200px_1fr] md:items-center gap-4">
