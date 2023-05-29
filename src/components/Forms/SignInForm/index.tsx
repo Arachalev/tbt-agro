@@ -56,7 +56,7 @@ const SignInForm = () => {
       {show && (
         <StatusModal
           data={data ? data.message : ""}
-          error={error ? error?.data.message : ""}
+          error={error ? error.data.message : ""}
           loading={isLoading}
           onClose={() => setShow(false)}
         />
