@@ -1,3 +1,5 @@
+"use client";
+
 import React, { HTMLInputTypeAttribute, useMemo, useEffect } from "react";
 
 type variantTypes = "normal" | "dashboard";
@@ -23,12 +25,24 @@ const CustomInput: React.FC<CustomInputProps> = ({
   handleValue,
   ...props
 }) => {
-  const { value, hasError, reset, onBlurHandler, enteredInputHandler } =
-    useInput(validation);
+  const {
+    value: inputValue,
+    hasError,
+    reset,
+    onBlurHandler,
+    enteredInputHandler,
+  } = useInput(validation);
+
+  const { value, isTouched } = inputValue;
 
   useEffect(() => {
-    handleValue(value.value);
-  }, [value.value]);
+    handleValue(value);
+  }, [value]);
+
+  console.log(isTouched);
+
+
+  // //////////////////////////////////////////////////////  iNPUTbLUR
 
   return (
     <div className="grid w-full sm:w-fit md:grid-cols-[200px_1fr] md:items-center gap-4">
@@ -43,12 +57,21 @@ const CustomInput: React.FC<CustomInputProps> = ({
       <input
         onChange={(e) => {
           enteredInputHandler(e);
-          // handleValue(value.value);
         }}
-        onBlur={onBlurHandler}
+        value={value}
+        onBlur={() => {
+          onBlurHandler();
+          console.log("input blurred");
+        }}
         className={`${
           variant === "normal" ? "w-full sm:w-[309px]" : "w-full sm:w-[419px]"
-        } h-12 pl-3 rounded-[4px] bg-white border border-gray2`}
+        } ${
+          isTouched
+            ? "border-agro-yellow"
+            : hasError
+            ? " border-red-500 "
+            : "border-gray2 "
+        }  h-12 pl-3 rounded-[4px] bg-white border outline-none`}
         type={type}
         placeholder={placeholder}
         {...props}

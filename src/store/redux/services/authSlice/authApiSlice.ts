@@ -38,6 +38,39 @@ export const authApiSlice = baseApiSlice.injectEndpoints({
         body: credentials,
       }),
     }),
+    resetPwd: builder.mutation({
+      query: (credentials) => ({
+        headers: myHeaders,
+        url: "/user/auth/reset-password",
+        method: "POST",
+        body: credentials,
+      }),
+    }),
+
+    sendOtpToResetPwd: builder.mutation({
+      query: (credentials) => ({
+        headers: myHeaders,
+        url: "/user/auth/send-password-reset-otp",
+        method: "POST",
+        body: credentials,
+      }),
+    }),
+    verifyResetPwdOtp: builder.mutation({
+      query: (credentials) => ({
+        headers: myHeaders,
+        url: "/user/auth/verify-password-reset-otp",
+        method: "POST",
+        body: credentials,
+      }),
+    }),
+    deleteAccount: builder.mutation({
+      query: (data) => ({
+        headers: myHeaders,
+        url: "/user/account/delete",
+        body: data,
+        method: "POST",
+      }),
+    }),
   }),
 });
 
@@ -45,5 +78,9 @@ export const {
   useResendOtpMutation,
   useSignUpMutation,
   useVerifyAccountMutation,
-  useLoginMutation
+  useLoginMutation,
+  useResetPwdMutation,
+  useSendOtpToResetPwdMutation,
+  useVerifyResetPwdOtpMutation,
+  useDeleteAccountMutation,
 } = authApiSlice;

@@ -26,7 +26,7 @@ const inputReducer = (state: InputState, action: InputAction): InputState => {
     case "INPUT":
       return {
         value: action.value,
-        isTouched: true,
+        isTouched: state.isTouched,
       };
     case "BLUR":
       return {
