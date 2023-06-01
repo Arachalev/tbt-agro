@@ -12,17 +12,26 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoIosArrowDown } from "react-icons/io";
 import { navLinksData } from "@/store/DummyData/navLinks";
+import { BsBell } from "react-icons/bs";
 import Cart from "../Cart";
-
+import { selectAuthToken } from "@/store/redux/services/authSlice/authSlice";
+import { useAppSelector } from "@/store/redux/hooks";
+import profileImg from "../../../public/images/profile.png";
+import arrowImg from "../../../public/images/arrowDown.png";
 import NavAccountSettings from "../NavAccountSettings";
 import NavProfile from "../NavProfile";
 
 import SellerNav from "./SellerNav";
+import HelpIcon from "../Icons/HelpIcon";
+import { selectBuyerProfile } from "@/store/redux/services/buyerSlice/profileSlice/profileSlice";
 
 const WebNav = () => {
   const [showSettings, setShowSettings] = useState<boolean>(false);
   const [showProfileSettings, setShowProfileSettings] =
     useState<boolean>(false);
+
+  const authorized = useAppSelector(selectAuthToken);
+  const profile = useAppSelector(selectBuyerProfile);
 
   const router = useRouter();
   const pathArr = usePathname().trim().split("/");
@@ -51,20 +60,54 @@ const WebNav = () => {
           </div>
         </div>
         <div className="flex flex-row gap-14 items-center">
-          <div className="flex flex-row items-center gap-5">
-            <Link
-              className="text-white text-sm font-medium whitespace-nowrap"
-              href="/web/sign-in"
-            >
-              Sign in
-            </Link>
+          {authorized ? (
+            <div className="flex flex-row items-center gap-5">
+              <div className="relative">
+                <BsBell className="text-2xl text-agro-yellow" />
+                <span className=" absolute top-0 right-0 text-[9px] font-semibold bg-white h-3 w-3 rounded-full flex items-center justify-center">
+                  2
+                </span>
+              </div>
+              <div className=" ">
+                <Image
+                  src={
+                    profile.profilePicture ? profile.profilePicture : profileImg
+                  }
+                  alt={"Profile Image"}
+                />
+              </div>
+              <div className="flex items-center gap-1">
+                <p className="text-white font-medium text-sm whitespace-nowrap">
+                  {profile.fName} {profile.lName}
+                </p>
+                <Image
+                  src={arrowImg}
+                  alt="up arrown"
+                  className=" rotate-[180deg]"
+                />
+              </div>
 
-            <PriButton
-              text="Join for free"
-              className="py-2 px-4 text-sm whitespace-nowrap"
-              onClick={() => router.push("/web/sign-up")}
-            />
-          </div>
+              <div className="flex items-center gap-1">
+                <HelpIcon stroke="#ffffff" />
+                <p className="text-white font-medium text-sm">Help</p>
+              </div>
+            </div>
+          ) : (
+            <div className="flex flex-row items-center gap-5">
+              <Link
+                className="text-white text-sm font-medium whitespace-nowrap"
+                href="/web/sign-in"
+              >
+                Sign in
+              </Link>
+
+              <PriButton
+                text="Join for free"
+                className="py-2 px-4 text-sm whitespace-nowrap"
+                onClick={() => router.push("/web/sign-up")}
+              />
+            </div>
+          )}
 
           <div className=" flex items-center relative text-sm h-8">
             <Cart /> <p className="text-white ">Cart</p>

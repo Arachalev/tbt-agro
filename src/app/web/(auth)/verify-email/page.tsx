@@ -2,10 +2,10 @@
 
 import React from "react";
 
-import SignInForm from "@/components/Forms/SignInForm";
+import VerifyEmail from "@/components/Forms/VerifyEmailForm";
 
 const page = () => {
-  return <SignInForm />;
+  return <VerifyEmail />;
 };
 
 export default page;

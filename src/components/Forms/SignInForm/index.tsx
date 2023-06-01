@@ -1,23 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
-
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import React, { useState, useEffect } from "react";
 
 import PriButton from "@/components/PriButton";
-import Select from "react-select";
 import CustomInput from "@/components/CustomInput";
-import signUpData from "@/store/DummyData/FormData/signUpData";
 import { useLoginMutation } from "@/store/redux/services/authSlice/authApiSlice";
-import useInput from "@/hooks/useInput";
+import { useGetBuyerProfileQuery } from "@/store/redux/services/buyerSlice/profileSlice/profileApiSlice";
 import StatusModal from "./StatusModal";
-
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
+import { useAppDispatch, useAppSelector } from "@/store/redux/hooks";
+import { setCredentials } from "@/store/redux/services/authSlice/authSlice";
+import {
+  selectBuyerProfile,
+  setBuyerProfile,
+} from "@/store/redux/services/buyerSlice/profileSlice/profileSlice";
 
 const SignInForm = () => {
   const [show, setShow] = useState(false);
@@ -25,30 +20,52 @@ const SignInForm = () => {
     email: "",
     password: "",
   });
+  const [fetchBuyerProfile, setFetchBuyerProfile] = useState(false);
+
+  const dispatch = useAppDispatch();
+
+  const profile = useAppSelector(selectBuyerProfile);
 
   const [loginUser, { isLoading, isSuccess, error, data }] = useLoginMutation();
 
-  const router = useRouter();
+  const {
+    data: buyerProfile,
+    isLoading: loadingBuyerProfile,
+    isSuccess: successBuyerProfile,
+    isError: errorBuyerProfile,
+  } = useGetBuyerProfileQuery({ skip: fetchBuyerProfile });
 
+  useEffect(() => {
+    if (isSuccess && data.data.user_type === "Buyer") {
+      setFetchBuyerProfile(true);
+      // const { data: userData } = data;
+      // dispatch(
+      //   setBuyerProfile({
+      //     userData,
+      //   })
+      // );
+      console.log(profile, buyerProfile);
+    }
+  }, [buyerProfile, data, dispatch, isSuccess, profile]);
+
+  let errorMessage;
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    router.push("/dashboard/buyer/account");
-    // setShow(true);
+    setShow(true);
 
-    // const res = await loginUser({
-    //   email: formValues.email,
-    //   password: formValues.password,
-    // });
-
-    // console.log(res);
+    loginUser({
+      email: formValues.email,
+      password: formValues.password,
+    });
   };
 
-  console.log("-------------------------------------------");
-
-  console.log(isLoading, isSuccess, error, data);
-
   if (isSuccess) {
-    sessionStorage.setItem("token", data.data.access_token);
+    dispatch(
+      setCredentials({
+        token: data.data.access_token,
+        userType: data.data.user_type,
+      })
+    );
   }
 
   return (
@@ -56,8 +73,7 @@ const SignInForm = () => {
       {show && (
         <StatusModal
           data={data ? data.message : ""}
-          error={"Error signing in."}
-          // error={error ? error.data.message : ""}
+          error={error ? errorMessage : ""}
           loading={isLoading}
           onClose={() => setShow(false)}
         />

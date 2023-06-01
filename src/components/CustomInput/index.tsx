@@ -29,20 +29,16 @@ const CustomInput: React.FC<CustomInputProps> = ({
     value: inputValue,
     hasError,
     reset,
+    onFocusHandler,
     onBlurHandler,
     enteredInputHandler,
   } = useInput(validation);
 
-  const { value, isTouched } = inputValue;
+  const { value, isTouched, lostFocus } = inputValue;
 
   useEffect(() => {
     handleValue(value);
   }, [value]);
-
-  console.log(isTouched);
-
-
-  // //////////////////////////////////////////////////////  iNPUTbLUR
 
   return (
     <div className="grid w-full sm:w-fit md:grid-cols-[200px_1fr] md:items-center gap-4">
@@ -59,10 +55,8 @@ const CustomInput: React.FC<CustomInputProps> = ({
           enteredInputHandler(e);
         }}
         value={value}
-        onBlur={() => {
-          onBlurHandler();
-          console.log("input blurred");
-        }}
+        onBlur={onBlurHandler}
+        onFocus={onFocusHandler}
         className={`${
           variant === "normal" ? "w-full sm:w-[309px]" : "w-full sm:w-[419px]"
         } ${

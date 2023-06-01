@@ -1,3 +1,4 @@
+
 import React, { useReducer, Reducer } from "react";
 
 enum InputActionType {
@@ -13,12 +14,14 @@ type InputAction = {
 
 type InputState = {
   value: string;
-  isTouched: boolean;
+  isTouched?: boolean;
+  lostFocus: boolean;
 };
 
 const initialState: InputState = {
   value: "",
   isTouched: false,
+  lostFocus: false,
 };
 
 const inputReducer = (state: InputState, action: InputAction): InputState => {
@@ -26,12 +29,14 @@ const inputReducer = (state: InputState, action: InputAction): InputState => {
     case "INPUT":
       return {
         value: action.value,
-        isTouched: state.isTouched,
+        isTouched: true,
+        lostFocus: false,
       };
     case "BLUR":
       return {
         value: state.value,
-        isTouched: true,
+        isTouched: false,
+        lostFocus: true,
       };
 
     case "RESET":
@@ -46,7 +51,7 @@ const useInput = (validate: (val: string) => boolean) => {
   const [inputState, dispatch] = useReducer(inputReducer, initialState);
 
   const validateInput = validate(inputState.value);
-  const hasError = !validateInput && inputState.isTouched;
+  const hasError = !validateInput && inputState.lostFocus;
 
   const enteredInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({ type: InputActionType.INPUT, value: event.target.value });
@@ -54,6 +59,10 @@ const useInput = (validate: (val: string) => boolean) => {
 
   const onBlurHandler = () => {
     dispatch({ type: InputActionType.BLUR, value: inputState.value });
+  };
+
+  const onFocusHandler = () => {
+    dispatch({ type: InputActionType.INPUT, value: inputState.value });
   };
 
   const reset = () => {
@@ -64,6 +73,7 @@ const useInput = (validate: (val: string) => boolean) => {
     hasError,
     enteredInputHandler,
     onBlurHandler,
+    onFocusHandler,
     reset,
   };
 };

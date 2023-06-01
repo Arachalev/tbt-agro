@@ -37,7 +37,7 @@ const StatusModal = ({
       )}
       {data && (
         <div className="bg-white p-8 rounded-xl flex flex-col items-center gap-8 ">
-          <p className="text-center"> Registration successful</p>
+          <p className="text-center"> {data}</p>
           <button
             className="text-black bg-agro-yellow font-semibold bg-btn-blue  w-full sm:w-fit sm:px-20 py-3 rounded-3xl"
             onClick={() => router.push("/web/verify-email")}

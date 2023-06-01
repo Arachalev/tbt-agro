@@ -10,6 +10,7 @@ import {
   getDeviceWith,
 } from "@/store/redux/features/deviceWidthSlice";
 import { editLinkState } from "@/store/redux/features/sideBarSlice";
+import { setCredentials } from "@/store/redux/services/authSlice/authSlice";
 
 const NavBar = () => {
   const device = useAppSelector(selectDeviceWith);
@@ -27,7 +28,12 @@ const NavBar = () => {
 
   useEffect(() => {
     dispatch(getDeviceWith());
-  }, []);
+    const token = sessionStorage.getItem("token");
+    const userType = sessionStorage.getItem("userType");
+    if (token) {
+      dispatch(setCredentials({ token, userType }));
+    }
+  }, [dispatch]);
 
   useEffect(() => {
     if (device.width > 640 && device.width < 1024) {

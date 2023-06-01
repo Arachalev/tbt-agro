@@ -57,7 +57,7 @@ const HeaderLight = ({ variant = "base" }: { variant?: string }) => {
     <div
       className={`bg-white px-4 xl:px-[72px] h-20 sm:h-[154px] w-screen flex items-center justify-center  `}
     >
-      <Link href="web/home">
+      <Link href="/web/home">
         <Image src={logo} alt="logo" />
       </Link>
       {path[2] !== "sign-up" && path[2] !== "sign-in" && headerContainer}

@@ -6,14 +6,9 @@ import Link from "next/link";
 import PriButton from "@/components/PriButton";
 import Select from "react-select";
 import CustomInput from "@/components/CustomInput";
-import signUpData from "@/store/DummyData/FormData/signUpData";
-import {
-  useSignUpMutation,
-  useResendOtpMutation,
-  useVerifyAccountMutation,
-} from "@/store/redux/services/authSlice/authApiSlice";
-import useInput from "@/hooks/useInput";
+import { useSignUpMutation } from "@/store/redux/services/authSlice/authApiSlice";
 import StatusModal from "./StatusModal";
+import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
 
 const options = [
   { value: "chocolate", label: "Chocolate" },
@@ -40,11 +35,14 @@ const SignUpForm = () => {
   const [registerUser, { isLoading, isSuccess, error, data }] =
     useSignUpMutation();
 
+  let errorMessage;
+
   const handleSubmit = async (e: any) => {
     setShow(true);
     e.preventDefault();
+    errorMessage = "";
 
-    const res = await registerUser({
+    registerUser({
       first_name: formValues.fName,
       last_name: formValues.lName,
       email: formValues.email,
@@ -56,21 +54,24 @@ const SignUpForm = () => {
       user_type: formValues.userType,
       term_condition_accepted: formValues.terms ? 1 : 0,
     });
-    console.log(res);
-
-    console.log("-------------------------------------");
   };
+
   if (isSuccess) {
     sessionStorage.setItem("token", data.data.access_token);
   }
+
+  if (error) {
+    errorMessage = isFetchBaseQueryErrorType(error);
+  }
+
+  console.log(errorMessage, data, isSuccess);
 
   return (
     <div className="min-h-screen bg-agro-floral-white pt-10 pb-[142px] flex flex-col items-center">
       {show && (
         <StatusModal
           data={data ? data.message : ""}
-          error={"Error signing up"}
-          // error={error ? error?.data.data : ""}
+          error={error ? errorMessage : ""}
           loading={isLoading}
           onClose={() => setShow(false)}
         />

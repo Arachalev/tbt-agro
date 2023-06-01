@@ -29,7 +29,7 @@ const StatusModal = ({
       {error && (
         <div className="bg-white p-8 rounded-xl flex flex-col items-center gap-8 ">
           <p className="text-center text-red-500">
-            {error ? error : "There has been an error creating an account."}
+            {error ? error : "There has been an error verifying the OTP"}
           </p>
           <button
             onClick={onClose}
@@ -42,7 +42,7 @@ const StatusModal = ({
       {loading && (
         <div className="flex flex-col gap-4 items-center">
           <TraceSpinner frontColor="#ffff" size={50} />
-          <p className="text-black text-2xl">Loading...</p>
+          <p className="text-black text-2xl">Confirming OTP</p>
         </div>
       )}
       {data && (
@@ -50,9 +50,9 @@ const StatusModal = ({
           <p className="text-center"> {data}</p>
           <button
             className="text-black bg-agro-yellow font-semibold bg-btn-blue  w-full sm:w-fit sm:px-20 py-3 rounded-3xl"
-            onClick={() => router.push("/dashboard/buyer/account")}
+            onClick={() => router.push("/web/sign-in")}
           >
-            Continue
+            Login
           </button>
         </div>
       )}
