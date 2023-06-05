@@ -7,18 +7,22 @@ const navProfileData = [
   {
     icon: dashboard,
     text: "Dashboard",
+    href: "/dashboard/buyer/account",
   },
   {
     icon: profile,
     text: "Account",
+    href: "/dashboard/buyer/edit-profile",
   },
   {
     icon: orders,
     text: "Orders",
+    href: "/dashboard/buyer/orders",
   },
   {
     icon: logout,
     text: "Logout",
+    href: "/dashboard/buyer/logout",
   },
 ];
 

@@ -22,9 +22,8 @@ const AccountManagementBar = () => {
   const device = useAppSelector(selectDeviceWith);
   const showLinks = useAppSelector(selectLinkState);
   const dispatch = useAppDispatch();
-  const pasth = usePathname().split("/")
+  const path = usePathname().split("/")
 
-  console.log(pasth)
 
   const securityPath = ["delete-account", "password-settings"];
 
@@ -78,7 +77,7 @@ const AccountManagementBar = () => {
               <div className="text-sm text-agro-green">Change Password</div>
             </Link>
             <Link
-              href="/dashbaord/buyer/delete-account"
+              href="/dashboard/buyer/delete-account"
               className={`flex items-center gap-5 `}
             >
               <div className="text-sm text-agro-green">Delete Account</div>

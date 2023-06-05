@@ -13,7 +13,7 @@ const NavProfile = () => {
             <div className="w-5">
               <Image src={item.icon} alt={item.text} />
             </div>
-            <Link className="text-sm font-medium" href={item.text}>
+            <Link className="text-sm font-medium" href={item.href}>
               {item.text}
             </Link>
           </li>

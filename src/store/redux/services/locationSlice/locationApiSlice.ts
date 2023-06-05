@@ -27,6 +27,11 @@ const locationApiSlice = baseApiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
-    
   }),
 });
+
+export const {
+  useGetAllCountriesQuery,
+  useGetCitiesInStateQuery,
+  useGetStatesInCountryQuery,
+} = locationApiSlice;

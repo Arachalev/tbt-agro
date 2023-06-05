@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 const StatusModal = ({
   error,
   data,
+  dataText,
+  dataFunc,
   onClose,
   loading,
   loadingText,
@@ -14,11 +16,10 @@ const StatusModal = ({
   onClose: () => void;
   loading: boolean;
   loadingText?: string;
+  dataText?: string;
+  dataFunc?: () => void;
 }) => {
   const router = useRouter();
-  // {
-  //   data && router.push("/dashboard/account");
-  // }
 
   return (
     <div
@@ -44,7 +45,9 @@ const StatusModal = ({
       {loading && (
         <div className="flex flex-col gap-4 items-center">
           <TraceSpinner frontColor="#ffff" size={50} />
-          <p className="text-black text-2xl">Loading...</p>
+          <p className="text-black text-2xl">
+            {loadingText ? loadingText : "Loading..."}
+          </p>
         </div>
       )}
       {data && (
@@ -52,9 +55,13 @@ const StatusModal = ({
           <p className="text-center"> {data}</p>
           <button
             className="text-black bg-agro-yellow font-semibold bg-btn-blue  w-full sm:w-fit sm:px-20 py-3 rounded-3xl"
-            onClick={() => router.push("/dashboard/buyer/account")}
+            onClick={
+              dataFunc
+                ? dataFunc
+                : () => router.push("/dashboard/buyer/account")
+            }
           >
-            Continue
+            {dataText ? dataText : " Continue"}
           </button>
         </div>
       )}

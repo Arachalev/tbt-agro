@@ -1,6 +1,7 @@
 import React from "react";
 
 import EditIcon from "@/components/Icons/EditIcon";
+import { useRouter } from "next/navigation";
 
 interface AccountOverviewProps {
   name: string;
@@ -21,6 +22,8 @@ const AccountOverview = ({
   email,
   shippingAddress,
 }: AccountOverviewProps) => {
+  const router = useRouter();
+
   return (
     <div className="2xl:w-[1077px] md:h-[322px] rounded-[10px] bg-white flex flex-col md:flex-row items-center gap-5 p-6 ">
       <div className=" w-full md:w-1/2 h-full border border-gray2 rounded-md ">
@@ -33,7 +36,12 @@ const AccountOverview = ({
       <div className="w-full md:w-1/2 h-full border border-gray2 rounded-md overflow-clip ">
         <div className="flex items-center justify-between px-5 sm:px-10 h-14">
           <h4 className="text-agro-black ">ADDRESS BOOK</h4>
-          <EditIcon />
+          <span
+            className="cursor-pointer"
+            onClick={() => router.push("/dashboard/buyer/edit-profile")}
+          >
+            <EditIcon />
+          </span>
         </div>
         <div className=" border-t border-t-gray2 p-5 sm:p-10  ">
           <p className="text-agro-green mb-6 ">

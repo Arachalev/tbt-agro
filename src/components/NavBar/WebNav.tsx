@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
@@ -15,7 +15,7 @@ import { navLinksData } from "@/store/DummyData/navLinks";
 import { BsBell } from "react-icons/bs";
 import Cart from "../Cart";
 import { selectAuthToken } from "@/store/redux/services/authSlice/authSlice";
-import { useAppSelector } from "@/store/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/redux/hooks";
 import profileImg from "../../../public/images/profile.png";
 import arrowImg from "../../../public/images/arrowDown.png";
 import NavAccountSettings from "../NavAccountSettings";
@@ -23,18 +23,42 @@ import NavProfile from "../NavProfile";
 
 import SellerNav from "./SellerNav";
 import HelpIcon from "../Icons/HelpIcon";
-import { selectBuyerProfile } from "@/store/redux/services/buyerSlice/profileSlice/profileSlice";
+import {
+  selectBuyerProfile,
+  setBuyerProfile,
+} from "@/store/redux/services/buyerSlice/profileSlice/profileSlice";
+import { useGetBuyerProfileQuery } from "@/store/redux/services/buyerSlice/profileSlice/profileApiSlice";
 
 const WebNav = () => {
   const [showSettings, setShowSettings] = useState<boolean>(false);
   const [showProfileSettings, setShowProfileSettings] =
     useState<boolean>(false);
 
+  const [fetchBuyerProfile, setFetchBuyerProfile] = useState(false);
+
+  const { data, isError, isFetching, isLoading, isSuccess, error } =
+    useGetBuyerProfileQuery({ skip: fetchBuyerProfile });
+
+  useEffect(() => {
+    const user = sessionStorage.getItem("userTye");
+
+    if (user === "Buyer") {
+      setFetchBuyerProfile(true);
+    }
+  }, []);
+
+  const dispatch = useAppDispatch();
   const authorized = useAppSelector(selectAuthToken);
   const profile = useAppSelector(selectBuyerProfile);
 
   const router = useRouter();
   const pathArr = usePathname().trim().split("/");
+
+  useEffect(() => {
+    if (data) {
+      dispatch(setBuyerProfile({ userData: data.data }));
+    }
+  }, [data, dispatch]);
 
   const seller = pathArr[2] === "seller";
 
@@ -61,7 +85,7 @@ const WebNav = () => {
         </div>
         <div className="flex flex-row gap-14 items-center">
           {authorized ? (
-            <div className="flex flex-row items-center gap-5">
+            <div className="relative flex flex-row items-center gap-5 xl:gap-9">
               <div className="relative">
                 <BsBell className="text-2xl text-agro-yellow" />
                 <span className=" absolute top-0 right-0 text-[9px] font-semibold bg-white h-3 w-3 rounded-full flex items-center justify-center">
@@ -76,7 +100,10 @@ const WebNav = () => {
                   alt={"Profile Image"}
                 />
               </div>
-              <div className="flex items-center gap-1">
+              <div
+                onClick={() => setShowProfileSettings((state) => !state)}
+                className="flex items-center gap-1 cursor-pointer"
+              >
                 <p className="text-white font-medium text-sm whitespace-nowrap">
                   {profile.fName} {profile.lName}
                 </p>
@@ -86,6 +113,11 @@ const WebNav = () => {
                   className=" rotate-[180deg]"
                 />
               </div>
+              {showProfileSettings && (
+                <div className="absolute top-11 left-11">
+                  <NavProfile />
+                </div>
+              )}
 
               <div className="flex items-center gap-1">
                 <HelpIcon stroke="#ffffff" />

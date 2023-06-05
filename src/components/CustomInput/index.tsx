@@ -9,7 +9,7 @@ interface CustomInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   type?: HTMLInputTypeAttribute;
   //   htmlFor: string;
-  placeholder: string;
+  placeholder?: string;
   variant?: variantTypes;
   validation: (val: string) => boolean;
   handleValue: (val: string) => void;

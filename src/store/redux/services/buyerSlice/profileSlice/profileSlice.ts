@@ -8,7 +8,7 @@ interface BuyerProfileInterface {
   city: string;
   companyAddress: string;
   companyName: string;
-  country: null;
+  country: { id: number; name: string } | null;
   shippingAddress: string;
   email: string;
   fName: string;
@@ -70,6 +70,7 @@ const profileSlice = createSlice({
       actionKeys.map((item) => {
         state[item] = changedData[item as keyof BuyerProfileInterface];
       });
+      // state = changedData;
     },
   },
 });

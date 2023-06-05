@@ -33,7 +33,6 @@ const BuyerBar = () => {
 
   const securityPath = ["edit-profile", "delete-account", "password-settings"];
   const showSecurityBar = securityPath.includes(pathArr[3]);
-  console.log(showSecurityBar);
 
   return showSecurityBar ? (
     <AccountManagementBar />
@@ -118,7 +117,7 @@ const BuyerBar = () => {
           <SideBarLink
             showLinks={showLinks}
             name={"Close Account"}
-            href={"close-account"}
+            href={"/dashboard/buyer/delete-account"}
           />
         )}
         <div className=" mt-12">
@@ -126,7 +125,7 @@ const BuyerBar = () => {
             showLinks={showLinks}
             Icon={LogOutIcon}
             name={"Logout"}
-            href={"log-out"}
+            href={"/dashboard/buyer/logout"}
           />
         </div>
       </ul>

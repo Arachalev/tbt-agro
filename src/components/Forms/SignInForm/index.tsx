@@ -10,7 +10,6 @@ import StatusModal from "./StatusModal";
 import { useAppDispatch, useAppSelector } from "@/store/redux/hooks";
 import { setCredentials } from "@/store/redux/services/authSlice/authSlice";
 import {
-  selectBuyerProfile,
   setBuyerProfile,
 } from "@/store/redux/services/buyerSlice/profileSlice/profileSlice";
 
@@ -24,7 +23,6 @@ const SignInForm = () => {
 
   const dispatch = useAppDispatch();
 
-  const profile = useAppSelector(selectBuyerProfile);
 
   const [loginUser, { isLoading, isSuccess, error, data }] = useLoginMutation();
 
@@ -36,17 +34,25 @@ const SignInForm = () => {
   } = useGetBuyerProfileQuery({ skip: fetchBuyerProfile });
 
   useEffect(() => {
-    if (isSuccess && data.data.user_type === "Buyer") {
-      setFetchBuyerProfile(true);
-      // const { data: userData } = data;
-      // dispatch(
-      //   setBuyerProfile({
-      //     userData,
-      //   })
-      // );
-      console.log(profile, buyerProfile);
-    }
-  }, [buyerProfile, data, dispatch, isSuccess, profile]);
+    const loadBuyerProfile = async () => {
+      if (isSuccess && data.data.user_type === "Buyer") {
+        setFetchBuyerProfile(true);
+        // const { data:  } = buyerProfile;
+
+        if (successBuyerProfile) {
+          dispatch(
+            setBuyerProfile({
+              userData: buyerProfile.data,
+            })
+          );
+        }
+
+        // console.log(profile, buyerProfile);
+      }
+    };
+
+    loadBuyerProfile();
+  }, [buyerProfile, data, dispatch, isSuccess, successBuyerProfile]);
 
   let errorMessage;
   const handleSubmit = async (e: any) => {

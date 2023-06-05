@@ -1,7 +1,13 @@
-import OrderCard from "@/components/Dashboard/OrderCard";
+"use client";
+
 import React from "react";
 
-const page = () => {
+import OrderCard from "@/components/Dashboard/OrderCard";
+import { useGetAllOrdersQuery } from "@/store/redux/services/OrdersSlice/ordersApiSlice";
+
+const Page = () => {
+  const { data, error, isLoading, isError } = useGetAllOrdersQuery("");
+
   return (
     <div className="pt-8 px-5 pb-40">
       <h4 className="mb-5 text-xl md:text-2xl xl:text-3xl text-agro-green font-semibold overflow-clip">
@@ -27,4 +33,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
