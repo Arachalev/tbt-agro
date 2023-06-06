@@ -132,7 +132,7 @@ const ProfileDetailsForm = () => {
       console.log(error);
     }
   };
-  // console.log(data, error);
+  console.log(data, error);
   let errorMessage = "";
 
   if (error) {
