@@ -3,7 +3,7 @@ import profile from "../../../public/icons/navProfile/profile.svg";
 import orders from "../../../public/icons/navProfile/orders.svg";
 import logout from "../../../public/icons/navProfile/logout.svg";
 
-const navProfileData = [
+export const navProfileData = [
   {
     icon: dashboard,
     text: "Dashboard",
@@ -26,4 +26,26 @@ const navProfileData = [
   },
 ];
 
-export default navProfileData;
+export const sellerProfileData = [
+  {
+    icon: dashboard,
+    text: "Dashboard",
+    href: "/dashboard/seller/account",
+  },
+  {
+    icon: profile,
+    text: "Account",
+    href: "/dashboard/seller/account",
+  },
+  {
+    icon: orders,
+    text: "Orders",
+    href: "/dashboard/seller/orders",
+  },
+  {
+    icon: logout,
+    text: "Logout",
+    href: "/dashboard/seller/logout",
+  },
+];
+ 

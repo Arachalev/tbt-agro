@@ -17,26 +17,19 @@ import {
   setBuyerProfile,
 } from "@/store/redux/services/buyerSlice/profileSlice/profileSlice";
 import { useGetBuyerProfileQuery } from "@/store/redux/services/buyerSlice/profileSlice/profileApiSlice";
+import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
 
 const ProfileDetailsForm = () => {
   const [showModal, setShowModal] = useState(false);
-  const [, updateState] = useState({});
-  const [locationData, setLocationData] = useState({
-    countryID: "",
-    countryName: "",
-    stateID: "",
-    stateName: "",
-    cityID: "",
-    cityName: "",
-  });
+
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
     company_name: "",
     company_address: "",
     // profile_picture: "",
-    email: "",
-    phone_number: "",
+    // email: "",
+    // phone_number: "",
     address: "",
     country_id: "",
     state_id: "",
@@ -77,8 +70,6 @@ const ProfileDetailsForm = () => {
   const dispatch = useAppDispatch();
   const buyerDetails = useAppSelector(selectBuyerProfile);
 
-  const forceUpdate = useCallback(() => updateState({}), []);
-
   useEffect(() => {
     if (buyerProfile) {
       dispatch(setBuyerProfile({ userData: buyerProfile.data }));
@@ -95,20 +86,8 @@ const ProfileDetailsForm = () => {
         state_id: buyerDetails.state,
         city_id: buyerDetails.city,
       });
-      setLocationData({
-        ...locationData,
-        countryID: buyerDetails.country?.id
-          ? buyerDetails.country.id.toString()
-          : "",
-        countryName: buyerDetails.country?.name
-          ? buyerDetails.country?.name
-          : "",
-      });
     }
-    forceUpdate();
-  }, [buyerProfile, buyerDetails, dispatch]);
-
-  console.log(locationData, "buyer profile");
+  }, [buyerProfile, dispatch]);
 
   let countryOptions = [{ value: "", label: "" }];
   let stateOptions = [{ value: "", label: "" }];
@@ -148,21 +127,26 @@ const ProfileDetailsForm = () => {
     setShowModal(true);
 
     try {
-      updateProfile(formData);
+      updateProfile({ ...formData, country_id: parseInt(formData.country_id) });
     } catch (error) {
       console.log(error);
     }
   };
   // console.log(data, error);
+  let errorMessage = "";
 
+  if (error) {
+    errorMessage = isFetchBaseQueryErrorType(error);
+  }
   return (
     <div>
       {showModal && (
         <StatusModal
           onClose={() => setShowModal(false)}
           loading={isLoading}
-          data={data ? data.data?.message : ""}
-          // error={error ? error?.message : ""}
+          data={data ? data?.message : ""}
+          error={error ? errorMessage : ""}
+
         />
       )}
       <form
@@ -185,13 +169,13 @@ const ProfileDetailsForm = () => {
           validation={(val) => val.length > 3}
           handleValue={(val) => setFormData({ ...formData, last_name: val })}
         />
-        <CustomInput
+        {/* <CustomInput
           variant="dashboard"
           label={"Email Address:"}
           placeholder={buyerDetails.email}
           validation={(val) => val.includes("@")}
           handleValue={(val) => setFormData({ ...formData, email: val })}
-        />
+        /> */}
         <CustomInput
           variant="dashboard"
           label={"Company/Business Name:"}
@@ -208,13 +192,13 @@ const ProfileDetailsForm = () => {
             setFormData({ ...formData, company_address: val })
           }
         />
-        <CustomInput
+        {/* <CustomInput
           variant="dashboard"
           label={"Phone Number: "}
           placeholder={buyerDetails.pNumber}
           validation={(val) => val.length > 10}
           handleValue={(val) => setFormData({ ...formData, phone_number: val })}
-        />
+        /> */}
         <CustomInput
           variant="dashboard"
           label={"Address : "}
@@ -230,13 +214,6 @@ const ProfileDetailsForm = () => {
             Country/Region
           </label>
           <Select
-            defaultValue={{
-              value: locationData.countryID,
-              label: locationData.countryName,
-              // label: buyerDetails.country
-              //   ? buyerDetails.country.name
-              //   : "testtt",
-            }}
             className="w-full sm:w-[419px]"
             onChange={(e) => {
               setFormData({

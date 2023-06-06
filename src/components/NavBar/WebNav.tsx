@@ -20,7 +20,7 @@ import profileImg from "../../../public/images/profile.png";
 import arrowImg from "../../../public/images/arrowDown.png";
 import NavAccountSettings from "../NavAccountSettings";
 import NavProfile from "../NavProfile";
-
+import { navProfileData } from "@/store/DummyData/navProfileData";
 import SellerNav from "./SellerNav";
 import HelpIcon from "../Icons/HelpIcon";
 import {
@@ -28,6 +28,9 @@ import {
   setBuyerProfile,
 } from "@/store/redux/services/buyerSlice/profileSlice/profileSlice";
 import { useGetBuyerProfileQuery } from "@/store/redux/services/buyerSlice/profileSlice/profileApiSlice";
+
+import useInput from "@/hooks/useInput";
+import { useSearchProductsMutation } from "@/store/redux/services/searchSlice/searchApiSlice";
 
 const WebNav = () => {
   const [showSettings, setShowSettings] = useState<boolean>(false);
@@ -38,6 +41,11 @@ const WebNav = () => {
 
   const { data, isError, isFetching, isLoading, isSuccess, error } =
     useGetBuyerProfileQuery({ skip: fetchBuyerProfile });
+
+  const [
+    searchProducts,
+    { isLoading: searchLoading, error: searchError, data: searchData },
+  ] = useSearchProductsMutation();
 
   useEffect(() => {
     const user = sessionStorage.getItem("userTye");
@@ -62,6 +70,22 @@ const WebNav = () => {
 
   const seller = pathArr[2] === "seller";
 
+  const {
+    value,
+    hasError,
+    enteredInputHandler,
+    onBlurHandler,
+    onFocusHandler,
+    reset,
+  } = useInput((val) => (val ? true : false));
+  const searchHandler = async (e: any) => {
+    e.preventDefault();
+
+    await searchProducts({ input: value.value });
+  };
+
+  // console.log(searchData, searchError);
+
   return seller ? (
     <SellerNav />
   ) : (
@@ -74,17 +98,23 @@ const WebNav = () => {
 
           <div className="h-10  lg:w-[700px] flex rounded-s-md overflow-hidden">
             <input
+              onChange={enteredInputHandler}
+              value={value.value}
+              onFocus={onFocusHandler}
               type="text"
               className="w-full pl-8 placeholder:text-sm lg:placeholder:text-base outline-none"
               placeholder="what are you looking for..."
             />
-            <span className="bg-agro-yellow h-full items-center justify-center flex w-11 rounded-e-md  ">
+            <span
+              onClick={searchHandler}
+              className="bg-agro-yellow h-full items-center justify-center flex w-11 rounded-e-md  "
+            >
               <AiOutlineSearch className="text-lg" />
             </span>
           </div>
         </div>
         <div className="flex flex-row gap-14 items-center">
-          {authorized ? (
+          {authorized.token ? (
             <div className="relative flex flex-row items-center gap-5 xl:gap-9">
               <div className="relative">
                 <BsBell className="text-2xl text-agro-yellow" />
@@ -115,7 +145,7 @@ const WebNav = () => {
               </div>
               {showProfileSettings && (
                 <div className="absolute top-11 left-11">
-                  <NavProfile />
+                  <NavProfile profileData={navProfileData} />
                 </div>
               )}
 

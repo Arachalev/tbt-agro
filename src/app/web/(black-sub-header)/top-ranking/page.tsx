@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import NewArrivalsProductCard from "@/components/NewArrivalsProductCard";
@@ -10,7 +12,12 @@ import TopRankingMultiProductsCard from "@/components/TopRankingMultiProductsCar
 import { topRankingProductsCardData } from "@/store/DummyData/topRankingProductsData";
 import { topRankingMultiProductsCardData } from "@/store/DummyData/topRankingMultiProductsData";
 
-const page = () => {
+import { useGetTopRatedProductsQuery } from "@/store/redux/services/productsSlice/productsApiSlice";
+
+const Page = () => {
+  const { data, isLoading, isSuccess, error } = useGetTopRatedProductsQuery("");
+
+  console.log(data?.data);
   return (
     <div className="bg-agro-gray w-screen pt-9 pb-[160px] ">
       <div className="grid md:grid-cols-2 xl:grid-cols-3 items-center justify-center gap-5  pb-[60px] px-4 xl:px-[72px] 2xl:w-[1500px] 2xl:mx-auto">
@@ -67,4 +74,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

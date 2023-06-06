@@ -1,4 +1,3 @@
-
 import React, { useReducer, Reducer } from "react";
 
 enum InputActionType {
@@ -53,7 +52,9 @@ const useInput = (validate: (val: string) => boolean) => {
   const validateInput = validate(inputState.value);
   const hasError = !validateInput && inputState.lostFocus;
 
-  const enteredInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const enteredInputHandler = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     dispatch({ type: InputActionType.INPUT, value: event.target.value });
   };
 

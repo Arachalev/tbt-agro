@@ -1,3 +1,4 @@
+import getUniqueID from "@/hooks/getUniqueID";
 import React from "react";
 
 interface ProductTableProps {
@@ -17,7 +18,7 @@ const ProductTable = ({ column, data }: ProductTableProps) => {
         {data.map((item, index) => (
           <li
             className=" border-r  flex items-center h-[50px] w-fit"
-            key={item.key}
+            key={getUniqueID()}
           >
             <span className="mr-5 h-5 w-5  text-xs flex items-center justify-center rounded-full bg-[#D4E6ED] overflow-hidden">
               {index + 1}
@@ -32,7 +33,10 @@ const ProductTable = ({ column, data }: ProductTableProps) => {
 
   column.forEach((item, index) => {
     const content = (
-      <div key={index} className=" flex flex-col gap-6 items-center">
+      <div
+        key={`${item.length * index} ${item}`}
+        className=" flex flex-col gap-6 items-center"
+      >
         <h4 className="text-lg font-bold text-agro-green h-[30px]">{item}</h4>
         <ul className="flex flex-col ">
           {data.map((tableRowData) => {
@@ -48,7 +52,7 @@ const ProductTable = ({ column, data }: ProductTableProps) => {
             return (
               <li
                 className={`h-[50px] flex items-center justify-center`}
-                key={colItem}
+                key={getUniqueID()}
               >
                 {/* ${item === "Status" ? statusStyle : ""} */}
                 {item === "Status" ? (
@@ -77,7 +81,9 @@ const ProductTable = ({ column, data }: ProductTableProps) => {
             {item}
           </h4>
         ))} */}
-        {tableColumn.map((item) => item)}
+        {tableColumn.map((item) => (
+          <div key={getUniqueID()}>{item}</div>
+        ))}
       </div>
       <div></div>
     </div>

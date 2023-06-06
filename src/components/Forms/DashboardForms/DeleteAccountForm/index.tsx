@@ -9,6 +9,7 @@ import StatusModal from "../../StatusModal";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/store/redux/hooks";
 import { logOut } from "@/store/redux/services/authSlice/authSlice";
+import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
 
 const DeleteAccountForm = () => {
   const [formData, setFormData] = useState({
@@ -26,18 +27,24 @@ const DeleteAccountForm = () => {
     e.preventDefault();
     setShowModal(true);
 
-    // try {
-    //   deleteAccount(formData);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      deleteAccount(formData);
+    } catch (error) {
+      console.log(error);
+    }
   };
+  let errorMessage = "";
 
+  if (error) {
+    errorMessage = isFetchBaseQueryErrorType(error);
+  }
   return (
     <div>
       {showModal && (
         <StatusModal
           onClose={() => setShowModal(false)}
+          data={data ? data.message : ""}
+          error={error ? errorMessage : ""}
           loading={isLoading}
           dataFunc={() => {
             dispatch(logOut());

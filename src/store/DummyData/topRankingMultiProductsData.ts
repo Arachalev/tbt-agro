@@ -11,7 +11,7 @@ export const topRankingMultiProductsCardData = {
       amount: 10,
       score: 7.4,
       rating: 1,
-      key: "121qasw",
+      key: "121qamioysw",
     },
     {
       image: img,
@@ -20,7 +20,7 @@ export const topRankingMultiProductsCardData = {
       amount: 10,
       score: 7.4,
       rating: 2,
-      key: "122qasw",
+      key: "122qas121w",
     },
     {
       image: img,
@@ -29,7 +29,7 @@ export const topRankingMultiProductsCardData = {
       amount: 10,
       score: 7.4,
       rating: 1,
-      key: "123qasw",
+      key: "123qaqfsw",
     },
   ],
 };

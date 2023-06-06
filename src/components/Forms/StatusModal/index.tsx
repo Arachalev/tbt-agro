@@ -27,7 +27,7 @@ const StatusModal = ({
       //   e.stopPropagation();
       // }}
       onClick={() => onClose()}
-      className="absolute top-0 right-0 bg-agro-yellow/70 z-[10000] w-full h-full flex items-center justify-center"
+      className="fixed top-0 right-0 bg-agro-yellow/70 z-[10000] w-full h-full min-h-screen flex items-center justify-center"
     >
       {error && (
         <div className="bg-white p-8 rounded-xl flex flex-col items-center gap-8 ">
@@ -55,11 +55,7 @@ const StatusModal = ({
           <p className="text-center"> {data}</p>
           <button
             className="text-black bg-agro-yellow font-semibold bg-btn-blue  w-full sm:w-fit sm:px-20 py-3 rounded-3xl"
-            onClick={
-              dataFunc
-                ? dataFunc
-                : () => router.push("/dashboard/buyer/account")
-            }
+            onClick={dataFunc ? dataFunc : onClose}
           >
             {dataText ? dataText : " Continue"}
           </button>

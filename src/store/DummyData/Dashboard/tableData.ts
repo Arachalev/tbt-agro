@@ -8,7 +8,7 @@ export const productsTableData = {
       Status: "Active",
       Clicks: "10 Clicks",
       "Date Uploaded": "10/12/2022",
-      key: "assaas",
+      key: "asxvvxsaas",
     },
     {
       Name: "Cocoa",
@@ -17,7 +17,7 @@ export const productsTableData = {
       Status: "Active",
       Clicks: "10 Clicks",
       "Date Uploaded": "10/12/2022",
-      key: "assaas",
+      key: "ass121aas",
     },
     {
       Name: "Cocoa",
@@ -26,7 +26,7 @@ export const productsTableData = {
       Status: "Active",
       Clicks: "10 Clicks",
       "Date Uploaded": "10/12/2022",
-      key: "assaas",
+      key: "assaasas",
     },
   ],
 };

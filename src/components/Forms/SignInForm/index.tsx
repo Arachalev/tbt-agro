@@ -6,12 +6,13 @@ import PriButton from "@/components/PriButton";
 import CustomInput from "@/components/CustomInput";
 import { useLoginMutation } from "@/store/redux/services/authSlice/authApiSlice";
 import { useGetBuyerProfileQuery } from "@/store/redux/services/buyerSlice/profileSlice/profileApiSlice";
-import StatusModal from "./StatusModal";
-import { useAppDispatch, useAppSelector } from "@/store/redux/hooks";
+import StatusModal from "../StatusModal";
+import { useAppDispatch } from "@/store/redux/hooks";
 import { setCredentials } from "@/store/redux/services/authSlice/authSlice";
-import {
-  setBuyerProfile,
-} from "@/store/redux/services/buyerSlice/profileSlice/profileSlice";
+import { setBuyerProfile } from "@/store/redux/services/buyerSlice/profileSlice/profileSlice";
+import { useRouter } from "next/navigation";
+import { useGetSellerProfileQuery } from "@/store/redux/services/sellerSlice/profileSlice/profileApiSlice";
+import { setSellerProfile } from "@/store/redux/services/sellerSlice/profileSlice/profileSlice";
 
 const SignInForm = () => {
   const [show, setShow] = useState(false);
@@ -19,10 +20,13 @@ const SignInForm = () => {
     email: "",
     password: "",
   });
-  const [fetchBuyerProfile, setFetchBuyerProfile] = useState(false);
+  const [fetchProfile, setFetchProfile] = useState({
+    buyer: true,
+    seller: true,
+  });
 
   const dispatch = useAppDispatch();
-
+  const router = useRouter();
 
   const [loginUser, { isLoading, isSuccess, error, data }] = useLoginMutation();
 
@@ -31,14 +35,19 @@ const SignInForm = () => {
     isLoading: loadingBuyerProfile,
     isSuccess: successBuyerProfile,
     isError: errorBuyerProfile,
-  } = useGetBuyerProfileQuery({ skip: fetchBuyerProfile });
+  } = useGetBuyerProfileQuery({ skip: fetchProfile.buyer });
+
+  const {
+    data: sellerProfile,
+    isLoading: loadingSellerProfile,
+    isSuccess: successSellerProfile,
+    error: errorSellerProfile,
+  } = useGetSellerProfileQuery({ skip: fetchProfile.seller });
 
   useEffect(() => {
-    const loadBuyerProfile = async () => {
+    const loadProfile = async () => {
       if (isSuccess && data.data.user_type === "Buyer") {
-        setFetchBuyerProfile(true);
-        // const { data:  } = buyerProfile;
-
+        setFetchProfile({ buyer: false, seller: true });
         if (successBuyerProfile) {
           dispatch(
             setBuyerProfile({
@@ -46,15 +55,28 @@ const SignInForm = () => {
             })
           );
         }
-
-        // console.log(profile, buyerProfile);
+      } else {
+        setFetchProfile({ buyer: true, seller: false });
+        if (successSellerProfile) {
+          dispatch(
+            setSellerProfile({
+              userData: sellerProfile.data,
+            })
+          );
+        }
       }
     };
+    loadProfile();
+  }, [
+    buyerProfile,
+    data,
+    dispatch,
+    isSuccess,
+    sellerProfile?.data,
+    successBuyerProfile,
+    successSellerProfile,
+  ]);
 
-    loadBuyerProfile();
-  }, [buyerProfile, data, dispatch, isSuccess, successBuyerProfile]);
-
-  let errorMessage;
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setShow(true);
@@ -73,6 +95,7 @@ const SignInForm = () => {
       })
     );
   }
+  let errorMessage;
 
   return (
     <div className="min-h-screen bg-agro-floral-white pt-10 pb-[142px] flex flex-col items-center">
@@ -82,6 +105,11 @@ const SignInForm = () => {
           error={error ? errorMessage : ""}
           loading={isLoading}
           onClose={() => setShow(false)}
+          dataFunc={() =>
+            data.data.user_type === "Seller"
+              ? router.push("/dashboard/seller/account")
+              : router.push("/dashboard/buyer/account")
+          }
         />
       )}
 

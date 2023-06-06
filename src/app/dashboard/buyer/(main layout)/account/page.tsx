@@ -22,6 +22,7 @@ const Page = () => {
 
   const buyerProfile = useAppSelector(selectBuyerProfile);
 
+
   return (
     <div className="pt-8 px-5 pb-40">
       <h4 className="mb-5 text-xl md:text-2xl xl:text-3xl text-agro-green font-semibold overflow-clip">

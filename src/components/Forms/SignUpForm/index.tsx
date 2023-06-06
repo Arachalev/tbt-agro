@@ -9,6 +9,9 @@ import CustomInput from "@/components/CustomInput";
 import { useSignUpMutation } from "@/store/redux/services/authSlice/authApiSlice";
 import StatusModal from "./StatusModal";
 import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
+import { setCredentials } from "@/store/redux/services/authSlice/authSlice";
+import { useAppDispatch } from "@/store/redux/hooks";
+import { useGetAllCountriesQuery } from "@/store/redux/services/locationSlice/locationApiSlice";
 
 const options = [
   { value: "chocolate", label: "Chocolate" },
@@ -19,7 +22,6 @@ const options = [
 const SignUpForm = () => {
   const [show, setShow] = useState(false);
   const [formValues, setFormValues] = useState({
-    country: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -28,6 +30,7 @@ const SignUpForm = () => {
     lName: "",
     countryCode: "",
     pNumber: "",
+    country_id: "",
     userType: "",
     terms: false,
   });
@@ -35,7 +38,24 @@ const SignUpForm = () => {
   const [registerUser, { isLoading, isSuccess, error, data }] =
     useSignUpMutation();
 
+  const {
+    data: countries,
+    isLoading: countriesLoading,
+    error: countriesError,
+  } = useGetAllCountriesQuery("");
+
+  let countryOptions = [{ value: "", label: "" }];
+
+  // Populate country options when data is loaded
+  if (countries) {
+    countryOptions.pop();
+
+    countries.data.map((item: { id: number; name: string }) =>
+      countryOptions.push({ value: item.id.toString(), label: item.name })
+    );
+  }
   let errorMessage;
+  const dispatch = useAppDispatch();
 
   const handleSubmit = async (e: any) => {
     setShow(true);
@@ -49,7 +69,7 @@ const SignUpForm = () => {
       phone_number: formValues.countryCode + formValues.pNumber,
       password: formValues.password,
       password_confirmation: formValues.confirmPassword,
-      country_id: 3,
+      country_id: parseInt(formValues.country_id),
       company_name: formValues.companyName,
       user_type: formValues.userType,
       term_condition_accepted: formValues.terms ? 1 : 0,
@@ -57,14 +77,17 @@ const SignUpForm = () => {
   };
 
   if (isSuccess) {
-    sessionStorage.setItem("token", data.data.access_token);
+    dispatch(
+      setCredentials({
+        token: data.data.access_token,
+        userType: data.data.user_type,
+      })
+    );
   }
 
   if (error) {
     errorMessage = isFetchBaseQueryErrorType(error);
   }
-
-  console.log(errorMessage, data, isSuccess);
 
   return (
     <div className="min-h-screen bg-agro-floral-white pt-10 pb-[142px] flex flex-col items-center">
@@ -81,15 +104,21 @@ const SignUpForm = () => {
         className=" flex flex-col gap-7 items-center justify-center w-fit "
       >
         <div className="grid md:grid-cols-[200px_1fr] items-center gap-4    ">
-          <label className="text-sm font-bold md:text-end  " htmlFor="country">
+          <label
+            className="text-sm font-bold md:text-end text-gray2 "
+            htmlFor="country"
+          >
             Country/Region
           </label>
           <Select
-            className="w-[309px] "
-            onChange={(e) =>
-              setFormValues({ ...formValues, country: e?.value ? e.value : "" })
-            }
-            options={options}
+            className="w-full sm:w-[419px]"
+            onChange={(e) => {
+              setFormValues({
+                ...formValues,
+                country_id: e?.value ? e.value : "",
+              });
+            }}
+            options={countryOptions}
           />
         </div>
         <div className="grid md:grid-cols-[200px_1fr]  items-center gap-4">

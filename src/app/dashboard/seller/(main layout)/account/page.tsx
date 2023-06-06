@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import ProductTable from "@/components/Dashboard/ProductsTable";
@@ -6,8 +8,16 @@ import { productsTableData } from "@/store/DummyData/Dashboard/tableData";
 import TopRankingMultiProductsCard from "@/components/TopRankingMultiProductsCard";
 import { topRankingMultiProductsCardData } from "@/store/DummyData/topRankingMultiProductsData";
 import Link from "next/link";
+import { useGetSellersProductQuery } from "@/store/redux/services/sellerSlice/productsSlice/productsApiSlice";
 
 const Page = () => {
+  const {
+    data: products,
+    isLoading: productsLoading,
+    error: productsError,
+  } = useGetSellersProductQuery("");
+
+  console.log(products);
   return (
     <div className="  min-h-[calc(100vh-96px)] p-4 sm:p-8 xl:p-[72px] ">
       <div className=" pt-8  ">

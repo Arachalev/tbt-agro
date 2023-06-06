@@ -5,6 +5,7 @@ import linksReducer from "./features/sideBarSlice";
 import { baseApiSlice } from "./services/baseApiSlice";
 import authSlice from "./services/authSlice/authSlice";
 import profileSlice from "./services/buyerSlice/profileSlice/profileSlice";
+import sellerProfileSlice from "./services/sellerSlice/profileSlice/profileSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     linksReducer,
     auth: authSlice,
     buyerProfile: profileSlice,
+    sellerProfile:sellerProfileSlice,
     [baseApiSlice.reducerPath]: baseApiSlice.reducer,
   },
   middleware: (getDefaultmiddleWare) =>
