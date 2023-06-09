@@ -18,8 +18,8 @@ const ProtectedRoutes = ({
   let appToken;
 
   useEffect(() => {
-    const window = new Window();
-    const session = window.sessionStorage;
+    // const window = new Window();
+    const session = sessionStorage;
 
     const token = session.getItem("token");
     appToken = token;

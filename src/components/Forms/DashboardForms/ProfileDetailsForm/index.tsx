@@ -146,7 +146,6 @@ const ProfileDetailsForm = () => {
           loading={isLoading}
           data={data ? data?.message : ""}
           error={error ? errorMessage : ""}
-
         />
       )}
       <form

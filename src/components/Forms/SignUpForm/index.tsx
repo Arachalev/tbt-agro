@@ -105,13 +105,13 @@ const SignUpForm = () => {
       >
         <div className="grid md:grid-cols-[200px_1fr] items-center gap-4    ">
           <label
-            className="text-sm font-bold md:text-end text-gray2 "
+            className="text-sm font-bold md:text-end   "
             htmlFor="country"
           >
             Country/Region
           </label>
           <Select
-            className="w-full sm:w-[419px]"
+            className="w-full sm:w-[309px]"
             onChange={(e) => {
               setFormValues({
                 ...formValues,
