@@ -17,9 +17,10 @@ interface DetailsCardProps {
   availableQuantity: string;
   location: string;
   cost: string;
-  minimumPurchase: string;
+  minimumPurchase: number;
   ratings: number;
   ratingsAmount: number;
+  id: number;
 }
 
 const DetailsCard = ({
@@ -33,6 +34,7 @@ const DetailsCard = ({
   minimumPurchase,
   ratings,
   ratingsAmount,
+  id,
 }: DetailsCardProps) => {
   const router = useRouter();
   return (

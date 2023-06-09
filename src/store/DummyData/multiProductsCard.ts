@@ -76,7 +76,7 @@ export const products = {
       price: 6000,
       sellerID: "Seller ID: 1S123001",
       location: "Oyo, Nigeria",
-      key: "124qasw",
+      key: "124qasw1",
     },
     {
       image: "https://picsum.photos/200/300",
@@ -84,7 +84,7 @@ export const products = {
       price: 6000,
       sellerID: "Seller ID: 1S123001",
       location: "Oyo, Nigeria",
-      key: "125qasw",
+      key: "125qasw2",
     },
     {
       image: "https://picsum.photos/200/300",
@@ -92,7 +92,7 @@ export const products = {
       price: 6000,
       sellerID: "Seller ID: 1S123001",
       location: "Oyo, Nigeria",
-      key: "126qasw",
+      key: "126qasw3",
     },
     {
       image: "https://picsum.photos/200/300",
@@ -100,7 +100,7 @@ export const products = {
       price: 6000,
       sellerID: "Seller ID: 1S123001",
       location: "Oyo, Nigeria",
-      key: "128qasw",
+      key: "128qasw4",
     },
   ],
 };

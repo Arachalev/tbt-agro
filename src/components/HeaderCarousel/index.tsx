@@ -20,9 +20,7 @@ const HeaderCarousel = () => {
             <PriButton
               text={"Shop Now"}
               className="w-[141px] h-11"
-              onClick={function () {
-                throw new Error("Function not implemented.");
-              }}
+              onClick={() => {}}
             />
           </div>
         </div>

@@ -39,32 +39,36 @@ const ProductTable = ({ column, data }: ProductTableProps) => {
       >
         <h4 className="text-lg font-bold text-agro-green h-[30px]">{item}</h4>
         <ul className="flex flex-col ">
-          {data.map((tableRowData) => {
-            let colItem;
-            if (tableRowData[item]) {
-              colItem = tableRowData[item];
-            }
-            const statusStyle = `w-[86px] h-8 mt-1 rounded-[70px] flex items-center justify-center font-semibold ${
-              tableRowData["Status"] === "Active"
-                ? "bg-[#D4E6ED]  text-agro-green"
-                : "text-white bg-[#f48924]/50 "
-            } `;
-            return (
-              <li
-                className={`h-[50px] flex items-center justify-center`}
-                key={getUniqueID()}
-              >
-                {/* ${item === "Status" ? statusStyle : ""} */}
-                {item === "Status" ? (
-                  <span className={statusStyle}>{colItem}</span>
-                ) : (
-                  colItem
-                )}
+          {data.length > 0 ? (
+            data.map((tableRowData) => {
+              let colItem;
+              if (tableRowData[item]) {
+                colItem = tableRowData[item];
+              }
+              const statusStyle = `w-[86px] h-8 mt-1 rounded-[70px] flex items-center justify-center font-semibold ${
+                tableRowData["Status"] === "Active"
+                  ? "bg-[#D4E6ED]  text-agro-green"
+                  : "text-white bg-[#f48924]/50 "
+              } `;
+              return (
+                <li
+                  className={`h-[50px] flex items-center justify-center`}
+                  key={getUniqueID()}
+                >
+                  {/* ${item === "Status" ? statusStyle : ""} */}
+                  {item === "Status" ? (
+                    <span className={statusStyle}>{colItem}</span>
+                  ) : (
+                    colItem
+                  )}
 
-                {/* {colItem} */}
-              </li>
-            );
-          })}
+                  {/* {colItem} */}
+                </li>
+              );
+            })
+          ) : (
+            <li>No Data</li>
+          )}
         </ul>
       </div>
     );

@@ -1,20 +1,59 @@
-import React from "react";
+"use client";
 
+import React from "react";
+import { usePathname } from "next/navigation";
 import DetailsCard from "./DetailsCard";
 import InfoCard from "./InfoCard";
+import { useGetOneProductQuery } from "@/store/redux/services/productsSlice/productsApiSlice";
+import StatusModal from "@/components/Forms/StatusModal";
 
 const ProductDetails = () => {
-  return (
+  const path = usePathname().split("/");
+
+  const { data, isLoading, error } = useGetOneProductQuery(path[4]);
+
+  const product: {
+    name: string;
+    location: string;
+    user: { seller_id: string };
+    unit: string;
+    quantity: string;
+    tbt_price: number;
+    sale_price: number;
+    category: { name: string };
+    images: string[];
+    id: number;
+    minimum_purchase: number;
+  } = data?.data;
+
+  console.log(product);
+
+  return isLoading ? (
+    <StatusModal
+      onClose={function (): void {
+        throw new Error("Function not implemented.");
+      }}
+      loading={isLoading}
+    />
+  ) : product ? (
     <div className="flex flex-col items-center gap-5 p-5">
       <DetailsCard
-        img={"https://picsum.photos/300/350"}
-        sellerId={"S154AS"}
-        name={"RAW CASHEW NUTS – 30,000KG"}
-        category={"Crop Products"}
-        availableQuantity={"50 MT"}
-        location={"Ogbomosho, Oyo State."}
-        cost={"₦700,000 / MT"}
-        minimumPurchase={"5,000Kg"}
+        id={product.id}
+        img={
+          product.images.length > 0
+            ? product.images[0]
+            : "https://picsum.photos/300/350"
+        }
+        sellerId={product.user.seller_id}
+        // RAW CASHEW NUTS – 30,000KG₦700,000 / MT
+        name={`${product.name.toUpperCase()} - ${product.quantity}${
+          product.unit
+        }`}
+        category={product.category.name}
+        availableQuantity={`${product.quantity} ${product.unit}`}
+        location={product.location}
+        cost={`₦${product.sale_price} / ${product.unit}`}
+        minimumPurchase={product.minimum_purchase}
         ratings={3.5}
         ratingsAmount={2389}
       />
@@ -35,6 +74,12 @@ const ProductDetails = () => {
           Packing: "50kg pp bags net weight, 20ft container FCL (18mt)",
         }}
       />
+    </div>
+  ) : (
+    <div className="flex flex-col items-center gap-5 p-5">
+      <h4 className="text-red-500 text-xl font-semibold">
+        Error getting product
+      </h4>
     </div>
   );
 };

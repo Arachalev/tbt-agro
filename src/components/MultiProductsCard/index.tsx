@@ -6,6 +6,7 @@ import Image from "next/image";
 import pro from "../../assets/images/product.png";
 import { useAppSelector } from "@/store/redux/hooks";
 import { selectDeviceWith } from "@/store/redux/features/deviceWidthSlice";
+import getUniqueID from "@/hooks/getUniqueID";
 
 interface MultiProductsCardProps {
   title: string;
@@ -40,7 +41,7 @@ const MultiProductsCard: React.FC<MultiProductsCardProps> = ({
       >
         {products.map((item) => {
           return (
-            <div key={item.sellerID}>
+            <div key={getUniqueID()}>
               <Image
                 height={imgHeight}
                 width={imgWidth}

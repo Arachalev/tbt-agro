@@ -11,11 +11,13 @@ interface NewArrivalsProductCardProps {
   price: number;
   sellerID: string;
   location: string;
+  id: number;
 }
 
 const NewArrivalsProductCard: React.FC<NewArrivalsProductCardProps> = ({
   image,
   name,
+  id,
   price,
   sellerID,
   location,
@@ -24,7 +26,7 @@ const NewArrivalsProductCard: React.FC<NewArrivalsProductCardProps> = ({
 
   return (
     <div
-      onClick={() => router.push("/dashboard/buyer/product-details")}
+      onClick={() => router.push(`/dashboard/buyer/product-details/${id}`)}
       className="sm:w-[200px] h-[280px] rounded-[10px] overflow-clip"
     >
       <div className="w-full h-[169px] p-4 flex items-center justify-center bg-[#f6f6f6] rounded-t-[10px]">

@@ -1,5 +1,6 @@
 import React from "react";
 import { productCategoryData } from "@/store/DummyData/productsCategory";
+import getUniqueID from "@/hooks/getUniqueID";
 
 interface ItemCardProps {
   name: string;
@@ -22,7 +23,7 @@ const ProductsCategoryCard = () => {
       <h4 className="text-agro-black text-lg font-bold mb-5">Products</h4>
       <div className=" grid grid-cols-2 md:flex md:flex-col gap-4">
         {productCategoryData.map((item) => (
-          <ItemCard name={item.name} Icon={item.Icon} key={item.name} />
+          <ItemCard name={item.name} Icon={item.Icon} key={getUniqueID()} />
         ))}
       </div>
     </div>

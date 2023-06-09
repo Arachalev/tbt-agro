@@ -12,9 +12,20 @@ import { useGetCategoriesQuery } from "@/store/redux/services/categorySlice/cate
 import StatusModal from "../../StatusModal";
 import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
 import { useGetAllBuyerLeadsQuery } from "@/store/redux/services/sellerSlice/buyerLeadsSlice/buyerLeadsApiSlice";
+import Select from "react-select";
+import { useRouter } from "next/navigation";
+import { RiCloseLine } from "react-icons/ri";
 
 const AddProductForm = () => {
   const [showModal, setShowModal] = useState(false);
+  const [categoryID, setCategoryID] = useState(1);
+
+  const [images, setImages] = useState<{ images: File[]; fileName: string[] }>({
+    images: [],
+    fileName: [],
+  });
+
+  const router = useRouter();
 
   const [createProduct, { isLoading, isSuccess, error, data }] =
     useCreateProductMutation();
@@ -27,7 +38,17 @@ const AddProductForm = () => {
 
   const { data: buyerLeads } = useGetAllBuyerLeadsQuery("");
 
-  console.log(buyerLeads);
+  let categoryOptions: { value: number; label: string }[] = [
+    { value: 1, label: "loading...." },
+  ];
+
+  if (categories?.data) {
+    categoryOptions.pop();
+    categories?.data.map((item: { id: number; name: string }) =>
+      categoryOptions.push({ value: item.id, label: item.name })
+    );
+  }
+
   const {
     value: nameValue,
     enteredInputHandler: nameHandler,
@@ -109,6 +130,34 @@ const AddProductForm = () => {
     reset: resetInfo,
   } = useInput((val) => val.length > 3);
 
+  // Func to handle Image upload
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+
+    let names: string[] = [];
+
+    let uploadedImages;
+    if (files) {
+      uploadedImages = Array.from(files);
+      uploadedImages.forEach((item) => names.push(item.name));
+      setImages({ images: uploadedImages, fileName: names });
+    }
+  };
+
+  // Delete one uploaded file
+  const deleteFile = (id: number) => {
+    let files = images.images;
+    let names: string[] = [];
+
+    let filteredFiles = files.filter((item) => files.indexOf(item) !== id);
+    filteredFiles.forEach((item) => names.push(item.name));
+
+    setImages({
+      images: [...filteredFiles],
+      fileName: [...names],
+    });
+  };
+
   const formHandler = async (e: FormEvent) => {
     e.preventDefault();
     setShowModal(true);
@@ -123,12 +172,11 @@ const AddProductForm = () => {
       minimum_purchase: minPurchaseValue.value,
       quantity: quantityValue.value,
       other_info: infoValue.value,
-      category_id: 1,
+      category_id: categoryID,
+      "images[]": images.images,
     };
 
     await createProduct(formData);
-
-    // console.log(formData);
   };
 
   // console.log(data, error);
@@ -144,6 +192,7 @@ const AddProductForm = () => {
           onClose={() => setShowModal(false)}
           loading={isLoading}
           data={data ? data?.message : ""}
+          dataFunc={() => router.push("/dashboard/seller/account")}
           error={error ? errorMessage : ""}
         />
       )}
@@ -171,18 +220,47 @@ const AddProductForm = () => {
               square image.
             </p>
           </div>
-          <div>
-            <label
-              htmlFor="file"
-              className="flex items-center gap-2 bg-[#D4E6ED] h-16 px-5 rounded-[4px]"
-            >
-              <Image src={upload} alt="upload icon" />
-              <p className="text-gray2">
-                Drag & Drop your product images or Browse.
-              </p>
-            </label>
-            <input type="file" name="file" id="file" className="hidden" />
-          </div>
+
+          {images.images.length > 0 ? (
+            <div id="file-upload-fileName" className="flex items-center gap-2">
+              {images.fileName.map((item, index) => (
+                <span
+                  key={`item-${item}-${index}`}
+                  className="bg-gray2 px-4 py-1 rounded-[10px]  flex gap-3 items-center"
+                >
+                  {item}
+                  <span
+                    className="p-1 bg-gray-200 rounded-full "
+                    onClick={() => {
+                      deleteFile(index);
+                    }}
+                  >
+                    <RiCloseLine className="text-red-500 cursor-pointer" />
+                  </span>
+                </span>
+              ))}
+            </div>
+          ) : (
+            <div>
+              <label
+                htmlFor="file"
+                className="flex items-center gap-2 bg-[#D4E6ED] h-16 px-5 rounded-[4px]"
+              >
+                <Image src={upload} alt="upload icon" />
+                <p className="text-gray2">
+                  Drag & Drop your product images or Browse.
+                </p>
+              </label>
+              <input
+                type="file"
+                onChange={handleImageUpload}
+                name="file"
+                id="file"
+                multiple
+                className="hidden"
+              />
+            </div>
+          )}
           <div>
             <label htmlFor="" className="font-semibold text-sm text-agro-black">
               Name of Product <span>*</span>
@@ -362,16 +440,17 @@ const AddProductForm = () => {
               />
             </div>
           </div>
-          {/* <div>
+          <div>
             <label htmlFor="" className="font-semibold text-sm text-agro-black">
               Product Category <span>*</span>
             </label>
-            <input
-              type="text"
-              className="w-full h-12 rounded-[4px] border border-gray2 bg-gray3 mt-2 px-5"
+            <Select
+              className=" rounded-[4px] border border-gray2 bg-gray3 mt-2"
               placeholder="Please select a category"
+              options={categoryOptions}
+              onChange={(val) => setCategoryID(val?.value ? val.value : 1)}
             />
-          </div> */}
+          </div>
           <div>
             <label htmlFor="" className="font-semibold text-sm text-agro-black">
               Other Information<span>*</span>

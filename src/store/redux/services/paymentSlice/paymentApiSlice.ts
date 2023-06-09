@@ -67,4 +67,7 @@ export const {
   useGetOnePaymentQuery,
   useMakePaymentMutation,
   useVerifyPaymentMutation,
+  useGetAllBanksQuery,
+  useSetBankAccountMutation,
+  useValidateBankAccountMutation,
 } = paymentApiSlice;

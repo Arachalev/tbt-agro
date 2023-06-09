@@ -17,7 +17,36 @@ const Page = () => {
     error: productsError,
   } = useGetSellersProductQuery("");
 
-  console.log(products);
+  let tableData: {}[] = [];
+  if (products) {
+    products?.data?.data.map(
+      (item: {
+        created_at: string;
+        status: string;
+        name: string;
+        tbt_price: number;
+        quantity: number;
+        clicks: number;
+      }) => {
+        let dateArr = item.created_at.split("T")[0];
+        let modDate = dateArr.split("-");
+        let date = `${modDate[2]}/${modDate[1]}/${modDate[0]}`;
+
+        let status = item.status.charAt(0).toUpperCase() + item.status.slice(1);
+
+        return tableData.push({
+          Name: item.name,
+          Price: item.tbt_price,
+          Quantity: item.quantity,
+          Clicks: `${item.clicks} clicks`,
+          "Date Uploaded": date,
+          Status: status,
+        });
+      }
+    );
+  }
+
+  // console.log(products?.data?.data);
   return (
     <div className="  min-h-[calc(100vh-96px)] p-4 sm:p-8 xl:p-[72px] ">
       <div className=" pt-8  ">
@@ -36,7 +65,7 @@ const Page = () => {
         <div className="overflow-x-auto  w-full  mt-3">
           <ProductTable
             column={productsTableData.column}
-            data={productsTableData.data}
+            data={products ? tableData : []}
           />
         </div>
         <div className="self-start sm:w-[420px] mt-12">

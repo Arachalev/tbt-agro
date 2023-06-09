@@ -17,7 +17,6 @@ import { useGetTopRatedProductsQuery } from "@/store/redux/services/productsSlic
 const Page = () => {
   const { data, isLoading, isSuccess, error } = useGetTopRatedProductsQuery("");
 
-  console.log(data?.data);
   return (
     <div className="bg-agro-gray w-screen pt-9 pb-[160px] ">
       <div className="grid md:grid-cols-2 xl:grid-cols-3 items-center justify-center gap-5  pb-[60px] px-4 xl:px-[72px] 2xl:w-[1500px] 2xl:mx-auto">
