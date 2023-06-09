@@ -67,9 +67,26 @@ const profileSlice = createSlice({
 
       const actionKeys = Object.keys(changedData);
 
-      actionKeys.map((item) => {
-        state[item] = changedData[item as keyof SellerProfileInterface];
-      });
+      // actionKeys.map((item) => {
+      //   state[item] = changedData[item as keyof SellerProfileInterface];
+      // });
+
+      state.address = changedData.address;
+      state.bankAccount = changedData.bankAccount;
+      state.buyerQuotations = changedData.buyerQuotations;
+      state.city = changedData.city;
+      state.companyAddress = changedData.companyAddress;
+      state.companyName = changedData.companyName;
+      state.country = changedData.country;
+      state.shippingAddress = changedData.shippingAddress;
+      state.email = changedData.email;
+      state.fName = changedData.fName;
+      state.lName = changedData.lName;
+      state.orders = changedData.orders;
+      state.pNumber = changedData.pNumber;
+      state.profilePicture = changedData.profilePicture;
+      state.sellerID = changedData.sellerID;
+      state = changedData.state;
     },
   },
 });
