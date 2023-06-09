@@ -1,9 +1,8 @@
-// "use client";
+"use client";
 
 import React from "react";
 import ProtectedRoutes from "@/components/ProtectedRoutes";
 
-// ffffff
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <section>
