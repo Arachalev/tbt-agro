@@ -15,20 +15,22 @@ const ProtectedRoutes = ({
   const router = useRouter();
 
   const authorized = useAppSelector(selectAuthToken);
+  let appToken;
 
-  const window = new Window();
-  const session = window.sessionStorage;
-
-  const token = session.getItem("token");
   useEffect(() => {
+    const window = new Window();
+    const session = window.sessionStorage;
+
+    const token = session.getItem("token");
+    appToken = token;
     if (!authorized.token && userType !== authorized.userType) {
       if (!token && session.getItem("userType") !== userType) {
         router.push("/web/sign-in");
       }
     }
-  }, [authorized, router, token, session, userType]);
+  }, [authorized, router, userType]);
 
-  return authorized.token || token ? <div>{children}</div> : <div> </div>;
+  return authorized.token || appToken ? <div>{children}</div> : <div> </div>;
 };
 
 export default ProtectedRoutes;
