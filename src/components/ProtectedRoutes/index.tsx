@@ -16,7 +16,8 @@ const ProtectedRoutes = ({
 
   const authorized = useAppSelector(selectAuthToken);
 
-  const session = window.sessionStorage
+  const window = new Window();
+  const session = window.sessionStorage;
 
   const token = session.getItem("token");
   useEffect(() => {
@@ -25,7 +26,7 @@ const ProtectedRoutes = ({
         router.push("/web/sign-in");
       }
     }
-  }, [authorized, router, token, session,userType]);
+  }, [authorized, router, token, session, userType]);
 
   return authorized.token || token ? <div>{children}</div> : <div> </div>;
 };
