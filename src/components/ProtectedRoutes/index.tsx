@@ -16,14 +16,16 @@ const ProtectedRoutes = ({
 
   const authorized = useAppSelector(selectAuthToken);
 
-  const token = sessionStorage.getItem("token");
+  const session = window.sessionStorage
+
+  const token = session.getItem("token");
   useEffect(() => {
     if (!authorized.token && userType !== authorized.userType) {
-      if (!token && sessionStorage.getItem("userType") !== userType) {
+      if (!token && session.getItem("userType") !== userType) {
         router.push("/web/sign-in");
       }
     }
-  }, [authorized, router, token, userType]);
+  }, [authorized, router, token, session,userType]);
 
   return authorized.token || token ? <div>{children}</div> : <div> </div>;
 };

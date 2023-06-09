@@ -8,6 +8,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <section>
       <ProtectedRoutes userType="Buyer">{children}</ProtectedRoutes>
+      
     </section>
   );
 };
