@@ -21,6 +21,7 @@ const Page = () => {
           <div className="grid grid-cols-2 sm:grid-cols-3  lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 lg:gap-5 ">
             {newArrivalsData.products.map((item) => (
               <NewArrivalsProductCard
+                id={parseInt(item.key)}
                 key={item.key}
                 image={item.image}
                 name={item.name}
