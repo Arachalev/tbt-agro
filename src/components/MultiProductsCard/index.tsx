@@ -27,8 +27,11 @@ const MultiProductsCard: React.FC<MultiProductsCardProps> = ({
 
   const imgHeight = deviceWidth.width < 640 ? 60 : 114;
   const imgWidth = deviceWidth.width < 640 ? 60 : 132;
-  //
-  //flex-wrap
+
+
+  /**FIX STYLING FOR NEW ARRIVALS VS CROP PRODUCTS   */
+
+
   return (
     <div className="p-2 sm:p-5 rounded-[10px] bg-white w-full h-full ">
       <h4 className=" sm:text-lg  font-bold text-agro-black mb-3">{title}</h4>

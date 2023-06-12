@@ -13,6 +13,7 @@ import { setBuyerProfile } from "@/store/redux/services/buyerSlice/profileSlice/
 import { useRouter } from "next/navigation";
 import { useGetSellerProfileQuery } from "@/store/redux/services/sellerSlice/profileSlice/profileApiSlice";
 import { setSellerProfile } from "@/store/redux/services/sellerSlice/profileSlice/profileSlice";
+import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
 
 const SignInForm = () => {
   const [show, setShow] = useState(false);
@@ -96,6 +97,11 @@ const SignInForm = () => {
     );
   }
   let errorMessage;
+
+  if (error) {
+    errorMessage = isFetchBaseQueryErrorType(error);
+  }
+
 
   return (
     <div className="min-h-screen bg-agro-floral-white pt-10 pb-[142px] flex flex-col items-center">

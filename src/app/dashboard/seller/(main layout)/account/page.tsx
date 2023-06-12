@@ -47,6 +47,8 @@ const Page = () => {
   }
 
   // console.log(products?.data?.data);
+
+
   return (
     <div className="  min-h-[calc(100vh-96px)] p-4 sm:p-8 xl:p-[72px] ">
       <div className=" pt-8  ">
