@@ -21,7 +21,7 @@ import {
 
 const Page = () => {
   const { data } = useGetTopRatedProductsQuery("");
-  const { data: productsData } = useGetAllProductsQuery("");
+  const { data: productsData, isLoading, error } = useGetAllProductsQuery("");
 
   // console.log(productsData?.data);
 
@@ -103,6 +103,8 @@ const Page = () => {
     );
   }
 
+  // console.log(productsArr.slice(0, 6), "sliced product");
+  // console.log([].slice(0, 6), "sliced product");
   return (
     <div className="min-h-[100vh] py-12 bg-agro-body">
       <div className="px-4 xl:px-[70px] pb-12 flex flex-col md:flex-row md:mx-auto gap-5 2xl:w-[1540px] ">
@@ -111,23 +113,79 @@ const Page = () => {
       </div>
       <div className="bg-agro-blue px-4 xl:px-[70px] py-11  ">
         <div className="m-auto  grid justify-center justify-items-center md:grid-cols-4 gap-3 md:gap-5  w-full  2xl:w-[1400px] h-full">
-          <div className=" col-span-4 md:col-span-2 lg:col-span-1 w-full">
-            <MultiProductsCard
-              title={products.title}
-              products={products.products}
-            />
-          </div>
-          <div className="col-span-4 md:col-span-2  lg:col-span-1 w-full">
-            <MultiProductsCard
-              title={products.title}
-              products={products.products}
-            />
-          </div>
-          {productsArr.length > 2 && (
+          {productsArr.slice(0, 4).length > 1 && (
+            <div className="col-span-4 md:col-span-2  lg:col-span-1 w-full">
+              <MultiProductsCard
+                title={products.title}
+                products={productsArr.slice(0, 4)}
+                type="newProducts"
+              />
+            </div>
+          )}
+          {productsArr.slice(0, 4).length > 1 && (
+            <div className="col-span-4 md:col-span-2  lg:col-span-1 w-full">
+              <MultiProductsCard
+                title={products.title}
+                products={
+                  productsArr.slice(4, 8).length > 2
+                    ? productsArr.slice(4, 8)
+                    : productsArr.slice(0, 4)
+                }
+                type="newProducts"
+              />
+            </div>
+          )}
+          {productsArr.slice(0, 6).length > 1 && (
             <div className="col-span-4 md:col-span-2 w-full ">
               <MultiProductsCard
                 title={"Crop Products"}
                 products={productsArr.slice(0, 6)}
+                type="cropProducts"
+              />
+            </div>
+          )}
+          {productsArr.slice(6, 12).length > 1 && (
+            <div className="col-span-4 md:col-span-2 w-full ">
+              <MultiProductsCard
+                title={"Crop Products"}
+                products={productsArr.slice(6, 12)}
+                type="cropProducts"
+              />
+            </div>
+          )}
+          {productsArr.slice(12, 18).length > 1 && (
+            <div className="col-span-4 md:col-span-2 w-full ">
+              <MultiProductsCard
+                title={"Crop Products"}
+                products={productsArr.slice(12, 18)}
+                type="cropProducts"
+              />
+            </div>
+          )}
+          {productsArr.slice(18, 24).length > 1 && (
+            <div className="col-span-4 md:col-span-2 w-full ">
+              <MultiProductsCard
+                title={"Crop Products"}
+                products={productsArr.slice(18, 24)}
+                type="cropProducts"
+              />
+            </div>
+          )}
+          {productsArr.slice(24, 30).length > 1 && (
+            <div className="col-span-4 md:col-span-2 w-full ">
+              <MultiProductsCard
+                title={"Crop Products"}
+                products={productsArr.slice(24, 30)}
+                type="cropProducts"
+              />
+            </div>
+          )}
+          {productsArr.slice(30, 36).length > 1 && (
+            <div className="col-span-4 md:col-span-2 w-full ">
+              <MultiProductsCard
+                title={"Crop Products"}
+                products={productsArr.slice(30, 36)}
+                type="cropProducts"
               />
             </div>
           )}
@@ -136,33 +194,45 @@ const Page = () => {
             <MultiProductsCard
               title={multiProductsCardData.title}
               products={multiProductsCardData.products}
-            />
-          </div> */}
-          {/* <div className="  col-span-4 md:col-span-2 w-full">
-            <MultiProductsCard
-              title={multiProductsCardData.title}
-              products={multiProductsCardData.products}
-            />
-          </div> */}
-          {/* <div className="  col-span-4 md:col-span-2 w-full">
-            <MultiProductsCard
-              title={multiProductsCardData.title}
-              products={multiProductsCardData.products}
+              type="cropProducts"
             />
           </div>
           <div className="  col-span-4 md:col-span-2 w-full">
             <MultiProductsCard
               title={multiProductsCardData.title}
               products={multiProductsCardData.products}
+              type="cropProducts"
             />
           </div>
           <div className="  col-span-4 md:col-span-2 w-full">
             <MultiProductsCard
               title={multiProductsCardData.title}
               products={multiProductsCardData.products}
+              type="cropProducts"
+            />
+          </div>
+          <div className="  col-span-4 md:col-span-2 w-full">
+            <MultiProductsCard
+              title={multiProductsCardData.title}
+              products={multiProductsCardData.products}
+              type="cropProducts"
+            />
+          </div>
+          <div className="  col-span-4 md:col-span-2 w-full">
+            <MultiProductsCard
+              title={multiProductsCardData.title}
+              products={multiProductsCardData.products}
+              type="cropProducts"
             />
           </div> */}
         </div>
+        {isLoading && (
+          <div className=" w-full rounded-[10px] py-4 px-10 col-span-4 justify-self-center flex flex-col items-center ">
+            <p className="bg-white rounded-[10px] py-4 px-10 w-fit font-semibold text-center text-2xl sm:text-4xl">
+              Loading Products...
+            </p>
+          </div>
+        )}
       </div>
 
       <div className="px-4 xl:px-[70px] 2xl:w-[1540px] mx-auto my-[60px]">

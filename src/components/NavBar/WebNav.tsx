@@ -48,7 +48,7 @@ const WebNav = () => {
   ] = useSearchProductsMutation();
 
   useEffect(() => {
-    const user = sessionStorage.getItem("userTye");
+    const user = sessionStorage.getItem("userType");
 
     if (user === "Buyer") {
       setFetchBuyerProfile(true);
@@ -60,7 +60,6 @@ const WebNav = () => {
   const profile = useAppSelector(selectBuyerProfile);
 
   const router = useRouter();
-  const pathArr = usePathname().trim().split("/");
 
   useEffect(() => {
     if (data) {
@@ -68,7 +67,7 @@ const WebNav = () => {
     }
   }, [data, dispatch]);
 
-  const seller = pathArr[2] === "seller";
+  const user = sessionStorage.getItem("userType");
 
   const {
     value,
@@ -86,7 +85,7 @@ const WebNav = () => {
 
   // console.log(searchData, searchError);
 
-  return seller ? (
+  return user === "Seller" ? (
     <SellerNav />
   ) : (
     <nav className="top-0 absolute z-50 w-full ">
@@ -171,12 +170,15 @@ const WebNav = () => {
             </div>
           )}
 
-          <div className=" flex items-center relative text-sm h-8">
+          <Link
+            href="/dashboard/buyer/shopping-cart"
+            className=" flex items-center relative text-sm h-8"
+          >
             <Cart /> <p className="text-white ">Cart</p>
             <span className="absolute top-0  left-2 text-agro-yellow font-medium">
               0
             </span>
-          </div>
+          </Link>
         </div>
       </div>
 

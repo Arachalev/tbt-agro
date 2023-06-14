@@ -3,6 +3,7 @@ import React from "react";
 
 import Image from "next/image";
 import StarRatings from "react-star-ratings";
+import { useDeleteCartItemMutation } from "@/store/redux/services/cartSlice/cartApiSlice";
 
 interface CartCardProps {
   img: string;

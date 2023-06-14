@@ -2,9 +2,8 @@
 import React, { useEffect, useState } from "react";
 
 import CustomInput from "@/components/CustomInput";
-import Link from "next/link";
 import PriButton from "@/components/PriButton";
-import { useSubmitQuotationMutation } from "@/store/redux/services/buyerSlice/quotationSlice/quotationApiSlice";
+import { useRouter } from "next/navigation";
 import {
   useGetAllCountriesQuery,
   useGetCitiesInStateQuery,
@@ -18,6 +17,9 @@ import {
   setSellerProfile,
 } from "@/store/redux/services/sellerSlice/profileSlice/profileSlice";
 import useInput from "@/hooks/useInput";
+import { useUpdateSellerAccountMutation } from "@/store/redux/services/sellerSlice/profileSlice/profileApiSlice";
+import StatusModal from "../../StatusModal";
+import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
 
 const InformdationDetailsForm = () => {
   const [showModal, setShowModal] = useState(false);
@@ -32,6 +34,7 @@ const InformdationDetailsForm = () => {
     company_address: "",
     focus_area: "",
     valid_id_card_type: "",
+    valid_id_card: {},
     website: "",
     instagram: "",
     facebook: "",
@@ -42,12 +45,16 @@ const InformdationDetailsForm = () => {
 
   const sellerDetails = useAppSelector(selectSellerProfile);
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const {
     data: sellerProfile,
     isLoading: profileLoading,
     error: profileError,
   } = useGetSellerProfileQuery("");
+
+  const [updateAccount, { isLoading, data, error }] =
+    useUpdateSellerAccountMutation();
 
   const {
     data: countries,
@@ -137,18 +144,47 @@ const InformdationDetailsForm = () => {
     }
   }, [sellerProfile, sellerDetails, dispatch]);
 
-  console.log(sellerDetails);
-
-  const formHandler = (e: any) => {
-    e.preventDefault();
+  const handleUpload = (e: any) => {
+    const files = e.target.files;
+    let filesArr: File[] = [];
+    if (files) {
+      filesArr = Array.from(files);
+    }
+    return filesArr[0];
   };
+
+  const formHandler = async (e: any) => {
+    e.preventDefault();
+    setShowModal(true);
+    await updateAccount(formData);
+  };
+
+  console.log(data, error);
+
+  console.log(formData.valid_id_card);
+  let errorMessage = "";
+
+  if (error) {
+    errorMessage = isFetchBaseQueryErrorType(error);
+  }
 
   return (
     <div className=" px-4 py-20 flex flex-col gap-9 items-center justify-center bg-agro-floral-white">
+      {showModal && (
+        <StatusModal
+          onClose={() => setShowModal(false)}
+          loading={isLoading}
+          data={data ? data?.message : ""}
+          dataFunc={() => router.push("/dashboard/seller/account")}
+          error={error ? errorMessage : ""}
+        />
+      )}
+
       <h4 className=" text-xl md:text-2xl xl:text-[40px] font-semibold text-agro-black">
         Your Information Details
       </h4>
       <form
+        onSubmit={formHandler}
         action=""
         className=" flex flex-col gap-7 items-center w-full  sm:w-fit"
       >
@@ -192,7 +228,15 @@ const InformdationDetailsForm = () => {
           </div>
         </div> */}
 
-        <div className="grid md:grid-cols-[200px_1fr] items-center gap-4    ">
+        <CustomInput
+          label="Address:"
+          placeholder={formData.address}
+          key="Address"
+          validation={(val) => val.length > 3}
+          handleValue={(val) => setFormData({ ...formData, address: val })}
+        />
+
+        <div className="w-full sm:w-fit grid md:grid-cols-[200px_1fr] items-center gap-4    ">
           <label
             className="text-sm font-bold md:text-end text-agro-black "
             htmlFor="country"
@@ -210,7 +254,7 @@ const InformdationDetailsForm = () => {
             options={countryOptions}
           />
         </div>
-        <div className="grid md:grid-cols-[200px_1fr] items-center gap-4    ">
+        <div className="grid w-full sm:w-fit md:grid-cols-[200px_1fr] items-center gap-4    ">
           <label
             className="text-sm font-bold md:text-end text-agro-black "
             htmlFor="country"
@@ -228,7 +272,7 @@ const InformdationDetailsForm = () => {
             options={stateOptions}
           />
         </div>
-        <div className="grid md:grid-cols-[200px_1fr] items-center gap-4    ">
+        <div className="w-full sm:w-fit grid md:grid-cols-[200px_1fr] items-center gap-4    ">
           <label
             className="text-sm font-bold md:text-end text-agro-black "
             htmlFor="country"
@@ -246,7 +290,7 @@ const InformdationDetailsForm = () => {
             options={cityOptions}
           />
         </div>
-        
+
         <CustomInput
           label="Company / Business Name:"
           placeholder={formData.company_name}
@@ -277,6 +321,167 @@ const InformdationDetailsForm = () => {
              h-[103px] pl-3 rounded-[4px] bg-white border`}
             placeholder={formData.company_address}
           />
+        </div>
+
+        <div className="grid md:grid-cols-[200px_1fr] sm:ml-24 items-center gap-4">
+          <label className="text-sm font-bold md:text-end w-[200px] ">
+            Focus Area
+          </label>
+          <div className="flex items-center gap-4 w-full flex-wrap sm:w-[409px]">
+            <div className="flex gap-1 items-center">
+              <input
+                className="w-3 h-3 rounded-full bg-white border border-[#ABABAB]"
+                type="radio"
+                onChange={(e) =>
+                  setFormData({ ...formData, focus_area: e.target.value })
+                }
+                value="Sales and Exports"
+                checked={formData.focus_area === "Sales and Exports"}
+              />
+              <label htmlFor="">Sales and Exports</label>
+            </div>
+            <div className="flex  gap-1 items-center">
+              <input
+                className="w-3 h-3 rounded-full bg-white border border-[#ABABAB]"
+                type="radio"
+                onChange={(e) =>
+                  setFormData({ ...formData, focus_area: e.target.value })
+                }
+                value="Farming"
+                checked={formData.focus_area === "Farming"}
+              />
+              <label htmlFor="">Farming </label>
+            </div>
+            <div className="flex gap-1 items-center">
+              <input
+                className="w-3 h-3 rounded-full bg-white border border-[#ABABAB]"
+                type="radio"
+                onChange={(e) =>
+                  setFormData({ ...formData, focus_area: e.target.value })
+                }
+                value="Processing"
+                checked={formData.focus_area === "Processing"}
+              />
+              <label htmlFor="">Processing</label>
+            </div>
+            <div className="flex gap-1 items-center">
+              <input
+                className="w-3 h-3 rounded-full bg-white border border-[#ABABAB]"
+                type="radio"
+                onChange={(e) => {
+                  setFormData({ ...formData, focus_area: e.target.value });
+                }}
+                value="Aggregation and Comodity Exchange"
+                checked={
+                  formData.focus_area === "Aggregation and Comodity Exchange"
+                }
+              />
+              <label htmlFor="">Aggregation and Comodity Exchange </label>
+            </div>
+          </div>
+        </div>
+        <div className="grid md:grid-cols-[200px_1fr] sm:ml-24 items-center gap-4">
+          <label className="text-sm font-bold md:text-end w-[200px] ">
+            Upload Valid ID Card:
+          </label>
+          <div className="flex items-center gap-4 w-full flex-wrap sm:w-[409px]">
+            <div className="flex gap-1 items-center">
+              <span
+                className={`w-3 h-3  flex items-center justify-center rounded-full border border-gray-500`}
+              >
+                <span
+                  className={` ${
+                    formData.valid_id_card_type === "Drivers License"
+                      ? "bg-gray-400"
+                      : "bg-white"
+                  } w-2 h-2 flex self-center rounded-full `}
+                />
+              </span>
+
+              <input
+                className={`hidden`}
+                type={"file"}
+                name="drivers"
+                id="drivers"
+                onChange={(e) => {
+                  const files = handleUpload(e);
+                  setFormData({
+                    ...formData,
+                    valid_id_card_type: "Drivers License",
+                    valid_id_card: files,
+                  });
+                }}
+                checked={formData.focus_area === "Drivers License"}
+              />
+              <label htmlFor="drivers" className="cursor-pointer">
+                Driver&apos;s License
+              </label>
+            </div>
+            <div className="flex gap-1 items-center">
+              <span
+                className={`w-3 h-3  flex items-center justify-center rounded-full border border-gray-500`}
+              >
+                <span
+                  className={` ${
+                    formData.valid_id_card_type === "Voters Card"
+                      ? "bg-gray-400"
+                      : "bg-white"
+                  } w-2 h-2 flex self-center rounded-full `}
+                />
+              </span>
+
+              <input
+                className={`hidden`}
+                type={"file"}
+                name="voters"
+                id="voters"
+                onChange={(e) => {
+                  const files = handleUpload(e);
+                  setFormData({
+                    ...formData,
+                    valid_id_card_type: "Voters Card",
+                    valid_id_card: files,
+                  });
+                }}
+                checked={formData.focus_area === "Voters Card"}
+              />
+              <label htmlFor="voters" className="cursor-pointer">
+                Voter&apos;s Card
+              </label>
+            </div>
+            <div className="flex gap-1 items-center">
+              <span
+                className={`w-3 h-3  flex items-center justify-center rounded-full border border-gray-500`}
+              >
+                <span
+                  className={` ${
+                    formData.valid_id_card_type === "Internation Passport"
+                      ? "bg-gray-400"
+                      : "bg-white"
+                  } w-2 h-2 flex self-center rounded-full `}
+                />
+              </span>
+
+              <input
+                className={`hidden`}
+                type={"file"}
+                name="passport"
+                id="passport"
+                onChange={(e) => {
+                  const files = handleUpload(e);
+                  setFormData({
+                    ...formData,
+                    valid_id_card_type: "Internation Passport",
+                    valid_id_card: files,
+                  });
+                }}
+                checked={formData.focus_area === "International Passport"}
+              />
+              <label htmlFor="passport" className="cursor-pointer">
+                International Passport
+              </label>
+            </div>
+          </div>
         </div>
 
         <CustomInput

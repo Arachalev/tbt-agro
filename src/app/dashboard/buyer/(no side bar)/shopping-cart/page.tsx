@@ -1,12 +1,24 @@
+"use client";
 import CartCard from "@/components/Dashboard/CartCard";
 import CartSubTotal from "@/components/Dashboard/CartSubTotal";
 import React from "react";
+import {
+  useGetCartItemsQuery,
+  useGetCartSummaryQuery,
+} from "@/store/redux/services/cartSlice/cartApiSlice";
 
 const Page = () => {
+  const { data, isLoading, error } = useGetCartItemsQuery("");
+  const { data: sumData, error: sumError } = useGetCartSummaryQuery("");
+
+  console.log(data);
+
+  const cartData = data?.data;
+
   return (
     <div className="pt-10 px-4 pb-40 flex flex-col items-center">
       <div className="">
-        <h4 className="mb-5 self-start text-xl md:text-2xl xl:text-3xl text-agro-black font-semibold overflow-clip">
+        <h4 className="mb-5 h-10 self-start text-xl md:text-2xl xl:text-3xl text-agro-black font-semibold overflow-clip">
           Shopping Cart
         </h4>
         <div className="flex flex-col xl:flex-row gap-5">

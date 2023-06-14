@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../../store";
 
 const initialState = {
   product: [
@@ -15,9 +16,7 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const { id, quantity } = action.payload;
-
       const product = state.product.findIndex((item) => item.id === id);
-
       if (product) {
         state.product[product].quantity += quantity;
       } else {
@@ -26,3 +25,9 @@ const cartSlice = createSlice({
     },
   },
 });
+
+export default cartSlice.reducer;
+
+export const selectOrder = (state: RootState) => state.cart.product;
+
+export const { addToCart } = cartSlice.actions;

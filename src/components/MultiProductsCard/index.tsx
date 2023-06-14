@@ -17,30 +17,37 @@ interface MultiProductsCardProps {
     sellerID: string;
     location: string;
   }[];
+  type: "cropProducts" | "newProducts";
 }
 
 const MultiProductsCard: React.FC<MultiProductsCardProps> = ({
   title,
   products,
+  type,
 }) => {
   const deviceWidth = useAppSelector(selectDeviceWith);
 
   const imgHeight = deviceWidth.width < 640 ? 60 : 114;
   const imgWidth = deviceWidth.width < 640 ? 60 : 132;
 
-
-  /**FIX STYLING FOR NEW ARRIVALS VS CROP PRODUCTS   */
-
+  const newProductsStyling = `gap-2 lg:gap-4 w-fit  md:w-full flex flex-row md:grid md:grid-rows-2 md:grid-flow-col`;
+  const cropProductsStyling = `gap-2 lg:gap-4 w-fit  md:w-full grid  ${
+    products.length < 5 ? "" : "grid-rows-2"
+  } grid-flow-col`;
 
   return (
     <div className="p-2 sm:p-5 rounded-[10px] bg-white w-full h-full ">
       <h4 className=" sm:text-lg  font-bold text-agro-black mb-3">{title}</h4>
       <div
-        className={`gap-2 lg:gap-4 w-fit  md:w-full  ${
-          products.length > 4
-            ? " grid grid-rows-2 grid-flow-col "
-            : " flex flex-row xl:grid md:grid-rows-2 md:grid-flow-col"
-        }`}
+        // className={`gap-2 lg:gap-4 w-fit  md:w-full  ${
+        //   products.length > 4
+        //     ? " grid grid-rows-2 grid-flow-col "
+        //     : " flex flex-row xl:grid md:grid-rows-2 md:grid-flow-col"
+        // }`}
+
+        className={
+          type === "cropProducts" ? cropProductsStyling : newProductsStyling
+        }
       >
         {products.map((item) => {
           return (

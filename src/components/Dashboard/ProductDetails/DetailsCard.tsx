@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
 import PriButton from "@/components/PriButton";
 import Image from "next/image";
@@ -8,6 +8,12 @@ import { GrLinkedinOption } from "react-icons/gr";
 import { TfiFacebook } from "react-icons/tfi";
 import StarRatings from "react-star-ratings";
 import { useRouter } from "next/navigation";
+import { useAddToCartMutation } from "@/store/redux/services/cartSlice/cartApiSlice";
+import useInput from "@/hooks/useInput";
+import StatusModal from "@/components/Forms/StatusModal";
+import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
+import { useAppDispatch } from "@/store/redux/hooks";
+import { addToCart as reduxAddToCart } from "@/store/redux/services/cartSlice/cartSlice";
 
 interface DetailsCardProps {
   img: string;
@@ -36,9 +42,58 @@ const DetailsCard = ({
   ratingsAmount,
   id,
 }: DetailsCardProps) => {
+  const [showModal, setShowModal] = useState(false);
+
+  const [
+    addToCart,
+    { data: addCartData, isLoading: addCartLoading, error: addCartError },
+  ] = useAddToCartMutation();
+
   const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  const {
+    value,
+    hasError,
+    enteredInputHandler,
+    onBlurHandler,
+    onFocusHandler,
+    reset,
+  } = useInput((val) => parseInt(val) > minimumPurchase);
+
+  const addToCartHandler = async () => {
+    setShowModal(true);
+    await addToCart({ product_id: id, quantity: parseInt(value.value) });
+
+    if (addCartData) {
+      // router.push("/dashboard/buyer/added-to-cart");
+
+      console.log("cart updated");
+
+      // dispatch(reduxAddToCart({}));
+    }
+  };
+
+  let errorMessage = "";
+
+  if (addCartError) {
+    errorMessage = isFetchBaseQueryErrorType(addCartError);
+  }
+
+  console.log(addCartData, addCartError);
+
   return (
     <div className="flex flex-col sm:flex-row items-center    gap-9  w-full xl:w-[857px] p-5 sm:p-10 bg-white rounded-[10px]">
+      {showModal && (
+        <StatusModal
+          onClose={() => setShowModal(false)}
+          loading={addCartLoading}
+          data={addCartData ? addCartData?.message : ""}
+          dataFunc={() => router.push("/dashboard/buyer/account")}
+          error={addCartError ? errorMessage : ""}
+        />
+      )}
+
       <div className="">
         <Image
           src={img}
@@ -88,9 +143,14 @@ const DetailsCard = ({
                 Quantity needed
               </label>
               <input
+                onBlur={onBlurHandler}
+                onChange={enteredInputHandler}
+                value={value.value}
+                onFocus={onFocusHandler}
                 className=" px-2 placeholder:text-agro-black w-[210px] h-[48px] border border-gray2 rounded-[4px] bg-agro-gray "
                 type="text"
-                placeholder="200"
+                placeholder={`${minimumPurchase}`}
+                // defaultValue={minimumPurchase}
               />
             </div>
           </form>
@@ -107,7 +167,8 @@ const DetailsCard = ({
           <PriButton
             text={"Add to Cart"}
             className="w-[100px] h-8 font-bold text-sm"
-            onClick={() => router.push("/dashboard/buyer/added-to-cart")}
+            onClick={() => addToCartHandler()}
+            type="button"
           />
         </div>
       </div>

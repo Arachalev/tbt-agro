@@ -130,7 +130,7 @@ const AddProductForm = () => {
     reset: resetInfo,
   } = useInput((val) => val.length > 3);
 
-  // Func to handle Image upload
+  // Function to handle Image upload
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
 

@@ -27,7 +27,7 @@ const NewArrivalsProductCard: React.FC<NewArrivalsProductCardProps> = ({
   return (
     <div
       onClick={() => router.push(`/dashboard/buyer/product-details/${id}`)}
-      className="sm:w-[200px] h-[280px] rounded-[10px] overflow-clip"
+      className="sm:w-[200px] h-[280px] rounded-[10px] overflow-clip cursor-pointer"
     >
       <div className="w-full h-[169px] p-4 flex items-center justify-center bg-[#f6f6f6] rounded-t-[10px]">
         <Image

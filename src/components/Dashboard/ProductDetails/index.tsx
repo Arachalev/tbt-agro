@@ -26,7 +26,7 @@ const ProductDetails = () => {
     minimum_purchase: number;
   } = data?.data;
 
-  console.log(product);
+  // console.log(product);
 
   return isLoading ? (
     <StatusModal

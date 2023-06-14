@@ -3,13 +3,14 @@ import ProfileIcon from "@/components/Icons/ProfileIcon";
 import OrderIcon from "@/components/Icons/OrderIcon";
 import LogOutIcon from "@/components/Icons/LogOutIcon";
 import SupportIcon from "@/components/Icons/SupportIcon";
+import DashboardIcon from "@/components/Icons/DashboardIcon";
 
 import AccountIcon from "@/components/Icons/AccountIcon";
 
 export const sellerBarData = [
   {
-    Icon: ProfileIcon,
-    name: "My Account",
+    Icon: DashboardIcon,
+    name: "Dashboard",
     href: "/dashboard/seller/account",
   },
   {
@@ -31,6 +32,11 @@ export const sellerBarData = [
     Icon: ProfileIcon,
     name: "Payment Management",
     href: "/dashboard/seller/payment-management",
+  },
+  {
+    Icon: AccountIcon,
+    name: "My Account",
+    href: "/dashboard/seller/seller-information",
   },
   {
     Icon: LogOutIcon,
