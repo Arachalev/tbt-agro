@@ -42,7 +42,8 @@ const Page = () => {
               </div>
             </div>
           </div>
-          <OrderSummary cost={1000} shippingFee={10000} />
+          <OrderSummary />
+          {/* <OrderSummary cost={1000} shippingFee={10000} /> */}
         </div>
       </div>
     </div>

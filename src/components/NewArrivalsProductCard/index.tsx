@@ -42,7 +42,7 @@ const NewArrivalsProductCard: React.FC<NewArrivalsProductCardProps> = ({
         <h4 className=" sm:text-lg text-agro-black leading-none overflow-clip">
           {name}
         </h4>
-        <h3 className=" font-bold text-lg my-1">{`₦ ${price}`}</h3>
+        <h3 className=" font-bold text-lg my-1">{`₦ ${price.toLocaleString()}`}</h3>
         <p className=" text-sm text-[#ABABAB] font-medium leading-none overflow-clip">
           {sellerID}
         </p>

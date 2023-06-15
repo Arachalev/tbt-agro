@@ -68,7 +68,7 @@ const DetailsCard = ({
     if (addCartData) {
       // router.push("/dashboard/buyer/added-to-cart");
 
-      console.log("cart updated");
+      console.log(addCartData);
 
       // dispatch(reduxAddToCart({}));
     }
@@ -80,7 +80,7 @@ const DetailsCard = ({
     errorMessage = isFetchBaseQueryErrorType(addCartError);
   }
 
-  console.log(addCartData, addCartError);
+  // console.log(addCartData, addCartError);
 
   return (
     <div className="flex flex-col sm:flex-row items-center    gap-9  w-full xl:w-[857px] p-5 sm:p-10 bg-white rounded-[10px]">
@@ -89,7 +89,7 @@ const DetailsCard = ({
           onClose={() => setShowModal(false)}
           loading={addCartLoading}
           data={addCartData ? addCartData?.message : ""}
-          dataFunc={() => router.push("/dashboard/buyer/account")}
+          dataFunc={() => router.back()}
           error={addCartError ? errorMessage : ""}
         />
       )}

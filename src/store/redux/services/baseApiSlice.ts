@@ -17,4 +17,5 @@ export const baseApiSlice = createApi({
   reducerPath: "tbtAgro",
   baseQuery,
   endpoints: (builder) => ({}),
+  tagTypes: ["cartData"],
 });

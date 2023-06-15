@@ -45,14 +45,13 @@ const ProductDetails = () => {
             : "https://picsum.photos/300/350"
         }
         sellerId={product.user.seller_id}
-        // RAW CASHEW NUTS – 30,000KG₦700,000 / MT
         name={`${product.name.toUpperCase()} - ${product.quantity}${
           product.unit
         }`}
         category={product.category.name}
         availableQuantity={`${product.quantity} ${product.unit}`}
         location={product.location}
-        cost={`₦${product.sale_price} / ${product.unit}`}
+        cost={`₦${product.sale_price.toLocaleString()} / ${product.unit}`}
         minimumPurchase={product.minimum_purchase}
         ratings={3.5}
         ratingsAmount={2389}

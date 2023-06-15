@@ -30,7 +30,7 @@ const Page = () => {
             }) => (
               <NewArrivalsProductCard
                 key={item.id}
-                id = {item.id}
+                id={item.id}
                 image={
                   item.image ? item.image[0] : "https://picsum.photos/200/300"
                 }

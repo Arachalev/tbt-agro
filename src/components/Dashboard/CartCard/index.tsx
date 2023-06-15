@@ -5,17 +5,17 @@ import Image from "next/image";
 import StarRatings from "react-star-ratings";
 import { useDeleteCartItemMutation } from "@/store/redux/services/cartSlice/cartApiSlice";
 
-interface CartCardProps {
+export interface CartCardProps {
   img: string;
   sellerId: string;
   name: string;
   category: string;
-  availableQuantity: string;
-  location: string;
   cost: string;
   minimumPurchase: string;
   ratings: number;
   ratingsAmount: number;
+  quantity: number;
+  id: number;
 }
 
 const CartCard = ({
@@ -23,13 +23,20 @@ const CartCard = ({
   sellerId,
   name,
   category,
-  availableQuantity,
-  location,
+  quantity,
   cost,
   minimumPurchase,
   ratings,
   ratingsAmount,
+  id,
 }: CartCardProps) => {
+  const [deleteCartItem, { isLoading, data, error }] =
+    useDeleteCartItemMutation();
+
+  const handleDelete = async () => {
+    await deleteCartItem(id);
+  };
+
   return (
     <div className=" 2xl:w-[967px] p-10 bg-white rounded-[10px] flex flex-col md:flex-row justify-between">
       <div className="flex flex-col sm:flex-row gap-9 ">
@@ -62,24 +69,18 @@ const CartCard = ({
           <p className="font-medium text-agro-black">Category : {category}</p>
 
           <div>
-            <form action="">
-              <div className=" flex flex-col gap-2">
-                <label htmlFor="" className="text-sm font-semibold">
-                  Quantity needed
-                </label>
-                <input
-                  className=" px-2 placeholder:text-agro-black w-[210px] h-[48px] border border-gray2 rounded-[4px] bg-agro-gray "
-                  type="text"
-                  placeholder="200"
-                />
-              </div>
-            </form>
+            <div className=" flex flex-col gap-2">
+              <h4 className="text-sm font-semibold">Quantity needed</h4>
+              <p className=" px-2 flex items-center placeholder:text-agro-black w-[210px] h-[48px]  border border-gray2 rounded-[4px] bg-agro-gray ">
+                {quantity ?? "---"}
+              </p>
+            </div>
             <p className="text-gray2 mt-2 font-medium ">
               Minimum purchase quantity : {minimumPurchase}
             </p>
           </div>
           <div className="mt-3 text-agro-green text-xs font-medium flex items-center gap-5">
-            <button>Delete</button>
+            <button onClick={() => handleDelete()}>Delete</button>
             <span className="border-r border-r-agro-green h-4" />
             <button>Save for later</button>
             <span className="border-r border-r-agro-green h-4" />

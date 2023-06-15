@@ -31,6 +31,11 @@ import { useGetBuyerProfileQuery } from "@/store/redux/services/buyerSlice/profi
 
 import useInput from "@/hooks/useInput";
 import { useSearchProductsMutation } from "@/store/redux/services/searchSlice/searchApiSlice";
+import { useGetCartItemsQuery } from "@/store/redux/services/cartSlice/cartApiSlice";
+import {
+  addToCart,
+  selectCart,
+} from "@/store/redux/services/cartSlice/cartSlice";
 
 const WebNav = () => {
   const [showSettings, setShowSettings] = useState<boolean>(false);
@@ -47,6 +52,8 @@ const WebNav = () => {
     { isLoading: searchLoading, error: searchError, data: searchData },
   ] = useSearchProductsMutation();
 
+  const { data: cartData } = useGetCartItemsQuery("");
+
   useEffect(() => {
     const user = sessionStorage.getItem("userType");
 
@@ -58,8 +65,13 @@ const WebNav = () => {
   const dispatch = useAppDispatch();
   const authorized = useAppSelector(selectAuthToken);
   const profile = useAppSelector(selectBuyerProfile);
+  const cart = useAppSelector(selectCart);
 
   const router = useRouter();
+ 
+  useEffect(() => {
+    dispatch(addToCart(cartData?.data));
+  }, [cartData, dispatch]);
 
   useEffect(() => {
     if (data) {
@@ -176,7 +188,7 @@ const WebNav = () => {
           >
             <Cart /> <p className="text-white ">Cart</p>
             <span className="absolute top-0  left-2 text-agro-yellow font-medium">
-              0
+              {cart ? cart.length : 0}
             </span>
           </Link>
         </div>

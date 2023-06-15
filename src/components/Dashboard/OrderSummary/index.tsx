@@ -1,21 +1,32 @@
+"use client";
+
 import React from "react";
-
 import Link from "next/link";
+import { useGetCartSummaryQuery } from "@/store/redux/services/cartSlice/cartApiSlice";
 
-interface OrderSummaryProps {
-  cost: number;
-  shippingFee: number;
-}
+// interface OrderSummaryProps {
+//   cost: number;
+//   shippingFee: number;
+// }
 
-const OrderSummary = ({ cost, shippingFee }: OrderSummaryProps) => {
+const OrderSummary = () => {
+  const { data, isLoading, error } = useGetCartSummaryQuery("");
+
+  const summaryData = data?.data;
+
+  console.log(summaryData);
   return (
     <div className=" h-fit min-w-[310px] px-5 pt-6 pb-8 flex flex-col bg-white rounded-[10px] overflow-clip">
       <h4 className="font-bold text-agro-black mb-5">Order Summary</h4>
       <p className=" font-medium text-sm flex items-center justify-between mb-4">
-        Items: <span> ₦{cost} </span>
+        Items: <span>{summaryData ? summaryData.item_count : 0}</span>
       </p>
       <p className=" font-medium text-sm flex items-center justify-between">
-        Shipping fee: <span>₦{shippingFee}</span>
+        Total :{" "}
+        <span>
+          ₦{summaryData ? summaryData.sub_total.toLocaleString() : "----"}
+        </span>
+        {/* Shipping fee: <span>₦{shippingFee}</span> */}
       </p>
       <Link
         href="/dashboard/buyer/confirmed-order"

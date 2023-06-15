@@ -13,6 +13,7 @@ const cartApiSlice = baseApiSlice.injectEndpoints({
         body: data,
         method: "POST",
       }),
+      invalidatesTags: ["cartData"],
     }),
     getCartItems: builder.query({
       query: () => ({
@@ -20,6 +21,7 @@ const cartApiSlice = baseApiSlice.injectEndpoints({
         url: "/user/cart/get-cart-items",
         method: "GET",
       }),
+      providesTags: ["cartData"],
     }),
 
     getCartSummary: builder.query({
@@ -28,6 +30,7 @@ const cartApiSlice = baseApiSlice.injectEndpoints({
         url: "/user/cart/get-cart-summary",
         method: "GET",
       }),
+      providesTags: ["cartData"],
     }),
 
     deleteCartItem: builder.mutation({
@@ -36,6 +39,7 @@ const cartApiSlice = baseApiSlice.injectEndpoints({
         url: `/user/cart/delete/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["cartData"],
     }),
   }),
 });
