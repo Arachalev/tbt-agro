@@ -30,7 +30,9 @@ const Page = () => {
   } = useGetCartSummaryQuery("");
 
   // To fetch product detail so as to get the unit and minimum purchase quantity
-  const getProdDetails = async (id: number) => {
+  const getProdDetails = async (
+    id: number
+  ): Promise<{ unit: string; minimumPurchase: number }> => {
     let res;
     const myHeaders = new Headers();
     myHeaders.append("Accept", "application/json");
@@ -45,8 +47,8 @@ const Page = () => {
         headers: myHeaders,
       });
     } catch (error) {
-      // console.log(error);
-      return error;
+      console.log(error);
+      // return error;
     }
     if (res) {
       const data = await res.json();
@@ -55,19 +57,37 @@ const Page = () => {
         minimumPurchase: data?.data?.minimum_purchase,
       };
     }
+    return {
+      unit: "",
+      minimumPurchase: 0,
+    };
   };
 
   useEffect(() => {
     // to handle the conversion of the backend endpoint data to suit the UI in the
     // front end, and also fetch some more properties that are not sent from the backend
 
-    const handleProductData = async (data) => {
+    const handleProductData = async (
+      data: {
+        quantity: number;
+        id: number;
+        product: {
+          images: string[];
+          user: { seller_id: string };
+          category: { name: string };
+          name: string;
+          sale_price: number;
+          id: number;
+          quantity: number;
+        };
+      }[]
+    ) => {
       setLoadingData(true);
       let tempCartData: CartCardProps[] = [];
       setLoadingData(true);
 
       await Promise.all(
-        data.data.map(
+        data.map(
           async (item: {
             quantity: number;
             id: number;
@@ -109,7 +129,7 @@ const Page = () => {
 
     if (data) {
       dispatch(addToCart(data.data));
-      handleProductData(data);
+      handleProductData(data.data);
     }
   }, [data, dispatch]);
 
