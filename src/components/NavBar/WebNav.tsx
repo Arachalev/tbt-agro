@@ -14,7 +14,10 @@ import { IoIosArrowDown } from "react-icons/io";
 import { navLinksData } from "@/store/DummyData/navLinks";
 import { BsBell } from "react-icons/bs";
 import Cart from "../Cart";
-import { selectAuthToken } from "@/store/redux/services/authSlice/authSlice";
+import {
+  getCredentials,
+  selectAuthToken,
+} from "@/store/redux/services/authSlice/authSlice";
 import { useAppDispatch, useAppSelector } from "@/store/redux/hooks";
 import profileImg from "../../../public/images/profile.png";
 import arrowImg from "../../../public/images/arrowDown.png";
@@ -66,9 +69,10 @@ const WebNav = () => {
   const authorized = useAppSelector(selectAuthToken);
   const profile = useAppSelector(selectBuyerProfile);
   const cart = useAppSelector(selectCart);
+  const user = useAppSelector(selectAuthToken);
 
   const router = useRouter();
- 
+
   useEffect(() => {
     dispatch(addToCart(cartData?.data));
   }, [cartData, dispatch]);
@@ -79,7 +83,11 @@ const WebNav = () => {
     }
   }, [data, dispatch]);
 
-  const user = sessionStorage.getItem("userType");
+  useEffect(() => {
+    dispatch(getCredentials());
+  }, []);
+
+  // const user = sessionStorage.getItem("userType");
 
   const {
     value,
@@ -95,9 +103,7 @@ const WebNav = () => {
     await searchProducts({ input: value.value });
   };
 
-  // console.log(searchData, searchError);
-
-  return user === "Seller" ? (
+  return user.userType === "Seller" ? (
     <SellerNav />
   ) : (
     <nav className="top-0 absolute z-50 w-full ">

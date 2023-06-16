@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 
 const initialState = {
-  token: null,
-  userType: null,
+  token: "",
+  userType: "",
 };
 
 const authSlice = createSlice({
@@ -18,15 +18,25 @@ const authSlice = createSlice({
       sessionStorage.setItem("userType", userType);
     },
 
+    getCredentials: (state) => {
+      const token = sessionStorage.getItem("token");
+      const user = sessionStorage.getItem("userType");
+
+      if (user && token) {
+        state.token = token;
+        state.userType = user;
+      }
+    },
+
     logOut: (state) => {
       sessionStorage.clear();
-      state.token = null;
-      state.userType = null;
+      state.token = "";
+      state.userType = "";
     },
   },
 });
 
-export const { setCredentials, logOut } = authSlice.actions;
+export const { setCredentials, getCredentials, logOut } = authSlice.actions;
 
 export default authSlice.reducer;
 
