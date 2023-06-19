@@ -48,7 +48,6 @@ const Page = () => {
 
   // console.log(products?.data?.data);
 
-
   return (
     <div className="  min-h-[calc(100vh-96px)] p-4 sm:p-8 xl:p-[72px] ">
       <div className=" pt-8  ">
@@ -70,13 +69,13 @@ const Page = () => {
             data={products ? tableData : []}
           />
         </div>
-        <div className="self-start sm:w-[420px] mt-12">
+        {/* <div className="self-start sm:w-[420px] mt-12">
           <TopRankingMultiProductsCard
             products={topRankingMultiProductsCardData.products}
             href={topRankingMultiProductsCardData.href}
             title={topRankingMultiProductsCardData.title}
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );

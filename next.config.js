@@ -10,6 +10,11 @@ const nextConfig = {
         hostname: "picsum.photos/**",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "test.tbt.com.ng/**",
+        port: "",
+      },
     ],
   },
 };

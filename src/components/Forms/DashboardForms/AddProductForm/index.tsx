@@ -15,12 +15,16 @@ import { useGetAllBuyerLeadsQuery } from "@/store/redux/services/sellerSlice/buy
 import Select from "react-select";
 import { useRouter } from "next/navigation";
 import { RiCloseLine } from "react-icons/ri";
+import { AiFillPlusSquare } from "react-icons/ai";
 
 const AddProductForm = () => {
   const [showModal, setShowModal] = useState(false);
   const [categoryID, setCategoryID] = useState(1);
 
-  const [images, setImages] = useState<{ images: File[]; fileName: string[] }>({
+  const [images, setImages] = useState<{
+    images: File[];
+    fileName: string[];
+  }>({
     images: [],
     fileName: [],
   });
@@ -136,12 +140,23 @@ const AddProductForm = () => {
 
     let names: string[] = [];
 
-    let uploadedImages;
     if (files) {
+      let uploadedImages;
       uploadedImages = Array.from(files);
+      console.log(uploadedImages);
       uploadedImages.forEach((item) => names.push(item.name));
       setImages({ images: uploadedImages, fileName: names });
     }
+
+    // if (files) {
+    // let uploadedImages: (File | null)[] = [];
+    // for (let i = 0; i < files.length; i++) {
+    //   uploadedImages.push(files.item(i));
+    // }
+    // let i = 0;
+    // while (i++ > files.length) {
+    //   uploadedImages[i] = files.item(i);
+    // }
   };
 
   // Delete one uploaded file
@@ -149,7 +164,11 @@ const AddProductForm = () => {
     let files = images.images;
     let names: string[] = [];
 
-    let filteredFiles = files.filter((item) => files.indexOf(item) !== id);
+    const uploadedImages = Array.from(files);
+
+    let filteredFiles = uploadedImages.filter(
+      (item) => uploadedImages.indexOf(item) !== id
+    );
     filteredFiles.forEach((item) => names.push(item.name));
 
     setImages({
@@ -162,7 +181,7 @@ const AddProductForm = () => {
     e.preventDefault();
     setShowModal(true);
 
-    const formData = {
+    const formInfo = {
       name: nameValue.value,
       location: locationValue.value,
       sale_price: salePriceValue.value,
@@ -173,18 +192,41 @@ const AddProductForm = () => {
       quantity: quantityValue.value,
       other_info: infoValue.value,
       category_id: categoryID,
-      "images[]": images.images,
+      // "images[]": images.images[0],
     };
 
+    let formData: any = new FormData();
+
+    const formNamesArray = Object.keys(formInfo);
+
+    formNamesArray.map((item) =>
+      formData.append(item, formInfo[item as keyof typeof formInfo])
+    );
+
+    // Append images in formData
+    images.images.forEach((item) => {
+      formData.append("images[]", item);
+    });
+
+    // for (var pair of formData.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
+
+    // console.log(formInfo);
+
+    // JSON.stringify
+
     await createProduct(formData);
+    // await createProduct(JSON.stringify(formInfo));
   };
 
-  // console.log(data, error);
+  console.log(data, error);
   let errorMessage = "";
 
   if (error) {
     errorMessage = isFetchBaseQueryErrorType(error);
   }
+
   return (
     <div className="2xl:w-[1300px] 2xl:mx-auto">
       {showModal && (
@@ -239,16 +281,37 @@ const AddProductForm = () => {
                   </span>
                 </span>
               ))}
+              <div className="w-fit flex items-center">
+                <label
+                  htmlFor="file"
+                  className="flex items-center gap-2 bg-[#D4E6ED] h-16 px-5 rounded-[4px] cursor-pointer"
+                >
+                  <Image src={upload} alt="upload icon" />
+                  <p className="text-gray2">
+                    {/* Drag & Drop your product images or Browse. */}
+                    Upload more images.
+                  </p>
+                </label>
+                <input
+                  type="file"
+                  onChange={handleImageUpload}
+                  name="file"
+                  id="file"
+                  multiple
+                  className="hidden"
+                />
+              </div>
             </div>
           ) : (
             <div>
               <label
                 htmlFor="file"
-                className="flex items-center gap-2 bg-[#D4E6ED] h-16 px-5 rounded-[4px]"
+                className="flex items-center gap-2 bg-[#D4E6ED] h-16 px-5 rounded-[4px] cursor-pointer"
               >
                 <Image src={upload} alt="upload icon" />
                 <p className="text-gray2">
-                  Drag & Drop your product images or Browse.
+                  {/* Drag & Drop your product images or Browse. */}
+                  Browse for your product images.
                 </p>
               </label>
               <input
@@ -481,5 +544,4 @@ const AddProductForm = () => {
     </div>
   );
 };
-
 export default AddProductForm;

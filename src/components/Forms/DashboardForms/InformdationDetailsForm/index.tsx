@@ -23,7 +23,25 @@ import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
 
 const InformdationDetailsForm = () => {
   const [showModal, setShowModal] = useState(false);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    first_name: string;
+    last_name: string;
+    address: string;
+    country_id: string;
+    state_id: string;
+    city_id: string;
+    company_name: string;
+    company_address: string;
+    focus_area: string;
+    valid_id_card_type: string;
+    valid_id_card: File;
+    website: string;
+    instagram: string;
+    facebook: string;
+    linkedin: string;
+    twitter: string;
+    reason_for_change_request: string;
+  }>({
     first_name: "",
     last_name: "",
     address: "",
@@ -34,7 +52,7 @@ const InformdationDetailsForm = () => {
     company_address: "",
     focus_area: "",
     valid_id_card_type: "",
-    valid_id_card: {},
+    valid_id_card: new File([""], "filename"),
     website: "",
     instagram: "",
     facebook: "",
@@ -144,24 +162,50 @@ const InformdationDetailsForm = () => {
     }
   }, [sellerProfile, sellerDetails, dispatch]);
 
-  const handleUpload = (e: any) => {
+  const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    let filesArr: File[] = [];
+    // let filesArr: File[] = [];
     if (files) {
-      filesArr = Array.from(files);
+      // console.log(files[0]);
+      // filesArr = Array.from(files);
+      return files[0];
+    } else {
+      return new File([""], "filename");
     }
-    return filesArr[0];
+    // return filesArr[0];
   };
 
   const formHandler = async (e: any) => {
     e.preventDefault();
     setShowModal(true);
+
+    const form: any = new FormData();
+
+    const formNamesArray = Object.keys(formData);
+
+    console.log(formNamesArray);
+
+    formNamesArray.map((item) => {
+      if (item !== "valid_id_card") {
+        form.append(item, formData[item as keyof typeof formData]);
+      }
+    });
+
+    form.append("valid_id_card", formData.valid_id_card);
+
+    for (var pair of form.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
+
+    // console.log(formData.valid_id_card);
     await updateAccount(formData);
   };
 
   console.log(data, error);
 
-  console.log(formData.valid_id_card);
+  // console.log(formData);
+
+  // console.log(formData.valid_id_card);
   let errorMessage = "";
 
   if (error) {

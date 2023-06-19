@@ -1,7 +1,8 @@
 import { baseApiSlice } from "../../baseApiSlice";
 
 const myHeaders = new Headers();
-myHeaders.append("Accept", "application/json");
+myHeaders.append("Accept", "*/*");
+// myHeaders.append("Accept", "application/json");
 myHeaders.append("Content-Type", "application/json");
 
 const profileApiSlice = baseApiSlice.injectEndpoints({

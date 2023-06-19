@@ -4,17 +4,25 @@ const myHeaders = new Headers();
 myHeaders.append("Accept", "application/json");
 myHeaders.append("Content-Type", "application/json");
 
+const createProdHeaders = new Headers();
+
+createProdHeaders.append("Accept", "*/*");
+// createProdHeaders.append("Accept", "application/json");
+// createProdHeaders.append("Content-Type", "multipart/form-data");
+// createProdHeaders.append("Accept-Encoding", "multipart/form-data");
+
+
 const productApiSlice = baseApiSlice.injectEndpoints({
   endpoints: (builder) => ({
     createProduct: builder.mutation({
       query: (data) => ({
-        headers: myHeaders,
+        headers: createProdHeaders,
         url: "/seller/product/create",
         body: data,
         method: "POST",
       }),
     }),
-    updateProduct: builder.mutation({
+    updateProduct: builder.mutation({ 
       query: (data) => ({
         headers: myHeaders,
         url: "/seller/product/update",

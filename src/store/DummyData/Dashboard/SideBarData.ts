@@ -13,21 +13,21 @@ export const sellerBarData = [
     name: "Dashboard",
     href: "/dashboard/seller/account",
   },
-  {
-    Icon: OrderIcon,
-    name: "Products",
-    href: "/dashboard/seller/products",
-  },
+  // {
+  //   Icon: OrderIcon,
+  //   name: "Products",
+  //   href: "/dashboard/seller/products",
+  // },
   {
     Icon: OrderIcon,
     name: "Orders",
     href: "/dashboard/seller/orders",
   },
-  {
-    Icon: SupportIcon,
-    name: "Support",
-    href: "/dashboard/seller/support",
-  },
+  // {
+  //   Icon: SupportIcon,
+  //   name: "Support",
+  //   href: "/dashboard/seller/support",
+  // },
   {
     Icon: ProfileIcon,
     name: "Payment Management",

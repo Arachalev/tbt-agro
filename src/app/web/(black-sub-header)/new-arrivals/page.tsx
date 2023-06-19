@@ -3,8 +3,6 @@
 import React from "react";
 
 import NewArrivalsProductCard from "@/components/NewArrivalsProductCard";
-import { newArrivalsData } from "@/store/DummyData/multiProductsCard";
-import getUniqueID from "@/hooks/getUniqueID";
 import { useGetAllProductsQuery } from "@/store/redux/services/productsSlice/productsApiSlice";
 import StatusModal from "@/components/Forms/StatusModal";
 
@@ -25,14 +23,16 @@ const Page = () => {
               location: string;
               user: { seller_id: string };
               name: string;
-              image: string;
+              images: { image_url: string }[];
               tbt_price: number;
             }) => (
               <NewArrivalsProductCard
                 key={item.id}
                 id={item.id}
                 image={
-                  item.image ? item.image[0] : "https://picsum.photos/200/300"
+                  item.images.length > 0
+                    ? item.images[0].image_url
+                    : "https://picsum.photos/200/300"
                 }
                 name={item.name}
                 price={item.tbt_price}
