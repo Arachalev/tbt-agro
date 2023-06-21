@@ -15,8 +15,16 @@ const initialState: {
       quantity: number;
     };
   }[];
+  cartSummary: {
+    total: number;
+    count: number;
+  };
 } = {
   product: [],
+  cartSummary: {
+    total: 0,
+    count: 0,
+  },
 };
 
 const cartSlice = createSlice({
@@ -25,17 +33,18 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const data = action.payload;
-      // const product = state.product.findIndex((item) => item.id === data.id);
-      // if (product) {
-      // state.product[product].quantity += quantity;
       state.product = data;
-      // }
+    },
+    setSummary: (state, action) => {
+      const data = action.payload;
+      state.cartSummary.count = data.count;
+      state.cartSummary.total = data.total;
     },
   },
 });
 
 export default cartSlice.reducer;
 
-export const selectCart = (state: RootState) => state.cart.product;
+export const selectCart = (state: RootState) => state.cart;
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, setSummary } = cartSlice.actions;

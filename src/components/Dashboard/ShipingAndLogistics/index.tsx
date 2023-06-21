@@ -14,7 +14,7 @@ const ShipingAndLogistics = () => {
         <div className="flex items-center gap-2">
           <FaRegCheckCircle className="text-agro-green text-xl  " />{" "}
           <p className="font-semibold  text-sm sm:text-base text-agro-black">
-            2. SHIPPING & LOGISTICS
+            1. SHIPPING & LOGISTICS
           </p>
         </div>
         <button
@@ -208,7 +208,7 @@ const ShipingAndLogistics = () => {
         <div className="flex items-center gap-2">
           <FaRegCheckCircle className="text-agro-green text-xl  " />{" "}
           <p className="font-semibold  text-sm sm:text-base  text-agro-black">
-            2. SHIPPING & LOGISTICS
+            1. SHIPPING & LOGISTICS
           </p>
         </div>
         <button

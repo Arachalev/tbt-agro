@@ -62,7 +62,6 @@ const QuotationCard = () => {
             <Link
               href="/web/request-for-quotation-buyer"
               className="col-span-2 py-1 px-4 mt-3 justify-self-center bg-agro-yellow rounded-[4px] font-bold text-agro-black"
-              onClick={function () {}}
             >
               Request for Quotation
             </Link>

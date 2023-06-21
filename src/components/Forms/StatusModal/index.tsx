@@ -26,7 +26,10 @@ const StatusModal = ({
       // onClick={(e) => {
       //   e.stopPropagation();
       // }}
-      onClick={() => onClose()}
+      onClick={(e) => {
+        e.stopPropagation();
+        // onClose();
+      }}
       className="fixed top-0 left-0 right-0 bg-agro-yellow/70 z-[10000] w-full h-full min-h-screen flex items-center justify-center"
     >
       {error && (

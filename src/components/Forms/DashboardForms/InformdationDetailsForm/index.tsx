@@ -172,33 +172,29 @@ const InformdationDetailsForm = () => {
     } else {
       return new File([""], "filename");
     }
-    // return filesArr[0];
   };
 
   const formHandler = async (e: any) => {
     e.preventDefault();
     setShowModal(true);
 
-    const form: any = new FormData();
+    const form = new FormData();
 
     const formNamesArray = Object.keys(formData);
 
     console.log(formNamesArray);
 
     formNamesArray.map((item) => {
-      if (item !== "valid_id_card") {
-        form.append(item, formData[item as keyof typeof formData]);
-      }
+      form.append(`${item}`, formData[item as keyof typeof formData]);
     });
 
     form.append("valid_id_card", formData.valid_id_card);
 
-    for (var pair of form.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
+    // for (let pair of form.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
 
-    // console.log(formData.valid_id_card);
-    await updateAccount(formData);
+    await updateAccount(form);
   };
 
   console.log(data, error);

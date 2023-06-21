@@ -22,6 +22,7 @@ const Page = () => {
 
   const buyerProfile = useAppSelector(selectBuyerProfile);
 
+  console.log(data);
 
   return (
     <div className="pt-8 px-5 pb-40">

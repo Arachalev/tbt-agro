@@ -194,7 +194,7 @@ const WebNav = () => {
           >
             <Cart /> <p className="text-white ">Cart</p>
             <span className="absolute top-0  left-2 text-agro-yellow font-medium">
-              {cart ? cart.length : 0}
+              {cart?.product ? cart.product.length : 0}
             </span>
           </Link>
         </div>
@@ -202,11 +202,11 @@ const WebNav = () => {
 
       <div className="bg-agro-yellow  flex flex-row items-center justify-between h-16 px-4 xl:px-20">
         <div className="flex flex-row gap-1 md:gap-2 lg:gap-3 xl:gap-6">
-          <button className="flex flex-row items-center gap-1">
+          {/* <button className="flex flex-row items-center gap-1">
             <RxHamburgerMenu />
             <p className="m-0 font-medium text-xs lg:text-sm">Categories</p>
             <IoIosArrowDown className="lg:text-lg" />
-          </button>
+          </button> */}
           {navLinksData.map((item) => (
             <Link
               className="text-agro-black text-xs lg:text-sm font-medium "

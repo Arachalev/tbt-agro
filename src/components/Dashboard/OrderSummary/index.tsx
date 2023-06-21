@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { useGetCartSummaryQuery } from "@/store/redux/services/cartSlice/cartApiSlice";
-
+import { useAppDispatch } from "@/store/redux/hooks";
+import { setSummary } from "@/store/redux/services/cartSlice/cartSlice";
 // interface OrderSummaryProps {
 //   cost: number;
 //   shippingFee: number;
@@ -14,7 +15,18 @@ const OrderSummary = () => {
 
   const summaryData = data?.data;
 
-  console.log(summaryData);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    summaryData &&
+      dispatch(
+        setSummary({
+          count: summaryData.item_count,
+          total: summaryData.sub_total,
+        })
+      );
+  }, [summaryData, dispatch]);
+
   return (
     <div className=" h-fit min-w-[310px] px-5 pt-6 pb-8 flex flex-col bg-white rounded-[10px] overflow-clip">
       <h4 className="font-bold text-agro-black mb-5">Order Summary</h4>

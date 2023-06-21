@@ -2,8 +2,9 @@ import { baseApiSlice } from "../../baseApiSlice";
 
 const myHeaders = new Headers();
 myHeaders.append("Accept", "*/*");
-// myHeaders.append("Accept", "application/json");
+myHeaders.append("Accept", "application/json");
 myHeaders.append("Content-Type", "application/json");
+// myHeaders.append("Content-Type", "multipart/form-data");
 
 const profileApiSlice = baseApiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -16,7 +17,7 @@ const profileApiSlice = baseApiSlice.injectEndpoints({
     }),
     updateSellerAccount: builder.mutation({
       query: (data) => ({
-        headers: myHeaders,
+        // headers: myHeaders,
         url: "/seller/update-profile",
         body: data,
         method: "POST",
