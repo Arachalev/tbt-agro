@@ -11,8 +11,9 @@ interface TopRankingProductsCardProps {
   name: string;
   price: number;
   amount: number;
-  score: number;
+  // score: number;
   rating: number;
+  id: number;
 }
 
 const TopRankingProductsCard: React.FC<TopRankingProductsCardProps> = ({
@@ -20,25 +21,30 @@ const TopRankingProductsCard: React.FC<TopRankingProductsCardProps> = ({
   name,
   price,
   amount,
-  score,
+  // score,
+  id,
   rating,
 }) => {
   const router = useRouter();
   return (
     <div
-      onClick={() => router.push("/dashboard/buyer/product-details")}
+      onClick={() => router.push(`/dashboard/buyer/product-details/${id}`)}
       className="xl:w-[380px] 2xl:w-[420px] h-[200px] md:h-[265px] p-4 flex items-center gap-2 sm:gap-[18px]  bg-white rounded-[10px] "
     >
       <div className=" relative h-full md:h-[233px] w-[150px] md:w-[200px] flex items-center justify-center bg-[#f6f6f6] rounded-[10px]">
         <div className="w-fit h-fit absolute top-3 left-3 ">
           <Star
             fill={
-              rating === 1 ? "#4C6538" : rating === 2 ? "#FFCC29" : "#000427"
+              rating > 0 && rating < 3
+                ? "#4C6538"
+                : rating > 3
+                ? "#FFCC29"
+                : "#000427"
             }
           />
           <span
             className={`absolute top-[5px] left-3 text-sm font-bold ${
-              rating === 2 ? "text-agro-black" : "text-white"
+              rating > 3 ? "text-agro-black" : "text-white"
             }`}
           >
             {rating}
@@ -49,8 +55,8 @@ const TopRankingProductsCard: React.FC<TopRankingProductsCardProps> = ({
       <div className="text-agro-black text-sm sm:text-base md:text-lg">
         <h4 className=" mt-[6px] ">{name}</h4>
         <h3 className=" font-bold   my-1">{`₦ ${price}`}</h3>
-        <p className=" ">{amount}pcs</p>
-        <p className="  ">Popularity Score: {score}</p>
+        <p className=" ">{amount}</p>
+        {/* <p className="  ">Popularity Score: {score}</p> */}
       </div>
     </div>
   );

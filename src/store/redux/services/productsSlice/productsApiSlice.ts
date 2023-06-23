@@ -27,6 +27,27 @@ const productsApiSlice = baseApiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    getTopRankedProducts: builder.query({
+      query: () => ({
+        headers: myHeaders,
+        url: "/product/top-ranked-products",
+        method: "GET",
+      }),
+    }),
+    getProductsByCategory: builder.query({
+      query: (id) => ({
+        headers: myHeaders,
+        url: `/product/category/${id}`,
+        method: "GET",
+      }),
+    }),
+    getNewArrivals: builder.query({
+      query: () => ({
+        headers: myHeaders,
+        url: "/product/new-arrival",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -34,4 +55,7 @@ export const {
   useGetAllProductsQuery,
   useGetOneProductQuery,
   useGetTopRatedProductsQuery,
+  useGetNewArrivalsQuery,
+  useGetProductsByCategoryQuery,
+  useGetTopRankedProductsQuery,
 } = productsApiSlice;

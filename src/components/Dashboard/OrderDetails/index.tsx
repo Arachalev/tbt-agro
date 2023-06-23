@@ -22,7 +22,9 @@ const OrderDetails = ({
       <div className="px-4 pt-8 pb-7 ">
         <p className="text-agro-black text-lg ">Order n° {id}</p>
         <div className="text-agro-green overflow-clip ">
-          <p className="leading-none  overflow-clip">{amount} Items</p>
+          <p className="leading-none  overflow-clip">
+            {amount} Item{amount > 1 ? "s" : ""}
+          </p>
           <p className="leading-none  overflow-clip">Placed on {date} </p>
           <p className="leading-none  overflow-clip">Total: {cost} </p>
         </div>
@@ -32,6 +34,7 @@ const OrderDetails = ({
         <div className="flex flex-col gap-4 ">
           {orderItems.map((item) => (
             <OrderItem
+              reference={item.reference}
               quantity={item.quantity}
               key={item.id}
               img={item.img}
@@ -42,6 +45,7 @@ const OrderDetails = ({
               cost={item.cost}
               returnDate={item.returnDate}
               id={item.id}
+              status={item.status}
             />
           ))}
         </div>

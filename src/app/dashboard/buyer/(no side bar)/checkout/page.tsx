@@ -16,11 +16,15 @@ import StatusModal from "@/components/Forms/StatusModal";
 import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
 
 const Page = () => {
-  const [paystackRef, setPaystackRef] = useState<{ reference: string }>({
-    reference: "",
+  const [orderDetails, setOrderDetails] = useState({
+    paystackRef: { reference: "" },
+    id: 0,
   });
 
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+
   const [showModal, setShowModal] = useState(false);
+
   const [
     makePayment,
     { data: paymentData, error: paymentError, isLoading: paymentLoading },
@@ -35,34 +39,24 @@ const Page = () => {
   const profile = useAppSelector(selectBuyerProfile);
 
   const router = useRouter();
-  // console.log(cart.product);
 
   const onSuccessPayment = (e: any) => {
-    setPaystackRef(e);
-    alert("Thanks for doing business with us! Come back soon!!");
-    // return e;
-    // setTimeout(() => {}, 2000);
+    handlePayment(e.reference);
+    setOrderDetails({ ...orderDetails, paystackRef: e });
   };
-  console.log(paystackRef);
+
   const onClosePayment = () => alert("Wait! You need this oil, don't go!!!!");
 
   const componentProps = {
     email: profile.email,
     amount: cart.cartSummary.total * 100,
     publicKey: "pk_test_8f636ccf1ec472984961f198237ad6f698d13215",
-
-    // onSuccess: (e: any) => {
-    //   console.log(e);
-    //   alert("Thanks for doing business with us! Come back soon!!");
-    //   return e;
-    // },
-    // onClose: () => alert("Wait! You need this oil, don't go!!!!"),
   };
+
   const initializePayment = usePaystackPayment({
     ...componentProps,
   });
 
-  // console.log(cart);
   const handleOrder = async () => {
     setShowModal(true);
     const orderCartItems = cart.product.map((item) => {
@@ -73,47 +67,48 @@ const Page = () => {
       };
     });
 
-    console.log(orderCartItems);
-
     const res = await createOrder({
       sub_total: cart.cartSummary.total,
       use_default_shipping_details: 1,
       order_cart_items: orderCartItems,
     });
 
-    if (orderData) {
-      // setShowModal(false);
-      console.log(res, "ressssssssss");
-      console.log(orderData);
-      paystackHandler();
+    if ("data" in res) {
+      if (res.data.error === false) {
+        setOrderDetails({ ...orderDetails, id: res.data.data.id });
+        sessionStorage.setItem("order_id", res.data.data.id);
+      }
     }
-
-    // await makePayment({
-    //   order_id: 0,
-    // });
   };
 
-  // console.log(orderError);
   const paystackHandler = async () => {
     initializePayment(onSuccessPayment, onClosePayment);
   };
 
-  // const handlePayment = async () => {};
-  if (paystackRef?.reference) {
-    console.log("payment verified");
+  const handlePayment = async (reference: string) => {
+    setShowPaymentModal(true);
+    const res = await makePayment({
+      order_id: sessionStorage.getItem("order_id"),
+      sub_total: cart.cartSummary.total,
+      reference,
+    });
+    if ("data" in res) {
+      if (res.data.error === false) {
+        setOrderDetails({ ...orderDetails, paystackRef: { reference: "" } });
+        // sessionStorage.removeItem("order_id");
+      }
+    }
+  };
 
-    // makePayment({
-    //   order_id: "",
-    //   sub_total: cart.cartSummary.total,
-    //   reference: paystackRef.reference,
-    // });
-    setPaystackRef({ ...paystackRef, reference: "" });
-  }
-
-  let errorMessage;
+  // console.log(orderData, orderError);
+  // console.log(paymentData, paymentError);
+  let errorMessage, paymentErrorMsgF;
 
   if (orderError) {
     errorMessage = isFetchBaseQueryErrorType(orderError);
+  }
+  if (paymentError) {
+    paymentErrorMsgF = isFetchBaseQueryErrorType(paymentError);
   }
 
   return (
@@ -121,9 +116,29 @@ const Page = () => {
       {showModal && (
         <StatusModal
           onClose={() => setShowModal(false)}
-          data=""
           loading={orderLoading}
           error={orderError ? errorMessage : ""}
+          data={orderData ? `${orderData?.message} ` : ""}
+          dataFunc={() => {
+            paystackHandler();
+            setShowModal(false);
+          }}
+        />
+      )}
+      {showPaymentModal && (
+        <StatusModal
+          onClose={() => setShowPaymentModal(false)}
+          loading={paymentLoading}
+          error={paymentError ? paymentErrorMsgF : ""}
+          data={
+            paymentData
+              ? `${paymentData?.message} ${(<br />)} Payment Completed `
+              : ""
+          }
+          dataFunc={() => {
+            router.push("/dashboard/buyer/confirmed-order");
+            setShowPaymentModal(false);
+          }}
         />
       )}
       <div className="  ">
@@ -145,11 +160,11 @@ const Page = () => {
                 onClick={() => {
                   handleOrder();
                 }}
-                // href="/dashboard/buyer/confirmed-order"
                 className="w-[137px] px-2 text-center- whitespace-nowrap h-8 text-sm bg-agro-yellow rounded-[4px] font-bold text-agro-black flex items-center justify-center"
               >
-                Make Payment
+                Place Order
               </button>
+
               <div>
                 <h4 className="font-semibold text-agro-green sm:text-xl">
                   Order total: ₦{cart.cartSummary.total.toLocaleString()}

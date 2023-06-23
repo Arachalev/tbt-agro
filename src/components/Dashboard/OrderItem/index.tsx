@@ -9,6 +9,7 @@ export interface OrderItemsProps extends OrderCardProps {
   cost: string;
   returnDate: string;
   quantity: number;
+  status: string;
 }
 
 const OrderItem = ({
@@ -21,13 +22,15 @@ const OrderItem = ({
   quantity,
   returnDate,
   id,
+  status,
 }: OrderItemsProps) => {
   return (
     <div className="w-full  bg-white py-4 px-6 flex flex-col md:flex-row gap-4 justify-between border border-gray2  rounded-md">
       <div className="flex flex-col">
         <div className="mb-5">
           <p className="inline text-agro-green text-xs font-medium">
-            DELIVERED
+            {/* DELIVERED */}
+            {status.toUpperCase()}
           </p>
           <p className=" inline text-agro-orange text-xs font-medium ml-4">
             {isReturnable ? "RETURNABLE" : "NON-RETURNABLE"}
@@ -54,7 +57,8 @@ const OrderItem = ({
           </div>
         </div>
         <p className="text-sm">
-          The return period ended on ({returnDate}) Access our Return Policy.
+          {isReturnable &&
+            ` The return period ended on (${returnDate}) Access our Return Policy.`}
         </p>
       </div>
       <Link

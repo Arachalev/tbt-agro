@@ -23,8 +23,6 @@ const Page = () => {
   const { data } = useGetTopRatedProductsQuery("");
   const { data: productsData, isLoading, error } = useGetAllProductsQuery("");
 
-  // console.log(productsData?.data);
-
   const productsArr: {
     image: string;
     name: string;
@@ -40,48 +38,6 @@ const Page = () => {
       location: "",
     },
   ];
-  // const productsArr = [[{ products: {}, title: "" }]];
-
-  // console.log(productsArr);
-
-  /***
-   * 
-   * 
-
-
-    const mod = Math.Ceil(productsData.data.data.length %6)
-
-    for( let i =0; i< mod; i++)
-    {
-      if(productsArr[i].length < 6)
-      {
- productsData.data.data.map(
-       (item: {
-         images: string[];
-         name: string;
-         sale_price: number;
-         user: { seller_id: string };
-         location: string;
-       }) =>
-         productsArr[i].push({
-           image: item.images[0] ? item.images[0] : "",
-           name: item.name,
-           price: item.sale_price,
-           sellerID: item.user.seller_id,
-           location: item.location,
-         })
-     );
-      } 
-      else{
-        productsArr.push({
-
-        })
-      }
-
-    }
- 
-
-   */
 
   if (productsData) {
     productsArr.pop();
@@ -103,8 +59,6 @@ const Page = () => {
     );
   }
 
-  // console.log(productsArr.slice(0, 6), "sliced product");
-  // console.log([].slice(0, 6), "sliced product");
   return (
     <div className="min-h-[100vh] py-12 bg-agro-body">
       <div className="px-4 xl:px-[70px] pb-12 flex flex-col md:flex-row md:mx-auto gap-5 2xl:w-[1540px] ">

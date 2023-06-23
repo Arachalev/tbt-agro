@@ -14,6 +14,7 @@ const Page = () => {
     orders = data?.data?.data;
   }
 
+
   return (
     <div className="pt-8 px-5 pb-40">
       <h4 className="mb-5 text-xl md:text-2xl xl:text-3xl text-agro-green font-semibold overflow-clip">
@@ -28,7 +29,8 @@ const Page = () => {
               name={item.name}
               amount={item.amount}
               id={item.id}
-              deliveryDate={item.deliveryDate}
+              reference={item.order_reference}
+              deliveryDate={item.shipment.delivery_date.split(" ")[0]}
             />
             //   key={item.id}
             //   img={"https://picsum.photos/200/300"}

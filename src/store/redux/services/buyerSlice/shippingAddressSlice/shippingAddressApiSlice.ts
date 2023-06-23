@@ -13,6 +13,7 @@ const shippingAddressApiSlice = baseApiSlice.injectEndpoints({
         body: data,
         method: "POST",
       }),
+      invalidatesTags: ["shippingAddress"],
     }),
     getShippingAddress: builder.query({
       query: () => ({
@@ -20,6 +21,7 @@ const shippingAddressApiSlice = baseApiSlice.injectEndpoints({
         url: "/buyer/get-default-shipping-address",
         method: "GET",
       }),
+      providesTags: ["shippingAddress"],
     }),
   }),
 });

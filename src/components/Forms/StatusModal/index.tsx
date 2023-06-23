@@ -27,8 +27,8 @@ const StatusModal = ({
       //   e.stopPropagation();
       // }}
       onClick={(e) => {
-        e.stopPropagation();
-        // onClose();
+        // e.stopPropagation();
+        onClose();
       }}
       className="fixed top-0 left-0 right-0 bg-agro-yellow/70 z-[10000] w-full h-full min-h-screen flex items-center justify-center"
     >
@@ -58,7 +58,9 @@ const StatusModal = ({
           <p className="text-center"> {data}</p>
           <button
             className="text-black bg-agro-yellow font-semibold bg-btn-blue  w-full sm:w-fit sm:px-20 py-3 rounded-3xl"
-            onClick={dataFunc ? dataFunc : onClose}
+            onClick={() => {
+              dataFunc ? dataFunc() : onClose();
+            }}
           >
             {dataText ? dataText : " Continue"}
           </button>

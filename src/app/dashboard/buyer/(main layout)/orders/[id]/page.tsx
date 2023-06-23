@@ -1,14 +1,47 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 
 import Link from "next/link";
 import { CgArrowLongLeft } from "react-icons/cg";
 import OrderDetails from "@/components/Dashboard/OrderDetails";
-
+import { useGetOneOrderQuery } from "@/store/redux/services/OrdersSlice/ordersApiSlice";
+import StatusModal from "@/components/Forms/StatusModal";
+import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
 
 const Page = ({ params }: { params: { id: string } }) => {
-   
-  return (
+  const [showModal, setShowModal] = useState(true);
+  const { data, error, isLoading } = useGetOneOrderQuery(params.id);
+
+
+  const orderData = data?.data;
+
+  let errorMessage = "";
+
+  if (error) {
+    errorMessage = isFetchBaseQueryErrorType(error);
+  }
+  return isLoading ? (
+    <StatusModal
+      onClose={() => setShowModal(false)}
+      loading={isLoading}
+      data={data ? "Order Fetched" : ""}
+      dataText="Close"
+      // dataFunc={() => router.push("/dashboard/seller/account")}
+      error={error ? errorMessage : ""}
+    />
+  ) : (
     <div className="pt-8 px-5 pb-40">
+      {/* {showModal && (
+        <StatusModal
+          onClose={() => setShowModal(false)}
+          loading={isLoading}
+          data={data ? "Order Fetched" : ""}
+          dataText="Close"
+          // dataFunc={() => router.push("/dashboard/seller/account")}
+          error={error ? errorMessage : ""}
+        />
+      )} */}
       <div className="flex items-center gap-4 mb-5">
         <Link
           className="flex items-center gap-1 text-agro-orange"
@@ -22,34 +55,23 @@ const Page = ({ params }: { params: { id: string } }) => {
       </div>
       <div>
         <OrderDetails
-          id={"ASA15641A"}
-          amount={3}
-          cost={"N700,000"}
-          date={"15-05-2023"}
-          orderItems={[
-            {
-              img: "https://picsum.photos/200/300",
-              name: "Raw Cashew Nuts ",
-              amount: "30,000KG",
-              id: "12W321SSDS",
-              deliveryDate: "31-05-2022",
-              isReturnable: false,
-              cost: "500,000",
-              returnDate: "12-02-2023",
-              quantity: 1,
-            },
-            {
-              img: "https://picsum.photos/200/300",
-              name: "Raw Cashew Nuts ",
-              amount: "30,000KG",
-              id: "12W32lgSDS",
-              deliveryDate: "31-05-2022",
-              isReturnable: true,
-              cost: "500,000",
-              returnDate: "12-06-2023",
-              quantity: 1,
-            },
-          ]}
+          id={orderData.order_reference}
+          amount={orderData.items.length}
+          cost={`₦${orderData.total.toLocaleString()}`}
+          date={orderData.created_at.split("T")[0]}
+          orderItems={orderData.items.map((item: any) => ({
+            img: "https://picsum.photos/200/300",
+            name: item.product.name,
+            amount: item.product.quantity.toLocaleString(),
+            id: orderData.id,
+            deliveryDate: orderData.created_at.split("T")[0],
+            isReturnable: false,
+            cost: `₦${item.product.sale_price.toLocaleString()}`,
+            returnDate: "",
+            quantity: item.product.quantity,
+            reference: orderData.order_reference,
+            status: orderData.status,
+          }))}
         />
       </div>
     </div>

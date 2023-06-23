@@ -8,6 +8,7 @@ export interface OrderCardProps {
   name: string;
   amount: string;
   id: string;
+  reference: string;
   deliveryDate: string;
 }
 
@@ -16,6 +17,7 @@ const OrderCard = ({
   name,
   amount,
   id,
+  reference,
   deliveryDate,
 }: OrderCardProps) => {
   return (
@@ -35,7 +37,7 @@ const OrderCard = ({
           </h4>
           <p className="text-base md:text-xll text-agro-orange font-medium mb-3">
             {" "}
-            Order {id}
+            Order {reference}
           </p>
           <p className="text-xs font-medium text-agro-green">
             Delivered <br /> On {deliveryDate}

@@ -46,6 +46,13 @@ const profileSlice = createSlice({
     setBuyerProfile: (state, action) => {
       const { userData } = action.payload;
 
+      const fName =
+        userData.first_name.charAt(0).toUpperCase() +
+        userData.first_name.slice(1);
+      const lName =
+        userData.last_name.charAt(0).toUpperCase() +
+        userData.last_name.slice(1);
+
       const changedData = {
         address: userData.address,
         bankAccount: userData.bank_account,
@@ -56,8 +63,8 @@ const profileSlice = createSlice({
         country: userData.country,
         shippingAddress: userData.default_shipping_address,
         email: userData.email,
-        fName: userData.first_name,
-        lName: userData.last_name,
+        fName,
+        lName,
         orders: userData.orders,
         pNumber: userData.phone_number,
         profilePicture: userData.profile_picture,

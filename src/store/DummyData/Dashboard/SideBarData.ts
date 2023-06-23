@@ -56,11 +56,11 @@ export const buyerBarData = [
     name: "Orders",
     href: "/dashboard/buyer/orders",
   },
-  {
-    Icon: SupportIcon,
-    name: "Support",
-    href: "/dashboard/buyer/support",
-  },
+  // {
+  //   Icon: SupportIcon,
+  //   name: "Support",
+  //   href: "/dashboard/buyer/support",
+  // },
   // {
   //   Icon: AccountIcon,
   //   name: "Account",

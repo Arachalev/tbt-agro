@@ -20,7 +20,10 @@ const CheckOutCard = ({
   return (
     <div className=" pb-12 text-agro-black bg-white rounded-[10px] ">
       <div className="h-[60px] flex items-center pl-4 sm:pl-12 border-b border-b-gray2 ">
-        <h4 className="font-bold ">Order reserved for 48 hours</h4>
+        <h4 className="font-bold ">
+          Order created
+          {/* Order reserved for 48 hours */}
+        </h4>
       </div>
       <div className="h-[112px] flex flex-col gap-4 sm:py-6 pl-4 sm:pl-12 overflow-clip  border-b border-b-gray2">
         <p>Confirmation sent to your email.</p>
