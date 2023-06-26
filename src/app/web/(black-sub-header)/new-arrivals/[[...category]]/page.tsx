@@ -98,7 +98,7 @@ const Page = ({ params }: { params: { category: string } }) => {
     />
   ) : (
     <div className="bg-agro-gray pt-9 pb-[163px] px-4 xl:px-[72px] w-screen ">
-      <div className="flex flex-wrap items-center justify-center gap-3 lg:gap-5 2xl:mx-auto 2xl:w-[1300px] ">
+      <div className="flex flex-wrap items-center justify-center gap-3 lg:gap-5 2xl:mx-auto 2xl:w-[1200px] ">
         {isCategoryUnAvailable ? (
           <h4 className="text-xl font-semibold text-agro-green">
             No {categoryType} Products

@@ -60,7 +60,7 @@ const QuotationCard = () => {
               className="border-2 rounded-[4px] h-12 pl-6 placeholder:text-sm"
             />
             <Link
-              href="/web/request-for-quotation-buyer"
+              href="/dashboard/buyer/request-for-quotation-buyer"
               className="col-span-2 py-1 px-4 mt-3 justify-self-center bg-agro-yellow rounded-[4px] font-bold text-agro-black"
             >
               Request for Quotation

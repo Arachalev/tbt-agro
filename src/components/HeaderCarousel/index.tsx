@@ -30,7 +30,7 @@ const HeaderCarousel = () => {
               SUBMIT REQUESTS FOR QUOTATION
             </h4>
             <Link
-              href=""
+              href="/dashboard/buyer/request-for-quotation-buyer"
               className="font-medium text-xs md:text-sm text-agro-green border-b-2 border-b-agro-green"
             >
               I&apos;m a Buyer
@@ -42,7 +42,7 @@ const HeaderCarousel = () => {
               VIEW REQUESTS FOR QUOTATION
             </h4>
             <Link
-              href=""
+              href="/dashboard/seller/request-for-quotation-seller"
               className="font-medium text-xs md:text-sm text-agro-green border-b-2 border-b-agro-green"
             >
               I&apos;m a Seller

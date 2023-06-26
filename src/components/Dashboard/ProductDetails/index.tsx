@@ -11,6 +11,7 @@ const ProductDetails = () => {
   const path = usePathname().split("/");
 
   const { data, isLoading, error } = useGetOneProductQuery(path[4]);
+  // console.log(data);
 
   const product: {
     name: string;
@@ -21,9 +22,10 @@ const ProductDetails = () => {
     tbt_price: number;
     sale_price: number;
     category: { name: string };
-    images: string[];
+    images: { image_url: string }[];
     id: number;
     minimum_purchase: number;
+    description: string;
   } = data?.data;
 
   // console.log(product);
@@ -41,7 +43,7 @@ const ProductDetails = () => {
         id={product.id}
         img={
           product.images.length > 0
-            ? product.images[0]
+            ? product.images[0].image_url
             : "https://picsum.photos/300/350"
         }
         sellerId={product.user.seller_id}
@@ -57,21 +59,26 @@ const ProductDetails = () => {
         ratingsAmount={2389}
       />
       <InfoCard
-        productDetails="Cashew nuts are fruits that grow on tropical evergreen cashew trees. 
+        productDetails={product.description}
+        /**
+         * "Cashew nuts are fruits that grow on tropical evergreen cashew trees. 
         The cashew nuts are usually processed into cashew kernels, cashew cheese or cashew butter.
          Nigeria is reported to be the 4th largest producer of RCN in the world, 
          growing the nuts in about 19 states of the country. Our RCN is good quality
           with the specifications below."
-        specifications={{
-          Origin: "Nigeria",
-          "Nut Count": "(170 - 200)/Kg",
-          "Out turn": "44 - 52 lbs/80Kg",
-          "Defective nuts": "< 8%",
-          "Moisture content": "< 8%",
-          Admixture: "< 2%",
-          "Float rate": "< 18%",
-          Packing: "50kg pp bags net weight, 20ft container FCL (18mt)",
-        }}
+         * 
+         * 
+        //  */
+        // specifications={{
+        //   Origin: "Nigeria",
+        //   "Nut Count": "(170 - 200)/Kg",
+        //   "Out turn": "44 - 52 lbs/80Kg",
+        //   "Defective nuts": "< 8%",
+        //   "Moisture content": "< 8%",
+        //   Admixture: "< 2%",
+        //   "Float rate": "< 18%",
+        //   Packing: "50kg pp bags net weight, 20ft container FCL (18mt)",
+        // }}
       />
     </div>
   ) : (

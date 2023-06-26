@@ -67,9 +67,7 @@ const DetailsCard = ({
 
     if (addCartData) {
       // router.push("/dashboard/buyer/added-to-cart");
-
-      console.log(addCartData);
-
+      // console.log(addCartData);
       // dispatch(reduxAddToCart({}));
     }
   };
@@ -147,7 +145,7 @@ const DetailsCard = ({
                 onChange={enteredInputHandler}
                 value={value.value}
                 onFocus={onFocusHandler}
-                className=" px-2 placeholder:text-agro-black w-[210px] h-[48px] border border-gray2 rounded-[4px] bg-agro-gray "
+                className=" px-2 w-[210px] h-[48px] border border-gray2 rounded-[4px] bg-agro-gray "
                 type="text"
                 placeholder={`${minimumPurchase}`}
                 // defaultValue={minimumPurchase}
@@ -162,7 +160,10 @@ const DetailsCard = ({
           <PriButton
             text={"Buy Now"}
             className="w-[84px] h-8 font-bold text-sm"
-            onClick={() => router.push("/dashboard/buyer/shopping-cart")}
+            onClick={() => {
+              addToCartHandler();
+              router.push("/dashboard/buyer/checkout");
+            }}
           />
           <PriButton
             text={"Add to Cart"}

@@ -7,6 +7,7 @@ import pro from "../../assets/images/product.png";
 import { useAppSelector } from "@/store/redux/hooks";
 import { selectDeviceWith } from "@/store/redux/features/deviceWidthSlice";
 import getUniqueID from "@/hooks/getUniqueID";
+import Link from "next/link";
 
 interface MultiProductsCardProps {
   title: string;
@@ -16,6 +17,7 @@ interface MultiProductsCardProps {
     price: number;
     sellerID: string;
     location: string;
+    id: number;
   }[];
   type: "cropProducts" | "newProducts";
 }
@@ -51,25 +53,28 @@ const MultiProductsCard: React.FC<MultiProductsCardProps> = ({
       >
         {products.map((item) => {
           return (
-            <div key={getUniqueID()}>
+            <Link
+              href={`/dashboard/buyer/product-details/${item.id}`}
+              key={getUniqueID()}
+            >
               <Image
                 height={imgHeight}
                 width={imgWidth}
-                className=" rounded-[10px]"
+                className={`rounded-[10px] h-[${imgHeight}px] w-[${imgWidth}px]`}
                 src={pro}
                 alt=""
               />
               <h4 className="text-xs md:text-sm text-agro-black mt-[6px] ">
                 {item.name}
               </h4>
-              <h3 className="font-semibold lg:font-bold text-sm my-1">{`₦ ${item.price}`}</h3>
+              <h3 className="font-semibold lg:font-bold text-sm my-1">{`₦ ${item.price.toLocaleString()}`}</h3>
               <p className=" text-[10px] text-[#ABABAB] font-medium">
                 {item.sellerID}
               </p>
               <p className="text-[10px] text-agro-green font-medium">
                 {item.location}
               </p>
-            </div>
+            </Link>
           );
         })}
       </div>

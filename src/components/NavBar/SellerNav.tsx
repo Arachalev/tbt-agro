@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import {  sellerProfileData } from "@/store/DummyData/navProfileData";
+import { sellerProfileData } from "@/store/DummyData/navProfileData";
 import { MdNotificationsNone, MdOutlineArrowDropDown } from "react-icons/md";
 import logo from "../../assets/logo/logo1.png";
 import profile from "../../../public/images/profile.png";
@@ -49,7 +49,8 @@ const SellerNav = () => {
       <div className="bg-agro-green  h-24 flex flex-row items-start justify-between pt-9 px-4 xl:px-20">
         <div className="flex items-center gap-16 ">
           <Link
-            href="/dashboard/seller/account"
+            // href="/dashboard/seller/account"
+            href="/web/home"
             className="w-[40px] h-[24px]  "
           >
             <Image src={logo} alt="logo" className="h-full" />

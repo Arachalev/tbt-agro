@@ -104,10 +104,7 @@ const SignUpForm = () => {
         className=" flex flex-col gap-7 items-center justify-center w-fit "
       >
         <div className="grid md:grid-cols-[200px_1fr] items-center gap-4    ">
-          <label
-            className="text-sm font-bold md:text-end   "
-            htmlFor="country"
-          >
+          <label className="text-sm font-bold md:text-end   " htmlFor="country">
             Country/Region
           </label>
           <Select
@@ -150,7 +147,7 @@ const SignUpForm = () => {
               />
               <label htmlFor="">Seller</label>
             </div>
-            <div className="flex gap-1 items-center">
+            {/* <div className="flex gap-1 items-center">
               <input
                 className="w-3 h-3 rounded-full bg-white border border-[#ABABAB]"
                 type="radio"
@@ -161,7 +158,7 @@ const SignUpForm = () => {
                 checked={formValues.userType === "Both"}
               />
               <label htmlFor="">Both</label>
-            </div>
+            </div> */}
           </div>
         </div>
 

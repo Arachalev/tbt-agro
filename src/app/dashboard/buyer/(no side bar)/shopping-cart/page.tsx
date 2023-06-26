@@ -29,98 +29,60 @@ const Page = () => {
     error: sumError,
   } = useGetCartSummaryQuery("");
 
-  // To fetch product detail so as to get the unit and minimum purchase quantity
-  const getProdDetails = async (
-    id: number
-  ): Promise<{ unit: string; minimumPurchase: number }> => {
-    let res;
-    const myHeaders = new Headers();
-    myHeaders.append("Accept", "application/json");
-    myHeaders.append("Content-Type", "application/json");
-    const sessionToken = sessionStorage.getItem("token");
-    if (sessionToken) {
-      myHeaders.set("Authorization", `Bearer ${sessionToken}`);
-    }
-    try {
-      res = await fetch(`https://test.tbt.com.ng/api/v1/product/show/${id}`, {
-        method: "GET",
-        headers: myHeaders,
-      });
-    } catch (error) {
-      console.log(error);
-      // return error;
-    }
-    if (res) {
-      const data = await res.json();
-      return {
-        unit: data?.data?.unit,
-        minimumPurchase: data?.data?.minimum_purchase,
-      };
-    }
-    return {
-      unit: "",
-      minimumPurchase: 0,
-    };
-  };
-
   useEffect(() => {
-    // to handle the conversion of the backend endpoint data to suit the UI in the
-    // front end, and also fetch some more properties that are not sent from the backend
-
     const handleProductData = async (
       data: {
         quantity: number;
         id: number;
         product: {
-          images: string[];
+          images: { image_url: string }[];
           user: { seller_id: string };
           category: { name: string };
           name: string;
           sale_price: number;
           id: number;
           quantity: number;
+          minimum_purchase: number;
+          unit: string;
         };
       }[]
     ) => {
-      setLoadingData(true);
       let tempCartData: CartCardProps[] = [];
       setLoadingData(true);
 
-      await Promise.all(
-        data.map(
-          async (item: {
-            quantity: number;
+      data.map(
+        (item: {
+          quantity: number;
+          id: number;
+          product: {
+            images: { image_url: string }[];
+            user: { seller_id: string };
+            category: { name: string };
+            name: string;
+            sale_price: number;
             id: number;
-            product: {
-              images: string[];
-              user: { seller_id: string };
-              category: { name: string };
-              name: string;
-              sale_price: number;
-              id: number;
-              quantity: number;
-            };
-          }) => {
-            const product: { unit: string; minimumPurchase: number } =
-              await getProdDetails(item?.product?.id);
-            tempCartData.push({
-              img: item.product.images[0]
-                ? item.product.images[0]
-                : "https://picsum.photos/300/350",
-              sellerId: item.product.user.seller_id,
-              name: `${item.product.name.toUpperCase()} - ${item.product.quantity.toLocaleString()}${product.unit.toUpperCase()} `,
-              category: item.product.category.name,
-              cost: `₦${
-                item.product.sale_price
-              } / ${product.unit.toUpperCase()}`,
-              minimumPurchase: `${product.minimumPurchase.toLocaleString()}${product.unit.toUpperCase()}`,
-              ratings: 3.5,
-              ratingsAmount: 1,
-              quantity: item.quantity,
-              id: item.id,
-            });
-          }
-        )
+            quantity: number;
+            minimum_purchase: number;
+            unit: string;
+          };
+        }) => {
+          tempCartData.push({
+            img: item.product.images[0]
+              ? item.product.images[0].image_url
+              : "https://picsum.photos/300/350",
+            sellerId: item.product.user.seller_id,
+            name: `${item.product.name.toUpperCase()} - ${item.product.quantity.toLocaleString()}${item.product.unit.toUpperCase()} `,
+            category: item.product.category.name,
+            cost: `₦${
+              item.product.sale_price
+            } / ${item.product.unit.toUpperCase()}`,
+            minimumPurchase: `${item.product.minimum_purchase.toLocaleString()}${item.product.unit.toUpperCase()}`,
+            ratings: 3.5,
+            ratingsAmount: 1,
+            quantity: item.quantity,
+            id: item.id,
+          });
+        }
       );
 
       setCartData(tempCartData);

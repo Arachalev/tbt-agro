@@ -54,7 +54,7 @@ const TopRankingProductsCard: React.FC<TopRankingProductsCardProps> = ({
       </div>
       <div className="text-agro-black text-sm sm:text-base md:text-lg">
         <h4 className=" mt-[6px] ">{name}</h4>
-        <h3 className=" font-bold   my-1">{`₦ ${price}`}</h3>
+        <h3 className=" font-bold   my-1">{`₦ ${price.toLocaleString()}`}</h3>
         <p className=" ">{amount}</p>
         {/* <p className="  ">Popularity Score: {score}</p> */}
       </div>
