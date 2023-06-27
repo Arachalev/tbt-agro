@@ -148,15 +148,7 @@ const AddProductForm = () => {
       setImages({ images: uploadedImages, fileName: names });
     }
 
-    // if (files) {
-    // let uploadedImages: (File | null)[] = [];
-    // for (let i = 0; i < files.length; i++) {
-    //   uploadedImages.push(files.item(i));
-    // }
-    // let i = 0;
-    // while (i++ > files.length) {
-    //   uploadedImages[i] = files.item(i);
-    // }
+   
   };
 
   // Delete one uploaded file
@@ -220,7 +212,7 @@ const AddProductForm = () => {
     // await createProduct(JSON.stringify(formInfo));
   };
 
-  console.log(data, error);
+  // console.log(data, error);
   let errorMessage = "";
 
   if (error) {

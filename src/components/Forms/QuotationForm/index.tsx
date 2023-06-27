@@ -7,7 +7,7 @@ import PriButton from "@/components/PriButton";
 import Select from "react-select";
 import CustomInput from "@/components/CustomInput";
 import { useGetCategoriesQuery } from "@/store/redux/services/categorySlice/categoryApiSlice";
-import { useSubmitQuotationMutation } from "@/store/redux/services/buyerSlice/quotationSlice/quotationApiSlice";
+import { useSubmitQuotationBuyerMutation } from "@/store/redux/services/buyerSlice/quotationSlice/quotationApiSlice";
 import {
   useGetAllCountriesQuery,
   useGetCitiesInStateQuery,
@@ -53,7 +53,7 @@ const QuotationForm = () => {
       isLoading: submitQuoteLoading,
       error: submitQuoteError,
     },
-  ] = useSubmitQuotationMutation();
+  ] = useSubmitQuotationBuyerMutation();
 
   const {
     data: categoryData,

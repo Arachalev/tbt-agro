@@ -1,14 +1,18 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Select from "react-select";
 import { AiOutlineSearch } from "react-icons/ai";
 import BuyerLeadsCard from "@/components/BuyerLeadsCard";
-import { buyerLeadsData } from "@/store/DummyData/buyerLeadsData";
+// import { buyerLeadsData } from "@/store/DummyData/buyerLeadsData";
 import { useGetCategoriesQuery } from "@/store/redux/services/categorySlice/categoryApiSlice";
+import { useGetAllQuotationSellersQuery } from "@/store/redux/services/buyerSlice/quotationSlice/quotationApiSlice";
+import { useGetAllBuyerLeadsQuery } from "@/store/redux/services/sellerSlice/buyerLeadsSlice/buyerLeadsApiSlice";
+import StatusModal from "@/components/Forms/StatusModal";
 
 const Pages = () => {
   const [formData, setFormData] = useState({ category: "" });
+  const [buyerLeadsData, setBuyerLeadsData] = useState<any[]>([]);
   const {
     data: categoryData,
     isLoading: categoryLoading,
@@ -23,8 +27,46 @@ const Pages = () => {
       categoryOptions.push({ value: item.id.toString(), label: item.name })
     );
   }
+
+  const { data: leadsData } = useGetAllBuyerLeadsQuery("");
+
+  useEffect(() => {
+    if (leadsData) {
+      if (categoryData) {
+        let tempData: any[] = [];
+        console.log(categoryData?.data);
+        leadsData.data.data.map((item: any) => {
+          let category = categoryData.data.find(
+            (cat: any) => cat.id === item.category_id
+          );
+          // console.log(category);
+          // console.log(item.created_at);
+          // const date = new Date();
+          // console.log(date.toDateString());
+          tempData.push({
+            rfq_id: item.rfq_id,
+            id: item.id,
+            state: item.state.name,
+            category: category.name,
+            name: item.commodity_name,
+            quantity: item.quantity,
+            description: item.description,
+            // time={item.created_at
+          });
+        });
+        setBuyerLeadsData(tempData);
+      }
+    }
+  }, [leadsData, categoryData]);
+
+  // if (leadsData?.data?.data) {
+  //   buyerLeadsData = leadsData.data.data;
+  // }
+
+  // console.log(buyerLeadsData);
+
   return (
-    <main className="bg-agro-gray pt-[88px] pb-[160px] ">
+    <main className="bg-agro-gray pt-[88px] pb-[/160px] ">
       <div className="flex flex-col gap-2 md:gap-5 px-4 xl:px-[72px]">
         <h3 className="text-2xl xl:text-[40px] h-10 font-semibold overflow-clip">
           Request For Quotation List
@@ -67,18 +109,22 @@ const Pages = () => {
           Buyer Leads
         </h4>
         <div className="z-10 grid md:grid-cols-2 gap-x-3 xl:gap-x-5 gap-y-4 xl:gap-y-7  w-full">
-          {buyerLeadsData.map((item) => (
-            <BuyerLeadsCard
-              id={item.id}
-              key={item.key}
-              state={item.state}
-              category={item.category}
-              name={item.name}
-              quantity={item.quantity}
-              specs={item.specs}
-              time={item.time}
-            />
-          ))}
+          {buyerLeadsData.length > 0 &&
+            buyerLeadsData.map((item) => {
+              return (
+                <BuyerLeadsCard
+                  id={item.id}
+                  rfq_id={item.rfq_id}
+                  key={item.rfq_id}
+                  state={item.state.name}
+                  category={item.category}
+                  name={item.commodity_name}
+                  quantity={item.quantity}
+                  specs={item.description}
+                  // time={item.created_at}
+                />
+              );
+            })}
         </div>
       </section>
     </main>
