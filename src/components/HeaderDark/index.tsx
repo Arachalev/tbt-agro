@@ -16,6 +16,13 @@ const HeaderDark = () => {
   const topRankingPath = path === "/web/top-ranking" ? true : false;
   const aboutPath = path.includes("/web/about-us") ? true : false;
 
+  const handleClickScroll = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="h-20 sm:h-[166px] w-screen flex flex-col justify-center items-center sm:gap-11 bg-agro-black text-white">
       <h2 className=" text-agro-yellow text-2xl xl:text-[40px] font-semibold overflow-cli">
@@ -31,6 +38,10 @@ const HeaderDark = () => {
           aboutUsNavData.map((item) => (
             <li key={item.href}>
               <Link
+                onClick={() => {
+                  // console.log(item.href.split("#")[1]);
+                  handleClickScroll(item.href.split("#")[1]);
+                }}
                 href={item.href}
                 className={`${
                   item.name === "All" ? "font-bold" : ""

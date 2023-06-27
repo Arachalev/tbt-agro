@@ -10,7 +10,10 @@ const page = () => {
       <section className="2xl:w-[1400px] 2xl:mx-auto px-4 xl:px-[72px] flex flex-col md:flex-row  items-center md:justify-between gap-4 sm:gap-10 xl:gap-[132px] ">
         <div className=" w-full md:w-1/2 flex flex-col gap-5 md:gap-10 xl:gap-[80px]">
           <div>
-            <h4 className="overflow-clip font-semibold  text-xl md:text-2xl xl:text-[40px] mb-2 md:mb-5">
+            <h4
+              id="about-us"
+              className="overflow-clip font-semibold  text-xl md:text-2xl xl:text-[40px] mb-2 md:mb-5"
+            >
               About Us
             </h4>
             <p className="text-sm md:text-base ">
@@ -21,7 +24,10 @@ const page = () => {
             </p>
           </div>
           <div className="">
-            <h4 className="xl:h-8 overflow-clip font-semibold  text-xl xl:text-[40px] mb-2 md:mb-5">
+            <h4
+              id="who-we-are"
+              className="xl:h-8 overflow-clip font-semibold  text-xl xl:text-[40px] mb-2 md:mb-5"
+            >
               Who We Are
             </h4>
             <div className="flex flex-col gap-3 md:gap-5 text-sm md:text-base">
@@ -63,7 +69,10 @@ const page = () => {
       <section className="2xl:w-[1400px] 2xl:mx-auto px-4  xl:px-[72px] flex flex-col md:flex-row items-center md:justify-between gap-4 sm:gap-10 md:gap-[132px] ">
         <div className=" md:w-1/2 flex flex-col gap-5 md:gap-10 xl:gap-[80px]">
           <div className="">
-            <h4 className="overflow-clip xl:h-11 font-semibold  text-xl md:text-2xl xl:text-[40px] mb-2 md:mb-5">
+            <h4
+              id="our-background"
+              className="overflow-clip xl:h-11 font-semibold  text-xl md:text-2xl xl:text-[40px] mb-2 md:mb-5"
+            >
               Our Background
             </h4>
             <div className="flex flex-col gap-3 md:gap-5 text-sm md:text-base">
@@ -83,7 +92,10 @@ const page = () => {
             </div>
           </div>
           <div className="">
-            <h4 className=" overflow-clip font-semibold text-xl md:text-2xl xl:text-[40px] mb-2 md:mb-5">
+            <h4
+              id="our-procedure"
+              className=" overflow-clip font-semibold text-xl md:text-2xl xl:text-[40px] mb-2 md:mb-5"
+            >
               Our Procedure
             </h4>
             <div className="flex flex-col gap-3 md:gap-5  text-sm md:text-base">
@@ -139,7 +151,10 @@ const page = () => {
       <section className="2xl:w-[1400px] 2xl:mx-auto px-4 xl:px-[72px] flex flex-col md:flex-row items-start md:justify-between gap-4 sm:gap-10 xl:gap-[132px] ">
         <div className=" md:w-1/2 flex flex-col gap-5 md:gap-10 xl:gap-[80px]">
           <div className="">
-            <h4 className="overflow-clip xl:h-11 font-semibold text-xl md:text-2xl xl:text-[40px] mb-2 md:mb-5">
+            <h4
+              id="our-brand-story"
+              className="overflow-clip xl:h-11 font-semibold text-xl md:text-2xl xl:text-[40px] mb-2 md:mb-5"
+            >
               Our Brand Story
             </h4>
             <div className="flex flex-col gap-3 md:gap-5 text-sm md:text-base">
@@ -280,7 +295,10 @@ const page = () => {
 
       <section className=" text-agro-black  pt-[60px] py-[180px] bg-agro-blue">
         <div className="2xl:w-[1400px] 2xl:mx-auto flex items-center justify-center flex-wrap px-4  gap-x-5 gap-y-7  ">
-          <h4 className="overflow-clip text-2xl xl:text-[40px] text-center font-semibold block w-full">
+          <h4
+            id="our-values"
+            className="overflow-clip text-2xl xl:text-[40px] text-center font-semibold block w-full"
+          >
             Our Values
           </h4>
           <div className=" w-full xl:w-[528px] h-[200px] xl:h-[256px] px-4 xl:px-10 bg-white rounded-[10px] flex flex-col gap-3 xl:gap-6 items-center justify-center">
