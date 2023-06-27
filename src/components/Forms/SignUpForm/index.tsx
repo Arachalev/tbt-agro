@@ -172,11 +172,13 @@ const SignUpForm = () => {
         <CustomInput
           label={"Login Password:"}
           placeholder={"Please set the login password  "}
+          type="password"
           validation={(val) => val.length > 6}
           handleValue={(val) => setFormValues({ ...formValues, password: val })}
         />
         <CustomInput
           label={"Confirm Password:"}
+          type="password"
           placeholder={"Please enter the login password again"}
           validation={(val) =>
             formValues.password === formValues.confirmPassword

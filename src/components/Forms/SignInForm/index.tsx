@@ -135,6 +135,7 @@ const SignInForm = () => {
 
         <CustomInput
           label={"Login Password:"}
+          type="password"
           placeholder={"Please set the login password  "}
           validation={(val) => val.length > 6}
           handleValue={(val) => setFormValues({ ...formValues, password: val })}
