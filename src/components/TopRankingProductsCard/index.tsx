@@ -5,6 +5,7 @@ import React from "react";
 import Image, { StaticImageData } from "next/image";
 import Star from "../Icons/Star";
 import { useRouter } from "next/navigation";
+import placeholder from "../../../public/images/placeholder.png";
 
 interface TopRankingProductsCardProps {
   image: StaticImageData;
@@ -50,7 +51,11 @@ const TopRankingProductsCard: React.FC<TopRankingProductsCardProps> = ({
             {rating}
           </span>
         </div>
-        <Image className=" rounded-[10px]" src={image} alt={name} />
+        <Image
+          className=" rounded-[10px]"
+          src={image ? image : placeholder}
+          alt={name}
+        />
       </div>
       <div className="text-agro-black text-sm sm:text-base md:text-lg">
         <h4 className=" mt-[6px] ">{name}</h4>

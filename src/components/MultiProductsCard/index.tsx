@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 
-import pro from "../../assets/images/product.png";
+import placeholder from "../../../public/images/placeholder.png";
 import { useAppSelector } from "@/store/redux/hooks";
 import { selectDeviceWith } from "@/store/redux/features/deviceWidthSlice";
 import getUniqueID from "@/hooks/getUniqueID";
@@ -60,8 +60,8 @@ const MultiProductsCard: React.FC<MultiProductsCardProps> = ({
               <Image
                 height={imgHeight}
                 width={imgWidth}
-                className={`rounded-[10px] h-[${imgHeight}px] w-[${imgWidth}px]`}
-                src={pro}
+                className={`object-contain rounded-[10px] h-[${imgHeight}px] w-[${imgWidth}px]`}
+                src={item.image ? item.image : placeholder}
                 alt=""
               />
               <h4 className="text-xs md:text-sm text-agro-black mt-[6px] ">

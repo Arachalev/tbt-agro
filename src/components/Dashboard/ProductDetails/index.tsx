@@ -44,7 +44,7 @@ const ProductDetails = () => {
         img={
           product.images.length > 0
             ? product.images[0].image_url
-            : "https://picsum.photos/300/350"
+            : ""
         }
         sellerId={product.user.seller_id}
         name={`${product.name.toUpperCase()} - ${product.quantity}${

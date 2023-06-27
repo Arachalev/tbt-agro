@@ -14,6 +14,7 @@ import StatusModal from "@/components/Forms/StatusModal";
 import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
 import { useAppDispatch } from "@/store/redux/hooks";
 import { addToCart as reduxAddToCart } from "@/store/redux/services/cartSlice/cartSlice";
+import placeholder from "../../../../public/images/placeholder.png";
 
 interface DetailsCardProps {
   img: string;
@@ -94,7 +95,7 @@ const DetailsCard = ({
 
       <div className="">
         <Image
-          src={img}
+          src={img ? img : placeholder}
           className="h-[335px] rounded-[10px] "
           alt="Product image"
           height={335}

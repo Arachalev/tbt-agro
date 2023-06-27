@@ -119,7 +119,7 @@ const Page = () => {
 
       productsCategory.data.map(
         (item: {
-          images: string[];
+          images: { image_url: string }[];
           name: string;
           sale_price: number;
           user: { seller_id: string };
@@ -127,7 +127,7 @@ const Page = () => {
           id: number;
         }) =>
           tempProd.push({
-            image: item.images[0] ? item.images[0] : "",
+            image: item.images[0] ? item.images[0].image_url : "",
             name: item.name,
             price: item.sale_price,
             sellerID: item.user.seller_id,
@@ -150,7 +150,7 @@ const Page = () => {
 
       productsData.data.data.map(
         (item: {
-          images: string[];
+          images: { image_url: string }[];
           name: string;
           sale_price: number;
           user: { seller_id: string };
@@ -158,7 +158,7 @@ const Page = () => {
           id: number;
         }) =>
           tempProd.push({
-            image: item.images[0] ? item.images[0] : "",
+            image: item.images[0] ? item.images[0].image_url : "",
             name: item.name,
             price: item.sale_price,
             sellerID: item.user.seller_id,
@@ -170,6 +170,7 @@ const Page = () => {
       setProductsArr(tempProd);
     }
   }, [productsData, productsCategory?.data]);
+
 
   let categoryPage = (
     <div className="m-auto  grid justify-center justify-items-center md:grid-cols-4 gap-3 md:gap-5  w-full  2xl:w-[1400px] h-full">

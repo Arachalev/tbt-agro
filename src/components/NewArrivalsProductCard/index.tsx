@@ -4,6 +4,7 @@ import React from "react";
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import placeholder from "../../../public/images/placeholder.png";
 
 interface NewArrivalsProductCardProps {
   image: string;
@@ -31,10 +32,10 @@ const NewArrivalsProductCard: React.FC<NewArrivalsProductCardProps> = ({
     >
       <div className="w-full h-[169px] p-4 flex items-center justify-center bg-[#f6f6f6] rounded-t-[10px]">
         <Image
-          className=" rounded-[10px] w-[130px] h-[115px] object-cover"
+          className=" rounded-[10px] w-[130px] h-[115px] object-contain"
           width={130}
           height={115}
-          src={image}
+          src={image ? image : placeholder}
           alt={name}
         />
       </div>

@@ -119,7 +119,7 @@ const Page = ({ params }: { params: { category: string } }) => {
                 image={
                   item.images.length > 0
                     ? item.images[0].image_url
-                    : "https://picsum.photos/200/300"
+                    :  ""
                 }
                 name={item.name}
                 price={item.tbt_price}
