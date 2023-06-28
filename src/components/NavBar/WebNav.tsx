@@ -31,7 +31,7 @@ import {
   setBuyerProfile,
 } from "@/store/redux/services/buyerSlice/profileSlice/profileSlice";
 import { useGetBuyerProfileQuery } from "@/store/redux/services/buyerSlice/profileSlice/profileApiSlice";
-
+import { useGetAllNotificationsQuery } from "@/store/redux/services/notificationSlice/notificationApiSlice";
 import useInput from "@/hooks/useInput";
 import { useSearchProductsMutation } from "@/store/redux/services/searchSlice/searchApiSlice";
 import { useGetCartItemsQuery } from "@/store/redux/services/cartSlice/cartApiSlice";
@@ -48,7 +48,13 @@ const WebNav = () => {
   const [fetchBuyerProfile, setFetchBuyerProfile] = useState(false);
 
   const { data, isError, isFetching, isLoading, isSuccess, error } =
-    useGetBuyerProfileQuery({ skip: fetchBuyerProfile });
+    useGetBuyerProfileQuery("", { skip: fetchBuyerProfile });
+
+  const {
+    data: notifications,
+    isLoading: notificationsLoading,
+    error: notificationsError,
+  } = useGetAllNotificationsQuery("");
 
   const [
     searchProducts,
@@ -136,7 +142,7 @@ const WebNav = () => {
               <div className="relative">
                 <BsBell className="text-2xl text-agro-yellow" />
                 <span className=" absolute top-0 right-0 text-[9px] font-semibold bg-white h-3 w-3 rounded-full flex items-center justify-center">
-                  2
+                  {notifications?.data?.data.length}
                 </span>
               </div>
               <div className=" ">
@@ -162,7 +168,10 @@ const WebNav = () => {
               </div>
               {showProfileSettings && (
                 <div className="absolute top-11 left-11">
-                  <NavProfile profileData={navProfileData} />
+                  <NavProfile
+                    closeProfile={() => setShowProfileSettings(false)}
+                    profileData={navProfileData}
+                  />
                 </div>
               )}
 

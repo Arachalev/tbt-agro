@@ -18,8 +18,12 @@ import {
 import { useGetSellerProfileQuery } from "@/store/redux/services/sellerSlice/profileSlice/profileApiSlice";
 import { useGetAllNotificationsQuery } from "@/store/redux/services/notificationSlice/notificationApiSlice";
 import NavProfile from "../NavProfile";
+import SideBar from "./SideBar";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const SellerNav = () => {
+  const [showSideBar, setShowSideBar] = useState(false);
+
   const [showProfileSettings, setShowProfileSettings] =
     useState<boolean>(false);
   const router = useRouter();
@@ -34,6 +38,8 @@ const SellerNav = () => {
     error: notificationsError,
   } = useGetAllNotificationsQuery("");
 
+  
+
   useEffect(() => {
     if (data) {
       dispatch(
@@ -46,8 +52,23 @@ const SellerNav = () => {
 
   return (
     <nav className="top-0 absolute z-50 w-full  ">
-      <div className="bg-agro-green  h-24 flex flex-row items-start justify-between pt-9 px-4 xl:px-20">
-        <div className="flex items-center gap-16 ">
+      {showSideBar && (
+        <SideBar
+          closePanel={() => {
+            setShowSideBar(false);
+          }}
+        />
+      )}
+      <div className="bg-agro-green h-24 flex items-center justify-between px-4 xl:px-20">
+        <div className="flex items-center gap-4 ">
+          <span
+            className="sm:hidden"
+            onClick={() => {
+              setShowSideBar(true);
+            }}
+          >
+            <RxHamburgerMenu className="text-lg text-white " />
+          </span>
           <Link
             // href="/dashboard/seller/account"
             href="/web/home"
@@ -67,7 +88,7 @@ const SellerNav = () => {
           <Image src={profile} alt="profile" />
           <div
             onClick={() => setShowProfileSettings((state) => !state)}
-            className="text-white flex items-center gap-1"
+            className="text-white flex items-center gap-1 cursor-pointer"
           >
             <p className=" text-sm font-medium">
               {sellerProfile.fName} {sellerProfile.lName}
@@ -76,7 +97,10 @@ const SellerNav = () => {
           </div>
           {showProfileSettings && (
             <div className="absolute top-20 right-11">
-              <NavProfile profileData={sellerProfileData} />
+              <NavProfile
+                closeProfile={() => setShowProfileSettings(false)}
+                profileData={sellerProfileData}
+              />
             </div>
           )}
         </div>

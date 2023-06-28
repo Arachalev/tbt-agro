@@ -1,19 +1,15 @@
+"use client";
 import React from "react";
 
 import EditIcon from "@/components/Icons/EditIcon";
 import { useRouter } from "next/navigation";
+import { useGetShippingAddressQuery } from "@/store/redux/services/buyerSlice/shippingAddressSlice/shippingAddressApiSlice";
 
 interface AccountOverviewProps {
   name: string;
   email: string;
   shippingAddress: {
     name: string;
-    address: {
-      street: string;
-      city: string;
-      state: string;
-    };
-    phone: string;
   };
 }
 
@@ -24,6 +20,9 @@ const AccountOverview = ({
 }: AccountOverviewProps) => {
   const router = useRouter();
 
+  const { data } = useGetShippingAddressQuery("");
+
+  console.log(data?.data);
   return (
     <div className="2xl:w-[1077px] md:h-[322px] rounded-[10px] bg-white flex flex-col md:flex-row items-center gap-5 p-6 ">
       <div className=" w-full md:w-1/2 h-full border border-gray2 rounded-md ">
@@ -49,11 +48,12 @@ const AccountOverview = ({
           </p>
           <div className="text-gray2 font-medium ">
             <p>{shippingAddress.name}</p>
-            <p>{shippingAddress.address.street},</p>
+            <p>{data ? data.data.delivery_address : "---"},</p>
             <p>
-              {shippingAddress.address.city}, {shippingAddress.address.state}
+              {data ? data.data.city.name : "---"},{" "}
+              {data ? data.data.state.name : "---"}
             </p>
-            <p>{shippingAddress.phone}</p>
+            <p>{data ? data.data.phone_number : "---"}</p>
           </div>
         </div>
       </div>

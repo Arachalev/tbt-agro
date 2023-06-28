@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import Image from "next/image";
-import { useRouter, usePathname, } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { BsFillPersonFill } from "react-icons/bs";
@@ -17,6 +17,7 @@ const MobileNav = () => {
   const [showNavProfile, setShowNavProfile] = useState(false);
 
   const pathArr = usePathname().trim().split("/");
+  const router = useRouter();
 
   const seller = pathArr[2] === "seller";
 
@@ -55,7 +56,10 @@ const MobileNav = () => {
           </Link>
         </div>
         <div className="flex gap-4 items-center">
-          <BsFillPersonFill className="text-white text-lg" />
+          <BsFillPersonFill
+            onClick={() => router.push("/dasboard/buyer/account")}
+            className="text-white text-lg"
+          />
           <Cart />
         </div>
       </div>

@@ -15,9 +15,11 @@ const ServiceItem = ({ bg, title, text }: ServiceItemProps) => {
   ];
 
   return (
-    <div className={`bg-center bg-cover relative h-[226px] w-[309px] ${bg}  `}>
+    <div
+      className={`bg-center bg-cover relative h-[226px] w-[309px] overflow-clip ${bg}  `}
+    >
       <div className="text-center pt-[14px] bg-agro-yellow w-full h-[72px] absolute bottom-0 right-0">
-        <h4 className="text-lg font-bold">{title}</h4>
+        <h4 className="text-lg font-bold whitespace-nowrap">{title}</h4>
         <p className="text-xs font-medium">{text}</p>
       </div>
     </div>

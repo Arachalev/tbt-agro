@@ -11,7 +11,6 @@ createProdHeaders.append("Accept", "*/*");
 // createProdHeaders.append("Content-Type", "multipart/form-data");
 // createProdHeaders.append("Accept-Encoding", "multipart/form-data");
 
-
 const productApiSlice = baseApiSlice.injectEndpoints({
   endpoints: (builder) => ({
     createProduct: builder.mutation({
@@ -22,7 +21,7 @@ const productApiSlice = baseApiSlice.injectEndpoints({
         method: "POST",
       }),
     }),
-    updateProduct: builder.mutation({ 
+    updateProduct: builder.mutation({
       query: (data) => ({
         headers: myHeaders,
         url: "/seller/product/update",

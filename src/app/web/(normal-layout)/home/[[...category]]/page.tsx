@@ -56,6 +56,8 @@ const Page = () => {
     error,
   } = useGetAllProductsQuery("");
 
+  // console.log(productsData?.data);
+
   const { data: categories } = useGetCategoriesQuery("");
 
   const { data: productsCategory } = useGetProductsByCategoryQuery(
@@ -148,15 +150,11 @@ const Page = () => {
     } else if (productsData) {
       const tempProd: any[] = [];
 
-      productsData.data.data.map(
-        (item: {
-          images: { image_url: string }[];
-          name: string;
-          sale_price: number;
-          user: { seller_id: string };
-          location: string;
-          id: number;
-        }) =>
+      const fetchPage2 = async () => {
+        const res = await fetch(productsData.data.next_page_url);
+        const data = await res.json();
+
+        data.data.data.map((item: any) =>
           tempProd.push({
             image: item.images[0] ? item.images[0].image_url : "",
             name: item.name,
@@ -165,12 +163,33 @@ const Page = () => {
             location: item.location,
             id: item.id,
           })
-      );
+        );
 
-      setProductsArr(tempProd);
+        productsData.data.data.map(
+          (item: {
+            images: { image_url: string }[];
+            name: string;
+            sale_price: number;
+            user: { seller_id: string };
+            location: string;
+            id: number;
+          }) =>
+            tempProd.push({
+              image: item.images[0] ? item.images[0].image_url : "",
+              name: item.name,
+              price: item.sale_price,
+              sellerID: item.user.seller_id,
+              location: item.location,
+              id: item.id,
+            })
+        );
+        // console.log(tempProd);
+        setProductsArr(tempProd);
+      };
+
+      fetchPage2();
     }
   }, [productsData, productsCategory?.data]);
-
 
   let categoryPage = (
     <div className="m-auto  grid justify-center justify-items-center md:grid-cols-4 gap-3 md:gap-5  w-full  2xl:w-[1400px] h-full">

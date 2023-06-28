@@ -22,8 +22,6 @@ const Page = () => {
 
   const buyerProfile = useAppSelector(selectBuyerProfile);
 
-  console.log(data);
-
   return (
     <div className="pt-8 px-5 pb-40">
       <h4 className="mb-5 text-xl md:text-2xl xl:text-3xl text-agro-green font-semibold overflow-clip">
@@ -33,19 +31,13 @@ const Page = () => {
         name={
           buyerProfile.fName
             ? `${buyerProfile.fName} ${buyerProfile.lName}`
-            : "Chris Morph"
+            : "---"
         }
-        email={buyerProfile.email ?? "chris@gmail.com"}
+        email={buyerProfile.email ?? "---"}
         shippingAddress={{
           name: buyerProfile.fName
             ? `${buyerProfile.fName} ${buyerProfile.lName}`
-            : "Chris Morph",
-          address: {
-            street: "212 Lola",
-            city: "Ikeja",
-            state: "Lagos",
-          },
-          phone: buyerProfile.pNumber ?? "+1234567890",
+            : "---",
         }}
       />
     </div>

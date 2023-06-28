@@ -8,23 +8,28 @@ interface SideBarLinkProps {
   name: string;
   href: string;
   showLinks: boolean;
+  className?: string;
 }
 
-const SideBarLink = ({ Icon, name, href, showLinks }: SideBarLinkProps) => {
+const SideBarLink = ({
+  Icon,
+  name,
+  href,
+  showLinks,
+  className = "",
+}: SideBarLinkProps) => {
   const pathArr = usePathname().trim().split("/");
 
   const hrefArr = href.split("/");
 
-
   const isCurrentPath = pathArr[3] === hrefArr[3];
-
 
   return (
     <Link
       href={href}
       className={`flex items-center gap-5 ${
         isCurrentPath ? "text-agro-orange font-semibold" : ""
-      }`}
+      } ${className}`}
     >
       {Icon && <Icon stroke={isCurrentPath ? "#F48924" : "#1A1A1A"} />}
       {showLinks && <div className="text-sm">{name}</div>}
