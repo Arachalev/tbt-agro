@@ -102,7 +102,6 @@ const SignInForm = () => {
     errorMessage = isFetchBaseQueryErrorType(error);
   }
 
-
   return (
     <div className="min-h-screen bg-agro-floral-white pt-10 pb-[142px] flex flex-col items-center">
       {show && (
@@ -141,13 +140,20 @@ const SignInForm = () => {
           handleValue={(val) => setFormValues({ ...formValues, password: val })}
         />
         <div className="w-full grid md:grid-cols-[200px_164px]  gap-4">
-          <div className="col-span-2 justify-self-center md:justify-self-start md:col-start-2">
+          <div className="mt-5 flex items-center gap-8 col-span-2 justify-self-center md:justify-self-start md:col-start-2">
             <PriButton
               text="Submit"
               type="submit"
-              className="w-[164px] h-[50px] rounded-[6px] text-xl font-bold mt-5   "
-              onClick={function () {
-                console.log("submitted");
+              className="px-6  h-10 rounded-[6px]   font-bold   "
+              onClick={() => {}}
+            />
+            <PriButton
+              text="Forgot Password?"
+              type="button"
+              variant="secondary"
+              className="px-6 h-[40px] rounded-[6px] font-bold   "
+              onClick={() => {
+                router.push("/web/forgot-password");
               }}
             />
           </div>

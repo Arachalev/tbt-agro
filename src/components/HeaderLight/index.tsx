@@ -19,6 +19,10 @@ const HeaderLight = ({ variant = "base" }: { variant?: string }) => {
       break;
     case "sign-in":
       break;
+    case "forgot-password":
+      break;
+    case "reset-password":
+      break;
     case "buy-on-tbt":
       {
         content = "Buy on TBT";
@@ -53,6 +57,12 @@ const HeaderLight = ({ variant = "base" }: { variant?: string }) => {
       {content}
     </div>
   );
+
+  const notAuth =
+    path[2] !== "sign-up" &&
+    path[2] !== "sign-in" &&
+    path[2] !== "forgot-password" &&
+    path[2] !== "reset-password";
   return (
     <div
       className={`bg-white px-4 xl:px-[72px] h-20 sm:h-[154px] w-screen flex items-center justify-center  `}
@@ -60,7 +70,7 @@ const HeaderLight = ({ variant = "base" }: { variant?: string }) => {
       <Link href="/web/home">
         <Image src={logo} alt="logo" />
       </Link>
-      {path[2] !== "sign-up" && path[2] !== "sign-in" && headerContainer}
+      {notAuth && headerContainer}
     </div>
   );
 };

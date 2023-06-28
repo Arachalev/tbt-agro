@@ -71,6 +71,22 @@ export const authApiSlice = baseApiSlice.injectEndpoints({
         method: "POST",
       }),
     }),
+    forgotPwdSendOttp: builder.mutation({
+      query: (credentials) => ({
+        url: "/user/auth/send-password-reset-otp",
+        headers: myHeaders,
+        body: credentials,
+        method: "POST",
+      }),
+    }),
+    forgotPwd: builder.mutation({
+      query: (credentials) => ({
+        url: "/user/auth/reset-password",
+        headers: myHeaders,
+        body: credentials,
+        method: "POST",
+      }),
+    }),
   }),
 });
 
@@ -83,4 +99,6 @@ export const {
   useSendOtpToResetPwdMutation,
   useVerifyResetPwdOtpMutation,
   useDeleteAccountMutation,
+  useForgotPwdMutation,
+  useForgotPwdSendOttpMutation,
 } = authApiSlice;
