@@ -465,11 +465,13 @@ const ShipingAndLogistics = () => {
             1. SHIPPING & LOGISTICS
           </p>
           <p className="ml-10 font-semibold">
-            {address
-              ? address.data.delivery_address
+            {address?.data?.delivery_address
+              ? address?.data?.delivery_address
               : addressLoading
               ? "Loading..."
-              : addressError && "Error getting address"}
+              : addressError
+              ? "Error getting address"
+              : "No Address"}
           </p>
         </div>
         <button
