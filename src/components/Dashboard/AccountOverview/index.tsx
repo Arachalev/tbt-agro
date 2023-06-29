@@ -57,7 +57,7 @@ const AccountOverview = ({
               {data?.data.city.name ? data?.data.city.name : "---"},{" "}
               {data?.data.state.name ? data?.data.state.name : "---"}
             </p>
-            <p>{data.data.phone_number ? data.data.phone_number : "---"}</p>
+            <p>{data?.data.phone_number ? data.data.phone_number : "---"}</p>
           </div>
         </div>
       </div>
