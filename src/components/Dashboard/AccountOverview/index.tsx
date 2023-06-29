@@ -22,6 +22,7 @@ const AccountOverview = ({
 
   const { data } = useGetShippingAddressQuery("");
 
+  
   return (
     <div className="2xl:w-[1077px] md:h-[322px] rounded-[10px] bg-white flex flex-col md:flex-row items-center gap-5 p-6 ">
       <div className=" w-full md:w-1/2 h-full border border-gray2 rounded-md ">
@@ -54,10 +55,10 @@ const AccountOverview = ({
               ,
             </p>
             <p>
-              {data?.data.city.name ? data?.data.city.name : "---"},{" "}
-              {data?.data.state.name ? data?.data.state.name : "---"}
+              {data?.data?.city?.name ? data?.data.city.name : "---"},{" "}
+              {data?.data?.state?.name ? data?.data.state.name : "---"}
             </p>
-            <p>{data?.data.phone_number ? data.data.phone_number : "---"}</p>
+            <p>{data?.data?.phone_number ? data.data.phone_number : "---"}</p>
           </div>
         </div>
       </div>
