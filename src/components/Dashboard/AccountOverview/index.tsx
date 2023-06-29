@@ -22,7 +22,6 @@ const AccountOverview = ({
 
   const { data } = useGetShippingAddressQuery("");
 
-  console.log(data?.data);
   return (
     <div className="2xl:w-[1077px] md:h-[322px] rounded-[10px] bg-white flex flex-col md:flex-row items-center gap-5 p-6 ">
       <div className=" w-full md:w-1/2 h-full border border-gray2 rounded-md ">
@@ -48,12 +47,17 @@ const AccountOverview = ({
           </p>
           <div className="text-gray2 font-medium ">
             <p>{shippingAddress.name}</p>
-            <p>{data ? data.data.delivery_address : "---"},</p>
             <p>
-              {data ? data.data.city.name : "---"},{" "}
-              {data ? data.data.state.name : "---"}
+              {data?.data?.delivery_address
+                ? data.data.delivery_address
+                : "---"}
+              ,
             </p>
-            <p>{data ? data.data.phone_number : "---"}</p>
+            <p>
+              {data?.data.city.name ? data?.data.city.name : "---"},{" "}
+              {data?.data.state.name ? data?.data.state.name : "---"}
+            </p>
+            <p>{data.data.phone_number ? data.data.phone_number : "---"}</p>
           </div>
         </div>
       </div>
