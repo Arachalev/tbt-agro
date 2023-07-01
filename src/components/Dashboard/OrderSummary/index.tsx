@@ -41,7 +41,7 @@ const OrderSummary = () => {
         {/* Shipping fee: <span>₦{shippingFee}</span> */}
       </p>
       <Link
-        href="/dashboard/buyer/confirmed-order"
+        href="/dashboard/buyer/shopping-cart"
         className="self-center mt-[62px] bg-agro-yellow rounded-[4px] font-bold text-agro-black w-[137px] h-8 text-sm flex items-center justify-center"
       >
         Modify Cart

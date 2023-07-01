@@ -14,6 +14,7 @@ const Page = () => {
     orders = data?.data?.data;
   }
 
+  console.log(orders);
 
   return (
     <div className="pt-8 px-5 pb-40">

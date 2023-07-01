@@ -106,13 +106,13 @@ const BuyerBar = () => {
           </div>
         )}
 
-        {showLinks && (
+        {/* {showLinks && (
           <SideBarLink
             showLinks={showLinks}
             name={"Address Book"}
             href={"address-book"}
           />
-        )}
+        )} */}
         {showLinks && (
           <SideBarLink
             showLinks={showLinks}
