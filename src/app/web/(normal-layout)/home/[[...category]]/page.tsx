@@ -119,7 +119,6 @@ const Page = () => {
   useEffect(() => {
     if (productsCategory?.data) {
       const tempProd: any[] = [];
-
       productsCategory.data.map(
         (item: {
           images: { image_url: string }[];
@@ -194,8 +193,6 @@ const Page = () => {
       fetchPage2();
     }
   }, [productsData]);
-
-  // console.log(productsArr, productsData);
 
   let categoryPage = (
     <div className="m-auto  grid justify-center justify-items-center md:grid-cols-4 gap-3 md:gap-5  w-full  2xl:w-[1400px] h-full">
@@ -311,15 +308,20 @@ const Page = () => {
     </div>
   );
 
+  const firstLoad = sessionStorage.getItem("first-load");
+
   return (
     <div className="min-h-[100vh] py-12 bg-agro-body">
-      {showModal && (
+      {showModal && !firstLoad && (
         <div className="overflow-hidden modal bg-think-agro min-h-screen min-w-screen fixed top-0 right-0 left-0 z-[5000000] py-11 pl-10 md:pl-20">
           <div className="flex items-center justify-between">
             <Image src={logoImg} className="" alt="Logo" />
             <div
               className="cursor-pointer p-2"
-              onClick={() => setShowModal(false)}
+              onClick={() => {
+                sessionStorage.setItem("first-load", "true");
+                setShowModal(false);
+              }}
             >
               <GrClose className="text-agro-green mr-20 " />
             </div>
@@ -331,7 +333,10 @@ const Page = () => {
                 <p className="font-bold"> Think TBT!</p>
               </h4>
               <button
-                onClick={() => setShowModal(false)}
+                onClick={() => {
+                  sessionStorage.setItem("first-load", "true");
+                  setShowModal(false);
+                }}
                 className="bg-agro-green rounded-[4px] font-bold text-white px-6 py-2 mt-12"
               >
                 Get Started
