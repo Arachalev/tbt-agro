@@ -9,7 +9,6 @@ import Image from "next/image";
 import PriButton from "../PriButton";
 import logo from "../../assets/logo/logo1.png";
 import { AiOutlineSearch } from "react-icons/ai";
-import { RxHamburgerMenu } from "react-icons/rx";
 import { IoIosArrowDown } from "react-icons/io";
 import { navLinksData } from "@/store/DummyData/navLinks";
 import { BsBell } from "react-icons/bs";
@@ -33,7 +32,6 @@ import {
 import { useGetBuyerProfileQuery } from "@/store/redux/services/buyerSlice/profileSlice/profileApiSlice";
 import { useGetAllNotificationsQuery } from "@/store/redux/services/notificationSlice/notificationApiSlice";
 import useInput from "@/hooks/useInput";
-import { useSearchProductsMutation } from "@/store/redux/services/searchSlice/searchApiSlice";
 import { useGetCartItemsQuery } from "@/store/redux/services/cartSlice/cartApiSlice";
 import {
   addToCart,
@@ -55,11 +53,6 @@ const WebNav = () => {
     isLoading: notificationsLoading,
     error: notificationsError,
   } = useGetAllNotificationsQuery("");
-
-  const [
-    searchProducts,
-    { isLoading: searchLoading, error: searchError, data: searchData },
-  ] = useSearchProductsMutation();
 
   const { data: cartData } = useGetCartItemsQuery("");
 
@@ -103,10 +96,11 @@ const WebNav = () => {
     onFocusHandler,
     reset,
   } = useInput((val) => (val ? true : false));
+
   const searchHandler = async (e: any) => {
     e.preventDefault();
 
-    await searchProducts({ input: value.value });
+    value.value && router.push(`/web/search?params=${value.value}`);
   };
 
   return user.userType === "Seller" ? (
@@ -130,7 +124,7 @@ const WebNav = () => {
             />
             <span
               onClick={searchHandler}
-              className="bg-agro-yellow h-full items-center justify-center flex w-11 rounded-e-md  "
+              className="bg-agro-yellow h-full items-center justify-center flex w-11 rounded-e-md cursor-pointer "
             >
               <AiOutlineSearch className="text-lg" />
             </span>

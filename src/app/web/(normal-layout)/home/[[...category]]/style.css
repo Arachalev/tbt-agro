@@ -1,0 +1,8 @@
+.modal::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  padding: 20rem;
+}
+.modal {
+  -ms-overflow-style: none;
+}

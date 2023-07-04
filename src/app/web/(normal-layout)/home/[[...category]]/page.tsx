@@ -2,12 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
-import {
-  multiProductsCardData,
-  products,
-} from "@/store/DummyData/multiProductsCard";
-
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 import MultiProductsCard from "@/components/MultiProductsCard";
 import QuotationCard from "@/components/QuotationCard/QuotationCard";
@@ -22,12 +17,18 @@ import {
 } from "@/store/redux/services/productsSlice/productsApiSlice";
 import { useGetProductsByCategoryQuery } from "@/store/redux/services/productsSlice/productsApiSlice";
 import { useGetCategoriesQuery } from "@/store/redux/services/categorySlice/categoryApiSlice";
+import logoImg from "../../../../../../public/images/modal-logo.png";
+import cocoaImge from "../../../../../../public/images/Image-min.png";
+import Image from "next/image";
+import { GrClose } from "react-icons/gr";
+import "./style.css";
 
 const Page = () => {
   // const { data } = useGetTopRatedProductsQuery("");
   const searchParams = useSearchParams();
   const categoryParams = searchParams.get("category");
 
+  const [showModal, setShowModal] = useState(true);
   const [productsArr, setProductsArr] = useState<any[]>([]);
   const [categoryData, setCategoryData] = useState<{
     linksData: { name: string; icon: string; id: number }[];
@@ -147,10 +148,13 @@ const Page = () => {
         },
         productsData: tempProd,
       }));
-    } else if (productsData) {
-      const tempProd: any[] = [];
+    }
+  }, [productsCategory?.data]);
 
+  useEffect(() => {
+    if (productsData) {
       const fetchPage2 = async () => {
+        const tempProd: any[] = [];
         const res = await fetch(productsData.data.next_page_url);
         const data = await res.json();
 
@@ -189,7 +193,9 @@ const Page = () => {
 
       fetchPage2();
     }
-  }, [productsData, productsCategory?.data]);
+  }, [productsData]);
+
+  // console.log(productsArr, productsData);
 
   let categoryPage = (
     <div className="m-auto  grid justify-center justify-items-center md:grid-cols-4 gap-3 md:gap-5  w-full  2xl:w-[1400px] h-full">
@@ -307,6 +313,36 @@ const Page = () => {
 
   return (
     <div className="min-h-[100vh] py-12 bg-agro-body">
+      {showModal && (
+        <div className="overflow-hidden modal bg-think-agro min-h-screen min-w-screen fixed top-0 right-0 left-0 z-[5000000] py-11 pl-10 md:pl-20">
+          <div className="flex items-center justify-between">
+            <Image src={logoImg} className="" alt="Logo" />
+            <div
+              className="cursor-pointer p-2"
+              onClick={() => setShowModal(false)}
+            >
+              <GrClose className="text-agro-green mr-20 " />
+            </div>
+          </div>
+          <div className="mt-8 md:mt-0  flex justify-between items-center">
+            <div>
+              <h4 className="font-semibold text-3xl  md:text-6xl leading-normal sm:leading-relaxed">
+                Think Agro <br /> Commodities, <br />{" "}
+                <p className="font-bold"> Think TBT!</p>
+              </h4>
+              <button
+                onClick={() => setShowModal(false)}
+                className="bg-agro-green rounded-[4px] font-bold text-white px-6 py-2 mt-12"
+              >
+                Get Started
+              </button>
+            </div>
+            <div>
+              <Image src={cocoaImge} alt="Cocoa" />
+            </div>
+          </div>
+        </div>
+      )}
       <div className="px-4 xl:px-[70px] pb-12 flex flex-col md:flex-row md:mx-auto gap-5 2xl:w-[1540px] ">
         <ProductsCategoryCard
           productsCategoryData={

@@ -18,7 +18,7 @@ const WebLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <section>
       <NavBar />
-      <main className={`${user === "Seller" ? "mt-[96px]" : "mt-40"}`}>
+      <main className={`${user === "Seller" ? "mt-[96px]" : " sm:mt-40"}`}>
         {children}
       </main>
       <Footer />

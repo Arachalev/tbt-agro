@@ -11,13 +11,7 @@ import {
 import useInput from "@/hooks/useInput";
 import PriButton from "@/components/PriButton";
 import StatusModal from "@/components/Forms/StatusModal";
-import Select, {
-  components,
-  SetValueAction,
-  Props,
-  StylesConfig,
-  GroupBase,
-} from "react-select";
+import Select from "react-select";
 import {
   useGetAllCountriesQuery,
   useGetCitiesInStateQuery,

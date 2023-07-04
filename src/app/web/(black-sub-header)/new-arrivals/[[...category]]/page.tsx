@@ -28,7 +28,7 @@ const Page = ({ params }: { params: { category: string } }) => {
       skip: fetchParams.skip,
     });
 
-  console.log(data, categoryData?.data);
+  // console.log(data, categoryData?.data);
 
   useEffect(() => {
     if (categoriesList?.data) {
@@ -116,11 +116,7 @@ const Page = ({ params }: { params: { category: string } }) => {
               <NewArrivalsProductCard
                 key={item.id}
                 id={item.id}
-                image={
-                  item.images.length > 0
-                    ? item.images[0].image_url
-                    :  ""
-                }
+                image={item.images.length > 0 ? item.images[0].image_url : ""}
                 name={item.name}
                 price={item.tbt_price}
                 sellerID={item.user.seller_id}

@@ -55,6 +55,7 @@ const SideBar = ({ closePanel }: { closePanel: () => void }) => {
   const [showSettings, setShowSettings] = useState<boolean>(false);
 
   const user = sessionStorage.getItem("userType");
+  const token = sessionStorage.getItem("token");
 
   const isBuyer = user === "Buyer";
   const isSeller = user === "Seller";
@@ -110,6 +111,25 @@ const SideBar = ({ closePanel }: { closePanel: () => void }) => {
             </div>
           )}
         </div>
+        {!token && (
+          <div className="flex flex-row items-center gap-5">
+            <Link
+              className="text-white bg-agro-green px-4 py-1 flex items-center justify-center rounded-[10px] text-sm font-medium whitespace-nowrap"
+              href="/web/sign-in"
+            >
+              Sign in
+            </Link>
+
+            <Link
+              className="text-agro'green bg-white px-4 py-1 flex items-center justify-center rounded-[10px] text-sm font-medium whitespace-nowrap"
+              // onClick={() => router.push("/web/sign-up")}
+              href="/web/sign-up"
+            >
+              {" "}
+              Join for free
+            </Link>
+          </div>
+        )}
         {isBuyer && (
           <div className="">
             <ul
