@@ -3,11 +3,12 @@ import React from "react";
 import logo from "../../assets/logo/logo1.png";
 import Image from "next/image";
 import footerData from "../../store/DummyData/footerData.json";
-import { BsTwitter } from "react-icons/bs";
+import { BsTwitter, BsWhatsapp } from "react-icons/bs";
 import { GrFacebookOption } from "react-icons/gr";
 import { ImLinkedin2 } from "react-icons/im";
 import FooterItem from "./FooterItem";
 import PriButton from "../PriButton";
+import Link from "next/link";
 
 const MobileFooter = () => {
   return (
@@ -19,9 +20,21 @@ const MobileFooter = () => {
             news straight to your inbox.
           </h4>
           <div className="flex gap-4 text-agro-green">
-            <BsTwitter />
-            <GrFacebookOption />
-            <ImLinkedin2 />
+            <Link href="https://twitter.com/tbt_agro" target="_blank">
+              <BsTwitter />
+            </Link>
+            <Link href="https://web.facebook.com/tbt.agro/" target="_blank">
+              <GrFacebookOption />
+            </Link>
+            <Link
+              href="https://www.linkedin.com/company/tbt-logistics-limited/"
+              target="_blank"
+            >
+              <ImLinkedin2 />
+            </Link>
+            <Link href="https://wa.me/+2348115838997" target="_blank">
+              <BsWhatsapp />
+            </Link>
           </div>
         </div>
         <div className="mt-8 flex flex-col gap-2 justify-center">
@@ -37,6 +50,9 @@ const MobileFooter = () => {
           })}
         </div>
         <div className="mt-8 w-full col-span-2">
+          <h4 className="text-sm font-bold mb-4">
+            Subscribe to our Newsletter
+          </h4>
           <div className="h-[42px]  flex">
             <input
               type="text"
@@ -51,6 +67,10 @@ const MobileFooter = () => {
               className="rounded-none rounded-e-[4px]  min-w-[115px]  "
             />
           </div>
+
+          <p className=" text-sm font-medium leading-6 mt-4">
+            99, Obafemi Awolowo Way, Ikeja, Lagos State, Nigeria.
+          </p>
         </div>
       </div>
     </footer>

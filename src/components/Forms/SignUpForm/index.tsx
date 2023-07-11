@@ -245,9 +245,9 @@ const SignUpForm = () => {
           <p className=" text-sm  ">
             While creating an account: I agree to abide by the
             <Link className="font-semibold text-agro-green" href="">
-              tbt.com.ng Membership Agreement.
+              tbt.com.ng Membership Agreement
             </Link>
-            Willing to receive emails from tbt.com.ng members and services.
+            and I am willing to receive emails from TBT.
           </p>
         </div>
         <div className="w-full grid md:grid-cols-[200px_164px]  gap-4">

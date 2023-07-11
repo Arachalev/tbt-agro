@@ -10,8 +10,10 @@ import StatusModal from "@/components/Forms/StatusModal";
 const ProductDetails = () => {
   const path = usePathname().split("/");
 
-  const { data, isLoading, error } = useGetOneProductQuery(path[4]);
-  // console.log(data);
+  console.log(path);
+
+  const { data, isLoading, error } = useGetOneProductQuery(path[3]);
+  // console.log(data, error);
 
   const product: {
     name: string;
@@ -41,11 +43,7 @@ const ProductDetails = () => {
     <div className="flex flex-col items-center gap-5 p-5">
       <DetailsCard
         id={product.id}
-        img={
-          product.images.length > 0
-            ? product.images[0].image_url
-            : ""
-        }
+        img={product.images.length > 0 ? product.images[0].image_url : ""}
         sellerId={product.user.seller_id}
         name={`${product.name.toUpperCase()} - ${product.quantity}${
           product.unit

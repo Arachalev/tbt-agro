@@ -15,6 +15,9 @@ import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
 import { useAppDispatch } from "@/store/redux/hooks";
 import { addToCart as reduxAddToCart } from "@/store/redux/services/cartSlice/cartSlice";
 import placeholder from "../../../../public/images/placeholder.png";
+import { useAppSelector } from "@/store/redux/hooks";
+import { selectAuthToken } from "@/store/redux/services/authSlice/authSlice";
+import Link from "next/link";
 
 interface DetailsCardProps {
   img: string;
@@ -53,6 +56,8 @@ const DetailsCard = ({
   const router = useRouter();
   const dispatch = useAppDispatch();
 
+  const auth = useAppSelector(selectAuthToken);
+
   const {
     value,
     hasError,
@@ -63,13 +68,17 @@ const DetailsCard = ({
   } = useInput((val) => parseInt(val) > minimumPurchase);
 
   const addToCartHandler = async () => {
-    setShowModal(true);
-    await addToCart({ product_id: id, quantity: parseInt(value.value) });
+    if (auth.token) {
+      setShowModal(true);
+      await addToCart({ product_id: id, quantity: parseInt(value.value) });
 
-    if (addCartData) {
-      // router.push("/dashboard/buyer/added-to-cart");
-      // console.log(addCartData);
-      // dispatch(reduxAddToCart({}));
+      if (addCartData) {
+        // router.push("/dashboard/buyer/added-to-cart");
+        // console.log(addCartData);
+        // dispatch(reduxAddToCart({}));
+      }
+    } else {
+      router.push("/web/sign-in");
     }
   };
 
@@ -88,7 +97,6 @@ const DetailsCard = ({
           onClose={() => setShowModal(false)}
           loading={addCartLoading}
           data={addCartData ? addCartData?.message : ""}
-          dataFunc={() => router.back()}
           error={addCartError ? errorMessage : ""}
         />
       )}
@@ -120,9 +128,18 @@ const DetailsCard = ({
             SHARE THIS PRODUCT
           </p>
           <div className="flex items-center gap-2 text-agro-green mt-4">
-            <GrLinkedinOption className="text-lg" />
-            <BsTwitter />
-            <TfiFacebook />
+            <Link
+              href="https://www.linkedin.com/company/tbt-logistics-limited/"
+              target="_blank"
+            >
+              <GrLinkedinOption className="text-lg" />
+            </Link>
+            <Link href="https://twitter.com/tbt_agro" target="_blank">
+              <BsTwitter />
+            </Link>
+            <Link href="https://web.facebook.com/tbt.agro/" target="_blank">
+              <TfiFacebook />
+            </Link>
           </div>
         </div>
       </div>

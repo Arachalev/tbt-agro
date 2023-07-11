@@ -54,7 +54,7 @@ const MultiProductsCard: React.FC<MultiProductsCardProps> = ({
         {products.map((item) => {
           return (
             <Link
-              href={`/dashboard/buyer/product-details/${item.id}`}
+              href={`/web/product-details/${item.id}`}
               key={getUniqueID()}
             >
               <Image

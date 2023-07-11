@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState } from "react";
 
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
@@ -8,7 +9,7 @@ const FooterItem = ({
   variant = "web",
 }: {
   title: string;
-  items: string[];
+  items: { name: string; href: string }[];
   variant?: "web" | "mobile";
 }) => {
   const [showLinks, setShowLinks] = useState(false);
@@ -34,8 +35,8 @@ const FooterItem = ({
       {mobile && showLinks && (
         <ul>
           {items.map((item) => (
-            <li key={item}>
-              <p className="text-sm font-medium leading-6">{item}</p>
+            <li key={item.name}>
+              <p className="text-sm font-medium leading-6">{item.name}</p>
             </li>
           ))}
         </ul>
@@ -43,8 +44,10 @@ const FooterItem = ({
       {!mobile && (
         <ul>
           {items.map((item) => (
-            <li key={item}>
-              <p className="text-sm font-medium leading-6">{item}</p>
+            <li key={item.name}>
+              <Link href={item.href}>
+                <p className="text-sm font-medium leading-6">{item.name}</p>
+              </Link>
             </li>
           ))}
         </ul>

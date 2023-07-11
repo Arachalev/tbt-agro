@@ -232,7 +232,7 @@ const Page = () => {
       {productsArr.slice(0, 4).length > 1 && (
         <div className="col-span-4 md:col-span-2  lg:col-span-1 w-full">
           <MultiProductsCard
-            title={"New Arrivlas"}
+            title={"New Arrivals"}
             products={productsArr.slice(0, 4)}
             type="newProducts"
           />
@@ -313,37 +313,39 @@ const Page = () => {
   return (
     <div className="min-h-[100vh] py-12 bg-agro-body">
       {showModal && !firstLoad && (
-        <div className="overflow-hidden modal bg-think-agro min-h-screen min-w-screen fixed top-0 right-0 left-0 z-[5000000] py-11 pl-10 md:pl-20">
-          <div className="flex items-center justify-between">
-            <Image src={logoImg} className="" alt="Logo" />
-            <div
-              className="cursor-pointer p-2"
-              onClick={() => {
-                sessionStorage.setItem("first-load", "true");
-                setShowModal(false);
-              }}
-            >
-              <GrClose className="text-agro-green mr-20 " />
-            </div>
-          </div>
-          <div className="mt-8 md:mt-0  flex justify-between items-center">
-            <div>
-              <h4 className="font-semibold text-3xl  md:text-6xl leading-normal sm:leading-relaxed">
-                Think Agro <br /> Commodities, <br />{" "}
-                <p className="font-bold"> Think TBT!</p>
-              </h4>
-              <button
+        <div className="overflow-hidden flex items-center justify-center modal h-screen backdrop-blur-md  min-w-screen fixed top-0 right-0 left-0 z-[5000000] p-5 sm:p-20  xl:p-40 ">
+          <div className="bg-think-agro py-11 pl-10 md:pl-20 ">
+            <div className="flex items-center justify-between">
+              <Image src={logoImg} className="" alt="Logo" />
+              <div
+                className="cursor-pointer p-2"
                 onClick={() => {
                   sessionStorage.setItem("first-load", "true");
                   setShowModal(false);
                 }}
-                className="bg-agro-green rounded-[4px] font-bold text-white px-6 py-2 mt-12"
               >
-                Get Started
-              </button>
+                <GrClose className="text-agro-green mr-20 " />
+              </div>
             </div>
-            <div>
-              <Image src={cocoaImge} alt="Cocoa" />
+            <div className="mt-8 md:mt-0  flex justify-between items-center">
+              <div>
+                <h4 className="font-semibold text-3xl md:text-4xl  xl:text-6xl leading-normal sm:leading-relaxed">
+                  Think Agro <br /> Commodities, <br />{" "}
+                  <p className="font-bold"> Think TBT!</p>
+                </h4>
+                <button
+                  onClick={() => {
+                    sessionStorage.setItem("first-load", "true");
+                    setShowModal(false);
+                  }}
+                  className="bg-agro-green rounded-[4px] font-bold text-white px-6 py-2 mt-12"
+                >
+                  Get Started
+                </button>
+              </div>
+              <div>
+                <Image src={cocoaImge} alt="Cocoa" />
+              </div>
             </div>
           </div>
         </div>
@@ -377,7 +379,7 @@ const Page = () => {
         <QuotationCard />
       </div>
 
-      <div className="px-4 xl:px-[70px] 2xl:w-[1540px] mx-auto mb-[131px]">
+      <div className="px-4 xl:px-[70px] 2xl:w-[1540px] mx-auto mb-[80px]">
         <TradeServices />
       </div>
     </div>

@@ -2,7 +2,9 @@ import React from "react";
 import { productCategoryData } from "@/store/DummyData/productsCategory";
 import getUniqueID from "@/hooks/getUniqueID";
 import Link from "next/link";
-import Image from "next/image";
+// import Image from "next/image";
+import { useSearchParams } from "next/navigation";
+import { BsCheckLg } from "react-icons/bs";
 
 interface ItemCardProps {
   name: string;
@@ -10,14 +12,30 @@ interface ItemCardProps {
   Icon?: React.FC;
 }
 const ItemCard: React.FC<ItemCardProps> = ({ name, icon, Icon }) => {
+  const search = useSearchParams();
+  const category = search.get("category");
+
+  let href = `/web/home?category=${name}`;
+
+  if (name === "All Categories") {
+    href = `/web/home`;
+  }
+
   return (
     <Link
-      href={`/web/home?category=${name}`}
-      className="flex gap-2 sm:gap-3 items-center"
+      href={href}
+      className={`flex gap-2 ${category ? "" : "sm:gap-3"} items-center`}
     >
-      <span className="w-8">
+      <span className={`${category ? "" : "w-8"}`}>
         {/* <Image src={icon} height={20} width={20} alt={name} /> */}
-        {Icon && <Icon />}
+        {Icon && !category && <Icon />}
+        {category && (
+          <div className="bg-white h-4 w-4 rounded-[2px] border-gray2 border flex items-center justify-center">
+            {category === name && (
+              <BsCheckLg className="text-sm text-agro-green" />
+            )}
+          </div>
+        )}
       </span>
       <p className="text-agro-green text-sm font-medium">{name}</p>
     </Link>

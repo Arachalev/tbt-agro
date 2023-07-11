@@ -36,9 +36,9 @@ const NavAccountSettings = ({ hideSettings }: NavAccountSettingsProps) => {
                   name=""
                   id=""
                 >
-                  <option value="option-1">Option 1</option>
-                  <option value="option-2">Option 2</option>
-                  <option value="option-3">Option 3</option>
+                  <option value="option-1">English</option>
+                  {/* <option value="option-2">Option 2</option>
+                  <option value="option-3">Option 3</option> */}
                 </select>
                 <SlArrowDown
                   className={`${styles.arrow} h-full absolute right-3 top-0 text-xs text-[#ABABAB] `}
@@ -56,8 +56,8 @@ const NavAccountSettings = ({ hideSettings }: NavAccountSettingsProps) => {
                   id=""
                 >
                   <option value="option-1">NGN - Nigerian Naira</option>
-                  <option value="option-2">Option 2</option>
-                  <option value="option-3">Option 3</option>
+                  {/* <option value="option-2">Option 2</option>
+                  <option value="option-3">Option 3</option> */}
                 </select>
                 <SlArrowDown
                   className={`${styles.arrow} h-full absolute right-3 top-0 text-xs text-[#ABABAB]`}

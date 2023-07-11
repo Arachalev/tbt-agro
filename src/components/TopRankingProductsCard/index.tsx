@@ -29,7 +29,7 @@ const TopRankingProductsCard: React.FC<TopRankingProductsCardProps> = ({
   const router = useRouter();
   return (
     <div
-      onClick={() => router.push(`/dashboard/buyer/product-details/${id}`)}
+      onClick={() => router.push(`/web/product-details/${id}`)}
       className="xl:w-[380px] 2xl:w-[420px] h-[200px] md:h-[265px] p-4 flex items-center gap-2 sm:gap-[18px]  bg-white rounded-[10px] "
     >
       <div className=" relative h-full md:h-[233px] w-[150px] md:w-[200px] flex items-center justify-center bg-[#f6f6f6] rounded-[10px]">

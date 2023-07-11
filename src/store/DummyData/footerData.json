@@ -2,22 +2,61 @@
   {
     "title": "Customer Services",
     "items": [
-      "Contact us",
-      "Help Center",
-      "Policies & rules",
-      "Give your feedback"
+      {
+        "name": "Contact us",
+        "href": ""
+      },
+      {
+        "name": "Help Center",
+        "href": ""
+      },
+      {
+        "name": "Policies & rules",
+        "href": ""
+      },
+      {
+        "name": "Give your feedback",
+        "href": ""
+      }
     ]
   },
   {
     "title": "About",
-    "items": ["About TBT", "Blog"]
+    "items": [
+      {
+        "name": "About TBT",
+        "href": "/web/about-us"
+      },
+      {
+        "name": "Blog",
+        "href": ""
+      }
+    ]
   },
   {
     "title": "Source on TBT",
-    "items": ["All categories", "Request for Quotation", "Buyer partners"]
+    "items": [
+      {
+        "name": "All categories",
+        "href": "/web/home"
+      },
+      {
+        "name": "Request for Quotation",
+        "href": "/web/request-for-quotation-seller"
+      },
+      {
+        "name": "Buyer partners",
+        "href": ""
+      }
+    ]
   },
   {
     "title": "Sell on TBT",
-    "items": ["Sign up now"]
+    "items": [
+      {
+        "name": "Sign up now",
+        "href": "/web/sign-up"
+      }
+    ]
   }
 ]

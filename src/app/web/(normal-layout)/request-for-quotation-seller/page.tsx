@@ -66,7 +66,7 @@ const Pages = () => {
   // console.log(buyerLeadsData);
 
   return (
-    <main className="bg-agro-gray pt-[88px] pb-[/160px] ">
+    <main className="bg-agro-gray pt-[88px] pb-[160px] ">
       <div className="flex flex-col gap-2 md:gap-5 px-4 xl:px-[72px]">
         <h3 className="text-2xl xl:text-[40px] h-10 font-semibold overflow-clip">
           Request For Quotation List

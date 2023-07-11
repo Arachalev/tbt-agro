@@ -17,11 +17,12 @@ const HeaderCarousel = () => {
             <h4 className="text-white font-semibold  text-3xl lg:text-[40px] leading-none overflow-clip">
               Shop the Best <br /> Seedling Deals
             </h4>
-            <PriButton
-              text={"Shop Now"}
-              className="w-[141px] h-11"
-              onClick={() => {}}
-            />
+            <Link
+              href="/web/home?category=Spices"
+              className="w-[141px] h-11 bg-agro-yellow rounded-[4px] font-bold text-agro-black flex items-center justify-center"
+            >
+              Shop Now
+            </Link>
           </div>
         </div>
         <div className="flex items-center justify-between gap-4 bg-white rounded-b-[10px] h-[90px] px-4 md:px-12 py-3">
@@ -42,7 +43,7 @@ const HeaderCarousel = () => {
               VIEW REQUESTS FOR QUOTATION
             </h4>
             <Link
-              href="/dashboard/seller/request-for-quotation-seller"
+              href="/web/request-for-quotation-seller"
               className="font-medium text-xs md:text-sm text-agro-green border-b-2 border-b-agro-green"
             >
               I&apos;m a Seller

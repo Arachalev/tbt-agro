@@ -9,9 +9,14 @@ import React from "react";
 const WebLayout = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState("");
 
+  const userType = sessionStorage.getItem("userType");
   useEffect(() => {
-    const userType = sessionStorage.getItem("userType");
+    // const userType = sessionStorage.getItem("userType");
 
+    userType && setUser(userType);
+  }, [userType]);
+
+  useEffect(() => {
     userType && setUser(userType);
   }, []);
 
