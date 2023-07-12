@@ -3,13 +3,16 @@ import React from "react";
 
 import EditIcon from "@/components/Icons/EditIcon";
 import { useRouter } from "next/navigation";
-import { useGetShippingAddressQuery } from "@/store/redux/services/buyerSlice/shippingAddressSlice/shippingAddressApiSlice";
 
 interface AccountOverviewProps {
   name: string;
   email: string;
   shippingAddress: {
     name: string;
+    address: string;
+    city: string;
+    state: string;
+    phone: string;
   };
 }
 
@@ -20,9 +23,6 @@ const AccountOverview = ({
 }: AccountOverviewProps) => {
   const router = useRouter();
 
-  const { data } = useGetShippingAddressQuery("");
-
-  
   return (
     <div className="2xl:w-[1077px] md:h-[322px] rounded-[10px] bg-white flex flex-col md:flex-row items-center gap-5 p-6 ">
       <div className=" w-full md:w-1/2 h-full border border-gray2 rounded-md ">
@@ -49,16 +49,20 @@ const AccountOverview = ({
           <div className="text-gray2 font-medium ">
             <p>{shippingAddress.name}</p>
             <p>
-              {data?.data?.delivery_address
+              {/* {data?.data?.delivery_address
                 ? data.data.delivery_address
-                : "---"}
-              ,
+                : "---"} */}
+              {shippingAddress.address},
             </p>
             <p>
-              {data?.data?.city?.name ? data?.data.city.name : "---"},{" "}
-              {data?.data?.state?.name ? data?.data.state.name : "---"}
+              {/* {data?.data?.city?.name ? data?.data.city.name : "---"},{" "}
+              {data?.data?.state?.name ? data?.data.state.name : "---"} */}
+              {shippingAddress.city}, {shippingAddress.state}
             </p>
-            <p>{data?.data?.phone_number ? data.data.phone_number : "---"}</p>
+            <p>
+              {/* {data?.data?.phone_number ? data.data.phone_number : "---"} */}
+              {shippingAddress.phone}
+            </p>
           </div>
         </div>
       </div>

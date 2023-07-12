@@ -7,11 +7,12 @@ import PriButton from "@/components/PriButton";
 import Select from "react-select";
 import CustomInput from "@/components/CustomInput";
 import { useSignUpMutation } from "@/store/redux/services/authSlice/authApiSlice";
-import StatusModal from "./StatusModal";
 import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
 import { setCredentials } from "@/store/redux/services/authSlice/authSlice";
 import { useAppDispatch } from "@/store/redux/hooks";
 import { useGetAllCountriesQuery } from "@/store/redux/services/locationSlice/locationApiSlice";
+import StatusModal from "../StatusModal";
+import { useRouter } from "next/navigation";
 
 const options = [
   { value: "chocolate", label: "Chocolate" },
@@ -56,6 +57,7 @@ const SignUpForm = () => {
   }
   let errorMessage;
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const handleSubmit = async (e: any) => {
     setShow(true);
@@ -96,7 +98,10 @@ const SignUpForm = () => {
           data={data ? data.message : ""}
           error={error ? errorMessage : ""}
           loading={isLoading}
-          onClose={() => setShow(false)}
+          onClose={() => {
+            router.push("/web/verify-email");
+            setShow(false);
+          }}
         />
       )}
       <form
@@ -226,6 +231,7 @@ const SignUpForm = () => {
               className="ml-5 h-12 pl-3 rounded-[4px] bg-white border border-[#ABABAB]"
               type="text"
               placeholder="85622857"
+              maxLength={10}
               onChange={(e) =>
                 setFormValues({ ...formValues, pNumber: e.target.value })
               }

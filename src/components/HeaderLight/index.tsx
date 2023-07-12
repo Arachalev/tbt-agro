@@ -13,6 +13,7 @@ const HeaderLight = ({ variant = "base" }: { variant?: string }) => {
   let content;
 
   const path = usePathname().trim().split("/");
+  // console.log(path);
 
   switch (path[2]) {
     case "sign-up":
@@ -35,25 +36,38 @@ const HeaderLight = ({ variant = "base" }: { variant?: string }) => {
       }
       break;
 
-    case "request-for-quotation-buyer": {
-      content = (
-        <div>
-          <h4 className="overflow-clip sm:h-11 leading-none text-center text-lg sm:text-[40px]">
-            Tell Us Your Sourcing Needs in 60 Seconds
-          </h4>
-          <p className="text-agro-orange text-center mt-1 sm:mt-2 text-xs  sm:text-base">
-            ONE request, multiple quotes!
-          </p>
-        </div>
-      );
-    }
+    // case "request-for-quotation-buyer": {
+    //   content = (
+    //     <div>
+    //       <h4 className="overflow-clip sm:h-11 leading-none text-center text-lg sm:text-[40px]">
+    //         Tell Us Your Sourcing Needs in 60 Seconds
+    //       </h4>
+    //       <p className="text-agro-orange text-center mt-1 sm:mt-2 text-xs  sm:text-base">
+    //         ONE request, multiple quotes!
+    //       </p>
+    //     </div>
+    //   );
+    // }
 
     case "buy":
     case "quote":
   }
 
+  if (path[3]) {
+    content = (
+      <div className="">
+        <h4 className="overflow-cli  leading-none text-center text-lg sm:text-[40px]">
+          Tell Us Your Sourcing Needs in 60 Seconds
+        </h4>
+        <p className="text-agro-orange text-center mt-1 sm:mt-2 text-xs  sm:text-base">
+          ONE request, multiple quotes!
+        </p>
+      </div>
+    );
+  }
+
   const headerContainer = (
-    <div className="w-full h-11 flex flex-col items-center text-2xl sm:text-[40px] text-agro-black font-semibold overflow-clip ">
+    <div className="w-full h-full flex flex-col items-center justify-center  text-2xl sm:text-[40px] text-agro-black font-semibold overflow-clip ">
       {content}
     </div>
   );

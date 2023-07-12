@@ -12,6 +12,7 @@ const profileApiSlice = baseApiSlice.injectEndpoints({
         url: "/buyer/profile",
         method: "GET",
       }),
+      providesTags: ["buyerProfile"],
     }),
     updateBuyerAccount: builder.mutation({
       query: (data) => ({
@@ -20,6 +21,7 @@ const profileApiSlice = baseApiSlice.injectEndpoints({
         body: data,
         method: "POST",
       }),
+      invalidatesTags: ["buyerProfile"],
     }),
     changeBuyerPwd: builder.mutation({
       query: (data) => ({
@@ -28,6 +30,7 @@ const profileApiSlice = baseApiSlice.injectEndpoints({
         body: data,
         method: "POST",
       }),
+      invalidatesTags: ["buyerProfile"],
     }),
     changeBuyerProfilePicture: builder.mutation({
       query: (data) => ({
@@ -36,6 +39,7 @@ const profileApiSlice = baseApiSlice.injectEndpoints({
         body: data,
         method: "POST",
       }),
+      invalidatesTags: ["buyerProfile"],
     }),
     buyerLogOut: builder.mutation({
       query: () => ({

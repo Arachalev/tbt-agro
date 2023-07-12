@@ -10,7 +10,7 @@ import StatusModal from "@/components/Forms/StatusModal";
 const ProductDetails = () => {
   const path = usePathname().split("/");
 
-  console.log(path);
+  // console.log(path);
 
   const { data, isLoading, error } = useGetOneProductQuery(path[3]);
   // console.log(data, error);

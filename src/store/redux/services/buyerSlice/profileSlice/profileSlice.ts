@@ -5,7 +5,7 @@ interface BuyerProfileInterface {
   address: string;
   bankAccount: string;
   buyerQuotations: [];
-  city: string;
+  city: { name: string; id: number };
   companyAddress: string;
   companyName: string;
   country: { id: number; name: string } | null;
@@ -17,14 +17,14 @@ interface BuyerProfileInterface {
   pNumber: string;
   profilePicture: null;
   sellerID: string;
-  state: string;
+  state: { name: string; id: number };
 }
 
 const initialState: BuyerProfileInterface = {
   address: "",
   bankAccount: "",
   buyerQuotations: [],
-  city: "",
+  city: { name: "", id: 0 },
   companyAddress: "",
   companyName: "",
   country: null,
@@ -36,7 +36,7 @@ const initialState: BuyerProfileInterface = {
   pNumber: "",
   profilePicture: null,
   sellerID: "",
-  state: "",
+  state: { name: "", id: 0 },
 };
 
 const profileSlice = createSlice({
@@ -89,7 +89,7 @@ const profileSlice = createSlice({
       state.pNumber = changedData.pNumber;
       state.profilePicture = changedData.profilePicture;
       state.sellerID = changedData.sellerID;
-      state = changedData.state;
+      state.state = changedData.state;
     },
   },
 });

@@ -7,6 +7,7 @@ import CustomInput from "@/components/CustomInput";
 import { useVerifyAccountMutation } from "@/store/redux/services/authSlice/authApiSlice";
 import StatusModal from "./StatusModal";
 import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
+import { useRouter } from "next/navigation";
 
 const VerifyEmail = () => {
   const [show, setShow] = useState(false);
@@ -18,8 +19,9 @@ const VerifyEmail = () => {
   const [verifyUser, { isLoading, isSuccess, error, data }] =
     useVerifyAccountMutation();
 
-
   let errorMessage;
+
+  const router = useRouter();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -31,14 +33,9 @@ const VerifyEmail = () => {
       otp: formValues.otp,
     });
     if (res && isSuccess) {
-      // router.push("/web/sign-in");
-
+      router.push("/web/sign-in");
     }
   };
-
-  // console.log("-------------------------------------------");
-
-  // console.log(isLoading, isSuccess, error, data);
 
   if (isSuccess) {
     sessionStorage.setItem("token", data.data.access_token);
@@ -59,7 +56,7 @@ const VerifyEmail = () => {
       )}
 
       <h4 className="text-agro-green text-xl md:text-2xl xl:text-4xl mb-10 font-semibold text-center ">
-        Sign In
+        Verify Account
       </h4>
       <form
         onSubmit={handleSubmit}

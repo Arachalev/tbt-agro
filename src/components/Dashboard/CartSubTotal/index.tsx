@@ -27,10 +27,10 @@ const CartSubTotal = ({ items, cost }: CartSubTotalProps) => {
       </h4>
       <p className=" font-bold">₦{cost.toLocaleString()}</p>
       <Link
-        href="/dashboard/buyer/checkout"
+        href={items === 0 ? "/web/home" : "/dashboard/buyer/checkout"}
         className="bg-agro-yellow rounded-[4px] font-bold flex items-center text-center  text-agro-black h-7 whitespace-nowrap px-4 text-xs "
       >
-        Proceed to Checkout
+        {items === 0 ? "Go Home" : " Proceed to Checkout"}
       </Link>
       {!isShoppingCardPath && (
         <Link

@@ -23,11 +23,14 @@ const Page = () => {
   const cart = useAppSelector(selectCart);
 
   const { data, isLoading, error } = useGetCartItemsQuery("");
+
   const {
     data: sumData,
     isLoading: sumLoading,
     error: sumError,
   } = useGetCartSummaryQuery("");
+
+  // console.log(data);
 
   useEffect(() => {
     const handleProductData = async (
@@ -81,6 +84,8 @@ const Page = () => {
             ratingsAmount: 1,
             quantity: item.quantity,
             id: item.id,
+            productID: item.product.id,
+            availableQuantity: item.product.quantity.toLocaleString(),
           });
         }
       );
@@ -126,6 +131,8 @@ const Page = () => {
                   ratings={item.ratings}
                   ratingsAmount={item.ratingsAmount}
                   key={getUniqueID()}
+                  productID={item.productID}
+                  availableQuantity={item.availableQuantity}
                 />
               ))
             ) : (

@@ -1,9 +1,13 @@
 "use client";
-import React from "react";
+import React, { FormEvent } from "react";
 
 import Image from "next/image";
 import StarRatings from "react-star-ratings";
-import { useDeleteCartItemMutation } from "@/store/redux/services/cartSlice/cartApiSlice";
+import {
+  useDeleteCartItemMutation,
+  useUpdateCartItemMutation,
+} from "@/store/redux/services/cartSlice/cartApiSlice";
+import useInput from "@/hooks/useInput";
 
 export interface CartCardProps {
   img: string;
@@ -16,6 +20,8 @@ export interface CartCardProps {
   ratingsAmount: number;
   quantity: number;
   id: number;
+  productID: number;
+  availableQuantity: string;
 }
 
 const CartCard = ({
@@ -29,13 +35,46 @@ const CartCard = ({
   ratings,
   ratingsAmount,
   id,
+  productID,
+  availableQuantity,
 }: CartCardProps) => {
   const [deleteCartItem, { isLoading, data, error }] =
     useDeleteCartItemMutation();
 
+  const [
+    updateCart,
+    { isLoading: updateLoading, data: updateData, error: updateError },
+  ] = useUpdateCartItemMutation();
+
   const handleDelete = async () => {
     await deleteCartItem(id);
   };
+
+  const {
+    enteredInputHandler: quantityHandler,
+    value: quantityValue,
+    hasError: quantityError,
+    onFocusHandler: quantityFocus,
+    onBlurHandler: quantityBlur,
+  } = useInput((val) => (val ? true : false));
+
+  const handleUpdate = async () => {
+    // e.preventDefault();
+
+    // console.log(e.target.value);
+
+    const res = await updateCart({
+      cart_id: id,
+      product_id: productID,
+      quantity: quantityValue.value,
+    });
+
+    console.log(res);
+  };
+
+  // console.log(availableQuantity)
+
+  // console.log(updateData, updateError);
 
   return (
     <div className=" 2xl:w-[967px] p-10 bg-white rounded-[10px] flex flex-col md:flex-row justify-between">
@@ -71,9 +110,24 @@ const CartCard = ({
           <div>
             <div className=" flex flex-col gap-2">
               <h4 className="text-sm font-semibold">Quantity needed</h4>
-              <p className=" px-2 flex items-center placeholder:text-agro-black w-[210px] h-[48px]  border border-gray2 rounded-[4px] bg-agro-gray ">
-                {quantity ?? "---"}
-              </p>
+              <div>
+                {/* <input type="text" placeholder="1232123" /> */}
+                {/* <form action="" onSubmit={handleUpdate}> */}
+                <input
+                  type="number"
+                  // value={quantityValue.value}
+                  defaultValue={quantity ?? "---"}
+                  onChange={quantityHandler}
+                  onBlur={handleUpdate}
+                  onFocus={quantityFocus}
+                  min={minimumPurchase}
+                  max={availableQuantity}
+                  className=" px-2 flex items-center placeholder:text-agro-black w-[210px] h-[48px]  border border-gray2 rounded-[4px] bg-agro-gray "
+                >
+                  {/* {quantity ?? "---"} */}
+                </input>
+                {/* </form> */}
+              </div>
             </div>
             <p className="text-gray2 mt-2 font-medium ">
               Minimum purchase quantity : {minimumPurchase}

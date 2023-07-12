@@ -155,6 +155,13 @@ const QuotationForm = () => {
 
   // console.log(submitData, submitQuoteError);
 
+  // Calculate 30 days minimum date for Expiry date of RFQ
+  const date = new Date();
+  date.setDate(date.getDate() + 30);
+  const minDate = date.toISOString().split("T")[0];
+
+  // console.log(minDate);
+
   return (
     <div className="min-h-screen bg-agro-floral-white pt-10 pb-[170px] flex flex-col items-center">
       {showModal && (
@@ -346,6 +353,7 @@ const QuotationForm = () => {
           placeholder="Please Enter"
           // className="pr-2"
           type="date"
+          min={minDate}
           validation={(val) => val.length > 3}
           handleValue={(val) => {
             setFormData({ ...formData, expDate: val });

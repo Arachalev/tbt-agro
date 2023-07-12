@@ -33,6 +33,16 @@ const cartApiSlice = baseApiSlice.injectEndpoints({
       providesTags: ["cartData"],
     }),
 
+    updateCartItem: builder.mutation({
+      query: (data) => ({
+        headers: myHeaders,
+        url: `/user/cart/update-cart`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["cartData"],
+    }),
+
     deleteCartItem: builder.mutation({
       query: (id) => ({
         headers: myHeaders,
@@ -49,4 +59,5 @@ export const {
   useDeleteCartItemMutation,
   useGetCartItemsQuery,
   useGetCartSummaryQuery,
+  useUpdateCartItemMutation,
 } = cartApiSlice;

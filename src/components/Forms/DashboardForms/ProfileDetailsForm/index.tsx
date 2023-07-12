@@ -18,6 +18,7 @@ import {
 } from "@/store/redux/services/buyerSlice/profileSlice/profileSlice";
 import { useGetBuyerProfileQuery } from "@/store/redux/services/buyerSlice/profileSlice/profileApiSlice";
 import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
+import { useRouter } from "next/navigation";
 
 const ProfileDetailsForm = () => {
   const [showModal, setShowModal] = useState(false);
@@ -69,6 +70,7 @@ const ProfileDetailsForm = () => {
 
   const dispatch = useAppDispatch();
   const buyerDetails = useAppSelector(selectBuyerProfile);
+  const router = useRouter();
 
   useEffect(() => {
     if (buyerProfile) {
@@ -83,8 +85,8 @@ const ProfileDetailsForm = () => {
         country_id: buyerDetails.country?.id
           ? buyerDetails.country.id.toString()
           : "",
-        state_id: buyerDetails.state,
-        city_id: buyerDetails.city,
+        state_id: `${buyerDetails.state.id}`,
+        city_id: `${buyerDetails.city.id}`,
       });
     }
   }, [buyerProfile, dispatch]);
@@ -132,7 +134,7 @@ const ProfileDetailsForm = () => {
       console.log(error);
     }
   };
-  console.log(data, error);
+  // console.log(data, error);
   let errorMessage = "";
 
   if (error) {
@@ -146,6 +148,9 @@ const ProfileDetailsForm = () => {
           loading={isLoading}
           data={data ? data?.message : ""}
           error={error ? errorMessage : ""}
+          dataFunc={() => {
+            router.push("/dashboard/buyer/account");
+          }}
         />
       )}
       <form
