@@ -14,8 +14,6 @@ const Page = () => {
   const { data, isError, isFetching, isLoading, isSuccess, error } =
     useGetBuyerProfileQuery("");
 
-  // console.log(data);
-
   const dispatch = useAppDispatch();
 
   if (data) {
@@ -23,8 +21,6 @@ const Page = () => {
   }
 
   const buyerProfile = useAppSelector(selectBuyerProfile);
-
-  // console.log(buyerProfile);
 
   return (
     <div className="pt-8 px-5 pb-40">
@@ -37,15 +33,15 @@ const Page = () => {
             ? `${buyerProfile.fName} ${buyerProfile.lName}`
             : "---"
         }
-        email={buyerProfile.email ?? "---"}
+        email={buyerProfile.email ? buyerProfile.email : "---"}
         shippingAddress={{
-          name: buyerProfile.fName
+          name: buyerProfile?.fName
             ? `${buyerProfile.fName} ${buyerProfile.lName}`
             : "---",
-          address: buyerProfile.address,
-          city: buyerProfile.city.name,
-          state: buyerProfile.state.name,
-          phone: buyerProfile.pNumber,
+          address: buyerProfile?.address ? buyerProfile.address : "",
+          city: buyerProfile?.city?.name ? buyerProfile.city.name : "",
+          state: buyerProfile?.state?.name ? buyerProfile.state.name : "",
+          phone: buyerProfile?.pNumber ? buyerProfile.pNumber : "---",
         }}
       />
     </div>

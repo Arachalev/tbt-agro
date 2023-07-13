@@ -150,34 +150,25 @@ const Page = () => {
     }
   }, [productsCategory?.data]);
 
-  useEffect(() => {
-    if (productsData) {
-      const fetchPage2 = async () => {
-        const tempProd: any[] = [];
-        const res = await fetch(productsData.data.next_page_url);
-        const data = await res.json();
+  // Fetch Other pages
+  const fetchOtherPages = async (
+    total: number,
+    pageLimit: number,
+    pageUrl: string
+  ) => {
+    const tempProducts: any[] = [];
 
-        data.data.data.map((item: any) =>
-          tempProd.push({
-            image: item.images[0] ? item.images[0].image_url : "",
-            name: item.name,
-            price: item.sale_price,
-            sellerID: item.user.seller_id,
-            location: item.location,
-            id: item.id,
-          })
-        );
+    const limit = Math.ceil(total / pageLimit);
 
-        productsData.data.data.map(
-          (item: {
-            images: { image_url: string }[];
-            name: string;
-            sale_price: number;
-            user: { seller_id: string };
-            location: string;
-            id: number;
-          }) =>
-            tempProd.push({
+    const dataArr = new Array(limit + 1).fill("");
+
+    await Promise.all(
+      dataArr.map(async (item, index) => {
+        if (index > 0) {
+          const res = await fetch(`${pageUrl}${index}`);
+          const data = await res.json();
+          data.data.data.map((item: any) =>
+            tempProducts.push({
               image: item.images[0] ? item.images[0].image_url : "",
               name: item.name,
               price: item.sale_price,
@@ -185,12 +176,23 @@ const Page = () => {
               location: item.location,
               id: item.id,
             })
-        );
-        // console.log(tempProd);
-        setProductsArr(tempProd);
-      };
+          );
+        }
+      })
+    );
 
-      fetchPage2();
+    // console.log(tempProducts);
+    setProductsArr(tempProducts);
+  };
+
+  useEffect(() => {
+    if (productsData) {
+      const pageUrl = productsData.data.first_page_url.split("=");
+      fetchOtherPages(
+        productsData.data.total,
+        productsData.data.per_page,
+        pageUrl[0]
+      );
     }
   }, [productsData]);
 
@@ -220,6 +222,24 @@ const Page = () => {
           <MultiProductsCard
             title={categoryData.fetchParams.name}
             products={categoryData.productsData.slice(8, 16)}
+            type="cropProducts"
+          />
+        </div>
+      )}
+      {categoryData.productsData.slice(16, 24).length > 0 && (
+        <div className="col-span-4 md:col-span-2 w-full ">
+          <MultiProductsCard
+            title={categoryData.fetchParams.name}
+            products={categoryData.productsData.slice(16, 24)}
+            type="cropProducts"
+          />
+        </div>
+      )}
+      {categoryData.productsData.slice(24, 32).length > 0 && (
+        <div className="col-span-4 md:col-span-2 w-full ">
+          <MultiProductsCard
+            title={categoryData.fetchParams.name}
+            products={categoryData.productsData.slice(24, 32)}
             type="cropProducts"
           />
         </div>

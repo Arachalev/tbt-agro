@@ -85,8 +85,8 @@ const ProfileDetailsForm = () => {
         country_id: buyerDetails.country?.id
           ? buyerDetails.country.id.toString()
           : "",
-        state_id: `${buyerDetails.state.id}`,
-        city_id: `${buyerDetails.city.id}`,
+        state_id: `${buyerDetails?.state?.id}`,
+        city_id: `${buyerDetails?.city?.id}`,
       });
     }
   }, [buyerProfile, dispatch]);

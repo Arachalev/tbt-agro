@@ -20,6 +20,7 @@ import { AiFillPlusSquare } from "react-icons/ai";
 const AddProductForm = () => {
   const [showModal, setShowModal] = useState(false);
   const [categoryID, setCategoryID] = useState(1);
+  const [unit, setUnit] = useState("");
 
   const [images, setImages] = useState<{
     images: File[];
@@ -30,6 +31,29 @@ const AddProductForm = () => {
   });
 
   const router = useRouter();
+
+  const unitOptions = [
+    {
+      value: "Kg",
+      label: "Kg",
+    },
+    {
+      value: "Ton",
+      label: "Ton",
+    },
+    {
+      value: "Pkts",
+      label: "Pkts",
+    },
+    {
+      value: "Bags",
+      label: "Bags",
+    },
+    {
+      value: "Pcs",
+      label: "Pcs",
+    },
+  ];
 
   const [createProduct, { isLoading, isSuccess, error, data }] =
     useCreateProductMutation();
@@ -107,14 +131,14 @@ const AddProductForm = () => {
     reset: resetQuantity,
   } = useInput((val) => parseInt(val) > 0);
 
-  const {
-    value: unitValue,
-    enteredInputHandler: unitHandler,
-    onBlurHandler: unitBlurHandler,
-    onFocusHandler: unitFocusHandler,
-    hasError: unitHasError,
-    reset: resetUnit,
-  } = useInput((val) => (val ? true : false));
+  // const {
+  //   value: unitValue,
+  //   enteredInputHandler: unitHandler,
+  //   onBlurHandler: unitBlurHandler,
+  //   onFocusHandler: unitFocusHandler,
+  //   hasError: unitHasError,
+  //   reset: resetUnit,
+  // } = useInput((val) => (val ? true : false));
 
   const {
     value: minPurchaseValue,
@@ -177,7 +201,7 @@ const AddProductForm = () => {
       sale_price: salePriceValue.value,
       tbt_price: tbtPriceValue.value,
       description: descriptionValue.value,
-      unit: unitValue.value,
+      unit: unit,
       minimum_purchase: minPurchaseValue.value,
       quantity: quantityValue.value,
       other_info: infoValue.value,
@@ -210,7 +234,24 @@ const AddProductForm = () => {
     // await createProduct(JSON.stringify(formInfo));
   };
 
-  // console.log(data, error);
+  const selectStyling = {
+    control: (baseStyles: any, state: any) => ({
+      ...baseStyles,
+      width: "100%",
+      minHeight: 48,
+      // maxHeight: 30,
+      overflow: "clip",
+      padding: 0,
+      margin: 0,
+      backgroundColor: "none",
+      // border: "none",
+    }),
+    indicatorsContainer: (base: any, props: any) => ({
+      ...base,
+      height: "100%",
+    }),
+  };
+
   let errorMessage = "";
 
   if (error) {
@@ -364,7 +405,7 @@ const AddProductForm = () => {
                 Sale Price <span>*</span>
               </label>
               <input
-                type="text"
+                type="number"
                 value={salePriceValue.value}
                 defaultValue={0}
                 onChange={salePriceHandler}
@@ -457,7 +498,15 @@ const AddProductForm = () => {
               >
                 Select Unit <span>*</span>
               </label>
-              <input
+              <Select
+                styles={selectStyling}
+                options={unitOptions}
+                onChange={(e) => {
+                  setUnit(e?.value ? e.value : "");
+                }}
+                className={`  outline-none  w-full sm:w-[209px]   rounded-[4px] border bg-gray3 mt-2`}
+              />
+              {/* <input
                 value={unitValue.value}
                 onChange={unitHandler}
                 onBlur={unitBlurHandler}
@@ -471,7 +520,7 @@ const AddProductForm = () => {
                     : "border-gray2 "
                 } outline-none  w-full sm:w-[209px]  h-12 rounded-[4px] border bg-gray3 mt-2 px-5`}
                 placeholder="Kg"
-              />
+              /> */}
             </div>
             <div className="w-full sm:w-fit">
               <label

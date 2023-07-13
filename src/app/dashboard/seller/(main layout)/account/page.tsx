@@ -53,7 +53,7 @@ const Page = () => {
     );
   }
 
-  // console.log(products?.data?.data);
+  console.log(products?.data);
   // console.log(products?.data);
 
   const fetchProducts = async (url: string) => {

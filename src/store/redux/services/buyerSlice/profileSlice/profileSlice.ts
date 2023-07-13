@@ -8,14 +8,14 @@ interface BuyerProfileInterface {
   city: { name: string; id: number };
   companyAddress: string;
   companyName: string;
-  country: { id: number; name: string } | null;
+  country: { id: number; name: string };
   shippingAddress: string;
   email: string;
   fName: string;
   lName: string;
   orders: [];
   pNumber: string;
-  profilePicture: null;
+  profilePicture: string;
   sellerID: string;
   state: { name: string; id: number };
 }
@@ -27,14 +27,14 @@ const initialState: BuyerProfileInterface = {
   city: { name: "", id: 0 },
   companyAddress: "",
   companyName: "",
-  country: null,
+  country: { name: "", id: 0 },
   shippingAddress: "",
   email: "",
   fName: "",
   lName: "",
   orders: [],
   pNumber: "",
-  profilePicture: null,
+  profilePicture: "",
   sellerID: "",
   state: { name: "", id: 0 },
 };
