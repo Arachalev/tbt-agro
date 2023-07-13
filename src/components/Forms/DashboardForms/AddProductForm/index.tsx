@@ -147,8 +147,6 @@ const AddProductForm = () => {
       uploadedImages.forEach((item) => names.push(item.name));
       setImages({ images: uploadedImages, fileName: names });
     }
-
-   
   };
 
   // Delete one uploaded file
@@ -368,6 +366,7 @@ const AddProductForm = () => {
               <input
                 type="text"
                 value={salePriceValue.value}
+                defaultValue={0}
                 onChange={salePriceHandler}
                 onBlur={salePriceBlurHandler}
                 onFocus={salePriceFocusHandler}
@@ -390,10 +389,13 @@ const AddProductForm = () => {
               </label>
               <input
                 type="text"
-                value={tbtPriceValue.value}
-                onChange={tbtPriceHandler}
-                onBlur={tbtPriceBlurHandler}
-                onFocus={tbtPriceFocusHandler}
+                value={
+                  parseInt(salePriceValue.value) +
+                  parseInt(salePriceValue.value) / 10
+                }
+                // onChange={tbtPriceHandler}
+                // onBlur={tbtPriceBlurHandler}
+                // onFocus={tbtPriceFocusHandler}
                 className={`${
                   tbtPriceValue.isTouched
                     ? "border-agro-yellow"

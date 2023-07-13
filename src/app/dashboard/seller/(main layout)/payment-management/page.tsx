@@ -82,14 +82,14 @@ const Page = () => {
     }
   };
 
-  if (
-    accountValue.value.length > 9 &&
-    formData.bank_code !== "" &&
-    !validateLoading &&
-    !validateData
-  ) {
-    handleValidate();
-  }
+  // if (
+  //   accountValue.value.length > 9 &&
+  //   formData.bank_code !== "" &&
+  //   !validateLoading &&
+  //   !validateData
+  // ) {
+  //   handleValidate();
+  // }
 
   const formHandler = async (e: FormEvent) => {
     e.preventDefault();
@@ -103,8 +103,19 @@ const Page = () => {
     });
   };
 
-  console.log(setBankAccountData, setBankAccountError);
+  // console.log(setBankAccountData, setBankAccountError);
+
   let errorMessage = "";
+  let errorName;
+  if (setBankAccountError) {
+    if ("data" in setBankAccountError) {
+      const tempError: any = setBankAccountError.data;
+      if ("data" in tempError) {
+        errorName = tempError.data?.account_name;
+      }
+    }
+  }
+
   if (validateError || setBankAccountError) {
     errorMessage = isFetchBaseQueryErrorType(
       validateError ? validateError : setBankAccountError
@@ -174,11 +185,17 @@ const Page = () => {
               </div>
               <div className="flex flex-col gap-1">
                 <label htmlFor="">Name on Account</label>
-                <input
-                  type="text"
-                  value={formData.account_name}
-                  className="px-4 w-[256px]  md:w-full xl:w-[256px] 2xl:w-[350px]  h-[41px] border-gray2 border rounded-[4px] "
-                />
+                <p
+                  // type="text"
+                  // value={formData.account_name}
+                  className="px-4 w-[256px] font-semibold  md:w-full xl:w-[256px] 2xl:w-[350px]  h-[41px]  "
+                >
+                  {setBankAccountData
+                    ? setBankAccountData?.data?.data?.account_name
+                    : setBankAccountError
+                    ? errorName
+                    : "---"}
+                </p>
               </div>
             </div>
             <PriButton

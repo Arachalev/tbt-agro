@@ -38,8 +38,6 @@ const SellerNav = () => {
     error: notificationsError,
   } = useGetAllNotificationsQuery("");
 
-  
-
   useEffect(() => {
     if (data) {
       dispatch(
@@ -85,7 +83,12 @@ const SellerNav = () => {
             </span>
           </div>
 
-          <Image src={profile} alt="profile" />
+          <Image
+            src={sellerProfile.profilePicture ?? profile}
+            width={32}
+            height={32}
+            alt="profile"
+          />
           <div
             onClick={() => setShowProfileSettings((state) => !state)}
             className="text-white flex items-center gap-1 cursor-pointer"

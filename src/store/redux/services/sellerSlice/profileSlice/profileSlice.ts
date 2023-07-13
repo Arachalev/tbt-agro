@@ -5,10 +5,10 @@ interface SellerProfileInterface {
   address: string;
   bankAccount: string;
   buyerQuotations: [];
-  city: string;
+  city: { id: number; name: string };
   companyAddress: string;
   companyName: string;
-  country: { id: number; name: string } | null;
+  country: { id: number; name: string };
   shippingAddress: string;
   email: string;
   fName: string;
@@ -17,17 +17,17 @@ interface SellerProfileInterface {
   pNumber: string;
   profilePicture: null;
   sellerID: string;
-  state: string;
+  state: { id: number; name: string };
 }
 
 const initialState: SellerProfileInterface = {
   address: "",
   bankAccount: "",
   buyerQuotations: [],
-  city: "",
+  city: { id: 0, name: "" },
   companyAddress: "",
   companyName: "",
-  country: null,
+  country: { id: 0, name: "" },
   shippingAddress: "",
   email: "",
   fName: "",
@@ -36,7 +36,7 @@ const initialState: SellerProfileInterface = {
   pNumber: "",
   profilePicture: null,
   sellerID: "",
-  state: "",
+  state: { id: 0, name: "" },
 };
 
 const profileSlice = createSlice({
@@ -86,7 +86,7 @@ const profileSlice = createSlice({
       state.pNumber = changedData.pNumber;
       state.profilePicture = changedData.profilePicture;
       state.sellerID = changedData.sellerID;
-      state = changedData.state;
+      state.state = changedData.state;
     },
   },
 });

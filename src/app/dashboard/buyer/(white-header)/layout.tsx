@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <section>
+    <section className="max-w-[100vw] overflow-clip">
       <HeaderLight />
       {children}
       <Footer />

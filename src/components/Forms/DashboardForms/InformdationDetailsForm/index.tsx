@@ -20,6 +20,9 @@ import useInput from "@/hooks/useInput";
 import { useUpdateSellerAccountMutation } from "@/store/redux/services/sellerSlice/profileSlice/profileApiSlice";
 import StatusModal from "../../StatusModal";
 import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
+import upload from "../../../../../public/icons/upload.svg";
+import { RiCloseLine } from "react-icons/ri";
+import Image from "next/image";
 
 const InformdationDetailsForm = () => {
   const [showModal, setShowModal] = useState(false);
@@ -60,7 +63,13 @@ const InformdationDetailsForm = () => {
     twitter: "",
     reason_for_change_request: "",
   });
-
+  const [images, setImages] = useState<{
+    images: File[];
+    fileName: string[];
+  }>({
+    images: [],
+    fileName: [],
+  });
   const sellerDetails = useAppSelector(selectSellerProfile);
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -156,8 +165,8 @@ const InformdationDetailsForm = () => {
         country_id: sellerDetails.country?.id
           ? sellerDetails.country.id.toString()
           : "",
-        state_id: sellerDetails.state,
-        city_id: sellerDetails.city,
+        state_id: `${sellerDetails.state.id}`,
+        city_id: `${sellerDetails.city.id}`,
       });
     }
   }, [sellerProfile, sellerDetails, dispatch]);
@@ -172,6 +181,39 @@ const InformdationDetailsForm = () => {
     } else {
       return new File([""], "filename");
     }
+  };
+
+  // Function to handle Image upload
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+
+    let names: string[] = [];
+
+    if (files) {
+      let uploadedImages;
+      uploadedImages = Array.from(files);
+      console.log(uploadedImages);
+      uploadedImages.forEach((item) => names.push(item.name));
+      setImages({ images: uploadedImages, fileName: names });
+    }
+  };
+
+  // Delete one uploaded file
+  const deleteFile = (id: number) => {
+    let files = images.images;
+    let names: string[] = [];
+
+    const uploadedImages = Array.from(files);
+
+    let filteredFiles = uploadedImages.filter(
+      (item) => uploadedImages.indexOf(item) !== id
+    );
+    filteredFiles.forEach((item) => names.push(item.name));
+
+    setImages({
+      images: [...filteredFiles],
+      fileName: [...names],
+    });
   };
 
   const formHandler = async (e: any) => {
@@ -189,6 +231,7 @@ const InformdationDetailsForm = () => {
     });
 
     form.append("valid_id_card", formData.valid_id_card);
+    form.append("profile_picture", images.images[0]);
 
     // for (let pair of form.entries()) {
     //   console.log(pair[0] + ", " + pair[1]);
@@ -242,6 +285,83 @@ const InformdationDetailsForm = () => {
           validation={(val) => val.length > 3}
           handleValue={(val) => setFormData({ ...formData, last_name: val })}
         />
+        {images.images.length > 0 ? (
+          <div
+            id="file-upload-fileName"
+            className="w-full sm:w-fit grid md:grid-cols-[200px_1fr] items-center gap-4    "
+          >
+            <label
+              className="text-sm font-bold md:text-end text-agro-black "
+              htmlFor="country"
+            >
+              Upload Profile Picture
+            </label>
+            <div className="w-full sm:w-[309px] flex items-center gap-2 ">
+              {images.fileName.map((item, index) => (
+                <span
+                  key={`item-${item}-${index}`}
+                  className="bg-gray2 px-4 py-1 rounded-[10px] w-fit flex gap-3 items-center"
+                >
+                  {item}
+                  <span
+                    className="p-1 bg-gray-200 rounded-full "
+                    onClick={() => {
+                      deleteFile(index);
+                    }}
+                  >
+                    <RiCloseLine className="text-red-500 cursor-pointer" />
+                  </span>
+                </span>
+              ))}
+            </div>
+            {/* <div className="w-fit flex items-center">
+              <label
+                htmlFor="file"
+                className="flex items-center gap-2 bg-[#D4E6ED] h-16 px-5 rounded-[4px] cursor-pointer"
+              >
+                <Image src={upload} alt="upload icon" />
+                <p className="text-gray2">
+                  Drag & Drop your product images or Browse.
+                  Upload more images.
+                </p>
+              </label>
+              <input
+                type="file"
+                onChange={handleImageUpload}
+                name="file"
+                id="file"
+                multiple
+                className="hidden"
+              />
+            </div> */}
+          </div>
+        ) : (
+          <div className="w-full sm:w-fit grid md:grid-cols-[200px_1fr] items-center gap-4    ">
+            <label
+              className="text-sm font-bold md:text-end text-agro-black "
+              htmlFor="country"
+            >
+              Upload Profile Picture
+            </label>
+            <label
+              htmlFor="file"
+              className="w-full sm:w-[309px] flex items-center gap-2 bg-[#D4E6ED] h-16 px-5 rounded-[4px] cursor-pointer"
+            >
+              <Image src={upload} alt="upload icon" />
+              <p className="text-gray2">
+                {/* Drag & Drop your product images or Browse. */}
+                Upload profile picture
+              </p>
+            </label>
+            <input
+              type="file"
+              onChange={handleImageUpload}
+              name="file"
+              id="file"
+              className="hidden"
+            />
+          </div>
+        )}
 
         {/* <div className="grid md:grid-cols-[200px_1fr] items-center gap-4">
           <label className="text-sm font-bold md:text-end ">
@@ -292,6 +412,11 @@ const InformdationDetailsForm = () => {
               });
             }}
             options={countryOptions}
+            key={`${sellerDetails.country.id}`}
+            defaultValue={{
+              value: `${sellerDetails.country.id}`,
+              label: `${sellerDetails.country.name}`,
+            }}
           />
         </div>
         <div className="grid w-full sm:w-fit md:grid-cols-[200px_1fr] items-center gap-4    ">
@@ -310,6 +435,11 @@ const InformdationDetailsForm = () => {
               });
             }}
             options={stateOptions}
+            key={`${sellerDetails.state.id}`}
+            defaultValue={{
+              value: `${sellerDetails.state.id}`,
+              label: `${sellerDetails.state.name}`,
+            }}
           />
         </div>
         <div className="w-full sm:w-fit grid md:grid-cols-[200px_1fr] items-center gap-4    ">
@@ -328,6 +458,11 @@ const InformdationDetailsForm = () => {
               });
             }}
             options={cityOptions}
+            key={`${sellerDetails.city.id}`}
+            defaultValue={{
+              value: `${sellerDetails.city.id}`,
+              label: `${sellerDetails.city.name}`,
+            }}
           />
         </div>
 
@@ -422,7 +557,7 @@ const InformdationDetailsForm = () => {
         </div>
         <div className="grid md:grid-cols-[200px_1fr] sm:ml-24 items-center gap-4">
           <label className="text-sm font-bold md:text-end w-[200px] ">
-            Upload Valid ID Card:
+            Upload Valid ID Card (optional):
           </label>
           <div className="flex items-center gap-4 w-full flex-wrap sm:w-[409px]">
             <div className="flex gap-1 items-center">
@@ -525,28 +660,28 @@ const InformdationDetailsForm = () => {
         </div>
 
         <CustomInput
-          label="Website:"
+          label="Website (optional):"
           placeholder="Please enter your website URL"
           key="website"
           validation={(val) => val.length > 3}
           handleValue={(val) => setFormData({ ...formData, website: val })}
         />
         <CustomInput
-          label="Instagram:"
+          label="Instagram (optional):"
           placeholder="Please enter your Instagran URL"
           key="instagram"
           validation={(val) => val.length > 3}
           handleValue={(val) => setFormData({ ...formData, instagram: val })}
         />
         <CustomInput
-          label="LinkedIn:"
+          label="LinkedIn (optional):"
           placeholder="Please enter your LinkedIn URL"
           key="linkedin"
           validation={(val) => val.length > 3}
           handleValue={(val) => setFormData({ ...formData, linkedin: val })}
         />
         <CustomInput
-          label="Twitter:"
+          label="Twitter (optional):"
           placeholder="Please enter your Twitter URL"
           key="twitter"
           validation={(val) => val.length > 3}

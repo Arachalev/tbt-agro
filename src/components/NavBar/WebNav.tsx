@@ -43,7 +43,7 @@ const WebNav = () => {
   const [showProfileSettings, setShowProfileSettings] =
     useState<boolean>(false);
 
-  const [fetchBuyerProfile, setFetchBuyerProfile] = useState(false);
+  const [fetchBuyerProfile, setFetchBuyerProfile] = useState(true);
 
   const { data, isError, isFetching, isLoading, isSuccess, error } =
     useGetBuyerProfileQuery("", { skip: fetchBuyerProfile });
@@ -60,7 +60,7 @@ const WebNav = () => {
     const user = sessionStorage.getItem("userType");
 
     if (user === "Buyer") {
-      setFetchBuyerProfile(true);
+      setFetchBuyerProfile(false);
     }
   }, []);
 
