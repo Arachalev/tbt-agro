@@ -15,6 +15,11 @@ import PaginationButtons from "@/components/PaginationButtons";
 
 const Page = () => {
   const [pageID, setPageID] = useState(2);
+  const [paginatedProducts, setPaginatedProducts] = useState([{}]);
+  const [pagination, setPagination] = useState({
+    currentPage: 2,
+    // nextPage: 0,
+  });
 
   const {
     data: products,
@@ -24,51 +29,75 @@ const Page = () => {
 
   const profile = useAppSelector(selectSellerProfile);
 
-  let tableData: {}[] = [];
-  if (products) {
-    products?.data?.data.map(
-      (item: {
-        created_at: string;
-        status: string;
-        name: string;
-        tbt_price: number;
-        quantity: number;
-        clicks: number;
-      }) => {
-        let dateArr = item.created_at.split("T")[0];
-        let modDate = dateArr.split("-");
-        let date = `${modDate[2]}/${modDate[1]}/${modDate[0]}`;
+  const fetchOtherPages = async (
+    total: number,
+    pageLimit: number,
+    pageUrl: string
+  ) => {
+    const tempProducts: any[] = [];
+    const limit = Math.ceil(total / pageLimit);
+    const dataArr = new Array(limit + 1).fill("");
 
-        let status = item.status.charAt(0).toUpperCase() + item.status.slice(1);
+    await Promise.all(
+      dataArr.map(async (item, index) => {
+        if (index > 0) {
+          const res = await fetch(`${pageUrl}=${index}`, {
+            headers: {
+              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+          });
+          const data = await res.json();
+          data.data.data.map(
+            (item: {
+              created_at: string;
+              status: string;
+              name: string;
+              tbt_price: number;
+              quantity: number;
+              clicks: number;
+            }) => {
+              let dateArr = item.created_at.split("T")[0];
+              let modDate = dateArr.split("-");
+              let date = `${modDate[2]}/${modDate[1]}/${modDate[0]}`;
 
-        return tableData.push({
-          Name: item.name,
-          Price: item.tbt_price,
-          Quantity: item.quantity,
-          Clicks: `${item.clicks} clicks`,
-          "Date Uploaded": date,
-          Status: status,
-        });
-      }
+              let status =
+                item.status.charAt(0).toUpperCase() + item.status.slice(1);
+
+              return tempProducts.push({
+                Name: item.name,
+                Price: item.tbt_price,
+                Quantity: item.quantity,
+                Clicks: `${item.clicks} clicks`,
+                "Date Uploaded": date,
+                Status: status,
+              });
+            }
+          );
+        }
+      })
     );
-  }
 
-  console.log(products?.data);
-  // console.log(products?.data);
-
-  const fetchProducts = async (url: string) => {
-    const res = await fetch(url, {
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-      },
-    });
-    const data = await res.json();
-    // console.log(data.data);
+    // console.log(tempProducts);
+    setPaginatedProducts(tempProducts);
   };
 
-  // if (products) {
-  //   fetchProducts(products?.data?.last_page_url);
-  // }
+  useEffect(() => {
+    if (products) {
+      const pageUrl = products.data.first_page_url.split("=")[0];
+
+      console.log(pageUrl);
+
+      fetchOtherPages(products.data.total, products.data.per_page, pageUrl);
+    }
+  }, [products]);
+
+  // console.log(products?.data);
+
+  const nextPageHandler = async () => {};
+
+  const previousPageHandler = async () => {};
+
+  const getPageHandler = async () => {};
 
   return (
     <div className="  min-h-[calc(100vh-96px)] p-4 sm:p-8 xl:p-[72px] ">
@@ -88,11 +117,21 @@ const Page = () => {
         <div className="overflow-x-auto  w-full  mt-3">
           <ProductTable
             column={productsTableData.column}
-            data={products ? tableData : []}
+            data={products ? paginatedProducts : []}
+            // data={
+            //   products
+            //     ? pagination.currentPage === 1
+            //       ? paginatedProducts.slice(0, 10)
+            //       : paginatedProducts.slice(
+            //           pagination.currentPage * 10 - 9,
+            //           pagination.currentPage * 10
+            //         )
+            //     : []
+            // }
           />
         </div>
         <div className="mt-4 flex flex-col ">
-          {/* <PaginationButtons total={40} perPage={10} currentPage={2} /> */}
+          {/* <PaginationButtons total={40} perPage={10} currentPage={4} /> */}
         </div>
         {/* <div className="self-start sm:w-[420px] mt-12">
           <TopRankingMultiProductsCard

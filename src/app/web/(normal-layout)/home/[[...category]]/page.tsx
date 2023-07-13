@@ -165,7 +165,8 @@ const Page = () => {
     await Promise.all(
       dataArr.map(async (item, index) => {
         if (index > 0) {
-          const res = await fetch(`${pageUrl}${index}`);
+          const res = await fetch(`${pageUrl}=${index}`);
+          // console.log(`${pageUrl}=${index}`);
           const data = await res.json();
           data.data.data.map((item: any) =>
             tempProducts.push({
@@ -188,6 +189,7 @@ const Page = () => {
   useEffect(() => {
     if (productsData) {
       const pageUrl = productsData.data.first_page_url.split("=");
+      // console.log(productsData.data.first_page_url, pageUrl);
       fetchOtherPages(
         productsData.data.total,
         productsData.data.per_page,
