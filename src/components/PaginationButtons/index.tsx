@@ -4,39 +4,46 @@ import { AiOutlineEllipsis } from "react-icons/ai";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 interface PaginationProps {
-  //   url: string;
-
   total: number;
   perPage: number;
   currentPage: number;
-  // fetchData: () => void;
-  // nextPageHandler: () => void;
-  // previousPageHandler: () => void;
-  // getPageHandler: (id: number) => void;
+  nextPageHandler: () => void;
+  previousPageHandler: () => void;
+  getPageHandler: (id: number) => void;
 }
 
 const PaginationButtons: React.FC<PaginationProps> = ({
   total,
   perPage,
   currentPage,
-  // nextPageHandler,
-  // previousPageHandler,
-  // getPageHandler,
+  nextPageHandler,
+  previousPageHandler,
+  getPageHandler,
 }) => {
-  const btnAmount = new Array(Math.ceil(total / perPage)).fill("");
-
-  // console.log(btnAmount);
+  const lastPage = Math.ceil(total / perPage);
   return (
     <div className="  self-end  bg-white py-2 px-4 rounded-lg">
       <div className="flex items-center gap-2">
         <GrFormPrevious
-          // onClick={() => previousPageHandler()}
+          onClick={() => previousPageHandler()}
           className="cursor-pointer text-agro-green"
         />
 
-        {currentPage - 1 !== 0 && (
+        {currentPage > 2 && (
           <p
-            // onClick={() => getPageHandler(index)}
+            onClick={() => getPageHandler(1)}
+            key={getUniqueID()}
+            className={`${"bg-white text-agro-green"} cursor-pointer h-7 w-7 border border-gray2 rounded-full flex items-center justify-center`}
+          >
+            {1}
+          </p>
+        )}
+
+        {currentPage > 2 && <AiOutlineEllipsis className="text-2xl" />}
+
+        {currentPage > 1 && (
+          <p
+            onClick={() => getPageHandler(currentPage - 1)}
             key={getUniqueID()}
             className={`${"bg-white text-agro-green"} cursor-pointer h-7 w-7 border border-gray2 rounded-full flex items-center justify-center`}
           >
@@ -45,30 +52,43 @@ const PaginationButtons: React.FC<PaginationProps> = ({
         )}
 
         <p
-          // onClick={() => getPageHandler(index)}
+          onClick={() => getPageHandler(currentPage)}
           key={getUniqueID()}
           className={`${"bg-agro-green text-white"} cursor-pointer  h-7 w-7 border border-gray2 rounded-full flex items-center justify-center`}
         >
           {currentPage}
         </p>
 
-        {btnAmount.length > 2 && total / perPage - currentPage > 1 && (
-          <AiOutlineEllipsis className="text-2xl" />
-        )}
-
-        {total / perPage !== currentPage && (
+        {lastPage > currentPage + 1 && (
           <p
-            // onClick={() => getPageHandler(index)}
+            onClick={() => getPageHandler(currentPage + 1)}
             key={getUniqueID()}
             className={`${"bg-white text-agro-green"} cursor-pointer  h-7 w-7 border border-gray2 rounded-full flex items-center justify-center`}
           >
-            {total / perPage}
+            {currentPage + 1}
+          </p>
+        )}
+
+        {lastPage > 2 && lastPage - currentPage > 2 && (
+          <AiOutlineEllipsis className="text-2xl" />
+        )}
+
+        {lastPage > currentPage && (
+          <p
+            onClick={() => {
+              // console.log(lastPage, "----");
+              getPageHandler(lastPage);
+            }}
+            key={getUniqueID()}
+            className={`${"bg-white text-agro-green"} cursor-pointer  h-7 w-7 border border-gray2 rounded-full flex items-center justify-center`}
+          >
+            {lastPage}
           </p>
         )}
 
         <GrFormNext
-          // onClick={() => nextPageHandler()}
-          className="cursor-pointe cursor-not-allowed text-agro-green"
+          onClick={() => nextPageHandler()}
+          className="cursor-pointer ursor-not-allowed text-agro-green"
         />
       </div>
     </div>

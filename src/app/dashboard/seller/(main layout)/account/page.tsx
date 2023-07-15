@@ -9,17 +9,10 @@ import Link from "next/link";
 import { useGetSellersProductQuery } from "@/store/redux/services/sellerSlice/productsSlice/productsApiSlice";
 import { useAppSelector } from "@/store/redux/hooks";
 import { selectSellerProfile } from "@/store/redux/services/sellerSlice/profileSlice/profileSlice";
-import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import { AiOutlineEllipsis } from "react-icons/ai";
 import PaginationButtons from "@/components/PaginationButtons";
 
 const Page = () => {
-  const [pageID, setPageID] = useState(2);
   const [paginatedProducts, setPaginatedProducts] = useState([{}]);
-  const [pagination, setPagination] = useState({
-    currentPage: 2,
-    // nextPage: 0,
-  });
 
   const {
     data: products,
@@ -117,7 +110,8 @@ const Page = () => {
         <div className="overflow-x-auto  w-full  mt-3">
           <ProductTable
             column={productsTableData.column}
-            data={products ? paginatedProducts : []}
+            data={products ? productsTableData.data : []}
+            // data={products ? paginatedProducts : []}
             // data={
             //   products
             //     ? pagination.currentPage === 1
@@ -130,9 +124,7 @@ const Page = () => {
             // }
           />
         </div>
-        <div className="mt-4 flex flex-col ">
-          {/* <PaginationButtons total={40} perPage={10} currentPage={4} /> */}
-        </div>
+        <div className="mt-4 flex flex-col "></div>
         {/* <div className="self-start sm:w-[420px] mt-12">
           <TopRankingMultiProductsCard
             products={topRankingMultiProductsCardData.products}
