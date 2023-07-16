@@ -110,8 +110,8 @@ const Page = () => {
         <div className="overflow-x-auto  w-full  mt-3">
           <ProductTable
             column={productsTableData.column}
-            data={products ? productsTableData.data : []}
-            // data={products ? paginatedProducts : []}
+            // data={products ? productsTableData.data : []}
+            data={products ? paginatedProducts : []}
             // data={
             //   products
             //     ? pagination.currentPage === 1
