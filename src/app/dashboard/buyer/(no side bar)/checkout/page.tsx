@@ -15,6 +15,7 @@ import { useMakePaymentMutation } from "@/store/redux/services/paymentSlice/paym
 import { useCreateOrderMutation } from "@/store/redux/services/OrdersSlice/ordersApiSlice";
 import StatusModal from "@/components/Forms/StatusModal";
 import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
+import { useDeleteCartItemMutation } from "@/store/redux/services/cartSlice/cartApiSlice";
 
 const Page = () => {
   const [orderDetails, setOrderDetails] = useState({
@@ -35,6 +36,9 @@ const Page = () => {
     createOrder,
     { data: orderData, error: orderError, isLoading: orderLoading },
   ] = useCreateOrderMutation();
+
+  const [deleteCartItem, { isLoading, data, error }] =
+    useDeleteCartItemMutation();
 
   const cart = useAppSelector(selectCart);
   const profile = useAppSelector(selectBuyerProfile);
@@ -96,11 +100,30 @@ const Page = () => {
     if ("data" in res) {
       if (res.data.error === false) {
         setOrderDetails({ ...orderDetails, paystackRef: { reference: "" } });
-        // sessionStorage.removeItem("order_id");
+        sessionStorage.removeItem("order_id");
       }
     }
   };
 
+  const handleDelete = async (id: number) => {
+    await deleteCartItem(id);
+  };
+
+  //
+  /**
+   *
+   *
+   *
+   * func to clear cart
+   *
+   * getAll cart items
+   * delete each item
+   * if settled, then move on
+   * else
+   * delete again
+   *
+   *
+   */
   // console.log(orderData, orderError);
   // console.log(paymentData, paymentError);
   let errorMessage, paymentErrorMsgF;

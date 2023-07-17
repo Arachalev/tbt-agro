@@ -29,11 +29,11 @@ const Page = () => {
       </h4>
       <AccountOverview
         name={
-          buyerProfile.fName
+          buyerProfile?.fName
             ? `${buyerProfile.fName} ${buyerProfile.lName}`
             : "---"
         }
-        email={buyerProfile.email ? buyerProfile.email : "---"}
+        email={buyerProfile?.email ? buyerProfile.email : "---"}
         shippingAddress={{
           name: buyerProfile?.fName
             ? `${buyerProfile.fName} ${buyerProfile.lName}`
