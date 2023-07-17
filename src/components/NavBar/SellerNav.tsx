@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import { sellerProfileData } from "@/store/DummyData/navProfileData";
 import { MdNotificationsNone, MdOutlineArrowDropDown } from "react-icons/md";
@@ -20,12 +20,17 @@ import { useGetAllNotificationsQuery } from "@/store/redux/services/notification
 import NavProfile from "../NavProfile";
 import SideBar from "./SideBar";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { IoIosArrowDown } from "react-icons/io";
+import NavAccountSettings from "../NavAccountSettings";
+import { navLinksData } from "@/store/DummyData/navLinks";
 
 const SellerNav = () => {
   const [showSideBar, setShowSideBar] = useState(false);
-
+  const [showSettings, setShowSettings] = useState<boolean>(false);
   const [showProfileSettings, setShowProfileSettings] =
     useState<boolean>(false);
+
+  const path = usePathname();
   const router = useRouter();
   const dispatch = useAppDispatch();
   const sellerProfile = useAppSelector(selectSellerProfile);
@@ -37,6 +42,10 @@ const SellerNav = () => {
     isLoading: notificationsLoading,
     error: notificationsError,
   } = useGetAllNotificationsQuery("");
+
+  const webPath = path.split("/")[1];
+
+  const isWebPath = webPath === "web";
 
   useEffect(() => {
     if (data) {
@@ -67,11 +76,7 @@ const SellerNav = () => {
           >
             <RxHamburgerMenu className="text-lg text-white " />
           </span>
-          <Link
-            // href="/dashboard/seller/account"
-            href="/web/home"
-            className="w-[40px] h-[24px]  "
-          >
+          <Link href="/web/home" className="w-[40px] h-[24px]  ">
             <Image src={logo} alt="logo" className="h-full" />
           </Link>
         </div>
@@ -108,6 +113,37 @@ const SellerNav = () => {
           )}
         </div>
       </div>
+      {isWebPath && (
+        <div className=" bg-agro-yellow  flex flex-row items-center justify-between h-16 px-4 xl:px-20">
+          <div className="flex flex-row gap-1 md:gap-2 lg:gap-3 xl:gap-6">
+            {navLinksData.map((item) => (
+              <Link
+                className="text-agro-black text-xs lg:text-sm font-medium "
+                href={item.href}
+                key={item.name}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
+          <button
+            onClick={() => setShowSettings(true)}
+            className="text-agro-black flex flex-row items-center gap-1"
+          >
+            <p className="text-xs lg:text-sm font-medium ">English - NGN </p>
+            <IoIosArrowDown className="lg:text-xl" />
+          </button>
+          {showSettings && (
+            <div className="fixed top-[105px]  right-[52px]">
+              <NavAccountSettings
+                hideSettings={() => {
+                  setShowSettings(false);
+                }}
+              />
+            </div>
+          )}
+        </div>
+      )}
     </nav>
   );
 };

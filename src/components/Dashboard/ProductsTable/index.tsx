@@ -12,7 +12,7 @@ interface ProductTableProps {
 const ProductTable = ({ column, data = [] }: ProductTableProps) => {
   const [pagination, setPagination] = useState({
     lastPage: Math.ceil(data.length / 10),
-    currentPage: 2,
+    currentPage: 1,
     // nextPage: 0,
   });
 

@@ -84,14 +84,6 @@ const Page = () => {
     }
   }, [products]);
 
-  // console.log(products?.data);
-
-  const nextPageHandler = async () => {};
-
-  const previousPageHandler = async () => {};
-
-  const getPageHandler = async () => {};
-
   return (
     <div className="  min-h-[calc(100vh-96px)] p-4 sm:p-8 xl:p-[72px] ">
       <div className=" pt-8  ">
@@ -110,28 +102,10 @@ const Page = () => {
         <div className="overflow-x-auto  w-full  mt-3">
           <ProductTable
             column={productsTableData.column}
-            // data={products ? productsTableData.data : []}
             data={products ? paginatedProducts : []}
-            // data={
-            //   products
-            //     ? pagination.currentPage === 1
-            //       ? paginatedProducts.slice(0, 10)
-            //       : paginatedProducts.slice(
-            //           pagination.currentPage * 10 - 9,
-            //           pagination.currentPage * 10
-            //         )
-            //     : []
-            // }
           />
         </div>
         <div className="mt-4 flex flex-col "></div>
-        {/* <div className="self-start sm:w-[420px] mt-12">
-          <TopRankingMultiProductsCard
-            products={topRankingMultiProductsCardData.products}
-            href={topRankingMultiProductsCardData.href}
-            title={topRankingMultiProductsCardData.title}
-          />
-        </div> */}
       </div>
     </div>
   );

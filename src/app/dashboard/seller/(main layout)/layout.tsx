@@ -9,7 +9,6 @@ import { selectLinkState } from "@/store/redux/features/sideBarSlice";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const device = useAppSelector(selectDeviceWith);
-
   const showLinks = useAppSelector(selectLinkState);
 
   return (

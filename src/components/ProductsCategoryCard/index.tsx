@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { productCategoryData } from "@/store/DummyData/productsCategory";
 import getUniqueID from "@/hooks/getUniqueID";
@@ -5,6 +6,7 @@ import Link from "next/link";
 // import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { BsCheckLg } from "react-icons/bs";
+import { useEffect } from "react";
 
 interface ItemCardProps {
   name: string;
@@ -20,6 +22,13 @@ const ItemCard: React.FC<ItemCardProps> = ({ name, icon, Icon }) => {
   if (name === "All Categories") {
     href = `/web/home`;
   }
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 600,
+      behavior: "smooth",
+    });
+  }, [search]);
 
   return (
     <Link
