@@ -2,6 +2,8 @@ import React from "react";
 
 import Img1 from "../../../../../public/images/about/about1.png";
 import Img2 from "../../../../../public/images/about/about2.png";
+import Img3 from "../../../../../public/images/about/about3.jpeg";
+
 import Image from "next/image";
 
 const page = () => {
@@ -16,12 +18,19 @@ const page = () => {
             >
               About Us
             </h4>
-            <p className="text-sm md:text-base ">
-              TBT Agricultural Commodity Trading Company is an Agricultural
-              digital marketing platform involved in the Sourcing & Trading of
-              agricultural commodities and making it available in large
-              quantities for industrial, commercial and personal consumption.
-            </p>
+            <div className="flex flex-col gap-3 md:gap-5 text-sm md:text-base">
+              <p className="text-sm md:text-base ">
+                TBT Agricultural Commodity Trading Company is an Agricultural
+                digital marketing platform involved in the Sourcing & Trading of
+                agricultural commodities and making it available in large
+                quantities for industrial, commercial and personal consumption.
+              </p>
+              <p className="text-sm md:text-base ">
+                Our biggest goal is to provide both local and international
+                communities with top quality agro products grown on Nigerian
+                soil.
+              </p>
+            </div>
           </div>
           <div className="">
             <h4
@@ -39,16 +48,22 @@ const page = () => {
                 availability of agro commodities.
               </p>
               <p>
-                TBT was inspired by the desire to meet the needs of both farmers
-                and consumers of agro commodities and also to bridge the gap
-                between the demand of agricultural commodities and its supply.
-              </p>
-              <p>
                 We are a fast growing organization with well seasoned and
                 experienced team members established with the aim of alleviating
                 food insecurity within African and international communities. We
                 are focused on becoming Africa&apos;s largest supplier and
                 exporter of agro commodities.
+              </p>
+              <p>
+                TBT was inspired by the desire to meet the needs of both farmers
+                and consumers of agro commodities and also to bridge the gap
+                between the demand of agricultural commodities and its supply.
+              </p>
+              <p>
+                With our trading platform, we aim to solve the major challenges
+                faced by smallholder farmers and traders. We also aspire to
+                become the largest market supplier of agro commodities in
+                Africa, connecting farmers, suppliers, and consumers.
               </p>
             </div>
           </div>
@@ -77,17 +92,17 @@ const page = () => {
             </h4>
             <div className="flex flex-col gap-3 md:gap-5 text-sm md:text-base">
               <p className="">
-                At TBT, we specialize in sourcing the finest agro commodities
-                from smallholder farmers and connecting them with other
-                agricultural institutions to enable them earn decent income,
-                learn the rudiments of agribusiness and increase the
-                availability of agro commodities.
+                The company, founded in 2017, started up as a logistics brand
+                but our colossal interest and love for agriculture, our desire
+                to bridge the gap between demand and supply and our passion to
+                alleviate poverty and food insecurity had us switch our focus to
+                the agricultural sector.
               </p>
               <p>
-                TBT is focused on making a valid mark in Nigeria&apos;s
-                Agricultural sector. We are motivated towards delivering
-                services in swiftness, effectiveness and efficiency to exceed
-                the expectation of our esteemed customers.
+                TBT is focused on making a valid mark in Nigeria’s Agricultural
+                sector. We are motivated towards delivering services in
+                swiftness, effectiveness and efficiency to exceed the
+                expectation of our esteemed customers.
               </p>
             </div>
           </div>
@@ -160,57 +175,59 @@ const page = () => {
             <div className="flex flex-col gap-3 md:gap-5 text-sm md:text-base">
               <p className="">
                 Growing up in the western part of Nigeria, where agriculture is
-                highlighted as more of a hobby than a profession; I developed a
-                colossal interest and love for agriculture.
+                highlighted more as a hobby than a profession, I developed a
+                profound interest and love for agriculture. Little wonder, I
+                always appeared dressed like a farmer during our career days in
+                primary school.
+              </p>
+
+              <p>
+                As a kid, my love for food was profound. I loved to eat, just
+                like everyone else, and this made me realize the important role
+                food plays in ensuring the smooth running of our day-to-day
+                activities. I also realized that one way humans connect with one
+                another is through food.
               </p>
               <p>
-                Little wonder, I always appear dressed like a farmer during the
-                days of my primary education.
+                This realization sparked the idea and birthed TBT Agro Commodity
+                Trading Company. I saw the need to increase agricultural
+                productivity to ensure that not just Nigerians, but families all
+                over the world have food on their tables every day.
               </p>
               <p>
-                As a kid, my love for food was profound. I loved to eat,
-                everyone does and this made me realize the important role food
-                plays in ensuring the running of our day to day activities.
+                Founded in 2017, TBT, derived from “Tunji-Bello Tesleem”,
+                initially started as TBT Logistics Limited—a logistics company
+                aimed at delivering Agro related raw materials from local
+                sources to its destination.
               </p>
               <p>
-                I also realized that one way through which humans connect with
-                one another is through food. The food we cultivate, cook, serve
-                and eat, in addition to giving us life, gives us connections to
-                those around us.
+                We became more intentional and transitioned to TBT Agro
+                Commodity Trading Company in 2020. Prior to the COVID-19
+                pandemic, TBT had built relationships with over 1,000 global
+                partners, including farmers, sourcing agents, and buyers.
               </p>
               <p>
-                Thus this sparked and birthed the whole idea and inception of
-                TBT- AGRO COMMODITY TRADING COMPANY; as I saw the need to
-                increase agricultural productivity to ensure that not just
-                Nigerians, but families all over the world get food on their
-                table on daily basis. 
+                In our pursuit of innovation, we encapsulated our commitment to
+                pushing the boundaries of Agro commodity trading. TBT Agro
+                commodity trading company is focused on &quot;Tech-Based
+                Trading,&quot; representing our core ethos of leveraging
+                cutting-edge technology to connect buyers and sellers
+                seamlessly.
               </p>
               <p>
-                Founded in 2017, TBT, an initialism coined from Tunji-Bello
-                Tesleem started up as TBT LOGISTICS LIMITED; a logistic company
-                aimed at sourcing agro related raw materials and getting them
-                across from the point of production to the point of consumption
-                but along the line there was a need for change.
+                The need for an online trading platform for agro commodities
+                arose from the existing challenges faced by farmers such as
+                limited market access, where farmers don’t have access to the
+                right market leading to wastage and also a lack of transparency
+                and fair pricing .
               </p>
               <p>
-                Statistics have it that Nigeria relies on $10 billion of imports
-                to meet its food and agricultural production. Nigeria&apos;s
-                agricultural sector has been hurt by several shocks: sporadic
-                flooding, insurgencies, inter communal conflicts.
-              </p>
-              <p>
-                Food production and processing suffer from a lack of financing
-                and infrastructure thus making agricultural commodities scarce
-                and unavailable to the wider population.
-              </p>
-              <p>
-                This caused us to have a change in directive in 2020. We wanted
-                to focus mainly on reducing the scarcity around agro commodities
-                and helping producers/farmers make money by getting these
-                commodities across to the consumers/marketers while
-                simultaneously causing a flow of agro commodities like Maize,
-                Soybeans, Cashew nuts, Shea butter/Shea nuts, Charcoal and
-                Cassava within the country and across borders.
+                We aimed to transcend physical boundaries and empower farmers
+                and suppliers in Nigeria and Africa to buy and sell agro
+                commodities to anyone in the world. This platform would bridge
+                the gap between farmers, traders, processors, and buyers,
+                creating a seamless ecosystem that enhanced efficiency and
+                accessibility.
               </p>
               <p>
                 We became more intentional and switched to TBT- AGRO COMMODITY
@@ -218,28 +235,76 @@ const page = () => {
                 been able to build a relationship of over 1,000 global partners
                 in terms of farmers, sourcing agents and buyers. 
               </p>
+              <div>
+                <p>
+                  This trading platform brings several benefits to the
+                  agricultural industry and its stakeholders.
+                </p>
+                <ul className="flex flex-col gap-4 list-disc ml-4 my-4">
+                  <li>
+                    Firstly, it enhances market access for farmers, allowing
+                    them to showcase their produce to a global audience and
+                    connect directly with potential buyers.
+                  </li>
+                  <li>
+                    Secondly, Buyers have the capability to make quotations and
+                    requests for any desired agro commodity, of any quantity and
+                    the farmers can actively engage with the requests, assess
+                    the demand, and connect with the buyers who have expressed
+                    interest in their specific products.
+                  </li>
+                  <li>
+                    Thirdly, the platform facilitates streamlined supply chains
+                    for processors and buyers, enabling them to source
+                    high-quality agro commodities more efficiently. This
+                    improves operational efficiency and reduces costs associated
+                    with intermediaries.
+                  </li>
+                  <li>
+                    Additionally, the platform fosters transparency in agro
+                    commodity trading. By providing real-time market data and
+                    insights, it empowers users to make informed decisions and
+                    optimize their trading strategies.
+                  </li>
+                  <li>
+                    Farmers, traders, processors, and buyers can easily navigate
+                    the system, saving time and effort in their trading
+                    activities.
+                  </li>
+                </ul>
+              </div>
               <p>
-                In TBT, we render the services of sourcing of Agricultural
-                Commodities for companies based locally and internationally. We
-                are also aimed at providing both local and international
-                producers with top quality agro products grown on fertile
-                Nigerian soils. 
+                Today, TBT stands tall as a leader in the Agro commodity trading
+                landscape. Our unwavering commitment to innovation, integrity,
+                and customer satisfaction has garnered them a loyal and diverse
+                user base. TBT continues to push the boundaries, constantly
+                evolving our platform to stay ahead of industry trends and meet
+                the evolving needs of our users.
               </p>
               <p>
-                We efficiently and effectively trade on soft commodities
-                including but not limited to; Maize, Soybeans, Cashew nuts,
-                Ginger, Cocoa, Sesame seeds, shea butter, shea nuts, Plant
-                seedlings, fertilizers.
+                Join TBT on this transformative journey, where technology
+                intersects with agriculture, and the world becomes your
+                marketplace. Together, let us unleash the potential of Agro
+                commodity trading, breaking barriers, and creating a future
+                where anyone can trade with confidence, convenience, and global
+                reach.
               </p>
             </div>
           </div>
         </div>
-        <div className="self-center md:self-start ">
+        <div className="self-center flex flex-col gap-16 md:self-start ">
           <Image
             src={Img2}
             alt="landscape image"
             // height={456}
             // width={528}
+            className="rounded-[10px]  "
+          />
+          <Image
+            src={Img3}
+            alt="landscape image"
+            height={456}
+            width={528}
             className="rounded-[10px]  "
           />
         </div>
@@ -250,7 +315,7 @@ const page = () => {
       <section className="text-agro-black grid lg:grid-cols-2 gap-x-5 gap-y-4 md:gap-y-7  px-4 ">
         <div className=" justify-self-end w-full xl:w-[528px] h-[200px] xl:h-[256px] px-4 xl:px-10 bg-agro-blue rounded-[10px] flex flex-col gap-3 xl:gap-6 items-center justify-center">
           <h4 className="overflow-clip  text-xl xl:text-[34px] font-semibold">
-            Vision
+            Our Vision
           </h4>
           <p className="text-center text-sm md:text-base">
             To be Africa&apos;s largest supplier of Agricultural commodities,
@@ -261,7 +326,7 @@ const page = () => {
         </div>
         <div className="  w-full xl:w-[528px] h-[200px] xl:h-[256px] px-4 xl:px-10 bg-agro-blue rounded-[10px] flex flex-col gap-3 xl:gap-6 items-center justify-center">
           <h4 className="overflow-clip text-xl xl:text-[34px] font-semibold">
-            Mission
+            Our Mission
           </h4>
           <p className="text-center text-sm md:text-base">
             To provide exceptional agro allied services through creative,
@@ -282,7 +347,7 @@ const page = () => {
         </div>
         <div className=" w-full xl:w-[528px] h-[200px] xl:h-[256px] px-4 xl:px-10 bg-agro-blue rounded-[10px] flex flex-col gap-3 xl:gap-6 items-center justify-center">
           <h4 className="overflow-clip text-xl xl:text-[34px] font-semibold">
-            Our Core Philosophy
+            Our Core Value
           </h4>
           <p className="text-center text-sm md:text-base">
             To consistently provide quality services that exceeds the

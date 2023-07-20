@@ -24,7 +24,7 @@ const ProtectedRoutes = ({
     const token = session.getItem("token");
 
     if (!token || session.getItem("userType") !== userType) {
-      router.push("/web/sign-in");
+      router.replace("/web/sign-in");
     } else {
       dispatch(setCredentials({ userType, token }));
     }
