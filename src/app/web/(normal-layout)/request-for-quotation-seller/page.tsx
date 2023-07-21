@@ -105,7 +105,7 @@ const Pages = () => {
       </div>
 
       <section className="relative mt-16 pb-20 pt-5 px-4   xl:px-[72px] z-[1] 2xl:w-[1450px] 2xl:mx-auto">
-        <div className="h-full w-full absolute bg-agro-blue top-0 right-0  -z-[10]" />
+        <div className="h-full w-[100vw] absolute bg-agro-blue top-0 right-0  -z-[10]" />
         <h4 className="overflow-clip h-10 text-2xl xl:text-[40px] mb-[25px] font-semibold  text-agro-black z-[100]">
           Buyer Leads
         </h4>
