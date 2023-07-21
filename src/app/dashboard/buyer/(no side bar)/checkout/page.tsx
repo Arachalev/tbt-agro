@@ -55,7 +55,7 @@ const Page = () => {
   const componentProps = {
     email: profile.email,
     amount: cart.cartSummary.total * 100,
-    publicKey: "pk_test_8f636ccf1ec472984961f198237ad6f698d13215",
+    publicKey: "sk_test_3e227d37ac303ff04",
   };
 
   const initializePayment = usePaystackPayment({
