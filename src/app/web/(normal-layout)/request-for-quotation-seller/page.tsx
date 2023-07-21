@@ -34,7 +34,7 @@ const Pages = () => {
     if (leadsData) {
       if (categoryData) {
         let tempData: any[] = [];
-        console.log(categoryData?.data);
+        // console.log(categoryData?.data);
         leadsData.data.data.map((item: any) => {
           let category = categoryData.data.find(
             (cat: any) => cat.id === item.category_id
@@ -51,7 +51,7 @@ const Pages = () => {
             name: item.commodity_name,
             quantity: item.quantity,
             description: item.description,
-            // time={item.created_at
+            // time={item.created_at}
           });
         });
         setBuyerLeadsData(tempData);
@@ -64,6 +64,7 @@ const Pages = () => {
   // }
 
   // console.log(buyerLeadsData);
+  console.log(leadsData?.data);
 
   return (
     <main className="bg-agro-gray pt-[88px] pb-[160px] ">
@@ -116,9 +117,9 @@ const Pages = () => {
                   id={item.id}
                   rfq_id={item.rfq_id}
                   key={item.rfq_id}
-                  state={item.state.name}
+                  state={item.state}
                   category={item.category}
-                  name={item.commodity_name}
+                  name={item.name}
                   quantity={item.quantity}
                   specs={item.description}
                   // time={item.created_at}

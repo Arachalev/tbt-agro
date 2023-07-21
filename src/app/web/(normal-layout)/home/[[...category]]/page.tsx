@@ -123,7 +123,7 @@ const Page = () => {
         (item: {
           images: { image_url: string }[];
           name: string;
-          sale_price: number;
+          tbt_price: number;
           user: { seller_id: string };
           location: string;
           id: number;
@@ -131,7 +131,7 @@ const Page = () => {
           tempProd.push({
             image: item.images[0] ? item.images[0].image_url : "",
             name: item.name,
-            price: item.sale_price,
+            price: item.tbt_price,
             sellerID: item.user.seller_id,
             location: item.location,
             id: item.id,
@@ -172,7 +172,7 @@ const Page = () => {
             tempProducts.push({
               image: item.images[0] ? item.images[0].image_url : "",
               name: item.name,
-              price: item.sale_price,
+              price: item.tbt_price,
               sellerID: item.user.seller_id,
               location: item.location,
               id: item.id,

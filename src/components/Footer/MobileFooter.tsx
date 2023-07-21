@@ -50,7 +50,7 @@ const MobileFooter = () => {
           })}
         </div>
         <div className="mt-8 w-full col-span-2">
-          <h4 className="text-sm font-bold mb-4">
+          {/* <h4 className="text-sm font-bold mb-4">
             Subscribe to our Newsletter
           </h4>
           <div className="h-[42px]  flex">
@@ -66,8 +66,8 @@ const MobileFooter = () => {
               text="Subscribe"
               className="rounded-none rounded-e-[4px]  min-w-[115px]  "
             />
-          </div>
-
+          </div> */}
+          <h4 className="text-sm font-bold mb-4">Address</h4>
           <p className=" text-sm font-medium leading-6 mt-4">
             99, Obafemi Awolowo Way, Ikeja, Lagos State, Nigeria.
           </p>

@@ -91,6 +91,8 @@ const ProfileDetailsForm = () => {
     }
   }, [buyerProfile, dispatch]);
 
+  // console.log(buyerProfile);
+
   let countryOptions = [{ value: "", label: "" }];
   let stateOptions = [{ value: "", label: "" }];
   let cityOptions = [{ value: "", label: "" }];

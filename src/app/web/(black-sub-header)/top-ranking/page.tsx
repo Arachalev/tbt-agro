@@ -29,7 +29,7 @@ const Page = () => {
             id: item.id,
             image: item.images > 1 ? item.images[0].image_url : "",
             name: item.name,
-            price: item.sale_price,
+            price: item.tbt_price,
             amount: `${item.quantity}${item.unit}`,
             rating: item.ratings_avg,
           });

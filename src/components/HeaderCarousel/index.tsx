@@ -50,12 +50,12 @@ const HeaderCarousel = () => {
             </Link>
           </div>
         </div>
-        <div className="flex items-center gap-[10px] justify-center mt-4">
+        {/* <div className="flex items-center gap-[10px] justify-center mt-4">
           <span className="w-[10px] h-[10px] rounded-full bg-agro-black" />
           <span className="w-[10px] h-[10px] rounded-full bg-gray2" />
           <span className="w-[10px] h-[10px] rounded-full bg-gray2" />
           <span className="w-[10px] h-[10px] rounded-full bg-gray2" />
-        </div>
+        </div> */}
       </div>
     </div>
   );

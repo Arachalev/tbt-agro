@@ -1,35 +1,10 @@
 [
   {
-    "title": "Customer Services",
-    "items": [
-      {
-        "name": "Contact us",
-        "href": ""
-      },
-      {
-        "name": "Help Center",
-        "href": ""
-      },
-      {
-        "name": "Policies & rules",
-        "href": ""
-      },
-      {
-        "name": "Give your feedback",
-        "href": ""
-      }
-    ]
-  },
-  {
     "title": "About",
     "items": [
       {
         "name": "About TBT",
         "href": "/web/about-us"
-      },
-      {
-        "name": "Blog",
-        "href": ""
       }
     ]
   },
@@ -43,10 +18,6 @@
       {
         "name": "Request for Quotation",
         "href": "/web/request-for-quotation-seller"
-      },
-      {
-        "name": "Buyer partners",
-        "href": ""
       }
     ]
   },

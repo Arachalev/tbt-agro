@@ -42,7 +42,7 @@ const Page = () => {
           user: { seller_id: string };
           category: { name: string };
           name: string;
-          sale_price: number;
+          tbt_price: number;
           id: number;
           quantity: number;
           minimum_purchase: number;
@@ -62,7 +62,7 @@ const Page = () => {
             user: { seller_id: string };
             category: { name: string };
             name: string;
-            sale_price: number;
+            tbt_price: number;
             id: number;
             quantity: number;
             minimum_purchase: number;
@@ -77,7 +77,7 @@ const Page = () => {
             name: `${item.product.name.toUpperCase()} - ${item.product.quantity.toLocaleString()}${item.product.unit.toUpperCase()} `,
             category: item.product.category.name,
             cost: `₦${
-              item.product.sale_price
+              item.product.tbt_price
             } / ${item.product.unit.toUpperCase()}`,
             minimumPurchase: `${item.product.minimum_purchase.toLocaleString()}${item.product.unit.toUpperCase()}`,
             ratings: 3.5,

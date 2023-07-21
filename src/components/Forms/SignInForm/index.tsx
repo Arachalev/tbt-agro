@@ -15,6 +15,7 @@ import { useGetSellerProfileQuery } from "@/store/redux/services/sellerSlice/pro
 import { setSellerProfile } from "@/store/redux/services/sellerSlice/profileSlice/profileSlice";
 import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
 
+
 const SignInForm = () => {
   const [show, setShow] = useState(false);
   const [formValues, setFormValues] = useState({
@@ -112,8 +113,8 @@ const SignInForm = () => {
           onClose={() => setShow(false)}
           dataFunc={() =>
             data.data.user_type === "Seller"
-              ? router.push("/dashboard/seller/account")
-              : router.push("/dashboard/buyer/account")
+              ? router.push("/web/home")
+              : router.push("/web/home")
           }
         />
       )}
@@ -123,7 +124,7 @@ const SignInForm = () => {
       </h4>
       <form
         onSubmit={handleSubmit}
-        className=" flex flex-col gap-7 items-center justify-center w-fit "
+        className=" flex flex-col gap-7 px-4 items-center justify-center w-fit  "
       >
         <CustomInput
           label={"Email Address:"}
@@ -139,23 +140,38 @@ const SignInForm = () => {
           validation={(val) => val.length > 6}
           handleValue={(val) => setFormValues({ ...formValues, password: val })}
         />
-        <div className="w-full grid md:grid-cols-[200px_164px]  gap-4">
-          <div className="mt-5 flex items-center gap-8 col-span-2 justify-self-center md:justify-self-start md:col-start-2">
+        <div className="w-full flex sm:grid md:grid-cols-[200px_164px]  gap-4">
+          <div className="mt-5 w-full flex-col flex items-center gap-8 col-span-2 justify-self-center md:justify-self-start md:col-start-2">
             <PriButton
               text="Submit"
               type="submit"
-              className="px-6  h-10 rounded-[6px]   font-bold   "
+              className="px-6 h-10 rounded-[6px] font-bold w-full sm:w-[309px] "
               onClick={() => {}}
             />
-            <PriButton
-              text="Forgot Password?"
-              type="button"
-              variant="secondary"
-              className="px-6 h-[40px] rounded-[6px] font-bold   "
-              onClick={() => {
-                router.push("/web/forgot-password");
-              }}
-            />
+            <div className="flex items-center gap-8  w-full sm:w-[309px] ">
+              <PriButton
+                text="Create Account"
+                type="button"
+                variant="secondary"
+                className="px-4 h-[40px] rounded-[6px] font-bold text-sm whitespace-nowrap  "
+                onClick={() => {
+                  router.push("/web/sign-up");
+                }}
+              />
+              <PriButton
+                text="Forgot Password?"
+                type="button"
+                variant="secondary"
+                className="px-4 h-[40px] rounded-[6px] font-bold text-sm whitespace-nowrap  "
+                onClick={() => {
+                  router.push("/web/forgot-password");
+                }}
+              />
+            </div>
+
+            {/* <Link href="/web/sign-up" className="font-semibold w-full text-end underline ">
+              Create Account
+            </Link> */}
           </div>
         </div>
       </form>

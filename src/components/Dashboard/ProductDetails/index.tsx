@@ -51,7 +51,7 @@ const ProductDetails = () => {
         category={product.category.name}
         availableQuantity={`${product.quantity} ${product.unit}`}
         location={product.location}
-        cost={`₦${product.sale_price.toLocaleString()} / ${product.unit}`}
+        cost={`₦${product.tbt_price.toLocaleString()} / ${product.unit}`}
         minimumPurchase={product.minimum_purchase}
         ratings={3.5}
         ratingsAmount={2389}

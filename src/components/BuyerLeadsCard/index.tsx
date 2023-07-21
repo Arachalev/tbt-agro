@@ -29,7 +29,7 @@ const BuyerLeadsCard: React.FC<BuyerLeadsCardProps> = ({
   return (
     <div className="bg-white flex flex-col sm:flex-row  gap-8 sm:gap-0 justify-between px-8 py-4 rounded-[10px] w-full 2xl:w-[625px] ">
       <div className="flex flex-col gap-1 lg:gap-3 text-agro-black sm:text-base w-fit  ">
-        <p className="text-[#ABABAB] text-sm  mb-1 w-fit  ">{rfq_id}</p>
+        <p className="text-[#ABABAB] text-sm  mb-1 w-fit  ">RFQ ID: {rfq_id}</p>
         <p className=" w-fit ">{state}</p>
         <p className="font-bold w-fit     ">{category}</p>
         <p className="w-fit "> {name}</p>

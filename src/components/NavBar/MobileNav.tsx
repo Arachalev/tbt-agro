@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
@@ -11,13 +11,28 @@ import logo from "../../assets/logo/logo1.png";
 import SideBar from "./SideBar";
 import NavProfile from "../NavProfile";
 import SellerNav from "./SellerNav";
+import { useAppDispatch, useAppSelector } from "@/store/redux/hooks";
+import {
+  addToCart,
+  selectCart,
+} from "@/store/redux/services/cartSlice/cartSlice";
+import { useGetCartItemsQuery } from "@/store/redux/services/cartSlice/cartApiSlice";
 
 const MobileNav = () => {
   const [showSideBar, setShowSideBar] = useState(false);
   const [showNavProfile, setShowNavProfile] = useState(false);
 
+  const { data: cartData } = useGetCartItemsQuery("");
+
   const pathArr = usePathname().trim().split("/");
   const router = useRouter();
+
+  const dispatch = useAppDispatch();
+  const cart = useAppSelector(selectCart);
+
+  useEffect(() => {
+    dispatch(addToCart(cartData?.data));
+  }, [cartData, dispatch]);
 
   const seller = pathArr[2] === "seller";
 
@@ -57,10 +72,18 @@ const MobileNav = () => {
         </div>
         <div className="flex gap-4 items-center">
           <BsFillPersonFill
-            onClick={() => router.push("/dasboard/buyer/account")}
+            onClick={() => router.push("/dashboard/buyer/account")}
             className="text-white text-lg"
           />
-          <Cart />
+          <Link
+            href="/dashboard/buyer/shopping-cart"
+            className=" flex items-center relative text-sm h-8"
+          >
+            <Cart /> <p className="text-white ">Cart</p>
+            <span className="absolute top-0  left-2 text-agro-yellow font-medium">
+              {cart?.product ? cart.product.length : 0}
+            </span>
+          </Link>
         </div>
       </div>
     </nav>

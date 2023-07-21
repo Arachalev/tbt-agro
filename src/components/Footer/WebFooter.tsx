@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BsTwitter, BsWhatsapp } from "react-icons/bs";
+import { BsInstagram, BsTwitter, BsWhatsapp } from "react-icons/bs";
 import { GrFacebookOption } from "react-icons/gr";
 import { ImLinkedin2 } from "react-icons/im";
 import footerData from "../../store/DummyData/footerData.json";
@@ -18,7 +18,7 @@ const WebFooter = () => {
           Trade Alert – Delivering the latest products trends and industry news
           straight to your inbox.
         </h4>
-        <div className="flex gap-7 text-agro-green">
+        <div className="flex gap-5 text-agro-green">
           <Link href="https://twitter.com/tbt_agro" target="_blank">
             <BsTwitter />
           </Link>
@@ -31,6 +31,9 @@ const WebFooter = () => {
           >
             <ImLinkedin2 />
           </Link>
+          <Link href="https://www.instagram.com/tbt_agro/" target="_blank">
+            <BsInstagram />
+          </Link>
           <Link href="https://wa.me/+2348115838997" target="_blank">
             <BsWhatsapp />
           </Link>
@@ -41,7 +44,7 @@ const WebFooter = () => {
           <FooterItem title={item.title} items={item.items} key={item.title} />
         ))}
         <div className="w-full xl:w-[384px] col-span-3 xl:col-span-2">
-          <h4 className="text-sm font-bold mb-6">
+          {/* <h4 className="text-sm font-bold mb-6">
             Subscribe to our Newsletter
           </h4>
           <div className="h-[42px] w-full xl:w-[383px] flex">
@@ -57,7 +60,8 @@ const WebFooter = () => {
               text="Subscribe"
               className="rounded-none rounded-e-[4px]  min-w-[115px]  "
             />
-          </div>
+          </div> */}
+          <h4 className="text-sm font-bold mb-6">Address</h4>
           <p className=" text-sm font-medium leading-6 mt-4">
             99, Obafemi Awolowo Way, Ikeja, Lagos State, Nigeria.
           </p>
