@@ -78,7 +78,7 @@ const Page = () => {
     if (products) {
       const pageUrl = products.data.first_page_url.split("=")[0];
 
-      console.log(pageUrl);
+      // console.log(pageUrl);
 
       fetchOtherPages(products.data.total, products.data.per_page, pageUrl);
     }

@@ -23,6 +23,10 @@ const Page = () => {
     id: 0,
   });
 
+  // const env = process.env;
+
+  // console.log(process.env.NEXT_PUBLIC_PAYSTACK_KEY);
+
   const [showPaymentModal, setShowPaymentModal] = useState(false);
 
   const [showModal, setShowModal] = useState(false);
@@ -50,12 +54,13 @@ const Page = () => {
     setOrderDetails({ ...orderDetails, paystackRef: e });
   };
 
-  const onClosePayment = () => alert("Wait! You need this oil, don't go!!!!");
+  const onClosePayment = () =>
+    alert("Wait! Order invalid without complete payment!!!!");
 
   const componentProps = {
     email: profile.email,
     amount: cart.cartSummary.total * 100,
-    publicKey: "sk_test_3e227d37ac303ff04",
+    publicKey: "pk_test_8f636ccf1ec472984961f198237ad6f698d13215",
   };
 
   const initializePayment = usePaystackPayment({
@@ -95,7 +100,7 @@ const Page = () => {
     const res = await makePayment({
       order_id: sessionStorage.getItem("order_id"),
       sub_total: cart.cartSummary.total,
-      reference,
+      reference: reference,
     });
     if ("data" in res) {
       if (res.data.error === false) {

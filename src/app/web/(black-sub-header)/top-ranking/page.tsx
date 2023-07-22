@@ -17,8 +17,6 @@ const Page = () => {
   const { data, isLoading, isSuccess, error } = useGetTopRatedProductsQuery("");
   // const { data: topRanked } = useGetTopRankedProductsQuery("");
 
-  // console.log(topRanked);
-
   useEffect(() => {
     if (data) {
       const topProd: any = [];
@@ -51,7 +49,6 @@ const Page = () => {
       onClose={() => {}}
       loading={isLoading}
       data={data ? "" : ""}
-      // dataFunc={() => router.push("/dashboard/seller/account")}
       error={error ? errorMessage : ""}
     />
   ) : (

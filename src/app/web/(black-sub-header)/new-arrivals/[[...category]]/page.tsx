@@ -16,19 +16,14 @@ const Page = ({ params }: { params: { category: string } }) => {
   const [arrivals, setArrivals] = useState([]);
   const [fetchParams, setFetchParams] = useState({ skip: true, id: 0 });
 
-  // const { data, isLoading } = useGetAllProductsQuery("");
   const { data, isLoading } = useGetNewArrivalsQuery("");
 
   const { data: categoriesList } = useGetCategoriesQuery("");
-
-  // console.log(params.category, categoriesData?.data);
 
   const { data: categoryData, isLoading: categoriesDataLoading } =
     useGetProductsByCategoryQuery(fetchParams.id, {
       skip: fetchParams.skip,
     });
-
-  // console.log(data, categoryData?.data);
 
   useEffect(() => {
     if (categoriesList?.data) {
@@ -50,11 +45,6 @@ const Page = ({ params }: { params: { category: string } }) => {
           setFetchParams({ id: productCategory.id, skip: false });
         }
       }
-
-      // console.log(name);
-      // setFetchParams({ id: productCategory.id, skip: false });
-
-      // console.log(productCategory);
     }
   }, [categoriesList?.data, params.category]);
 
@@ -65,18 +55,6 @@ const Page = ({ params }: { params: { category: string } }) => {
       setArrivals(data?.data);
     }
   }, [categoryData, data]);
-
-  // console.log(arrivals, categoryData);
-
-  /**
-   *let isCategoryData = true;
-
-   * if(params.category && !categoryData){
-   * isCategoryData = false;
-   * }
-   *
-   *
-   */
 
   let isCategoryUnAvailable,
     categoryType = "";

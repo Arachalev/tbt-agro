@@ -169,10 +169,10 @@ const WebNav = () => {
                 </div>
               )}
 
-              <div className="flex items-center gap-1">
+              {/* <div className="flex items-center gap-1">
                 <HelpIcon stroke="#ffffff" />
                 <p className="text-white font-medium text-sm">Help</p>
-              </div>
+              </div> */}
             </div>
           ) : (
             <div className="flex flex-row items-center gap-5">
