@@ -92,6 +92,9 @@ const Pages = () => {
         fetchOtherPages(leadsData.data.total, leadsData.data.per_page, pageUrl);
       }
     }
+
+  
+
   }, [leadsData, categoryData, formData]);
 
   return (

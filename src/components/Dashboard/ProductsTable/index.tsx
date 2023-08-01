@@ -62,7 +62,7 @@ const ProductTable = ({ column, data = [] }: ProductTableProps) => {
     }
   };
 
-  console.log(pagination.currentPage, pagination.lastPage);
+  // console.log(pagination.currentPage, pagination.lastPage);
 
   const tableColumn = [];
 
@@ -71,7 +71,7 @@ const ProductTable = ({ column, data = [] }: ProductTableProps) => {
       <span className="h-[30px]" />
       <ul className="flex flex-col">
         {data.map((item, index) => {
-          const isFirstPage = pagination.currentPage === 1;
+        
 
           if (isFirstPage && index < 10) {
             return (
@@ -127,7 +127,7 @@ const ProductTable = ({ column, data = [] }: ProductTableProps) => {
                   ? "bg-[#D4E6ED] text-agro-green"
                   : "text-white bg-[#f48924]/50"
               } `;
-              const isFirstPage = pagination.currentPage === 1;
+            
 
               if (isFirstPage && index < 10) {
                 return (

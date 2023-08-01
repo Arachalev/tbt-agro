@@ -11,6 +11,8 @@ import TradeServices from "@/components/TradeServices";
 import ProductsCategoryCard from "@/components/ProductsCategoryCard";
 import HeaderCarousel from "@/components/HeaderCarousel";
 
+import HomePageLoadingUI from "@/components/LoadingUI/HomePageLoadingUI";
+
 import {
   useGetAllProductsQuery,
   useGetTopRatedProductsQuery,
@@ -22,6 +24,8 @@ import cocoaImge from "../../../../../../public/images/Image-min.png";
 import Image from "next/image";
 import { GrClose } from "react-icons/gr";
 import "./style.css";
+
+import { gsap } from "gsap";
 
 const Page = () => {
   // const { data } = useGetTopRatedProductsQuery("");
@@ -57,8 +61,6 @@ const Page = () => {
     error,
   } = useGetAllProductsQuery("");
 
-  // console.log(productsData?.data);
-
   const { data: categories } = useGetCategoriesQuery("");
 
   const { data: productsCategory } = useGetProductsByCategoryQuery(
@@ -68,6 +70,7 @@ const Page = () => {
     }
   );
 
+  // update catgory products from fetched data
   useEffect(() => {
     const category = categoryData.linksData.find(
       (item) => item.name === categoryParams
@@ -332,11 +335,30 @@ const Page = () => {
 
   const firstLoad = sessionStorage.getItem("first-load");
 
+  // gsap animation sequence for firstload modal
+  useEffect(() => {
+    let firstloadTL = gsap.timeline();
+
+    firstloadTL
+      .from(".firstloadModal", { scale: 0, duration: 1 })
+      .to(".firstloadHeader", {
+        opacity: 1,
+        "clip-path": "polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)",
+      })
+      .from(".loaderText", { y: 0, x: 50 }, "-=0.5")
+      .from(".firstloadImg", {
+        y: -200,
+        opacity: 0,
+        ease: "elastic.out(1,0.3)",
+        duration: 2,
+      });
+  }, []);
+
   return (
     <div className="min-h-[100vh] py-12 bg-agro-body">
       {showModal && !firstLoad && (
-        <div className="overflow-hidden flex items-center justify-center modal h-screen backdrop-blur-md  min-w-screen fixed top-0 right-0 left-0 z-[5000000] p-5 sm:p-20  xl:p-40 ">
-          <div className="bg-think-agro py-11 pl-10 md:pl-20 ">
+        <div className="overflow-hidden flex items-center justify-center modal h-screen backdrop-blur-md  min-w-screen fixed top-0 right-0 left-0 z-[5000000] p-5 sm:p-20  xl:p-40  ">
+          <div className="bg-think-agro py-11 pl-10 md:pl-20  firstloadModal">
             <div className="flex items-center justify-between">
               <Image src={logoImg} className="" alt="Logo" />
               <div
@@ -351,22 +373,22 @@ const Page = () => {
             </div>
             <div className="mt-8 md:mt-0  flex justify-between items-center">
               <div>
-                <h4 className="font-semibold text-3xl md:text-4xl  xl:text-6xl leading-normal sm:leading-relaxed">
+                <h4 className="font-semibold text-3xl md:text-4xl  xl:text-6xl leading-normal sm:leading-relaxed firstloadHeader">
                   Think Agro <br /> Commodities, <br />{" "}
-                  <p className="font-bold"> Think TBT!</p>
+                  <p className="font-bold loaderText"> Think TBT!</p>
                 </h4>
                 <button
                   onClick={() => {
                     sessionStorage.setItem("first-load", "true");
                     setShowModal(false);
                   }}
-                  className="bg-agro-green rounded-[4px] font-bold text-white px-6 py-2 mt-12"
+                  className="bg-agro-green rounded-[4px] font-bold text-white px-6 py-2 mt-12 hover:scale-110 transition-transform "
                 >
                   Get Started
                 </button>
               </div>
               <div>
-                <Image src={cocoaImge} alt="Cocoa" />
+                <Image src={cocoaImge} alt="Cocoa" className="firstloadImg" />
               </div>
             </div>
           </div>
@@ -383,17 +405,15 @@ const Page = () => {
         <HeaderCarousel />
       </div>
       <div className="bg-agro-blue px-4 xl:px-[70px] py-11  ">
-        {categoryParams !== "All Categories" &&
+        {/* {categoryParams !== "All Categories" &&
         categoryParams !== "Others" &&
         categoryParams !== null
           ? categoryPage
-          : homePage}
-        {productsLoading && (
-          <div className=" w-full rounded-[10px] py-4 px-10 col-span-4 justify-self-center flex flex-col items-center ">
-            <p className="bg-white rounded-[10px] py-4 px-10 w-fit font-semibold text-center text-2xl sm:text-4xl">
-              Loading Products...
-            </p>
-          </div>
+          : homePage} */}
+        {true && (
+          // <div className=" w-full rounded-[10px] py-4 px-10 col-span-4 justify-self-center flex flex-col items-center ">
+            <HomePageLoadingUI />
+          // </div>
         )}
       </div>
 
