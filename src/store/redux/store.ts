@@ -7,6 +7,7 @@ import authSlice from "./services/authSlice/authSlice";
 import profileSlice from "./services/buyerSlice/profileSlice/profileSlice";
 import sellerProfileSlice from "./services/sellerSlice/profileSlice/profileSlice";
 import cartSlice from "./services/cartSlice/cartSlice";
+import productsCategorySlice from "./features/productsCategory";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     buyerProfile: profileSlice,
     sellerProfile: sellerProfileSlice,
     cart: cartSlice,
+    productsCategory: productsCategorySlice,
     [baseApiSlice.reducerPath]: baseApiSlice.reducer,
   },
   middleware: (getDefaultmiddleWare) =>

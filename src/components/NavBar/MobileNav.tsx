@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { BsFillPersonFill } from "react-icons/bs";
+import { BsFillBellFill } from "react-icons/bs";
 
 import Cart from "../Cart";
 import logo from "../../assets/logo/logo1.png";
@@ -16,7 +16,16 @@ import {
   addToCart,
   selectCart,
 } from "@/store/redux/services/cartSlice/cartSlice";
+import {
+  updateProductCategory,
+  selectProductsCategory,
+} from "@/store/redux/features/productsCategory";
+
 import { useGetCartItemsQuery } from "@/store/redux/services/cartSlice/cartApiSlice";
+import { useGetCategoriesQuery } from "@/store/redux/services/categorySlice/categoryApiSlice";
+import { productCategoryData } from "@/store/DummyData/productsCategory";
+import getUniqueID from "@/hooks/getUniqueID";
+import { ItemCard } from "../ProductsCategoryCard";
 
 const MobileNav = () => {
   const [showSideBar, setShowSideBar] = useState(false);
@@ -29,12 +38,29 @@ const MobileNav = () => {
 
   const dispatch = useAppDispatch();
   const cart = useAppSelector(selectCart);
+  const reduxProductsCategory = useAppSelector(selectProductsCategory);
+
+  const { data: categories } = useGetCategoriesQuery("");
 
   useEffect(() => {
     dispatch(addToCart(cartData?.data));
   }, [cartData, dispatch]);
 
+  useEffect(() => {
+    if (categories?.data) {
+      const categoryLinks = categories.data.map((item: any) => ({
+        name: item.name,
+        icon: item.icon,
+        id: item.id,
+      }));
+
+      dispatch(updateProductCategory(categoryLinks));
+    }
+  }, [categories?.data, dispatch]);
+
   const seller = pathArr[2] === "seller";
+
+  
 
   return seller ? (
     <SellerNav />
@@ -71,10 +97,11 @@ const MobileNav = () => {
           </Link>
         </div>
         <div className="flex gap-4 items-center">
-          <BsFillPersonFill
+          {/* <BsFillPersonFill
             onClick={() => router.push("/dashboard/buyer/account")}
             className="text-white text-lg"
-          />
+          /> */}
+          <BsFillBellFill className="text-white" />
           <Link
             href="/dashboard/buyer/shopping-cart"
             className=" flex items-center relative text-sm h-8"
@@ -86,6 +113,20 @@ const MobileNav = () => {
           </Link>
         </div>
       </div>
+      <div className="overflow-x-auto px-4  sm:hidden bg-agro-yellow h-14 flex items-center gap-3">
+        {productCategoryData.map((item) => (
+          <ItemCard
+            name={item.name}
+            variant="mobile"
+            Icon={item.Icon}
+            key={getUniqueID()}
+          />
+        ))}
+        {/* {reduxProductsCategory.map((item) => (
+          <ItemCard name={item.name} Icon={item.Icon} key={getUniqueID()} />
+        ))} */}
+      </div>
+ 
     </nav>
   );
 };

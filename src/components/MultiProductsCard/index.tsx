@@ -32,8 +32,8 @@ const MultiProductsCard: React.FC<MultiProductsCardProps> = ({
   const imgHeight = deviceWidth.width < 640 ? 60 : 114;
   const imgWidth = deviceWidth.width < 640 ? 60 : 132;
 
-  const newProductsStyling = `gap-2 lg:gap-4 w-fit  md:w-full flex flex-row md:grid md:grid-rows-2 md:grid-flow-col`;
-  const cropProductsStyling = `gap-2 lg:gap-4 w-fit  md:w-full grid  ${
+  const newProductsStyling = ` md:gap-2 lg:gap-4 w-full grid  grid-cols-4 md:grid-cols-2 md:grid-rows-2 md:grid-flow-col`;
+  const cropProductsStyling = `gap-2 lg:gap-4 w-full  grid  ${
     products.length < 5 ? "" : "grid-rows-2"
   } grid-flow-col`;
 
@@ -53,10 +53,7 @@ const MultiProductsCard: React.FC<MultiProductsCardProps> = ({
       >
         {products.map((item) => {
           return (
-            <Link
-              href={`/web/product-details/${item.id}`}
-              key={getUniqueID()}
-            >
+            <Link href={`/web/product-details/${item.id}`} key={getUniqueID()}>
               <Image
                 height={imgHeight}
                 width={imgWidth}

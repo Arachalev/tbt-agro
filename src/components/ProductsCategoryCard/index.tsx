@@ -12,8 +12,14 @@ interface ItemCardProps {
   name: string;
   icon?: string;
   Icon?: React.FC;
+  variant?: string;
 }
-const ItemCard: React.FC<ItemCardProps> = ({ name, icon, Icon }) => {
+export const ItemCard: React.FC<ItemCardProps> = ({
+  name,
+  icon,
+  Icon,
+  variant = "web",
+}) => {
   const search = useSearchParams();
   const category = search.get("category");
 
@@ -23,18 +29,18 @@ const ItemCard: React.FC<ItemCardProps> = ({ name, icon, Icon }) => {
     href = `/web/home`;
   }
 
-  useEffect(() => {
-    window.scrollTo({
-      top: 600,
-      behavior: "smooth",
-    });
-  }, [search]);
+  // useEffect(() => {
+  //   window.scrollTo({
+  //     top: 600,
+  //     behavior: "smooth",
+  //   });
+  // }, [search]);
+
+  const webStyle = `flex gap-2 ${category ? "" : "sm:gap-3"} items-center`;
+  const mobileStyle = `px-4 rounded-[20px] bg-white h-10 flex items-center justify-center gap-1 whitespace-nowrap`;
 
   return (
-    <Link
-      href={href}
-      className={`flex gap-2 ${category ? "" : "sm:gap-3"} items-center`}
-    >
+    <Link href={href} className={variant === "web" ? webStyle : mobileStyle}>
       <span className={`${category ? "" : "w-8"}`}>
         {/* <Image src={icon} height={20} width={20} alt={name} /> */}
         {Icon && !category && <Icon />}
@@ -46,7 +52,13 @@ const ItemCard: React.FC<ItemCardProps> = ({ name, icon, Icon }) => {
           </div>
         )}
       </span>
-      <p className="text-agro-green text-sm font-medium">{name}</p>
+      <p
+        className={` ${
+          variant === "web" ? "text-sm text-agro-green" : "text-xs"
+        } font-medium`}
+      >
+        {name}
+      </p>
     </Link>
   );
 };
@@ -57,7 +69,7 @@ const ProductsCategoryCard = ({
   productsCategoryData: { name: string; icon: string }[];
 }) => {
   return (
-    <div className="bg-white  md:w-[210px]  md:h-[412px] py-4 px-5 rounded-[10px]  ">
+    <div className="bg-white hidden sm:block  md:w-[210px]  md:h-[412px] py-4 px-5 rounded-[10px]  ">
       <h4 className="text-agro-black text-lg font-bold mb-5">Products</h4>
       <div className=" grid grid-cols-2 md:flex md:flex-col gap-4">
         {productCategoryData.map((item) => (

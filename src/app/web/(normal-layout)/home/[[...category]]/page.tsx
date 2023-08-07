@@ -24,8 +24,15 @@ import cocoaImge from "../../../../../../public/images/Image-min.png";
 import Image from "next/image";
 import { GrClose } from "react-icons/gr";
 import "./style.css";
-
+import { useAppDispatch, useAppSelector } from "@/store/redux/hooks";
+import { selectProductsCategory } from "@/store/redux/features/productsCategory";
+import { updateProductCategory } from "@/store/redux/features/productsCategory";
 import { gsap } from "gsap";
+import { AiOutlineSearch } from "react-icons/ai";
+import useInput from "@/hooks/useInput";
+import { useRouter } from "next/navigation";
+import { SlArrowDown } from "react-icons/sl";
+import { CgProfile } from "react-icons/cg";
 
 const Page = () => {
   // const { data } = useGetTopRatedProductsQuery("");
@@ -35,7 +42,6 @@ const Page = () => {
   const [showModal, setShowModal] = useState(true);
   const [productsArr, setProductsArr] = useState<any[]>([]);
   const [categoryData, setCategoryData] = useState<{
-    linksData: { name: string; icon: string; id: number }[];
     productsData: {
       image: string;
       name: string;
@@ -46,7 +52,6 @@ const Page = () => {
     }[];
     fetchParams: { skip: boolean; id: number; name: string };
   }>({
-    linksData: [{ name: "", icon: "", id: 1 }],
     productsData: [],
     fetchParams: {
       skip: true,
@@ -54,6 +59,10 @@ const Page = () => {
       name: "",
     },
   });
+
+  const dispatch = useAppDispatch();
+  const reduxProductsCategory = useAppSelector(selectProductsCategory);
+  const router = useRouter();
 
   const {
     data: productsData,
@@ -72,13 +81,12 @@ const Page = () => {
 
   // update catgory products from fetched data
   useEffect(() => {
-    const category = categoryData.linksData.find(
+    const category = reduxProductsCategory.find(
       (item) => item.name === categoryParams
     );
 
     if (category?.id) {
       setCategoryData((state) => ({
-        linksData: state.linksData,
         productsData: state.productsData,
         fetchParams: {
           skip: false,
@@ -88,7 +96,6 @@ const Page = () => {
       }));
     } else {
       setCategoryData((state) => ({
-        linksData: state.linksData,
         productsData: state.productsData,
         fetchParams: {
           skip: false,
@@ -97,7 +104,7 @@ const Page = () => {
         },
       }));
     }
-  }, [categoryParams, categoryData.linksData]);
+  }, [categoryParams, reduxProductsCategory]);
 
   useEffect(() => {
     if (categories?.data) {
@@ -107,17 +114,9 @@ const Page = () => {
         id: item.id,
       }));
 
-      setCategoryData((state) => ({
-        linksData: categoryLinks,
-        productsData: state.productsData,
-        fetchParams: {
-          skip: state.fetchParams.skip,
-          id: state.fetchParams.id,
-          name: state.fetchParams.name,
-        },
-      }));
+      dispatch(updateProductCategory(categoryLinks));
     }
-  }, [categories?.data]);
+  }, [categories?.data, dispatch]);
 
   useEffect(() => {
     if (productsCategory?.data) {
@@ -142,7 +141,6 @@ const Page = () => {
       );
 
       setCategoryData((state) => ({
-        linksData: state.linksData,
         fetchParams: {
           skip: false,
           id: state.fetchParams.id,
@@ -253,7 +251,7 @@ const Page = () => {
   );
 
   let homePage = (
-    <div className="m-auto  grid justify-center justify-items-center md:grid-cols-4 gap-3 md:gap-5  w-full  2xl:w-[1400px] h-full">
+    <div className="m-auto  grid justify-items-center md:grid-cols-4 gap-3 md:gap-5  w-full  2xl:w-[1400px] h-full">
       {productsArr.slice(0, 4).length > 1 && (
         <div className="col-span-4 md:col-span-2  lg:col-span-1 w-full">
           <MultiProductsCard
@@ -333,6 +331,24 @@ const Page = () => {
     </div>
   );
 
+  // Search field handler
+
+  const {
+    value,
+    hasError,
+    enteredInputHandler,
+    onBlurHandler,
+    onFocusHandler,
+    reset,
+  } = useInput((val) => (val ? true : false));
+
+  // Search form submit handler
+  const searchHandler = async (e: any) => {
+    e.preventDefault();
+
+    value.value && router.push(`/web/search?params=${value.value}`);
+  };
+
   const firstLoad = sessionStorage.getItem("first-load");
 
   // gsap animation sequence for firstload modal
@@ -394,27 +410,45 @@ const Page = () => {
           </div>
         </div>
       )}
+      <div className=" w-full mb-4 sm:hidden px-4 flex gap-2 items-center -translate-y-4">
+        {/* <div> */}
+        <CgProfile className="text-[#C0C0C0] text-2xl" />
+        <SlArrowDown className="text-[#C0C0C0] text-2xl" />
+        {/* </div> */}
+        <div className="flex items-center w-full">
+          <input
+            onChange={enteredInputHandler}
+            value={value.value}
+            onFocus={onFocusHandler}
+            type="text"
+            className="w-full pl-8 h-10 placeholder:text-sm lg:placeholder:text-base outline-none rounded-s-lg"
+            placeholder="what are you looking for..."
+          />
+          <span
+            onClick={searchHandler}
+            className="bg-agro-yellow h-10 items-center justify-center flex w-11 rounded-e-md cursor-pointer "
+          >
+            <AiOutlineSearch className="text-lg" />
+          </span>
+        </div>
+      </div>
       <div className="px-4 xl:px-[70px] pb-12 flex flex-col md:flex-row md:mx-auto gap-5 2xl:w-[1540px] ">
         <ProductsCategoryCard
           productsCategoryData={
-            categoryData.linksData.length > 0
-              ? categoryData.linksData
+            reduxProductsCategory.length > 1
+              ? reduxProductsCategory
               : [{ name: "Loading...", icon: "https://picsum.photos/200/300" }]
           }
         />
         <HeaderCarousel />
       </div>
-      <div className="bg-agro-blue px-4 xl:px-[70px] py-11  ">
-        {/* {categoryParams !== "All Categories" &&
+      <div className="bg-agro-blue px-4 xl:px-[70px] py-11">
+        {categoryParams !== "All Categories" &&
         categoryParams !== "Others" &&
         categoryParams !== null
           ? categoryPage
-          : homePage} */}
-        {true && (
-          // <div className=" w-full rounded-[10px] py-4 px-10 col-span-4 justify-self-center flex flex-col items-center ">
-            <HomePageLoadingUI />
-          // </div>
-        )}
+          : homePage}
+        {productsLoading && <HomePageLoadingUI />}
       </div>
 
       <div className="px-4 xl:px-[70px] 2xl:w-[1540px] mx-auto my-[60px]">
