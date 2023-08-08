@@ -33,6 +33,10 @@ import useInput from "@/hooks/useInput";
 import { useRouter } from "next/navigation";
 import { SlArrowDown } from "react-icons/sl";
 import { CgProfile } from "react-icons/cg";
+import Link from "next/link";
+import { selectAuthToken } from "@/store/redux/services/authSlice/authSlice";
+import { navProfileData } from "@/store/DummyData/navProfileData";
+import NavProfile from "@/components/NavProfile";
 
 const Page = () => {
   // const { data } = useGetTopRatedProductsQuery("");
@@ -59,9 +63,12 @@ const Page = () => {
       name: "",
     },
   });
+  const [showProfileSettings, setShowProfileSettings] =
+    useState<boolean>(false);
 
   const dispatch = useAppDispatch();
   const reduxProductsCategory = useAppSelector(selectProductsCategory);
+  const authentication = useAppSelector(selectAuthToken);
   const router = useRouter();
 
   const {
@@ -199,8 +206,9 @@ const Page = () => {
     }
   }, [productsData]);
 
+  // product category pages
   let categoryPage = (
-    <div className="m-auto  grid justify-center justify-items-center md:grid-cols-4 gap-3 md:gap-5  w-full  2xl:w-[1400px] h-full">
+    <div className="m-auto  grid justify-center justify-items-center md:grid-cols-4 sm:gap-3 md:gap-5  w-full  2xl:w-[1400px] h-full">
       {categoryData.productsData.length > 0 ? (
         <p className="col-span-4 w-full text-center text-xl sm:text-2xl md:text-3xl font-semibold">
           {categoryData.fetchParams.name}
@@ -250,8 +258,9 @@ const Page = () => {
     </div>
   );
 
+  // Home page content
   let homePage = (
-    <div className="m-auto  grid justify-items-center md:grid-cols-4 gap-3 md:gap-5  w-full  2xl:w-[1400px] h-full">
+    <div className="m-auto  grid justify-items-center md:grid-cols-4 sm:gap-3 md:gap-5  w-full  2xl:w-[1400px] h-full">
       {productsArr.slice(0, 4).length > 1 && (
         <div className="col-span-4 md:col-span-2  lg:col-span-1 w-full">
           <MultiProductsCard
@@ -371,7 +380,7 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="min-h-[100vh] py-12 bg-agro-body">
+    <div className="min-h-[100vh] pt-12 sm:py-12 bg-agro-body">
       {showModal && !firstLoad && (
         <div className="overflow-hidden flex items-center justify-center modal h-screen backdrop-blur-md  min-w-screen fixed top-0 right-0 left-0 z-[5000000] p-5 sm:p-20  xl:p-40  ">
           <div className="bg-think-agro py-11 pl-10 md:pl-20  firstloadModal">
@@ -411,10 +420,21 @@ const Page = () => {
         </div>
       )}
       <div className=" w-full mb-4 sm:hidden px-4 flex gap-2 items-center -translate-y-4">
-        {/* <div> */}
         <CgProfile className="text-[#C0C0C0] text-2xl" />
-        <SlArrowDown className="text-[#C0C0C0] text-2xl" />
-        {/* </div> */}
+        {authentication.token ? (
+          <SlArrowDown
+            className="text-[#C0C0C0] text-2xl"
+            onClick={() => setShowProfileSettings((state) => !state)}
+          />
+        ) : (
+          <Link
+            href="/web/sign-in"
+            className=" text-agro-yellow whitespace-nowrap text-sm font-medium"
+          >
+            Sign in
+          </Link>
+        )}
+
         <div className="flex items-center w-full">
           <input
             onChange={enteredInputHandler}
@@ -432,7 +452,8 @@ const Page = () => {
           </span>
         </div>
       </div>
-      <div className="px-4 xl:px-[70px] pb-12 flex flex-col md:flex-row md:mx-auto gap-5 2xl:w-[1540px] ">
+
+      <div className="relative sm:px-4 xl:px-[70px] sm:pb-12 flex flex-col md:flex-row md:mx-auto gap-5 2xl:w-[1540px] ">
         <ProductsCategoryCard
           productsCategoryData={
             reduxProductsCategory.length > 1
@@ -441,8 +462,17 @@ const Page = () => {
           }
         />
         <HeaderCarousel />
+
+        {showProfileSettings && (
+          <div className="absolute -top-1 left-4 z-[100]">
+            <NavProfile
+              closeProfile={() => setShowProfileSettings(false)}
+              profileData={navProfileData}
+            />
+          </div>
+        )}
       </div>
-      <div className="bg-agro-blue px-4 xl:px-[70px] py-11">
+      <div className="bg-agro-floral-white sm:bg-agro-blue sm:px-4 xl:px-[70px] py-11">
         {categoryParams !== "All Categories" &&
         categoryParams !== "Others" &&
         categoryParams !== null
@@ -451,11 +481,11 @@ const Page = () => {
         {productsLoading && <HomePageLoadingUI />}
       </div>
 
-      <div className="px-4 xl:px-[70px] 2xl:w-[1540px] mx-auto my-[60px]">
+      <div className="sm:px-4 xl:px-[70px] 2xl:w-[1540px] mx-auto sm:my-[60px]">
         <QuotationCard />
       </div>
 
-      <div className="px-4 xl:px-[70px] 2xl:w-[1540px] mx-auto mb-[80px]">
+      <div className="px-4 py-16 sm:py-0 bg-agro-floral-white sm:bg-none xl:px-[70px] 2xl:w-[1540px] mx-auto sm:mb-[80px]">
         <TradeServices />
       </div>
     </div>

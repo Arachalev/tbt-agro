@@ -84,6 +84,10 @@ const WebNav = () => {
 
   useEffect(() => {
     dispatch(getCredentials());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getCredentials());
   }, []);
 
   // const user = sessionStorage.getItem("userType");

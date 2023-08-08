@@ -15,7 +15,6 @@ import { useGetSellerProfileQuery } from "@/store/redux/services/sellerSlice/pro
 import { setSellerProfile } from "@/store/redux/services/sellerSlice/profileSlice/profileSlice";
 import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
 
-
 const SignInForm = () => {
   const [show, setShow] = useState(false);
   const [formValues, setFormValues] = useState({
@@ -119,22 +118,25 @@ const SignInForm = () => {
         />
       )}
 
-      <h4 className="text-agro-green text-xl md:text-2xl xl:text-4xl mb-10 font-semibold text-center ">
+      <h4 className="px-4 sm:text-agro-green text-2xl xl:text-4xl sm:mb-10 font-bold sm:font-semibold w-full sm:text-center ">
         Sign In
       </h4>
+      <p className="px-4 w-full  sm:hidden mt-1 mb-5 text-sm  text-[#201E1E]/50">
+        Please fill your details to access your account
+      </p>
       <form
         onSubmit={handleSubmit}
         className=" flex flex-col gap-7 px-4 items-center justify-center w-fit  "
       >
         <CustomInput
-          label={"Email Address:"}
+          label={"Email"}
           placeholder={"Please set the email as the login name"}
           validation={(val) => val.includes("@")}
           handleValue={(val) => setFormValues({ ...formValues, email: val })}
         />
 
         <CustomInput
-          label={"Login Password:"}
+          label={"Password"}
           type="password"
           placeholder={"Please set the login password  "}
           validation={(val) => val.length > 6}

@@ -1,21 +1,21 @@
 [
   {
-    "bg": "bg-[url('/images/tradeServicesBg/assurance.png')] border-4",
+    "bg": "bg-[url('/images/tradeServicesBg/assurance.png')] ",
     "title": "Trade Assurance",
     "text": "ORDER PROTECTION"
   },
   {
-    "bg": "bg-[url('/images/tradeServicesBg/payment.png')] border-4",
+    "bg": "bg-[url('/images/tradeServicesBg/payment.png')] ",
     "title": "Payment",
     "text": "PAYMENT SOLUTION"
   },
   {
-    "bg": "bg-[url('/images/tradeServicesBg/inspection.png')] border-4",
+    "bg": "bg-[url('/images/tradeServicesBg/inspection.png')] ",
     "title": "Inspection Solution",
     "text": "INSPECTION"
   },
   {
-    "bg": "bg-[url('/images/tradeServicesBg/shipping.png')] border-4",
+    "bg": "bg-[url('/images/tradeServicesBg/shipping.png')] ",
     "title": "Land, Ocean and Air Shipping",
     "text": "LOGISTICS SERVICES"
   }
