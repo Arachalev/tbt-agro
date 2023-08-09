@@ -13,12 +13,14 @@ interface ItemCardProps {
   icon?: string;
   Icon?: React.FC;
   variant?: string;
+  closeModal?: () => void;
 }
 export const ItemCard: React.FC<ItemCardProps> = ({
   name,
   icon,
   Icon,
   variant = "web",
+  closeModal,
 }) => {
   const search = useSearchParams();
   const category = search.get("category");
@@ -37,10 +39,14 @@ export const ItemCard: React.FC<ItemCardProps> = ({
   // }, [search]);
 
   const webStyle = `flex gap-2 ${category ? "" : "sm:gap-3"} items-center`;
-  const mobileStyle = `px-4 rounded-[20px] bg-white h-10 flex items-center justify-center gap-1 whitespace-nowrap`;
+  const mobileStyle = `px-4 rounded-[20px] bg-white h-10 flex items-center gap-2 gap-1 whitespace-nowrap`;
 
   return (
-    <Link href={href} className={variant === "web" ? webStyle : mobileStyle}>
+    <Link
+      href={href}
+      onClick={() => (closeModal ? closeModal() : null)}
+      className={variant === "web" ? webStyle : mobileStyle}
+    >
       <span className={`${category ? "" : "w-8"}`}>
         {/* <Image src={icon} height={20} width={20} alt={name} /> */}
         {Icon && !category && <Icon />}

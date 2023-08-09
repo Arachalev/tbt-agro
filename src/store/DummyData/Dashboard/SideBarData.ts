@@ -6,6 +6,7 @@ import SupportIcon from "@/components/Icons/SupportIcon";
 import DashboardIcon from "@/components/Icons/DashboardIcon";
 
 import AccountIcon from "@/components/Icons/AccountIcon";
+import OrdersIcon from "@/components/Icons/OrdersIcon";
 
 export const sellerBarData = [
   {
@@ -52,7 +53,7 @@ export const buyerBarData = [
     href: "/dashboard/buyer/account",
   },
   {
-    Icon: OrderIcon,
+    Icon: OrdersIcon,
     name: "Orders",
     href: "/dashboard/buyer/orders",
   },

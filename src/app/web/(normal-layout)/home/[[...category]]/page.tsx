@@ -360,6 +360,8 @@ const Page = () => {
 
   const firstLoad = sessionStorage.getItem("first-load");
 
+  
+
   // gsap animation sequence for firstload modal
   useEffect(() => {
     let firstloadTL = gsap.timeline();
@@ -464,7 +466,7 @@ const Page = () => {
         <HeaderCarousel />
 
         {showProfileSettings && (
-          <div className="absolute -top-1 left-4 z-[100]">
+          <div className="absolute -top-5 left-4 z-[100]">
             <NavProfile
               closeProfile={() => setShowProfileSettings(false)}
               profileData={navProfileData}
