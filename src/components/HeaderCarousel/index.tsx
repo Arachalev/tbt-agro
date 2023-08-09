@@ -25,7 +25,7 @@ const HeaderCarousel = () => {
     // href = `/web/home`;
   }
 
-  console.log(category);
+  // console.log(category);
   // useEffect(() => {
 
   // }, [category]);
@@ -94,25 +94,36 @@ const HeaderCarousel = () => {
           </h4>
         );
         break;
+
+      default:
+        content = (
+          <h4 className={`${contentStyle} text-white`}>
+            Shop the Best <br /> Seedling Deals
+          </h4>
+        );
     }
   }
 
-  console.log(categoryData);
+  // console.log(categoryData);
 
   return (
     <div className="w-full ">
       <div>
         <div
-          className={` ${
-            isHomePage ? homeStyle.bg : categoryData?.bg ?? homeStyle.bg
-          } bg-cover h-[138px] sm:h-[322px]`}
+          className={` 
+         
+         h-[130px] sm:h-[322px] rounded-t-[10px] overflow-hidden flex w-full
+          relative 
+          `}
         >
           <div
             className={`${styles.bestShopping} ${
               isHomePage
                 ? homeStyle.panelBg
                 : categoryData?.panelBg ?? homeStyle.panelBg
-            }  h-full lg:w-[427px] flex flex-col pl-6 lg:pl-11 justify-center gap-5 lg:gap-[30px]`}
+            }  h-full lg:w-[427px flex flex-col pl-4 w-full lg:pl-11 justify-center gap-5 lg:gap-[30px] z-50 
+            absolute left-0 top-0
+            `}
           >
             {content}
             <Link
@@ -126,9 +137,20 @@ const HeaderCarousel = () => {
               Shop Now
             </Link>
           </div>
+          <div className="h-[130px] sm:h-[322px]  w-[250px]] :w-[200px] md:w-[500px] xl:w-[450px]"></div>
+          <div
+            className={`${
+              isHomePage ? homeStyle.bg : categoryData?.bg ?? homeStyle.bg
+            } bg-cover bg-no-repeat bg h-[130px] sm:h-[322px]  w-full  
+            `}
+          ></div>
         </div>
-        {!category && (
-          <div className="flex items-center justify-between gap-4 bg-white sm:rounded-b-[10px] lg:h-[90px] px-4 md:px-12 py-3">
+        {
+          <div
+            className={`${
+              !category ? "hidden sm:block" : ""
+            } flex items-center justify-between gap-4 bg-white sm:rounded-b-[10px] lg:h-[90px] px-4 md:px-12 py-3`}
+          >
             <div className="">
               <h4 className="font-bold   whitespace-nowrap text-[8px] sm:text-sm md:text-lg">
                 SUBMIT REQUESTS FOR QUOTATION
@@ -153,7 +175,7 @@ const HeaderCarousel = () => {
               </Link>
             </div>
           </div>
-        )}
+        }
         {/* <div className="flex items-center gap-[10px] justify-center mt-4">
           <span className="w-[10px] h-[10px] rounded-full bg-agro-black" />
           <span className="w-[10px] h-[10px] rounded-full bg-gray2" />
