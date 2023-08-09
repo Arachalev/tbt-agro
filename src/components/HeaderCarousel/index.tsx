@@ -27,7 +27,7 @@ const HeaderCarousel = () => {
         </div>
         <div className="flex items-center justify-between gap-4 bg-white sm:rounded-b-[10px] lg:h-[90px] px-4 md:px-12 py-3">
           <div className="">
-            <h4 className="font-bold   whitespace-nowrap text-sm md:text-lg">
+            <h4 className="font-bold   whitespace-nowrap text-xs md:text-lg">
               SUBMIT REQUESTS FOR QUOTATION
             </h4>
             <Link
@@ -39,7 +39,7 @@ const HeaderCarousel = () => {
           </div>
           <div className=" h-10 lg:h-full border-r border-r-gray2" />
           <div>
-            <h4 className="font-bold   whitespace-nowrap first-letter:text-sm md:text-lg">
+            <h4 className="font-bold   whitespace-nowrap first-letter text-xs md:text-lg">
               VIEW REQUESTS FOR QUOTATION
             </h4>
             <Link
