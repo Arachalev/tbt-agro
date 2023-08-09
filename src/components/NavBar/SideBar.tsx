@@ -152,12 +152,12 @@ const SideBar = ({ closePanel }: { closePanel: () => void }) => {
             </div>
             {!token && (
               <div className="flex flex-row items-center gap-5">
-                {/* <Link
-              className="text-white bg-agro-green px-4 py-1 flex items-center justify-center rounded-[10px] text-sm font-medium whitespace-nowrap"
-              href="/web/sign-in"
-            >
-              Sign in
-            </Link> */}
+                <Link
+                  className="text-white bg-agro-green px-4 py-1 flex items-center justify-center rounded-[10px] text-xl font-medium whitespace-nowrap"
+                  href="/web/sign-in"
+                >
+                  Sign in
+                </Link>
 
                 <Link
                   className=" bg-white px-4 py-1 flex items-center justify-center rounded-[10px] text-xl font-medium whitespace-nowrap"
