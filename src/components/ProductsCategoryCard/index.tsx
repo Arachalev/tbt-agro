@@ -8,10 +8,13 @@ import { useSearchParams } from "next/navigation";
 import { BsCheckLg } from "react-icons/bs";
 import { useEffect } from "react";
 
+interface IconProps {
+  fill?: string;
+}
 interface ItemCardProps {
   name: string;
   icon?: string;
-  Icon?: React.FC;
+  Icon?: React.FC<IconProps>;
   variant?: string;
   closeModal?: () => void;
 }
@@ -39,7 +42,9 @@ export const ItemCard: React.FC<ItemCardProps> = ({
   // }, [search]);
 
   const webStyle = `flex gap-2 ${category ? "" : "sm:gap-3"} items-center`;
-  const mobileStyle = `px-4 rounded-[20px] bg-white h-10 flex items-center gap-2 gap-1 whitespace-nowrap`;
+  const mobileStyle = `px-4 rounded-[20px] ${
+    category === name ? "bg-agro-green" : "bg-white"
+  } h-10 flex items-center gap-2 gap-1 whitespace-nowrap`;
 
   return (
     <Link
@@ -49,9 +54,18 @@ export const ItemCard: React.FC<ItemCardProps> = ({
     >
       <span className={`${category ? "" : "w-8"}`}>
         {/* <Image src={icon} height={20} width={20} alt={name} /> */}
-        {Icon && !category && <Icon />}
-        {category && (
-          <div className="bg-white h-4 w-4 rounded-[2px] border-gray2 border flex items-center justify-center">
+        {Icon && !category ? (
+          <Icon />
+        ) : (
+          Icon &&
+          variant === "mobile" && (
+            <Icon fill={name === category ? "#ffffff" : "#4C6538"} />
+          )
+        )}
+        {category && variant === "web" && (
+          <div
+            className={`bg-white  h-4 w-4 rounded-[2px] border-gray2 border flex items-center justify-center`}
+          >
             {category === name && (
               <BsCheckLg className="text-sm text-agro-green" />
             )}
@@ -59,9 +73,11 @@ export const ItemCard: React.FC<ItemCardProps> = ({
         )}
       </span>
       <p
-        className={` ${
-          variant === "web" ? "text-sm text-agro-green" : "text-xs"
-        } font-medium`}
+        className={` 
+        ${variant === "web" ? "text-sm text-agro-green" : "text-xs"}
+         ${
+           variant === "mobile" && category === name ? "text-white" : ""
+         }  font-medium`}
       >
         {name}
       </p>
