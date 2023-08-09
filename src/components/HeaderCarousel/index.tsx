@@ -121,7 +121,7 @@ const HeaderCarousel = () => {
               isHomePage
                 ? homeStyle.panelBg
                 : categoryData?.panelBg ?? homeStyle.panelBg
-            }  h-full lg:w-[427px flex flex-col pl-4 w-full lg:pl-11 justify-center gap-5 lg:gap-[30px] z-50 
+            }  h-full lg:w-[427px flex flex-col pl-4 w-full lg:pl-11 justify-center gap-5 lg:gap-[30px] 
             absolute left-0 top-0
             `}
           >
