@@ -34,12 +34,12 @@ export const ItemCard: React.FC<ItemCardProps> = ({
     href = `/web/home`;
   }
 
-  // useEffect(() => {
-  //   window.scrollTo({
-  //     top: 600,
-  //     behavior: "smooth",
-  //   });
-  // }, [search]);
+  useEffect(() => {
+    window.scrollTo({
+      top: 600,
+      behavior: "smooth",
+    });
+  }, [search]);
 
   const webStyle = `flex gap-2 ${category ? "" : "sm:gap-3"} items-center`;
   const mobileStyle = `px-4 rounded-[20px] ${
