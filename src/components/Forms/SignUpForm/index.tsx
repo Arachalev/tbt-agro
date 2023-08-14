@@ -97,9 +97,12 @@ const SignUpForm = () => {
         <StatusModal
           data={data ? data.message : ""}
           error={error ? errorMessage : ""}
+          dataFunc={() => {
+            router.push("/web/verify-email");
+            setShow(false);
+          }}
           loading={isLoading}
           onClose={() => {
-            router.push("/web/verify-email");
             setShow(false);
           }}
         />

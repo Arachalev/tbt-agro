@@ -37,6 +37,7 @@ import Link from "next/link";
 import { selectAuthToken } from "@/store/redux/services/authSlice/authSlice";
 import { navProfileData } from "@/store/DummyData/navProfileData";
 import NavProfile from "@/components/NavProfile";
+import { selectDeviceWith } from "@/store/redux/features/deviceWidthSlice";
 
 const Page = () => {
   // const { data } = useGetTopRatedProductsQuery("");
@@ -69,6 +70,7 @@ const Page = () => {
   const dispatch = useAppDispatch();
   const reduxProductsCategory = useAppSelector(selectProductsCategory);
   const authentication = useAppSelector(selectAuthToken);
+  const deviceWidth = useAppSelector(selectDeviceWith);
   const router = useRouter();
 
   const {
@@ -206,7 +208,7 @@ const Page = () => {
     }
   }, [productsData]);
 
-  // product category pages
+  // Product category pages
   let categoryPage = (
     <div className="m-auto  grid justify-center justify-items-center md:grid-cols-4 sm:gap-3 md:gap-5  w-full  2xl:w-[1400px] h-full">
       {categoryData.productsData.length > 0 ? (
@@ -273,7 +275,7 @@ const Page = () => {
       {productsArr.slice(0, 4).length > 1 && (
         <div className="col-span-4 md:col-span-2  lg:col-span-1 w-full">
           <MultiProductsCard
-            title={"Crop Products"}
+            title={"Top Ranking"}
             products={
               productsArr.slice(4, 8).length > 2
                 ? productsArr.slice(4, 8)
@@ -287,12 +289,16 @@ const Page = () => {
         <div className="col-span-4 md:col-span-2 w-full ">
           <MultiProductsCard
             title={"Crop Products"}
-            products={productsArr.slice(0, 8)}
+            products={
+              deviceWidth.width > 640
+                ? productsArr.slice(0, 8)
+                : productsArr.slice(0, 4)
+            }
             type="cropProducts"
           />
         </div>
       )}
-      {productsArr.slice(8, 16).length > 1 && (
+      {deviceWidth.width > 640 && productsArr.slice(8, 16).length > 1 && (
         <div className="col-span-4 md:col-span-2 w-full ">
           <MultiProductsCard
             title={"Crop Products"}
@@ -301,7 +307,7 @@ const Page = () => {
           />
         </div>
       )}
-      {productsArr.slice(16, 24).length > 1 && (
+      {deviceWidth.width > 640 && productsArr.slice(16, 24).length > 1 && (
         <div className="col-span-4 md:col-span-2 w-full ">
           <MultiProductsCard
             title={"Crop Products"}
@@ -310,7 +316,7 @@ const Page = () => {
           />
         </div>
       )}
-      {productsArr.slice(24, 32).length > 1 && (
+      {deviceWidth.width > 640 && productsArr.slice(24, 32).length > 1 && (
         <div className="col-span-4 md:col-span-2 w-full ">
           <MultiProductsCard
             title={"Crop Products"}
@@ -319,7 +325,7 @@ const Page = () => {
           />
         </div>
       )}
-      {productsArr.slice(32, 40).length > 1 && (
+      {deviceWidth.width > 640 && productsArr.slice(32, 40).length > 1 && (
         <div className="col-span-4 md:col-span-2 w-full ">
           <MultiProductsCard
             title={"Crop Products"}
@@ -328,7 +334,7 @@ const Page = () => {
           />
         </div>
       )}
-      {productsArr.slice(30, 36).length > 1 && (
+      {deviceWidth.width > 640 && productsArr.slice(30, 36).length > 1 && (
         <div className="col-span-4 md:col-span-2 w-full ">
           <MultiProductsCard
             title={"Crop Products"}
@@ -359,8 +365,6 @@ const Page = () => {
   };
 
   const firstLoad = sessionStorage.getItem("first-load");
-
-  
 
   // gsap animation sequence for firstload modal
   useEffect(() => {

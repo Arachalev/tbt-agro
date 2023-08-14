@@ -22,7 +22,6 @@ const SubmitQuoteForm = () => {
   });
 
   const id = usePathname().split("/")[4];
-  // console.log(id);
   const router = useRouter();
   const [submitQuote, { data, isLoading, error }] =
     useSubmitQuoteSellerMutation();
@@ -545,11 +544,17 @@ const SubmitQuoteForm = () => {
                 TBT Price *
               </label>
               <input
-                onChange={tbtPriceHandler}
-                value={tbtPriceValue.value}
-                onBlur={tbtPriceBlurHandler}
-                onFocus={tbtPriceFocusHandler}
-                required
+                // onChange={tbtPriceHandler}
+                value={
+                  salePriceValue.value === ""
+                    ? "0"
+                    : parseInt(salePriceValue.value) +
+                      parseInt(salePriceValue.value) / 10
+                }
+                readOnly
+                // onBlur={tbtPriceBlurHandler}
+                // onFocus={tbtPriceFocusHandler}
+                // required
                 className={`w-full h-12 rounded-[4px] border  ${
                   tbtPriceValue.isTouched
                     ? "border-agro-yellow"

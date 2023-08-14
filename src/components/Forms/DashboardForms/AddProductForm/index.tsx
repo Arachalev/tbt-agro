@@ -426,14 +426,17 @@ const AddProductForm = () => {
                 htmlFor=""
                 className="font-semibold text-sm text-agro-black block"
               >
-                TTB Price <span>*</span>
+                TBT Price <span>*</span>
               </label>
               <input
                 type="text"
                 value={
-                  parseInt(salePriceValue.value) +
-                  parseInt(salePriceValue.value) / 10
+                  salePriceValue.value === ""
+                    ? "0"
+                    : parseInt(salePriceValue.value) +
+                      parseInt(salePriceValue.value) / 10
                 }
+                readOnly
                 // onChange={tbtPriceHandler}
                 // onBlur={tbtPriceBlurHandler}
                 // onFocus={tbtPriceFocusHandler}

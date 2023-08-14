@@ -7,7 +7,7 @@ const Page = () => {
   return (
     <div className="pt-8 px-4 md:px-6 xl:px-12 pb-40">
       <div className="mb-8">
-        <h4 className="mb-2 text-xl md:text-2xl xl:text-3xl text-agro-green font-semibold overflow-clip">
+        <h4 className="mb-2 text-xl md:text-2xl xl:text-3xl text-agro-green font-semibold overflow-clip ">
           We hate to see you go
         </h4>
         <p className="text-sm text-agro-green md:w-1/2">

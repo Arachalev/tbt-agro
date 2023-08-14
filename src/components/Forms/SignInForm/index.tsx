@@ -102,7 +102,7 @@ const SignInForm = () => {
     errorMessage = isFetchBaseQueryErrorType(error);
   }
 
-  console.log(error, errorMessage);
+  // console.log(error, errorMessage);
   return (
     <div className="min-h-screen bg-agro-floral-white pt-10 pb-[142px] flex flex-col items-center">
       {show && (

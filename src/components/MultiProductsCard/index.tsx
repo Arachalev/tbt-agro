@@ -84,6 +84,7 @@ const MultiProductsCard: React.FC<MultiProductsCardProps> = ({
               sellerID={item.sellerID}
               location={item.location}
               id={item.id}
+              key={getUniqueID()}
             />
           );
         })}

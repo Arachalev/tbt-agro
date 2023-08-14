@@ -25,11 +25,6 @@ const HeaderCarousel = () => {
     // href = `/web/home`;
   }
 
-  // console.log(category);
-  // useEffect(() => {
-
-  // }, [category]);
-
   const categoryData = headerCarouselData.find(
     (item) => item.name === category
   );
@@ -148,7 +143,7 @@ const HeaderCarousel = () => {
         {
           <div
             className={`${
-              !category ? "hidden sm:block" : ""
+              !category ? "hidden sm:flex" : ""
             } flex items-center justify-between gap-4 bg-white sm:rounded-b-[10px] lg:h-[90px] px-4 md:px-12 py-3`}
           >
             <div className="">
