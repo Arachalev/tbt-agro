@@ -7,7 +7,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <section>
       <NavBar />
-      <main className="mt-40">
+      <main className="sm:mt-40">
         <HeaderDark />
         {children}
       </main>

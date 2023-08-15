@@ -1,30 +1,56 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import OrderCard from "@/components/Dashboard/OrderCard";
 import { useGetAllOrdersQuery } from "@/store/redux/services/OrdersSlice/ordersApiSlice";
 
 const Page = () => {
   const { data, error, isLoading, isError } = useGetAllOrdersQuery("");
+  const [orders, setOrders] = useState<any[]>([]);
 
-  let orders = [];
+  // Fetch Other pages
+  const fetchOtherPages = async (
+    total: number,
+    pageLimit: number,
+    pageUrl: string
+  ) => {
+    const tempOrders: any[] = [];
 
-  if (data) {
-    orders = data?.data?.data.filter(
-      (item: any) => item.payment_status !== "unpaid"
+    const limit = Math.ceil(total / pageLimit);
+
+    const dataArr = new Array(limit + 1).fill("");
+
+    await Promise.all(
+      dataArr.map(async (item, index) => {
+        if (index > 0) {
+          const res = await fetch(`${pageUrl}=${index}`, {
+            headers: {
+              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+          });
+
+          const data = await res.json();
+
+          data.data.data.map((item: any) => {
+            if (item.payment_status === "paid") {
+              tempOrders.push(item);
+            }
+          });
+        }
+      })
     );
-  }
 
-  // console.log(data);
+    setOrders(tempOrders);
+  };
 
-  // fetch("https://test.tbt.com.ng/api/v1/user/order/my-orders?page=7", {
-  //   headers: {
-  //     Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-  //   },
-  // })
-  //   .then((data) => data.json())
-  //   .then((data) => console.log(data));
+  useEffect(() => {
+    if (data) {
+      const pageUrl = data.data.first_page_url.split("=");
+      // console.log(productsData.data.first_page_url, pageUrl);
+      fetchOtherPages(data.data.total, data.data.per_page, pageUrl[0]);
+    }
+  }, [data]);
 
   return (
     <div className="pt-8 px-5 pb-40">

@@ -11,12 +11,14 @@ import { useAppSelector } from "@/store/redux/hooks";
 import { selectCart } from "@/store/redux/services/cartSlice/cartSlice";
 import { selectBuyerProfile } from "@/store/redux/services/buyerSlice/profileSlice/profileSlice";
 import { useRouter } from "next/navigation";
-import { useMakePaymentMutation } from "@/store/redux/services/paymentSlice/paymentApiSlice";
+import {
+  useMakePaymentMutation,
+  useVerifyPaymentMutation,
+} from "@/store/redux/services/paymentSlice/paymentApiSlice";
 import { useCreateOrderMutation } from "@/store/redux/services/OrdersSlice/ordersApiSlice";
 import StatusModal from "@/components/Forms/StatusModal";
 import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
 import { useDeleteCartItemMutation } from "@/store/redux/services/cartSlice/cartApiSlice";
-import { useGetBuyerProfileQuery } from "@/store/redux/services/buyerSlice/profileSlice/profileApiSlice";
 
 const Page = () => {
   const [orderDetails, setOrderDetails] = useState({
@@ -24,20 +26,23 @@ const Page = () => {
     id: 0,
   });
 
-  // const env = process.env;
-
-  // console.log(process.env.NEXT_PUBLIC_PAYSTACK_KEY);
-
   const [showPaymentModal, setShowPaymentModal] = useState(false);
-
+  const [showVerifyModal, setShowVerifyModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
-
-  // const { data: buyerProfile } = useGetBuyerProfileQuery();
 
   const [
     makePayment,
     { data: paymentData, error: paymentError, isLoading: paymentLoading },
   ] = useMakePaymentMutation();
+
+  const [
+    verifyPayment,
+    {
+      data: verifyPaymentData,
+      error: verifyPaymentError,
+      isLoading: verifyPaymentLoading,
+    },
+  ] = useVerifyPaymentMutation();
 
   const [
     createOrder,
@@ -64,8 +69,8 @@ const Page = () => {
     email: profile.email,
     amount: cart.cartSummary.total * 100,
     // key: "sk_live_634ffcfaf2383bec6afa4c6709dde4d0ecb9cd1f",
-    // publicKey: "pk_live_8cc0ef4adf8603a6590491646ab1a2abdda3b55b",
-    publicKey: "pk_test_8f636ccf1ec472984961f198237ad6f698d13215",
+    publicKey: "pk_live_8cc0ef4adf8603a6590491646ab1a2abdda3b55b",
+    // publicKey: "pk_test_8f636ccf1ec472984961f198237ad6f698d13215",
   };
 
   const initializePayment = usePaystackPayment({
@@ -101,21 +106,30 @@ const Page = () => {
   };
 
   const handlePayment = async (reference: string) => {
-    setShowPaymentModal(true);
-    console.log(
-      sessionStorage.getItem("order_id"),
-      cart.cartSummary.total,
-      reference
-    );
-    const res = await makePayment({
-      order_id: parseInt(sessionStorage.getItem("order_id")),
-      sub_total: cart.cartSummary.total,
-      reference: reference,
-    });
-    if ("data" in res) {
-      if (res.data.error === false) {
-        setOrderDetails({ ...orderDetails, paystackRef: { reference: "" } });
-        sessionStorage.removeItem("order_id");
+    setShowVerifyModal(true);
+    
+    const verifyPayRes = await verifyPayment({ reference });
+
+
+    if ("data" in verifyPayRes) {
+      setShowPaymentModal(true);
+      setShowVerifyModal(false);
+
+      if (verifyPayRes.data.data.status === "success") {
+        const res = await makePayment({
+          order_id: parseInt(sessionStorage.getItem("order_id")),
+          sub_total: cart.cartSummary.total,
+          reference: reference,
+        });
+        if ("data" in res) {
+          if (res.data.error === false) {
+            setOrderDetails({
+              ...orderDetails,
+              paystackRef: { reference: "" },
+            });
+            sessionStorage.removeItem("order_id");
+          }
+        }
       }
     }
   };
@@ -124,15 +138,16 @@ const Page = () => {
     await deleteCartItem(id);
   };
 
-  // console.log(orderData, orderError);
-  // console.log(paymentData, paymentError);
-  let errorMessage, paymentErrorMsgF;
+  let errorMessage, paymentErrorMsgF, verifyPaymentErrorMsgF;
 
   if (orderError) {
     errorMessage = isFetchBaseQueryErrorType(orderError);
   }
   if (paymentError) {
     paymentErrorMsgF = isFetchBaseQueryErrorType(paymentError);
+  }
+  if (verifyPaymentError) {
+    verifyPaymentErrorMsgF = isFetchBaseQueryErrorType(verifyPaymentError);
   }
 
   return (
@@ -149,16 +164,23 @@ const Page = () => {
           }}
         />
       )}
+      {showVerifyModal && (
+        <StatusModal
+          onClose={() => setShowVerifyModal(false)}
+          loading={verifyPaymentLoading}
+          error={verifyPaymentError ? verifyPaymentErrorMsgF : ""}
+          data={verifyPaymentData ? `${verifyPaymentData?.message} ` : ""}
+          dataFunc={() => {
+            setShowModal(false);
+          }}
+        />
+      )}
       {showPaymentModal && (
         <StatusModal
           onClose={() => setShowPaymentModal(false)}
           loading={paymentLoading}
           error={paymentError ? paymentErrorMsgF : ""}
-          data={
-            paymentData
-              ? `${paymentData?.message} ${(<br />)} Payment Completed `
-              : ""
-          }
+          data={paymentData ? paymentData?.message : ""}
           dataFunc={() => {
             router.push("/dashboard/buyer/confirmed-order");
             setShowPaymentModal(false);

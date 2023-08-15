@@ -192,7 +192,6 @@ const Page = () => {
       })
     );
 
-    // console.log(tempProducts);
     setProductsArr(tempProducts);
   };
 
