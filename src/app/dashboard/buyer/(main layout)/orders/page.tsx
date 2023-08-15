@@ -16,6 +16,16 @@ const Page = () => {
     );
   }
 
+  // console.log(data);
+
+  fetch("https://test.tbt.com.ng/api/v1/user/order/my-orders?page=7", {
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  })
+    .then((data) => data.json())
+    .then((data) => console.log(data));
+
   return (
     <div className="pt-8 px-5 pb-40">
       <h4 className="mb-5 text-xl md:text-2xl xl:text-3xl text-agro-green font-semibold overflow-clip">

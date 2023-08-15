@@ -16,6 +16,7 @@ import { useCreateOrderMutation } from "@/store/redux/services/OrdersSlice/order
 import StatusModal from "@/components/Forms/StatusModal";
 import isFetchBaseQueryErrorType from "@/store/redux/fetchErrorType";
 import { useDeleteCartItemMutation } from "@/store/redux/services/cartSlice/cartApiSlice";
+import { useGetBuyerProfileQuery } from "@/store/redux/services/buyerSlice/profileSlice/profileApiSlice";
 
 const Page = () => {
   const [orderDetails, setOrderDetails] = useState({
@@ -30,6 +31,8 @@ const Page = () => {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
 
   const [showModal, setShowModal] = useState(false);
+
+  // const { data: buyerProfile } = useGetBuyerProfileQuery();
 
   const [
     makePayment,
@@ -57,9 +60,14 @@ const Page = () => {
   const onClosePayment = () =>
     alert("Wait! Order invalid without complete payment!!!!");
 
+  console.log(profile.email, cart.cartSummary.total * 100);
+  // console.log(buyerProfile);
+
   const componentProps = {
     email: profile.email,
     amount: cart.cartSummary.total * 100,
+    // key: "sk_live_634ffcfaf2383bec6afa4c6709dde4d0ecb9cd1f",
+    // publicKey: "pk_live_8cc0ef4adf8603a6590491646ab1a2abdda3b55b",
     publicKey: "pk_test_8f636ccf1ec472984961f198237ad6f698d13215",
   };
 
@@ -114,21 +122,6 @@ const Page = () => {
     await deleteCartItem(id);
   };
 
-  //
-  /**
-   *
-   *
-   *
-   * func to clear cart
-   *
-   * getAll cart items
-   * delete each item
-   * if settled, then move on
-   * else
-   * delete again
-   *
-   *
-   */
   // console.log(orderData, orderError);
   // console.log(paymentData, paymentError);
   let errorMessage, paymentErrorMsgF;

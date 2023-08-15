@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useAppDispatch, useAppSelector } from "@/store/redux/hooks";
 
@@ -11,10 +11,25 @@ import {
 } from "@/store/redux/features/deviceWidthSlice";
 import { editLinkState } from "@/store/redux/features/sideBarSlice";
 import { setCredentials } from "@/store/redux/services/authSlice/authSlice";
+import { useGetBuyerProfileQuery } from "@/store/redux/services/buyerSlice/profileSlice/profileApiSlice";
+import { setBuyerProfile } from "@/store/redux/services/buyerSlice/profileSlice/profileSlice";
 
 const NavBar = () => {
+  const [fetchBuyerProfile, setFetchBuyerProfile] = useState(true);
+
+  const { data, isError, isFetching, isLoading, isSuccess, error } =
+    useGetBuyerProfileQuery("", { skip: fetchBuyerProfile });
+
   const device = useAppSelector(selectDeviceWith);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const user = sessionStorage.getItem("userType");
+
+    if (user === "Buyer") {
+      setFetchBuyerProfile(false);
+    }
+  }, []);
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -42,6 +57,12 @@ const NavBar = () => {
       dispatch(editLinkState(true));
     }
   }, [device.width, dispatch]);
+
+  useEffect(() => {
+    if (data) {
+      dispatch(setBuyerProfile({ userData: data.data }));
+    }
+  }, [data, dispatch]);
 
   return device.width > 640 ? <WebNav /> : <MobileNav />;
 };
