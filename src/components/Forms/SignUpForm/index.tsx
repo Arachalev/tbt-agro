@@ -123,6 +123,7 @@ const SignUpForm = () => {
                 country_id: e?.value ? e.value : "",
               });
             }}
+            required
             options={countryOptions}
           />
         </div>
