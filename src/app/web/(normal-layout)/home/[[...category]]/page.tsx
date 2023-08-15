@@ -490,7 +490,7 @@ const Page = () => {
         <QuotationCard />
       </div>
 
-      <div className="px-4 py-16 sm:py-0 bg-agro-floral-white sm:bg-none xl:px-[70px] 2xl:w-[1540px] mx-auto sm:mb-[80px]">
+      <div className="px-4 py-16 sm:py-0 bg-agro-floral-white sm:bg-inherit xl:px-[70px] 2xl:w-[1540px] mx-auto sm:mb-[80px]">
         <TradeServices />
       </div>
     </div>
