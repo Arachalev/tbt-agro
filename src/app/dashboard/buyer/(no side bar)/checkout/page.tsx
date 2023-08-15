@@ -60,9 +60,6 @@ const Page = () => {
   const onClosePayment = () =>
     alert("Wait! Order invalid without complete payment!!!!");
 
-  console.log(profile.email, cart.cartSummary.total * 100);
-  // console.log(buyerProfile);
-
   const componentProps = {
     email: profile.email,
     amount: cart.cartSummary.total * 100,
@@ -105,8 +102,13 @@ const Page = () => {
 
   const handlePayment = async (reference: string) => {
     setShowPaymentModal(true);
+    console.log(
+      sessionStorage.getItem("order_id"),
+      cart.cartSummary.total,
+      reference
+    );
     const res = await makePayment({
-      order_id: sessionStorage.getItem("order_id"),
+      order_id: parseInt(sessionStorage.getItem("order_id")),
       sub_total: cart.cartSummary.total,
       reference: reference,
     });

@@ -135,6 +135,7 @@ const SignInForm = () => {
         <CustomInput
           label={"Email Address:"}
           placeholder={"Please set the email as the login name"}
+          autoComplete="on"
           validation={(val) => val.includes("@")}
           handleValue={(val) => setFormValues({ ...formValues, email: val })}
         />
@@ -143,6 +144,7 @@ const SignInForm = () => {
           label={"Login Password:"}
           type="password"
           placeholder={"Please set the login password  "}
+          autoComplete="on"
           validation={(val) => val.length > 6}
           handleValue={(val) => setFormValues({ ...formValues, password: val })}
         />
