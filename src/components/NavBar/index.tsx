@@ -68,7 +68,6 @@ const NavBar = () => {
     }
   }, []);
 
-  console.log(sellerProfile);
 
   useEffect(() => {
     window.addEventListener("resize", () => {

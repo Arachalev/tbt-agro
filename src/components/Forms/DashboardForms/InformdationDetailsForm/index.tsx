@@ -236,10 +236,15 @@ const InformdationDetailsForm = () => {
   };
 
   // console.log(sellerDetails);
+  console.log(error, data);
   let errorMessage = "";
 
   if (error) {
-    errorMessage = isFetchBaseQueryErrorType(error);
+    try {
+      errorMessage = isFetchBaseQueryErrorType(error);
+    } catch (error) {
+      errorMessage = "Error Updating account, please try again soon.";
+    }
   }
 
   return (
