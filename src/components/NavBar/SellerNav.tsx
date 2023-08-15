@@ -32,10 +32,7 @@ const SellerNav = () => {
 
   const path = usePathname();
   const router = useRouter();
-  const dispatch = useAppDispatch();
   const sellerProfile = useAppSelector(selectSellerProfile);
-
-  const { data, isLoading, error } = useGetSellerProfileQuery("");
 
   const {
     data: notifications,
@@ -46,16 +43,6 @@ const SellerNav = () => {
   const webPath = path.split("/")[1];
 
   const isWebPath = webPath === "web";
-
-  useEffect(() => {
-    if (data) {
-      dispatch(
-        setSellerProfile({
-          userData: data.data,
-        })
-      );
-    }
-  }, [data, dispatch]);
 
   return (
     <nav className="top-0 absolute z-50 w-full  ">

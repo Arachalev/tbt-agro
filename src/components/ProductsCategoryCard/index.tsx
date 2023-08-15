@@ -1,12 +1,13 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import { productCategoryData } from "@/store/DummyData/productsCategory";
 import getUniqueID from "@/hooks/getUniqueID";
 import Link from "next/link";
 // import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { BsCheckLg } from "react-icons/bs";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
+import { gsap } from "gsap";
 
 interface IconProps {
   fill?: string;
@@ -34,12 +35,22 @@ export const ItemCard: React.FC<ItemCardProps> = ({
     href = `/web/home`;
   }
 
+  // useEffect(() => {
+  //   window.scrollTo({
+  //     top: 600,
+  //     behavior: "smooth",
+  //   });
+  // }, [search]);
+
+  let cardAnimation = gsap.timeline({ paused: true });
+
+  let tlref = useRef(null);
   useEffect(() => {
-    window.scrollTo({
-      top: 600,
-      behavior: "smooth",
+    cardAnimation.to(tlref.current, {
+      scale: 1.11,
+      duration: 0.1,
     });
-  }, [search]);
+  }, []);
 
   const webStyle = `flex gap-2 ${category ? "" : "sm:gap-3"} items-center`;
   const mobileStyle = `px-4 rounded-[20px] ${
@@ -48,9 +59,14 @@ export const ItemCard: React.FC<ItemCardProps> = ({
 
   return (
     <Link
+      ref={tlref}
       href={href}
-      onClick={() => (closeModal ? closeModal() : null)}
-      className={variant === "web" ? webStyle : mobileStyle}
+      onMouseOver={() => cardAnimation.play()}
+      onMouseOut={() => cardAnimation.reverse()}
+      onClick={() => {
+        closeModal ? closeModal() : null;
+      }}
+      className={`${variant === "web" ? webStyle : mobileStyle}`}
     >
       <span className={`${category ? "" : "w-8"}`}>
         {/* <Image src={icon} height={20} width={20} alt={name} /> */}

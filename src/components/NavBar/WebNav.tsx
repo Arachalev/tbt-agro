@@ -43,11 +43,6 @@ const WebNav = () => {
   const [showProfileSettings, setShowProfileSettings] =
     useState<boolean>(false);
 
-  // const [fetchBuyerProfile, setFetchBuyerProfile] = useState(true);
-
-  // const { data, isError, isFetching, isLoading, isSuccess, error } =
-  //   useGetBuyerProfileQuery("", { skip: fetchBuyerProfile });
-
   const {
     data: notifications,
     isLoading: notificationsLoading,
@@ -55,14 +50,6 @@ const WebNav = () => {
   } = useGetAllNotificationsQuery("");
 
   const { data: cartData } = useGetCartItemsQuery("");
-
-  // useEffect(() => {
-  //   const user = sessionStorage.getItem("userType");
-
-  //   if (user === "Buyer") {
-  //     setFetchBuyerProfile(false);
-  //   }
-  // }, []);
 
   const dispatch = useAppDispatch();
   const authorized = useAppSelector(selectAuthToken);
@@ -76,12 +63,6 @@ const WebNav = () => {
     dispatch(addToCart(cartData?.data));
   }, [cartData, dispatch]);
 
-  // useEffect(() => {
-  //   if (data) {
-  //     dispatch(setBuyerProfile({ userData: data.data }));
-  //   }  
-  // }, [data, dispatch]);
-
   useEffect(() => {
     dispatch(getCredentials());
   }, [dispatch]);
@@ -90,7 +71,6 @@ const WebNav = () => {
     dispatch(getCredentials());
   }, []);
 
-  // const user = sessionStorage.getItem("userType");
 
   const {
     value,

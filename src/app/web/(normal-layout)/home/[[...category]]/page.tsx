@@ -382,6 +382,8 @@ const Page = () => {
         ease: "elastic.out(1,0.3)",
         duration: 2,
       });
+
+    let homepageTl = gsap.timeline();
   }, []);
 
   return (

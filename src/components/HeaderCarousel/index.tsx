@@ -29,7 +29,7 @@ const HeaderCarousel = () => {
     (item) => item.name === category
   );
 
-  let contentStyle = ` font-semibold text-sm sm:text-2xl sm:text3xl lg:text-[40px] sm:leading-none overflow-clip`;
+  let contentStyle = ` font-semibold text-sm sm:text-2xl sm:text3xl lg:text-[40px] h24 sm:leading-none overflow-cli`;
   let content = (
     <h4 className={`${contentStyle} text-white`}>
       Shop the Best <br /> Seedling Deals

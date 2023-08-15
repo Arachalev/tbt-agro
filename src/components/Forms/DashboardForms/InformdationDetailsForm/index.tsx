@@ -162,11 +162,11 @@ const InformdationDetailsForm = () => {
         last_name: sellerDetails.lName,
         company_name: sellerDetails.companyName,
         company_address: sellerDetails.companyAddress,
-        country_id: sellerDetails.country?.id
+        country_id: sellerDetails?.country?.id
           ? sellerDetails.country.id.toString()
           : "",
-        state_id: `${sellerDetails.state.id}`,
-        city_id: `${sellerDetails.city.id}`,
+        state_id: `${sellerDetails?.state?.id}`,
+        city_id: `${sellerDetails?.city?.id}`,
       });
     }
   }, [sellerProfile, sellerDetails, dispatch]);
@@ -216,6 +216,7 @@ const InformdationDetailsForm = () => {
     });
   };
 
+  // form handler
   const formHandler = async (e: any) => {
     e.preventDefault();
     setShowModal(true);
@@ -224,8 +225,6 @@ const InformdationDetailsForm = () => {
 
     const formNamesArray = Object.keys(formData);
 
-    console.log(formNamesArray);
-
     formNamesArray.map((item) => {
       form.append(`${item}`, formData[item as keyof typeof formData]);
     });
@@ -233,18 +232,10 @@ const InformdationDetailsForm = () => {
     form.append("valid_id_card", formData.valid_id_card);
     form.append("profile_picture", images.images[0]);
 
-    // for (let pair of form.entries()) {
-    //   console.log(pair[0] + ", " + pair[1]);
-    // }
-
     await updateAccount(form);
   };
 
-  console.log(data, error);
-
-  // console.log(formData);
-
-  // console.log(formData.valid_id_card);
+  // console.log(sellerDetails);
   let errorMessage = "";
 
   if (error) {
@@ -412,10 +403,10 @@ const InformdationDetailsForm = () => {
               });
             }}
             options={countryOptions}
-            key={`${sellerDetails.country.id}`}
+            key={`${sellerDetails?.country?.id}`}
             defaultValue={{
-              value: `${sellerDetails.country.id}`,
-              label: `${sellerDetails.country.name}`,
+              value: `${sellerDetails?.country?.id}`,
+              label: `${sellerDetails?.country?.name}`,
             }}
           />
         </div>
@@ -435,10 +426,10 @@ const InformdationDetailsForm = () => {
               });
             }}
             options={stateOptions}
-            key={`${sellerDetails.state.id}`}
+            key={`${sellerDetails?.state?.id}`}
             defaultValue={{
-              value: `${sellerDetails.state.id}`,
-              label: `${sellerDetails.state.name}`,
+              value: `${sellerDetails?.state?.id ?? 0}`,
+              label: `${sellerDetails?.state?.name ?? "Select..."}`,
             }}
           />
         </div>
@@ -458,10 +449,10 @@ const InformdationDetailsForm = () => {
               });
             }}
             options={cityOptions}
-            key={`${sellerDetails.city.id}`}
+            key={`${sellerDetails?.city?.id}`}
             defaultValue={{
-              value: `${sellerDetails.city.id}`,
-              label: `${sellerDetails.city.name}`,
+              value: `${sellerDetails?.city?.id ?? 0}`,
+              label: `${sellerDetails?.city?.name ?? "Select..."}`,
             }}
           />
         </div>

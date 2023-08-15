@@ -13,12 +13,21 @@ import { editLinkState } from "@/store/redux/features/sideBarSlice";
 import { setCredentials } from "@/store/redux/services/authSlice/authSlice";
 import { useGetBuyerProfileQuery } from "@/store/redux/services/buyerSlice/profileSlice/profileApiSlice";
 import { setBuyerProfile } from "@/store/redux/services/buyerSlice/profileSlice/profileSlice";
+import { useGetSellerProfileQuery } from "@/store/redux/services/sellerSlice/profileSlice/profileApiSlice";
+import { setSellerProfile } from "@/store/redux/services/sellerSlice/profileSlice/profileSlice";
 
 const NavBar = () => {
   const [fetchBuyerProfile, setFetchBuyerProfile] = useState(true);
+  const [fetchSellerProfile, setFetchSellerProfile] = useState(true);
 
   const { data, isError, isFetching, isLoading, isSuccess, error } =
     useGetBuyerProfileQuery("", { skip: fetchBuyerProfile });
+
+  const {
+    data: sellerProfile,
+    isLoading: sellerProfileLoading,
+    error: sellerProfileError,
+  } = useGetSellerProfileQuery("", { skip: fetchSellerProfile });
 
   const device = useAppSelector(selectDeviceWith);
   const dispatch = useAppDispatch();
@@ -28,8 +37,38 @@ const NavBar = () => {
 
     if (user === "Buyer") {
       setFetchBuyerProfile(false);
+    } else if (user === "Seller") {
+      setFetchSellerProfile(false);
     }
   }, []);
+
+  useEffect(() => {
+    if (data) {
+      dispatch(setBuyerProfile({ userData: data.data }));
+    }
+  }, [data, dispatch]);
+
+  useEffect(() => {
+    if (sellerProfile) {
+      dispatch(
+        setSellerProfile({
+          userData: sellerProfile.data,
+        })
+      );
+    }
+  }, [sellerProfile, dispatch]);
+
+  useEffect(() => {
+    if (sellerProfile) {
+      dispatch(
+        setSellerProfile({
+          userData: sellerProfile.data,
+        })
+      );
+    }
+  }, []);
+
+  console.log(sellerProfile);
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -57,12 +96,6 @@ const NavBar = () => {
       dispatch(editLinkState(true));
     }
   }, [device.width, dispatch]);
-
-  useEffect(() => {
-    if (data) {
-      dispatch(setBuyerProfile({ userData: data.data }));
-    }
-  }, [data, dispatch]);
 
   return device.width > 640 ? <WebNav /> : <MobileNav />;
 };
