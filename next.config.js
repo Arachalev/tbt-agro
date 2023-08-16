@@ -12,7 +12,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "test.tbt.com.ng/**",
+        hostname:"api.tbt.com.ng/**",
         port: "",
       },
     ],

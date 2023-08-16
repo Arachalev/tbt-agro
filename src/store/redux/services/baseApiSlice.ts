@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const baseApiUrl = "https://test.tbt.com.ng/api/v1";
+const baseApiUrl = "https://api.tbt.com.ng/";
+// const baseApiUrl = "https://test.tbt.com.ng/api/v1";
+// hostname: "test.tbt.com.ng/**",
 
 const baseQuery = fetchBaseQuery({
   baseUrl: baseApiUrl,
