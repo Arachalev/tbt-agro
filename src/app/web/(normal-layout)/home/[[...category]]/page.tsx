@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { useSearchParams } from "next/navigation";
 
@@ -363,7 +363,12 @@ const Page = () => {
     value.value && router.push(`/web/search?params=${value.value}`);
   };
 
-  const firstLoad = sessionStorage.getItem("first-load");
+  const firstLoad = useRef<string | null>();
+  useEffect(() => {
+    firstLoad.current = sessionStorage.getItem("first-load");
+  }, []);
+
+  // console.log(firstLoad);
 
   // gsap animation sequence for firstload modal
   useEffect(() => {
@@ -388,7 +393,7 @@ const Page = () => {
 
   return (
     <div className="min-h-[100vh] pt-12 sm:py-12 bg-agro-body">
-      {showModal && !firstLoad && (
+      {showModal && !firstLoad.current && (
         <div className="overflow-hidden flex items-center justify-center modal h-screen backdrop-blur-md  min-w-screen fixed top-0 right-0 left-0 z-[5000000] p-5 sm:p-20  xl:p-40  ">
           <div className="bg-think-agro py-11 pl-10 md:pl-20  firstloadModal">
             <div className="flex items-center justify-between">

@@ -99,10 +99,12 @@ const SignInForm = () => {
   let errorMessage;
 
   if (error) {
-    errorMessage = isFetchBaseQueryErrorType(error);
+    // errorMessage = isFetchBaseQueryErrorType(error);
   }
 
-  // console.log(error, errorMessage);
+  // https://api.tbt.com.ng/user/auth/login
+
+  console.log(error, errorMessage);
   return (
     <div className="min-h-screen bg-agro-floral-white pt-10 pb-[142px] flex flex-col items-center">
       {show && (
